@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugEditor/RoomBugEditor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/AttributeSelector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/head_beetle.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/head_ladybug.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/head_bee.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/head_shadow.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/body_shadow.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/body_beetle.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/body_bee.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/body_ladybug.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/legs_ladybug.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/legs_bee.png" type="Texture" id=13]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/legs_beetle.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/legs_shadow.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/eyes_beetle.png" type="Texture" id=16]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/eyes_bee.png" type="Texture" id=17]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/eyes_fly.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/shoes_converse.png" type="Texture" id=19]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/clothes_shirt.png" type="Texture" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="RoomBugEditor" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,19 +47,120 @@ limit_bottom = 0.0
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GraphicInterface" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="GraphicInterface"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bg" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="Bg" type="TextureRect" parent="GraphicInterface/Control"]
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CenterContainer" type="CenterContainer" parent="GraphicInterface/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GraphicInterface/Control/CenterContainer"]
+margin_left = 44.0
+margin_top = 5.0
+margin_right = 276.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 232, 0 )
+
+[node name="MainAttributes" type="VBoxContainer" parent="GraphicInterface/Control/CenterContainer/HBoxContainer"]
+margin_right = 60.0
+margin_bottom = 170.0
+
+[node name="Head" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 60.0
+margin_bottom = 60.0
+size_flags_vertical = 3
+title = "head"
+main_color = Color( 1, 0.819608, 0, 1 )
+parts = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+shadow_texture = ExtResource( 7 )
+
+[node name="Body" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 64.0
+margin_right = 60.0
+margin_bottom = 115.0
+size_flags_vertical = 3
+title = "body"
+main_color = Color( 1, 0.14902, 0.454902, 1 )
+parts = [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ) ]
+shadow_texture = ExtResource( 8 )
+
+[node name="Legs" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 119.0
+margin_right = 60.0
+margin_bottom = 170.0
+size_flags_vertical = 3
+title = "legs"
+main_color = Color( 0.0627451, 0.823529, 0.458824, 1 )
+parts = [ ExtResource( 14 ), ExtResource( 12 ), ExtResource( 13 ) ]
+shadow_texture = ExtResource( 15 )
+
+[node name="HSeparator" type="VSeparator" parent="GraphicInterface/Control/CenterContainer/HBoxContainer"]
+margin_left = 64.0
+margin_right = 168.0
+margin_bottom = 170.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.59
+custom_styles/separator = SubResource( 1 )
+
+[node name="SecondaryAttributes" type="VBoxContainer" parent="GraphicInterface/Control/CenterContainer/HBoxContainer"]
+margin_left = 172.0
+margin_right = 232.0
+margin_bottom = 170.0
+
+[node name="Eyes" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 60.0
+margin_bottom = 54.0
+size_flags_vertical = 3
+title = "eyes"
+main_color = Color( 1, 0.501961, 0.643137, 1 )
+parts = [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ]
+has_none = true
+
+[node name="Clothes" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 58.0
+margin_right = 60.0
+margin_bottom = 112.0
+size_flags_vertical = 3
+title = "clothes"
+main_color = Color( 0.839216, 0.141176, 0.0666667, 1 )
+parts = [ ExtResource( 20 ) ]
+has_none = true
+
+[node name="Shoes" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 116.0
+margin_right = 60.0
+margin_bottom = 170.0
+size_flags_vertical = 3
+title = "shoes"
+main_color = Color( 0, 0.470588, 0.6, 1 )
+parts = [ ExtResource( 19 ) ]
+has_none = true

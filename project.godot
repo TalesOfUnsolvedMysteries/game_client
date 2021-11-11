@@ -166,7 +166,7 @@ _global_script_class_icons={
 
 config/name="The bug adventure show"
 config/description="A graphic adventure for the blockchain. A multi-game-jam-entry for the Game Off, AdvXJam 2021, Theta Hackathon Q3 2021 and GoGodotJam 2021."
-run/main_scene="res://popochiu/Rooms/Main/RoomMain.tscn"
+run/main_scene="res://popochiu/Rooms/BugEditor/RoomBugEditor.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -189,6 +189,30 @@ window/size/height=180
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg" )
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [input]
 

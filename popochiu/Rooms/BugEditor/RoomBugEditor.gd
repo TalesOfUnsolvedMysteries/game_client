@@ -12,7 +12,8 @@ func on_room_entered() -> void:
 
 
 func on_room_transition_finished() -> void:
-	pass
+	G.done()
+	G.hide_interface()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
