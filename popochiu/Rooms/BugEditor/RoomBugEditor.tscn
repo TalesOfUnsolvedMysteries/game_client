@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://popochiu/Rooms/BugEditor/RoomBugEditor.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=2]
+
+[node name="RoomBugEditor" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "BugEditor"
+has_player = false
+hide_gi = true
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="TextureRect" parent="CanvasLayer/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

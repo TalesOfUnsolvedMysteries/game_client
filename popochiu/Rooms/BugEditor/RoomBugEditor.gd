@@ -2,13 +2,17 @@ tool
 extends PopochiuRoom
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
+# TODO: Sobrescribir los métodos de Godot que hagan falta
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	G.hide_interface()
+	pass
 
 
 func on_room_transition_finished() -> void:
-	E.goto_room('BugEditor')
+	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
