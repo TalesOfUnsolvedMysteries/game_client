@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugEditor/RoomBugEditor.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/AttributeSelector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/head_beetle.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/head_ladybug.png" type="Texture" id=5]
@@ -20,13 +20,32 @@
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/eyes_fly.png" type="Texture" id=18]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/shoes_converse.png" type="Texture" id=19]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/clothes_shirt.png" type="Texture" id=20]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=21]
+[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=22]
+[ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=23]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 23 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color( 1, 0.501961, 0.643137, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 23 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_bottom = 4.0
+draw_center = false
+border_width_bottom = 2
+border_color = Color( 0.407843, 0.682353, 0.831373, 1 )
 
 [node name="RoomBugEditor" type="Node2D"]
 script = ExtResource( 1 )
 script_name = "BugEditor"
-has_player = false
 hide_gi = true
 limit_left = 0.0
 limit_right = 0.0
@@ -34,6 +53,13 @@ limit_top = 0.0
 limit_bottom = 0.0
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 21 )]
+description = "Bg"
+clickable = false
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 22 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -52,14 +78,6 @@ limit_bottom = 0.0
 [node name="Control" type="Control" parent="GraphicInterface"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bg" type="TextureRect" parent="GraphicInterface/Control"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,7 +104,7 @@ margin_bottom = 170.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 60.0
-margin_bottom = 60.0
+margin_bottom = 58.0
 size_flags_vertical = 3
 title = "head"
 main_color = Color( 1, 0.819608, 0, 1 )
@@ -96,9 +114,9 @@ shadow_texture = ExtResource( 7 )
 [node name="Body" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 64.0
+margin_top = 62.0
 margin_right = 60.0
-margin_bottom = 115.0
+margin_bottom = 114.0
 size_flags_vertical = 3
 title = "body"
 main_color = Color( 1, 0.14902, 0.454902, 1 )
@@ -108,7 +126,7 @@ shadow_texture = ExtResource( 8 )
 [node name="Legs" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 119.0
+margin_top = 118.0
 margin_right = 60.0
 margin_bottom = 170.0
 size_flags_vertical = 3
@@ -117,13 +135,61 @@ main_color = Color( 0.0627451, 0.823529, 0.458824, 1 )
 parts = [ ExtResource( 14 ), ExtResource( 12 ), ExtResource( 13 ) ]
 shadow_texture = ExtResource( 15 )
 
-[node name="HSeparator" type="VSeparator" parent="GraphicInterface/Control/CenterContainer/HBoxContainer"]
+[node name="NameAndAnims" type="VBoxContainer" parent="GraphicInterface/Control/CenterContainer/HBoxContainer"]
 margin_left = 64.0
+margin_top = 118.0
 margin_right = 168.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.59
-custom_styles/separator = SubResource( 1 )
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/NameAndAnims"]
+margin_right = 104.0
+margin_bottom = 13.0
+alignment = 1
+
+[node name="Idle" type="Button" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/NameAndAnims/HBoxContainer"]
+margin_left = 14.0
+margin_right = 50.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 1, 0.819608, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "idle"
+
+[node name="Walk" type="Button" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/NameAndAnims/HBoxContainer"]
+margin_left = 54.0
+margin_right = 90.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 1, 0.819608, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "walk"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/NameAndAnims"]
+margin_top = 17.0
+margin_right = 104.0
+margin_bottom = 31.0
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_text = "+++ name +++"
+text = "+++ name +++"
+fit_content_height = true
+
+[node name="LineEdit" type="LineEdit" parent="GraphicInterface/Control/CenterContainer/HBoxContainer/NameAndAnims"]
+margin_top = 35.0
+margin_right = 104.0
+margin_bottom = 52.0
+custom_colors/font_color = Color( 0.0862745, 0.0901961, 0.101961, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "your name"
+align = 1
 
 [node name="SecondaryAttributes" type="VBoxContainer" parent="GraphicInterface/Control/CenterContainer/HBoxContainer"]
 margin_left = 172.0

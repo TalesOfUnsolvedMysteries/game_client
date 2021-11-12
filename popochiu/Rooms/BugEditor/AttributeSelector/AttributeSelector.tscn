@@ -33,26 +33,26 @@ margin_right = 88.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 60, 0 )
 size_flags_horizontal = 3
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[center][wave]clothes[/wave][/center]"
-text = "clothes"
+bbcode_text = "[center][wave][/wave][/center]"
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 18.0
 margin_right = 88.0
-margin_bottom = 52.0
+margin_bottom = 51.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Left" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-margin_top = 10.0
+margin_top = 9.0
 margin_right = 10.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 4 )
@@ -63,17 +63,17 @@ __meta__ = {
 
 [node name="Part" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 margin_left = 44.0
-margin_top = 34.0
+margin_top = 33.0
 margin_right = 44.0
-margin_bottom = 34.0
+margin_bottom = 33.0
 size_flags_horizontal = 6
 size_flags_vertical = 10
 
 [node name="Right" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 margin_left = 78.0
-margin_top = 10.0
+margin_top = 9.0
 margin_right = 88.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 size_flags_vertical = 4
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
@@ -84,7 +84,7 @@ __meta__ = {
 
 [node name="Shadow" type="TextureRect" parent="VBoxContainer"]
 margin_left = 44.0
-margin_top = 56.0
+margin_top = 55.0
 margin_right = 44.0
-margin_bottom = 56.0
+margin_bottom = 55.0
 size_flags_horizontal = 4

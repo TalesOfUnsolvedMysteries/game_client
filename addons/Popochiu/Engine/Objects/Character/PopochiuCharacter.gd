@@ -63,15 +63,20 @@ func walk(target_pos: Vector2, is_in_queue := true) -> void:
 		E.main_camera.smoothing_enabled = true
 		return
 	
+	play_walk()
+
+	emit_signal('started_walk_to', self, position, target_pos)
+	yield(C, 'character_move_ended')
+	is_moving = false
+
+
+func play_walk() -> void:
 	var anim_name := 'walk_%s' % _looking_dir + anim_suffix
 	if $AnimationPlayer.has_animation(anim_name):
 		$AnimationPlayer.play(anim_name)
 	else:
 		$AnimationPlayer.play(dflt_walk_animation)
 
-	emit_signal('started_walk_to', self, position, target_pos)
-	yield(C, 'character_move_ended')
-	is_moving = false
 
 
 func stop_walking(is_in_queue := true) -> void:
@@ -178,7 +183,8 @@ func remove_inventory() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _set_texture(value: Texture) -> void:
 	texture = value
-	$Sprite.texture = value
+	
+	if get_node_or_null('Sprite'): $Sprite.texture = value
 
 
 func _translate() -> void:
