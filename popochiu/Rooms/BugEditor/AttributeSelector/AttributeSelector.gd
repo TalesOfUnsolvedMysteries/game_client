@@ -13,7 +13,8 @@ export var has_none := false
 var _current_part := 0 setget _set_current_part
 var _none_texture: Texture =\
 preload('res://popochiu/Rooms/BugEditor/AttributeSelector/none.png')
-var _name_template := '[center][wave amp=%d freq=%d]%s[/wave][/center]'
+#var _name_template := '[center][wave amp=%d freq=%d]%s[/wave][/center]'
+var _name_template := '[center][shake]%s[/shake][/center]'
 
 onready var _name: RichTextLabel = find_node('Name')
 onready var btn_left: TextureButton = find_node('Left')
@@ -27,7 +28,7 @@ func _ready() -> void:
 	randomize()
 	var amp := randi() % 10 + 5
 	var freq := randi() % 8 + 5
-	_name.bbcode_text = _name_template % [amp, freq, title]
+	_name.bbcode_text = _name_template % [title]
 	_name.add_color_override('default_color', main_color)
 	shadow.texture = shadow_texture
 	

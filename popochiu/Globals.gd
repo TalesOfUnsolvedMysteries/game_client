@@ -8,3 +8,5 @@ enum Bodies {
 	LADYBUG,
 	BEE
 }
+
+var bug_name := ''

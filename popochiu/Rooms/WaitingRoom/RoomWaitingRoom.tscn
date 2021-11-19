@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/RoomWaitingRoom.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Characters/CoHost/CharacterCoHost.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/sprites/bg.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=5]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 153, 48, 154, 85, -155, 84, 121, 47, -136, 42, -66, 39, 46, 42, -156, 46 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 3, 2, 7 ) ]
+outlines = [ PoolVector2Array( -155, 84, -156, 46, -136, 42, -66, 39, 46, 42, 121, 47, 153, 48, 154, 85 ) ]
+
+[node name="RoomWaitingRoom" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "WaitingRoom"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
+description = "Bg"
+clickable = false
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 4 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="BugEntry" type="Position2D" parent="Points"]
+position = Vector2( -124, 64 )
+
+[node name="CoHostEntry" type="Position2D" parent="Points"]
+position = Vector2( 26, 55 )
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( -228, 55 )
+
+[node name="CharacterCoHost" parent="Characters" instance=ExtResource( 2 )]
+position = Vector2( 195, 73 )

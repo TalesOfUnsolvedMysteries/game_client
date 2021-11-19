@@ -37,7 +37,7 @@ custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/mono_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[center][wave][/wave][/center]"
+bbcode_text = "[center][shake][/shake][/center]"
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -54,6 +54,7 @@ margin_top = 9.0
 margin_right = 10.0
 margin_bottom = 23.0
 size_flags_vertical = 4
+disabled = true
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 4 )
 texture_disabled = ExtResource( 7 )
@@ -63,11 +64,11 @@ __meta__ = {
 
 [node name="Part" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 margin_left = 44.0
-margin_top = 33.0
+margin_top = 16.0
 margin_right = 44.0
-margin_bottom = 33.0
+margin_bottom = 16.0
 size_flags_horizontal = 6
-size_flags_vertical = 10
+size_flags_vertical = 6
 
 [node name="Right" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 margin_left = 78.0

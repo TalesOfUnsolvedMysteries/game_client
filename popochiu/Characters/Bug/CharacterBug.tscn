@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Characters/Bug/shadow.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -64,6 +65,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shadow:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle_d"
@@ -74,7 +87,7 @@ tracks/0/path = NodePath("Sprite/Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -86,7 +99,7 @@ tracks/1/path = NodePath("Sprite/Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -129,46 +142,47 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shadow:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "walk_d"
-length = 0.5
+length = 0.1
 loop = true
+step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -8.0, 8.0 ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/path = NodePath("Shadow:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -1 ), Vector2( 0, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.95, 1.1 ), Vector2( 1.2, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.4, 1 ) ]
 }
 
 [node name="CharacterBug" type="Area2D"]
@@ -183,6 +197,7 @@ is_player = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, -10 )
+disabled = true
 
 [node name="BaselineHelper" type="Line2D" parent="."]
 points = PoolVector2Array( -10000, 0, 10000, 0 )
@@ -208,12 +223,23 @@ anims/RESET = SubResource( 1 )
 anims/idle_d = SubResource( 2 )
 anims/walk_d = SubResource( 3 )
 
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0, 0.5 )
+texture = ExtResource( 2 )
+
 [node name="Sprite" type="Sprite" parent="."]
+offset = Vector2( 0, 20 )
 
 [node name="Body" type="Sprite" parent="Sprite"]
 
+[node name="Clothes" type="Sprite" parent="Sprite/Body"]
+
 [node name="Head" type="Sprite" parent="Sprite"]
 
+[node name="Eyes" type="Sprite" parent="Sprite/Head"]
+
 [node name="Legs" type="Sprite" parent="Sprite"]
+
+[node name="Shoes" type="Sprite" parent="Sprite/Legs"]
 
 [node name="DialogPos" type="Position2D" parent="."]

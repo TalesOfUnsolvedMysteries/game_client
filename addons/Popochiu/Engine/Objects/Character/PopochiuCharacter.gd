@@ -70,12 +70,12 @@ func walk(target_pos: Vector2, is_in_queue := true) -> void:
 	is_moving = false
 
 
-func play_walk() -> void:
+func play_walk(speed := 1.0) -> void:
 	var anim_name := 'walk_%s' % _looking_dir + anim_suffix
 	if $AnimationPlayer.has_animation(anim_name):
-		$AnimationPlayer.play(anim_name)
+		$AnimationPlayer.play(anim_name, -1, 1.0 * speed)
 	else:
-		$AnimationPlayer.play(dflt_walk_animation)
+		$AnimationPlayer.play(dflt_walk_animation, -1, 1.0 * speed)
 
 
 
@@ -90,6 +90,7 @@ func idle(is_in_queue := true) -> void:
 	if is_in_queue: yield()
 	
 	var anim_name := 'idle_%s' % _looking_dir + anim_suffix
+	prints(name, anim_name)
 
 	if $AnimationPlayer.has_animation(anim_name):
 		$AnimationPlayer.play(anim_name)

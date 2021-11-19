@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Test/RoomTest.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://popochiu/Rooms/Test/Props/Lamp/PropLamp.gd" type="Script" id=3]
+[ext_resource path="res://popochiu/Rooms/Test/Props/Lamp/lamp.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/Test/Props/Bg/bg.png" type="Texture" id=6]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 29, -10, 126, 6, 149, 80, -153, 83, -125, 10, -33, -8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
+outlines = [ PoolVector2Array( -33, -8, -125, 10, -153, 83, 149, 80, 126, 6, 29, -10 ) ]
+
+[node name="RoomTest" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "Test"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 2 )]
+description = "Bg"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 6 )
+
+[node name="Lamp" parent="Props" instance=ExtResource( 2 )]
+position = Vector2( -78, 11 )
+script = ExtResource( 3 )
+description = "Lamp"
+baseline = 24
+walk_to_point = Vector2( 0, 28 )
+cursor = 1
+script_name = "Lamp"
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" parent="Props/Lamp" index="0"]
+polygon = PoolVector2Array( -9, -25, 8, -25, 13, 22, -11, 23 )
+
+[node name="BaselineHelper" parent="Props/Lamp" index="1"]
+position = Vector2( 0, 24 )
+
+[node name="WalkToHelper" parent="Props/Lamp" index="2"]
+position = Vector2( 0, 28 )
+
+[node name="Sprite" parent="Props/Lamp" index="3"]
+texture = ExtResource( 5 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[editable path="Props/Lamp"]

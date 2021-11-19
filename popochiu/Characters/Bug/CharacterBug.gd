@@ -8,6 +8,10 @@ onready var _body: Sprite = find_node('Body')
 onready var _head: Sprite = find_node('Head')
 onready var _legs: Sprite = find_node('Legs')
 
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	.on_interact()
@@ -19,28 +23,49 @@ func on_look() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func set_part(node: AttributeSelector) -> void:
-	if get_node_or_null('Sprite/%s' % node.name):
-		var s: Sprite = get_node('Sprite/%s' % node.name)
-		s.texture = node.part.texture
-		_parts_id[node.name] = node.get_part_idx()
-		
-		match node.name:
-			'Head':
-				s.offset.y = node.part.texture.get_height() / 2 * -1
-			'Legs':
-				s.offset.y = node.part.texture.get_height() / 2
-			
-		if _body:
-			_head.position = Vector2(
-				_get_left_position(_head),
-				_body.texture.get_height() / 2 * -1
-			)
-			_head.position += _parts_config.body[_parts_id.Body].head
-			_legs.position = Vector2(
-				_get_left_position(_legs),
-				_body.texture.get_height() / 2
-			)
-			_legs.position += _parts_config.body[_parts_id.Body].legs
+	if not _body or not _head or not _legs: return
+	
+	var s: Sprite = $Sprite.find_node(node.name)
+	
+	match node.name:
+		'Head':
+			s.offset.y = node.part.texture.get_height() / 2 * -1
+		'Legs':
+			s.offset.y = node.part.texture.get_height() / 2
+		'Eyes', 'Clothes', 'Shoes':
+			if node.get_part_idx() == -1:
+				s.texture = null
+				return
+			continue
+		'Eyes':
+			s.position.y = -(node.part.texture.get_height() / 2) - 3.0
+		'Clothes':
+			s.position.x = 5.0
+		'Shoes':
+			s.offset.y = node.part.texture.get_height() / 2 * -1
+			s.position.y = _legs.texture.get_height()
+	
+	s.texture = node.part.texture
+	
+	if _body.texture and _legs.texture:
+		_head.position = Vector2(
+			0.0,
+			(_body.texture.get_height() / 2 * -1) - 1
+		)
+		_legs.position = Vector2(
+			0.0,
+			(_body.texture.get_height() / 2) + 1
+		)
+
+
+func ready_to_play() -> void:
+	# Poner el punto de ancla del personaje en la base
+	var _offset := _legs.position.y + _legs.texture.get_height()
+	_head.position.y -= _offset
+	_body.position.y -= _offset
+	_legs.position.y -= _offset
+	
+	$DialogPos.position.y = _head.position.y - _head.texture.get_height()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
