@@ -40,21 +40,36 @@ func _unhandled_input(event):
 	if mouse_event and mouse_event.pressed:
 		E.clicked = self
 		if event.is_action_pressed('popochiu-interact'):
-			# TODO: Verificar si hay un elemento de inventario seleccionado
+			self._interact()
+			if get_tree().has_network_peer():
+				rpc('_net_interact')
 			get_tree().set_input_as_handled()
-			if I.active:
-				on_item_used(I.active)
-			else:
-				E.add_history({
-					action = 'Interacted with: %s' % description
-				})
-				on_interact()
 		elif event.is_action_pressed('popochiu-look'):
-			if not I.active:
-				E.add_history({
-					action = 'Looked at: %s' % description
-				})
-				on_look()
+			self._look()
+
+remote func _net_interact():
+	self._interact()
+
+func _interact():
+	print('popochiu interact clicked')
+	print(self._description_code)
+	# TODO: Verificar si hay un elemento de inventario seleccionado
+	if I.active:
+		on_item_used(I.active)
+	else:
+		E.add_history({
+			action = 'Interacted with: %s' % description
+		})
+		on_interact()
+
+
+func _look():
+	if I.active: return
+	print('look')
+	E.add_history({
+		action = 'Looked at: %s' % description
+	})
+	on_look()
 
 
 func _process(delta):
