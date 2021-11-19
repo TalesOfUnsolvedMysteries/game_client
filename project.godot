@@ -187,6 +187,7 @@ G="*res://addons/Popochiu/Engine/Interfaces/IGraphicInterface.gd"
 A="*res://addons/Popochiu/Engine/AudioManager/AudioManager.tscn"
 Globals="*res://popochiu/Globals.gd"
 NetworkManager="*res://networking/NetworkManager.gd"
+WebsocketManager="*res://networking/WebsocketManager.gd"
 
 [display]
 

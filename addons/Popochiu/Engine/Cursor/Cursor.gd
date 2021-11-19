@@ -35,10 +35,14 @@ func _process(delta):
 		# events..
 		#mouse_position = cursor_position
 		# warp mouse would handle the mouse as it is 
-		if counter > 10 and counter < 50:
-			get_viewport().warp_mouse(cursor_position)
+		#if counter > 10 and counter < 50:
+			#get_viewport().warp_mouse(cursor_position)
+			#mouse_position = cursor_position
+		pass
 	elif get_tree().has_network_peer():
-		rset_unreliable('cursor_position', mouse_position)
+		#rset_unreliable('cursor_position', mouse_position)
+		#print('should change mouse position')
+		pass
 	$AnimatedSprite.position = mouse_position
 	$Sprite.position = mouse_position
 		
