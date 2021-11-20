@@ -51,7 +51,8 @@ func request_join(server_ip):
 func _player_connected(player_id):
 	print('should register players connected to the game ', player_id)
 	if server:
-		rpc_id(player_id, 'player_joined', 'hola')
+		WebsocketManager.player_connected(player_id)
+		#rpc_id(player_id, 'player_joined', 'hola')
 
 # server and client
 func _player_disconnected(player_id):
@@ -71,25 +72,3 @@ func _server_disconnected():
 	print(get_tree().has_network_peer())
 	print(get_tree().network_peer.get_connection_status())
 
-
-remote func player_joined(message):
-	var id = get_tree().get_rpc_sender_id()
-	# Store the info
-	print(message)
-	if !server:
-		print('sending private key message: %s' % WebsocketManager.secret_key)
-		rpc_id(1, "validate_connection", WebsocketManager.secret_key)
-
-remote func validate_connection(_secret_key):
-	var id = get_tree().get_rpc_sender_id()
-	print('validating connection for peer:%d' % id)
-	print(WebsocketManager.secret_key)
-	print(id)
-	print(_secret_key)
-	if WebsocketManager.secret_key != _secret_key:
-		print ('key is not the same')
-		get_tree().network_peer.disconnect_peer(id)
-		WebsocketManager.send_message_ws('gs_connectionFail:%s' % WebsocketManager.secret_key)
-	else:
-		print ('connection successful')
-		WebsocketManager.send_message_ws('gs_connectionSuccess:%s-%d' % [_secret_key, id])

@@ -109,6 +109,10 @@ remote func player_joined(message):
 		print('sending private key message: %s' % secret_key)
 		rpc_id(1, "validate_connection", secret_key)
 
+func player_connected(player_id):
+	rpc_id(player_id, 'player_joined', 'hola')
+
+
 remote func validate_connection(_secret_key):
 	var id = get_tree().get_rpc_sender_id()
 	print('validating connection for peer:%d' % id)
@@ -125,4 +129,6 @@ remote func validate_connection(_secret_key):
 
 func request_join():
 	send_message_ws('allocateUser:manito')
+
+
 
