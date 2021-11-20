@@ -60,3 +60,4 @@ func _check_bug_name(new_text: String) -> void:
 func _start() -> void:
 	Globals.bug_name = _name_edit.text
 	E.goto_room('WaitingRoom')
+	#E.goto_room('BugCard')
