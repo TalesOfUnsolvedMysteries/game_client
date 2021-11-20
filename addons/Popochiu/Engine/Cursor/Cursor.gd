@@ -30,19 +30,14 @@ func _process(delta):
 	
 	# should wrap this is server and has network into the network manager
 	# to validate connection issues
-	if get_tree().is_network_server():
-		# mouse position would display the position but it wont trigger the on hover
-		# events..
-		#mouse_position = cursor_position
+	if NetworkManager.isServerWithPilot():
+		mouse_position = cursor_position
 		# warp mouse would handle the mouse as it is 
 		#if counter > 10 and counter < 50:
 			#get_viewport().warp_mouse(cursor_position)
 			#mouse_position = cursor_position
-		pass
-	elif get_tree().has_network_peer():
-		#rset_unreliable('cursor_position', mouse_position)
-		#print('should change mouse position')
-		pass
+	elif NetworkManager.isPilot():
+		rset_unreliable('cursor_position', mouse_position)
 	$AnimatedSprite.position = mouse_position
 	$Sprite.position = mouse_position
 		

@@ -41,14 +41,17 @@ func _unhandled_input(event):
 		E.clicked = self
 		if event.is_action_pressed('popochiu-interact'):
 			self._interact()
-			if get_tree().has_network_peer():
+			if NetworkManager.isPilot():
+				print('click on element %s' % self._description_code)
 				rpc('_net_interact')
 			get_tree().set_input_as_handled()
 		elif event.is_action_pressed('popochiu-look'):
 			self._look()
 
 remote func _net_interact():
-	self._interact()
+	if NetworkManager.isServerWithPilot():
+		print('replicate interaction %s' % self._description_code)
+		self._interact()
 
 func _interact():
 	print('popochiu interact clicked')

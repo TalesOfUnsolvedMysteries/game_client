@@ -71,3 +71,4 @@ func ready_to_play() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _get_left_position(target: Sprite) -> int:
 	return -(_body.texture.get_width() / 2 - target.texture.get_width() / 2)
+

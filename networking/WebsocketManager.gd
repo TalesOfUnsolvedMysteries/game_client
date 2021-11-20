@@ -10,6 +10,8 @@ var wsClient = WebSocketClient.new()
 var secret_key = 'XZA' # generate random one
 
 var server_request = false
+signal userID_assigned
+signal turn_assigned
 
 func _ready():
 	# connection to ws
@@ -21,6 +23,21 @@ func _ready():
 	# a full packet is received.
 	# Alternatively, you could check get_peer(1).get_available_packets() in a loop.
 	wsClient.connect("data_received", self, "_on_data")
+	self._pass_arguments()
+
+func _pass_arguments():
+	var arguments = {}
+	for argument in OS.get_cmdline_args():
+		# Parse valid command-line arguments into a dictionary
+		if argument.find("=") > -1:
+			var key_value = argument.split("=")
+			arguments[key_value[0].lstrip("--")] = key_value[1]
+	
+	if arguments.has('secret_key'):
+		secret_key = arguments.get('secret_key')
+	
+	var server_request = arguments.has('server') and arguments.get('server')
+	init(server_request)
 
 func init(_server_request):
 	# Initiate connection to the given URL.
@@ -29,7 +46,9 @@ func init(_server_request):
 	print (err)
 	if err != OK:
 		print("Unable to connect")
-	
+
+func register_game_server():
+	send_message_ws('registerGameServer:%s' % secret_key)
 
 # was_clean will tell you if the disconnection was correctly notified
 # by the remote peer before closing the socket.
@@ -59,9 +78,12 @@ func _on_data():
 		else: send_message_ws('allocateUser:manito')
 	elif command == 'userAssigned':
 		print ('user assigned ', data)
+		emit_signal('userID_assigned', data)
 		send_message_ws('requestTurn')
 	elif command == 'ping':
 		send_message_ws('pong')
+	elif command == 'replyTurn':
+		emit_signal('turn_assigned', data)
 	elif command == 'gc_connect':
 		join_client(data)
 	elif command == 'gs_connected':
@@ -71,6 +93,9 @@ func _on_data():
 		if !NetworkManager.server: return
 		secret_key = data
 		send_message_ws('gs_waitingConnection:%s' % secret_key)
+	elif command == 'gs_assignPilot':
+		if !NetworkManager.server: return
+		NetworkManager.set_pilot(int(data))
 
 var max_interval = 1/20
 var delta_acc = 0
@@ -128,7 +153,9 @@ remote func validate_connection(_secret_key):
 		send_message_ws('gs_connectionSuccess:%s-%d' % [secret_key, id])
 
 func request_join():
+	# generate random word or phrase save on local storage and send it to the server
 	send_message_ws('allocateUser:manito')
+
 
 
 

@@ -78,7 +78,12 @@ func _unhandled_input(event):
 		return
 
 	C.player.walk(get_local_mouse_position(), false)
+	if NetworkManager.isPilot():
+		rpc('_net_player_move', get_local_mouse_position())
 
+remote func _net_player_move(position):
+	if NetworkManager.isServerWithPilot():
+		C.player.walk(position, false)
 
 func _get_property_list():
 	var properties = []
