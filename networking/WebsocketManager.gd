@@ -91,6 +91,7 @@ func _on_data():
 		send_message_ws('gs_ready')
 	elif command == 'gs_waitForConnection':
 		if !NetworkManager.server: return
+		# save the secret key and wait for a player ask for connection using it
 		secret_key = data
 		send_message_ws('gs_waitingConnection:%s' % secret_key)
 	elif command == 'gs_assignPilot':

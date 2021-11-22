@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugCard/RoomBugCard.gd" type="Script" id=1]
-[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=5]
@@ -27,14 +26,10 @@ cursor = 10
 script_name = "Bg"
 texture = ExtResource( 4 )
 
-[node name="SideA" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+[node name="SideA" parent="Props" instance=ExtResource( 3 )]
 modulate = Color( 0.588235, 1, 0.482353, 1 )
 position = Vector2( -81, 0 )
 scale = Vector2( 0.5, 0.88 )
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "SideA"
 clickable = false
 cursor = 10

@@ -43,7 +43,7 @@ func _unhandled_input(event):
 			self._interact()
 			if NetworkManager.isPilot():
 				print('click on element %s' % self._description_code)
-				rpc('_net_interact')
+				rpc_id(1, '_net_interact')
 			get_tree().set_input_as_handled()
 		elif event.is_action_pressed('popochiu-look'):
 			self._look()

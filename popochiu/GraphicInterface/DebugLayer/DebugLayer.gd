@@ -17,39 +17,39 @@ func _ready():
 	Utils.take_screenshot()
 
 func _player_connected(peer_id):
-	$Connection.text = 'Connection Status: connected'
-	$PeerID.text = 'peerID: %d' % peer_id
+	$Control/Connection.text = 'Connection Status: connected'
+	$Control/PeerID.text = 'peerID: %d' % peer_id
 
 func _player_disconnected():
-	$Connection.text = 'Connection Status: disconnected'
+	$Control/Connection.text = 'Connection Status: disconnected'
 
 func _connected_ok():
-	$Connection.text = 'Connection Status: connected to the server'
+	$Control/Connection.text = 'Connection Status: connected to the server'
 
 func _connected_fail():
-	$Connection.text = 'Connection Status: failed'
+	$Control/Connection.text = 'Connection Status: failed'
 
 func _server_disconnected():
 	$Connection.text = 'Connection Status: server disconnected'
 
 func _server_started():
-	$Connection.text = 'Connection Status: server'
-	$UserID.hide()
+	$Control/Connection.text = 'Connection Status: server'
+	$Control/UserID.hide()
 
 func _control_taken():
-	$Connection.text = 'Connection Status: Pilot!'
+	$Control/Connection.text = 'Connection Status: Pilot!'
 	time = 30
 
 func _control_lost():
-	$Connection.text = 'Connection Status: connected'
+	$Control/Connection.text = 'Connection Status: connected'
 
 func _userID_assigned(userID):
-	$UserID.text = 'userId: %s' % userID
+	$Control/UserID.text = 'userId: %s' % userID
 
 func _turn_assigned(turn):
-	$Turn.text = 'turn: %s' % turn
+	$Control/Turn.text = 'turn: %s' % turn
 
 func _process(delta):
 	if time > 0:
 		time -= delta
-		$Countdown.text = 'time left: %ds' % int(time)
+		$Control/Countdown.text = 'time left: %ds' % int(time)
