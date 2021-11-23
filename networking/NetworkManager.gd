@@ -21,6 +21,7 @@ func _ready():
 	get_tree().connect('connection_failed', self, '_connected_fail')
 	get_tree().connect('server_disconnected', self, '_server_disconnected')
 
+
 func init_server():
 	print('initializating server')
 	var net = NetworkedMultiplayerENet.new()
@@ -31,19 +32,29 @@ func init_server():
 	WebsocketManager.register_game_server()
 	emit_signal('server_started')
 
+
 func set_pilot(peer_id):
 	if !server: return
 	print('give control')
 	pilot_peer_id = peer_id
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'take_control')
-	yield(get_tree().create_timer(30), 'timeout')
+	# demo - test
+	yield(get_tree().create_timer(5), 'timeout')
+	game_over('time is up')
+
+
+func game_over(death_cause):
 	print('remove control')
+	var peer_id = pilot_peer_id
 	pilot_peer_id = -1
 	pilotOn = false
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'remove_control')
-	WebsocketManager.send_message_ws('gs_pilot_disconnected:%d' % peer_id)
+	print('game over')
+	print('gs_gameOver:%d-%s' % [peer_id, death_cause])
+	WebsocketManager.send_message_ws('gs_gameOver:%d-%s' % [peer_id, death_cause])
+
 
 remote func take_control():
 	if !client: return
@@ -55,6 +66,7 @@ remote func take_control():
 	emit_signal('control_taken')
 	rpc_id(1, 'pilot_engage')
 
+
 remote func pilot_engage():
 	if !server: return
 	var peer_id = get_tree().get_rpc_sender_id()
@@ -63,10 +75,12 @@ remote func pilot_engage():
 		return
 	pilotOn = true
 
+
 remote func remove_control():
 	if !client: return
 	print('control lost')
 	emit_signal('control_lost')
+
 
 func request_join(server_ip):
 	client = true
@@ -74,7 +88,7 @@ func request_join(server_ip):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(server_ip, SERVER_PORT)
 	get_tree().network_peer = peer
-	
+
 
 # server and client
 func _player_connected(player_id):
@@ -83,19 +97,23 @@ func _player_connected(player_id):
 		WebsocketManager.player_connected(player_id)
 		#rpc_id(player_id, 'player_joined', 'hola')
 
+
 # server and client
 func _player_disconnected(player_id):
 	print('should register what players get disconected ', player_id)
+
 
 # client
 func _connected_ok():
 	_connected = true
 	print('connection successful')
 
+
 # client
 func _connected_fail():
 	_connected = false
 	print('connection fail')
+
 
 # client - most probably server kicked this player
 func _server_disconnected():
@@ -104,8 +122,10 @@ func _server_disconnected():
 	print(get_tree().has_network_peer())
 	print(get_tree().network_peer.get_connection_status())
 
+
 func isServerWithPilot():
 	return server and pilotOn
+
 
 func isPilot():
 	return _connected and client and pilot_peer_id == get_tree().get_network_unique_id()

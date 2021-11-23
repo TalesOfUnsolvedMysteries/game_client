@@ -12,9 +12,7 @@ func _ready():
 	NetworkManager.connect('control_lost', self, '_control_lost')
 	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
 	WebsocketManager.connect('turn_assigned', self, '_turn_assigned')
-	yield(get_tree().create_timer(15), "timeout")
-	#$Screenshot.connect('pressed', Utils, 'take_screenshot')
-	Utils.take_screenshot()
+	$Control/Screenshot.connect('pressed', Utils, 'take_screenshot', ['./test.png'])
 
 func _player_connected(peer_id):
 	$Control/Connection.text = 'Connection Status: connected'

@@ -97,6 +97,17 @@ func _on_data():
 	elif command == 'gs_assignPilot':
 		if !NetworkManager.server: return
 		NetworkManager.set_pilot(int(data))
+	elif command == 'gs_generateCard':
+		if !NetworkManager.server: return
+		var _filename = '%s.png' % data
+		E.goto_room('BugCard')
+		yield(get_tree().create_timer(2), 'timeout')
+		Utils.take_screenshot(_filename)
+		yield(get_tree().create_timer(1), 'timeout')
+		send_message_ws('gs_cardGenerated:%s' % _filename)
+		# TODO 
+		# restore game to allow a new player - moves to another scene?
+		E.goto_room('WaitingRoom')
 
 var max_interval = 1/20
 var delta_acc = 0
@@ -135,9 +146,12 @@ remote func player_joined(message):
 		print('sending private key message: %s' % secret_key)
 		rpc_id(1, "validate_connection", secret_key)
 
+
 func player_connected(player_id):
 	rpc_id(player_id, 'player_joined', 'hola')
 
+func player_disconnect(peer_id):
+	send_message_ws('gs_player_disconnected:%d' % peer_id)
 
 remote func validate_connection(_secret_key):
 	var id = get_tree().get_rpc_sender_id()

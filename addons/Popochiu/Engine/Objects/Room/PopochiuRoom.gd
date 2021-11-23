@@ -77,6 +77,7 @@ func _unhandled_input(event):
 			if I.active: I.set_active_item()
 		return
 
+	print('unhandled input', event)
 	C.player.walk(get_local_mouse_position(), false)
 	if NetworkManager.isPilot():
 		rpc('_net_player_move', get_local_mouse_position())

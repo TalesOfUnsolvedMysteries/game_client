@@ -56,7 +56,7 @@ func pascal2snake(string:String)->String:
 # ❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰
 
 # take screenshot
-func take_screenshot():
+func take_screenshot(_name):
 	get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
 	# Wait until the frame has finished before getting the texture.
 	yield(VisualServer, "frame_post_draw")
@@ -69,5 +69,8 @@ func take_screenshot():
 
 	# Create a texture for it.
 	var tex = ImageTexture.new()
+	print('will save the file %s' % _name)
 	tex.create_from_image(img)
-	img.save_png('E:/theta/test.png')
+	if _name:
+		img.save_png(_name)
+	return tex
