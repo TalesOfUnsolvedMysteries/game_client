@@ -1,28 +1,46 @@
 extends Node2D
 const Block = preload("res://popochiu/GraphicInterface/Puzzles/Block.tscn")
-var config = [[0,0,2,1],[0,1,1,2],[2,0,1,3],[1,1,1,1]]
-var grid = [
-	[0,0,0,0,1],
-	[0,0,0,0,0],
-	[0,0,0,0,0],
-	[0,0,0,0,0],
-	[1,1,0,1,1]
+var config = [
+	{ 'tile': [2, 1], 'size': [1, 1], 'target': [1, 5]},
+	{ 'tile': [1, 4], 'size': [1, 1], 'target': [2, 0]},
+	{ 'tile': [0, 1], 'size': [2, 1]},
+	{ 'tile': [0, 2], 'size': [2, 1]},
+	{ 'tile': [1, 3], 'size': [2, 1]},
+	{ 'tile': [2, 4], 'size': [2, 1]},
 ]
+
+var grid = [
+	[1,1,0,1],
+	[0,0,0,1],
+	[0,0,0,0],
+	[0,0,0,0],
+	[1,0,0,0],
+	[1,0,1,1]
+]
+
+var offset = Vector2(0, 0)
+var targets_to_reach = 0
+
 func _ready():
 	var idx = 0
+	offset.x = grid[0].size()*-10 + 10
+	offset.y = grid.size()*-10 + 10
+	print(offset)
+	targets_to_reach = 0
 	for block_config in config:
 		var block = Block.instance()
-	
-	#for block in $Blocks.get_children():
-	#	var tile = config[idx]
-		block.offset = Vector2(-40, -40)
+		block.offset = offset
 		block.connect('drag_started', self, 'pick_block')
 		block.connect('drag_ended', self, 'update_grid')
-		block.set_tile_position(Vector2(block_config[0], block_config[1]))
-		block.set_size(Vector2(block_config[2], block_config[3]))
+		block.connect('target_entered', self, 'target_reach')
+		block.set_tile_position(Vector2(block_config.tile[0], block_config.tile[1]))
+		block.set_size(Vector2(block_config.size[0], block_config.size[1]))
 		for j in range(block.size.y):
 			for i in range(block.size.x):
-				grid[block_config[1]+j][block_config[0]+i] = 1
+				grid[block_config.tile[1]+j][block_config.tile[0]+i] = 1
+		if block_config.has('target'):
+			block.set_target_tile(Vector2(block_config.target[0], block_config.target[1]))
+			targets_to_reach+=1
 		idx += 1
 		$Blocks.add_child(block)
 
@@ -51,7 +69,8 @@ func pick_block(block: PuzzleBlock):
 				break
 		if collides: break
 		block.boundaries_x.y = block.offset.x + i*20
-
+	#print(block.boundaries_x)
+	
 	for _i in range(0, tile.y + 1):
 		var i = tile.y - _i
 		var collides = false
@@ -61,8 +80,8 @@ func pick_block(block: PuzzleBlock):
 				break
 		if collides: break
 		block.boundaries_y.x = block.offset.y + i*20
-	
-	for i in range(tile.y, grid[1].size()-(block.size.y - 1)):
+
+	for i in range(tile.y, grid.size()-(block.size.y - 1)):
 		var collides = false
 		for size_i in range(0, block.size.x):
 			if grid[i+(block.size.y-1)][tile.x+size_i] == 1:
@@ -71,8 +90,15 @@ func pick_block(block: PuzzleBlock):
 		if collides: break
 		block.boundaries_y.y = block.offset.y + i*20
 
+
 func update_grid(block: PuzzleBlock):
 	var tile = block.tile_position
 	for j in range(block.size.y):
 		for i in range(block.size.x):
 			grid[tile[1]+j][tile[0]+i] = 1
+
+func target_reach():
+	targets_to_reach -= 1
+	if targets_to_reach == 0:
+		$Success.show()
+	
