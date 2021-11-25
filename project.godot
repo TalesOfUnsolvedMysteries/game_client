@@ -125,6 +125,11 @@ _global_script_classes=[ {
 "path": "res://addons/Popochiu/Engine/Objects/Prop/Prop.gd"
 }, {
 "base": "Area2D",
+"class": "PuzzleBlock",
+"language": "GDScript",
+"path": "res://popochiu/GraphicInterface/Puzzles/Block.gd"
+}, {
+"base": "Area2D",
 "class": "Region",
 "language": "GDScript",
 "path": "res://addons/Popochiu/Engine/Objects/Region/Region.gd"
@@ -163,6 +168,7 @@ _global_script_class_icons={
 "PopochiuRoom": "res://addons/Popochiu/icons/room.png",
 "PopochiuRoomData": "res://addons/Popochiu/icons/room.png",
 "Prop": "res://addons/Popochiu/icons/prop.png",
+"PuzzleBlock": "",
 "Region": "res://addons/Popochiu/icons/region.png",
 "Toolbar": "",
 "ToolbarButton": ""
