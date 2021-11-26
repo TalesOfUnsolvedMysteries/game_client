@@ -1,0 +1,198 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Puzzles/CrossSwitchesPuzzle.gd" type="Script" id=2]
+
+[node name="Puzzle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -90.0
+margin_right = -160.0
+margin_bottom = -90.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 129.0
+margin_top = 117.0
+margin_right = -64.0
+margin_bottom = -39.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonA" type="Button" parent="Buttons"]
+margin_right = 22.0
+margin_bottom = 20.0
+toggle_mode = true
+pressed = true
+text = "A"
+
+[node name="ButtonB" type="Button" parent="Buttons"]
+margin_left = 25.0
+margin_right = 47.0
+margin_bottom = 20.0
+toggle_mode = true
+pressed = true
+text = "B"
+
+[node name="ButtonC" type="Button" parent="Buttons"]
+margin_left = 50.0
+margin_right = 72.0
+margin_bottom = 20.0
+toggle_mode = true
+pressed = true
+text = "C"
+
+[node name="ButtonD" type="Button" parent="Buttons"]
+margin_left = 75.0
+margin_right = 97.0
+margin_bottom = 20.0
+disabled = true
+toggle_mode = true
+text = "D"
+
+[node name="ButtonE" type="Button" parent="Buttons"]
+margin_left = 100.0
+margin_right = 122.0
+margin_bottom = 20.0
+disabled = true
+toggle_mode = true
+text = "E"
+
+[node name="ButtonF" type="Button" parent="Buttons"]
+margin_left = 125.0
+margin_right = 147.0
+margin_bottom = 20.0
+disabled = true
+toggle_mode = true
+text = "F"
+
+[node name="Lights" type="Control" parent="."]
+margin_left = 77.0
+margin_top = 26.0
+margin_right = 116.0
+margin_bottom = 137.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light5" type="ColorRect" parent="Lights"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 106.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "1st"
+align = 1
+valign = 1
+
+[node name="Light4" type="ColorRect" parent="Lights"]
+margin_top = 66.0
+margin_right = 40.0
+margin_bottom = 84.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "2nd"
+align = 1
+valign = 1
+
+[node name="Light3" type="ColorRect" parent="Lights"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 62.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "3rd"
+align = 1
+valign = 1
+
+[node name="Light2" type="ColorRect" parent="Lights"]
+margin_top = 22.0
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "4th"
+align = 1
+valign = 1
+
+[node name="Light" type="ColorRect" parent="Lights"]
+margin_right = 40.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "P"
+align = 1
+valign = 1
+
+[node name="Unlock" type="Button" parent="."]
+margin_left = 210.0
+margin_top = 143.0
+margin_right = 266.0
+margin_bottom = 163.0
+text = "Unlock"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Success" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Success"
+align = 1
+valign = 1

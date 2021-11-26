@@ -8,7 +8,9 @@ var move_x = false
 var move_y = false
 var boundaries_x = Vector2(-40, 40)
 var boundaries_y = Vector2(-40, 40)
+var _matched = false
 var locked = false
+export var lock_on_match = true
 
 
 var offset = Vector2(0,0)
@@ -20,6 +22,7 @@ var _drag_point
 signal drag_started
 signal drag_ended
 signal target_entered
+signal target_exited
 
 func _ready():
 	connect('mouse_entered', self, '_set_hover', [true])
@@ -63,9 +66,13 @@ func on_dropped():
 	position.y = tile_position.y*20 + offset.y
 	$CollisionShape2D.modulate = Color.white
 	if tile_position == target_tile:
+		_matched = true
 		emit_signal('target_entered')
 		$CollisionShape2D.modulate = Color.black
-		locked = true
+		locked = lock_on_match
+	elif _matched:
+		_matched = false
+		emit_signal('target_exited')
 
 var _target_position
 func _process(delta):

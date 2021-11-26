@@ -1,0 +1,327 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Puzzles/CrossSwitchesPuzzle.gd" type="Script" id=2]
+
+[node name="Puzzle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -90.0
+margin_right = -160.0
+margin_bottom = -90.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_switches = [ 630, 395, 105, 929, 244, 74, 788 ]
+generated = true
+
+[node name="Buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 73.0
+margin_top = 103.0
+margin_right = -72.0
+margin_bottom = -52.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonA" type="Button" parent="Buttons"]
+margin_right = 22.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonB" type="Button" parent="Buttons"]
+margin_left = 25.0
+margin_right = 47.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "B"
+
+[node name="ButtonC" type="Button" parent="Buttons"]
+margin_left = 50.0
+margin_right = 72.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "C"
+
+[node name="ButtonD" type="Button" parent="Buttons"]
+margin_left = 75.0
+margin_right = 97.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "D"
+
+[node name="ButtonE" type="Button" parent="Buttons"]
+margin_left = 100.0
+margin_right = 122.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "E"
+
+[node name="ButtonF" type="Button" parent="Buttons"]
+margin_left = 125.0
+margin_right = 147.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "F"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonG" type="Button" parent="Buttons"]
+margin_left = 150.0
+margin_right = 172.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "G"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lights" type="Control" parent="."]
+margin_left = 49.0
+margin_top = 37.0
+margin_right = 269.0
+margin_bottom = 61.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light" type="ColorRect" parent="Lights"]
+margin_left = 198.0
+margin_right = 218.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="Light2" type="ColorRect" parent="Lights"]
+margin_left = 176.0
+margin_right = 196.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Light3" type="ColorRect" parent="Lights"]
+margin_left = 154.0
+margin_right = 174.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Light4" type="ColorRect" parent="Lights"]
+margin_left = 132.0
+margin_right = 152.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Light5" type="ColorRect" parent="Lights"]
+margin_left = 110.0
+margin_right = 130.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Light6" type="ColorRect" parent="Lights"]
+margin_left = 88.0
+margin_right = 108.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "4"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light7" type="ColorRect" parent="Lights"]
+margin_left = 66.0
+margin_right = 86.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Light8" type="ColorRect" parent="Lights"]
+margin_left = 44.0
+margin_right = 64.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light8"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Light9" type="ColorRect" parent="Lights"]
+margin_left = 22.0
+margin_right = 42.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light9"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Light0" type="ColorRect" parent="Lights"]
+margin_right = 20.0
+margin_bottom = 18.0
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Lights/Light0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Unlock" type="Button" parent="."]
+visible = false
+margin_left = 210.0
+margin_top = 143.0
+margin_right = 266.0
+margin_bottom = 163.0
+text = "Unlock"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Success" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Success"
+align = 1
+valign = 1
+
+[node name="TargetCode" type="Label" parent="."]
+margin_left = 123.0
+margin_top = 74.0
+margin_right = 196.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 1 )
+text = "4569"
+align = 1
+valign = 1
+
+[node name="Generate" type="Button" parent="."]
+margin_left = 126.0
+margin_top = 133.0
+margin_right = 194.0
+margin_bottom = 153.0
+text = "generate"

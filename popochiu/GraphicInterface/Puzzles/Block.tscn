@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Puzzles/Block.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -13,3 +14,17 @@ polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = -20.0
+margin_top = -6.0
+margin_right = 20.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
