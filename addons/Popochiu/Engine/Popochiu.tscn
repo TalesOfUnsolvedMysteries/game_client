@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://popochiu/TransitionLayer/TransitionLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/GraphicInterface.tscn" type="PackedScene" id=2]
@@ -18,10 +18,11 @@
 [ext_resource path="res://popochiu/GraphicInterface/DebugLayer/DebugLayer.gd" type="Script" id=16]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.tres" type="Resource" id=17]
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.tres" type="Resource" id=18]
+[ext_resource path="res://popochiu/Rooms/Technician/RoomTechnician.tres" type="Resource" id=19]
 
 [node name="Popochiu" type="Node"]
 script = ExtResource( 7 )
-rooms = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 17 ), ExtResource( 18 ) ]
+rooms = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ]
 characters = [ ExtResource( 8 ), ExtResource( 11 ) ]
 skip_cutscene_time = 0.25
 text_speeds = [ 0.05, 0.01, 0.0 ]

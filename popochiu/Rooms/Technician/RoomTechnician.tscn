@@ -1,0 +1,276 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Technician/RoomTechnician.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Lockers/PropLockers.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Notes/PropNotes.gd" type="Script" id=5]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Whisky/PropWhisky.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Exit/PropExit.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Bg/bg.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Table/table.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Lockers/lockers.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Notes/notes.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Whisky/whisky.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Exit/exit.png" type="Texture" id=13]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Painting/PropPainting.gd" type="Script" id=15]
+[ext_resource path="res://popochiu/Rooms/Technician/Props/Painting/painting.png" type="Texture" id=16]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 63, 16, 88, 35, 25, 77, 10, 39, 50, 21, -71, 5, 27, -10, 42, 3, 31, 6, -17, 17, 5, 27, -88, 69, -35, 30, -3, 44 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8, 9 ), PoolIntArray( 8, 4, 3, 10 ), PoolIntArray( 2, 11, 5, 12 ), PoolIntArray( 13, 3, 2 ), PoolIntArray( 8, 10, 9 ), PoolIntArray( 5, 9, 12 ), PoolIntArray( 2, 12, 13 ) ]
+outlines = [ PoolVector2Array( -71, 5, -88, 69, 25, 77, 88, 35, 63, 16, 50, 21, 31, 6, 42, 3, 27, -10 ), PoolVector2Array( -35, 30, -3, 44, 10, 39, 5, 27, -17, 17 ) ]
+
+[node name="RoomTechnician" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "Technician"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Bg"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 8 )
+
+[node name="Table" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -10, 18 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Table"
+clickable = false
+baseline = 16
+cursor = 10
+script_name = "Table"
+texture = ExtResource( 9 )
+
+[node name="Lockers" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 50, -7 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Lockers"
+baseline = 19
+walk_to_point = Vector2( -12, 23 )
+cursor = 1
+script_name = "Lockers"
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/Lockers" index="0"]
+polygon = PoolVector2Array( -12, -24, 3, -27, 16, -19, 14, 21, 2, 26, -11, 16 )
+
+[node name="BaselineHelper" parent="Props/Lockers" index="1"]
+position = Vector2( 0, 19 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Lockers" index="2"]
+position = Vector2( -12, 23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Lockers/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Lockers" index="3"]
+texture = ExtResource( 10 )
+
+[node name="Notes" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 3, 8 )
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Notes"
+walk_to_point = Vector2( 11, 13 )
+cursor = 1
+script_name = "Notes"
+always_on_top = true
+texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" parent="Props/Notes" index="0"]
+polygon = PoolVector2Array( -8, -2, 0, -6, 9, -1, 9, 1, 0, 5, -8, 0 )
+
+[node name="BaselineHelper" parent="Props/Notes" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Notes" index="2"]
+position = Vector2( 11, 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Notes/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Notes" index="3"]
+texture = ExtResource( 11 )
+
+[node name="Whisky" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -11, 13 )
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Whisky"
+walk_to_point = Vector2( -5, 30 )
+cursor = 1
+script_name = "Whisky"
+always_on_top = true
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Whisky" index="0"]
+polygon = PoolVector2Array( -2, -3, 4, -3, 4, 4, -4, 4 )
+
+[node name="BaselineHelper" parent="Props/Whisky" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Whisky" index="2"]
+position = Vector2( -5, 30 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Whisky/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Whisky" index="3"]
+texture = ExtResource( 12 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 73, 32 )
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "To first floor"
+baseline = 37
+walk_to_point = Vector2( -12, 16 )
+cursor = 1
+script_name = "Exit"
+texture = ExtResource( 13 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
+polygon = PoolVector2Array( 13, 14, 23, 37, -11, 33 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="1"]
+position = Vector2( 0, 37 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Exit" index="2"]
+position = Vector2( -12, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Exit" index="3"]
+texture = ExtResource( 13 )
+
+[node name="Painting" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -16, -33 )
+script = ExtResource( 15 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Painting"
+cursor = 1
+script_name = "Painting"
+texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="0"]
+polygon = PoolVector2Array( -24, -15, 23, -14, 25, 11, -22, 14 )
+
+[node name="BaselineHelper" parent="Props/Painting" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Painting" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Painting/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Painting" index="3"]
+texture = ExtResource( 16 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 14 )]
+position = Vector2( 61, 48 )
+
+[editable path="Props/Lockers"]
+[editable path="Props/Notes"]
+[editable path="Props/Whisky"]
+[editable path="Props/Exit"]
+[editable path="Props/Painting"]

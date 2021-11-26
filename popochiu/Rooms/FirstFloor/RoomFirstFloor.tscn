@@ -88,11 +88,15 @@ position = Vector2( -1, 31 )
 position = Vector2( 127, 14 )
 script = ExtResource( 9 )
 description = "Room 102"
+walk_to_point = Vector2( 2, 30 )
 cursor = 1
 script_name = "Door102"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door102" index="0"]
 polygon = PoolVector2Array( -22, -28, -20, 24, 20, 24, 17, -28, -1, -32 )
+
+[node name="WalkToHelper" parent="Hotspots/Door102" index="2"]
+position = Vector2( 2, 30 )
 
 [node name="Lobby" parent="Hotspots" instance=ExtResource( 7 )]
 position = Vector2( 38, 10 )
