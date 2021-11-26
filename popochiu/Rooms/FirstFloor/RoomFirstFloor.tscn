@@ -74,11 +74,15 @@ __meta__ = {
 position = Vector2( -133, 14 )
 script = ExtResource( 8 )
 description = "Room 101"
+walk_to_point = Vector2( -1, 31 )
 cursor = 1
 script_name = "Door101"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door101" index="0"]
 polygon = PoolVector2Array( -18, -33, -20, 25, 16, 25, 18, -29 )
+
+[node name="WalkToHelper" parent="Hotspots/Door101" index="2"]
+position = Vector2( -1, 31 )
 
 [node name="Door102" parent="Hotspots" instance=ExtResource( 7 )]
 position = Vector2( 127, 14 )
@@ -109,25 +113,6 @@ script_name = "Elevator"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]
 polygon = PoolVector2Array( -26, -27, -29, 28, 28, 28, 25, -27, -3, -37 )
-
-[node name="BaselineHelper" parent="Hotspots/Elevator" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Hotspots/Elevator" index="2"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/Elevator/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Regions" type="Node2D" parent="."]
 

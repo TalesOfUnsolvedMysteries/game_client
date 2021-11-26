@@ -1,0 +1,292 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Bg/bg.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Exit/PropExit.gd" type="Script" id=5]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Bed/PropBed.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Exit/exit.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Bed/bed.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Table/table.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Chair/chair.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Photos/PropPhotos.gd" type="Script" id=11]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Photos/photos.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Painting/PropPainting.gd" type="Script" id=13]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Painting/painting.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=15]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/KeyEngineRoom/PropKeyEngineRoom.gd" type="Script" id=16]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/KeyEngineRoom/key.png" type="Texture" id=17]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 6, 7, 8, 9, 10 ), PoolIntArray( 0, 6, 10, 11 ), PoolIntArray( 10, 12, 13, 14 ), PoolIntArray( 14, 15, 11 ), PoolIntArray( 11, 1, 0 ), PoolIntArray( 10, 14, 11 ) ]
+outlines = [ PoolVector2Array( -90, 55, 7, 77, 99, 51, 83, 38, 14, 39, 7, 21, 62, 16, 60, 10, -51, 4, -62, 13, -24, 21, -38, 32, -56, 27, -71, 40, -92, 30, -99, 33 ) ]
+
+[node name="RoomJanitor" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "Janitor"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Bg"
+clickable = false
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 4 )
+
+[node name="Bed" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 49, 14 )
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Bed"
+baseline = 17
+walk_to_point = Vector2( 12, 30 )
+cursor = 1
+script_name = "Bed"
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" parent="Props/Bed" index="0"]
+polygon = PoolVector2Array( 12, -8, 16, -23, 29, -19, 38, -7, 36, 23, -31, 24, -38, 16, -37, -4 )
+
+[node name="BaselineHelper" parent="Props/Bed" index="1"]
+position = Vector2( 0, 17 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Bed" index="2"]
+position = Vector2( 12, 30 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Bed/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Bed" index="3"]
+texture = ExtResource( 8 )
+
+[node name="Table" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -71, 15 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Table"
+clickable = false
+baseline = 10
+cursor = 10
+script_name = "Table"
+texture = ExtResource( 9 )
+
+[node name="Chair" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -39, 7 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Chair"
+clickable = false
+baseline = 17
+cursor = 10
+script_name = "Chair"
+texture = ExtResource( 10 )
+
+[node name="Photos" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -82, -12 )
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Photos"
+baseline = -90
+walk_to_point = Vector2( 27, 47 )
+cursor = 1
+script_name = "Photos"
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Photos" index="0"]
+polygon = PoolVector2Array( -16, -10, 7, -16, 16, -12, 17, -2, -6, 15, -17, 15 )
+
+[node name="BaselineHelper" parent="Props/Photos" index="1"]
+position = Vector2( 0, -90 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Photos" index="2"]
+position = Vector2( 27, 47 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Photos/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Photos" index="3"]
+texture = ExtResource( 12 )
+
+[node name="Painting" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -32, -39 )
+script = ExtResource( 13 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Painting"
+walk_to_point = Vector2( -2, 50 )
+cursor = 1
+script_name = "Painting"
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="0"]
+polygon = PoolVector2Array( -14, -16, 12, -17, 14, 16, -13, 15 )
+
+[node name="BaselineHelper" parent="Props/Painting" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Painting" index="2"]
+position = Vector2( -2, 50 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Painting/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Painting" index="3"]
+texture = ExtResource( 14 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -68, 45 )
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Exit"
+baseline = 36
+walk_to_point = Vector2( 5, 10 )
+cursor = 1
+script_name = "Exit"
+always_on_top = true
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
+polygon = PoolVector2Array( 20, 24, -11, 37, -15, 18 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="1"]
+position = Vector2( 0, 36 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Exit" index="2"]
+position = Vector2( 5, 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Exit" index="3"]
+texture = ExtResource( 7 )
+
+[node name="KeyEngineRoom" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 4, -39 )
+script = ExtResource( 16 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "KeyEngineRoom"
+cursor = 1
+script_name = "KeyEngineRoom"
+texture = ExtResource( 17 )
+
+[node name="CollisionPolygon2D" parent="Props/KeyEngineRoom" index="0"]
+polygon = PoolVector2Array( -3, -7, 3, -7, 2, 6, -1, 6 )
+
+[node name="BaselineHelper" parent="Props/KeyEngineRoom" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/KeyEngineRoom" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/KeyEngineRoom/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/KeyEngineRoom" index="3"]
+texture = ExtResource( 17 )
+hframes = 2
+frame = 1
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 15 )]
+position = Vector2( -63, 55 )
+
+[editable path="Props/Bed"]
+[editable path="Props/Photos"]
+[editable path="Props/Painting"]
+[editable path="Props/Exit"]
+[editable path="Props/KeyEngineRoom"]
