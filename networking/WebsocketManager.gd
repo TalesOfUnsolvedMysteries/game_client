@@ -75,7 +75,21 @@ func _on_data():
 	elif command == 'connected':
 		print('connected to the server')
 		if server_request: NetworkManager.init_server()
-		else: send_message_ws('allocateUser:manito')
+		else:
+			#send_message_ws('allocateUser:manito')
+			send_message_ws('recoverSession:1--manito')
+	elif command == 'userRecoveryFails':
+		print('user recovery fails')
+	elif command == 'userRecovered':
+		var splittedData = data.split('-')
+		var userId = int(splittedData[0])
+		var turn = int(splittedData[1])
+		emit_signal('userID_assigned', userId)
+		if turn > 0:
+			emit_signal('turn_assigned', turn)
+		else:
+			print('request turn')
+			send_message_ws('requestTurn')
 	elif command == 'userAssigned':
 		print ('user assigned ', data)
 		emit_signal('userID_assigned', data)
@@ -83,6 +97,7 @@ func _on_data():
 	elif command == 'ping':
 		send_message_ws('pong')
 	elif command == 'replyTurn':
+		print('turn assigned', data)
 		emit_signal('turn_assigned', data)
 	elif command == 'gc_connect':
 		join_client(data)
