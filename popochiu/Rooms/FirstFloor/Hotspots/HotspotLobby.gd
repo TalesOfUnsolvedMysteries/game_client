@@ -8,7 +8,7 @@ func on_interact() -> void:
 		C.walk_to_clicked()
 	]), 'completed')
 	
-	E.goto_room('FirstFloor')
+	E.goto_room('Lobby')
 
 
 func on_look() -> void:

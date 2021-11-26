@@ -4,11 +4,7 @@ extends Hotspot
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([
-		C.walk_to_clicked()
-	]), 'completed')
-	
-	E.goto_room('FirstFloor')
+	pass
 
 
 func on_look() -> void:

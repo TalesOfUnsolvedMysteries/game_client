@@ -157,7 +157,8 @@ func get_point(point_name: String) -> Vector2:
 	var point: Position2D = get_node_or_null('Points/' + point_name)
 	if point:
 		return point.global_position
-	printerr('PopochiuRoom[%s].get_point: No se encontró el punto %s' % [script_name, point_name])
+	printerr('PopochiuRoom[%s].get_point: No se encontró el punto %s' %\
+	[script_name, point_name])
 	return Vector2.ZERO
 
 
@@ -165,7 +166,17 @@ func get_prop(prop_name: String) -> Prop:
 	for p in $Props.get_children():
 		if p.script_name == prop_name or p.name == prop_name:
 			return p as Prop
-	printerr('PopochiuRoom[%s].get_prop: No se encontró la Prop %s' % [script_name, prop_name])
+	printerr('PopochiuRoom[%s].get_prop: No se encontró la Prop %s' %\
+	[script_name, prop_name])
+	return null
+
+
+func get_hotspot(hotspot_name: String) -> Hotspot:
+	for h in $Hotspots.get_children():
+		if h.script_name == hotspot_name or h.name == hotspot_name:
+			return h
+	printerr('PopochiuRoom[%s].get_hotspot: No se encontró el Hotspot %s' %\
+	[script_name, hotspot_name])
 	return null
 
 

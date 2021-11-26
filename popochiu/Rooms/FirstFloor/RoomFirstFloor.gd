@@ -8,9 +8,7 @@ extends PopochiuRoom
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	if C.player.last_room == 'FirstFloor':
-		C.player.position =\
-		get_hotspot('FirstFloor').walk_to_point + get_hotspot('FirstFloor').position
+	pass
 
 
 func on_room_transition_finished() -> void:
