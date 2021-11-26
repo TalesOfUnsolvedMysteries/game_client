@@ -1,0 +1,176 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Lobby/RoomLobby.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/Painting/PropPainting.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/Bg/bg.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/PropPC.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/pc.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/Painting/painting_01.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=9]
+[ext_resource path="res://popochiu/Rooms/Lobby/Hotspots/HotspotFirstFloor.gd" type="Script" id=10]
+[ext_resource path="res://popochiu/Rooms/Lobby/Hotspots/HotspotEngineRoom.gd" type="Script" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=12]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( -221, 41, 221, 41, 16, 46, -101, 45, -108, 60, -220, 88, 222, 88, 6, 61 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 6, 5, 4, 7 ), PoolIntArray( 6, 7, 2, 1 ) ]
+outlines = [ PoolVector2Array( -221, 41, -220, 88, 222, 88, 221, 41 ), PoolVector2Array( -108, 60, 6, 61, 16, 46, -101, 45 ) ]
+
+[node name="RoomLobby" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "Lobby"
+limit_left = -224.0
+limit_right = 224.0
+limit_top = -90.0
+limit_bottom = 90.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
+description = "Bg"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 5 )
+
+[node name="FirstFloor" type="Label" parent="Props/Bg"]
+margin_left = 40.0
+margin_top = -44.0
+margin_right = 98.0
+margin_bottom = -30.0
+custom_fonts/font = ExtResource( 12 )
+text = "1st floor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EngineRoom" type="Label" parent="Props/Bg"]
+margin_left = 126.0
+margin_top = -41.0
+margin_right = 200.0
+margin_bottom = -29.0
+custom_fonts/font = ExtResource( 12 )
+text = "Engine room"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Painting" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -132, -17 )
+script = ExtResource( 4 )
+description = "Painting"
+baseline = -26
+cursor = 1
+script_name = "Painting"
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="0"]
+polygon = PoolVector2Array( -19, -23, 18, -24, 19, 21, -17, 23 )
+
+[node name="BaselineHelper" parent="Props/Painting" index="1"]
+position = Vector2( 0, -26 )
+
+[node name="Sprite" parent="Props/Painting" index="3"]
+texture = ExtResource( 8 )
+
+[node name="PC" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -47, 35 )
+script = ExtResource( 6 )
+description = "PC"
+baseline = 20
+cursor = 1
+script_name = "PC"
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Props/PC" index="0"]
+polygon = PoolVector2Array( -59, 1, -43, -13, -23, -12, -24, -26, 1, -24, 2, -11, 13, -10, 13, -20, 18, -26, 30, -26, 31, -9, 53, -8, 56, 16, 48, 23, -55, 22 )
+
+[node name="BaselineHelper" parent="Props/PC" index="1"]
+position = Vector2( 0, 20 )
+
+[node name="Sprite" parent="Props/PC" index="3"]
+texture = ExtResource( 7 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="FirstFloor" parent="Hotspots" instance=ExtResource( 2 )]
+position = Vector2( 68, 13 )
+script = ExtResource( 10 )
+description = "To first floor"
+cursor = 1
+script_name = "FirstFloor"
+
+[node name="CollisionPolygon2D" parent="Hotspots/FirstFloor" index="0"]
+polygon = PoolVector2Array( -24, -32, -21, 25, 21, 25, 22, -23, 7, -36, -11, -36 )
+
+[node name="BaselineHelper" parent="Hotspots/FirstFloor" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/FirstFloor" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/FirstFloor/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EngineRoom" parent="Hotspots" instance=ExtResource( 2 )]
+position = Vector2( 160, 14 )
+script = ExtResource( 11 )
+description = "To engine room"
+cursor = 1
+script_name = "EngineRoom"
+
+[node name="CollisionPolygon2D" parent="Hotspots/EngineRoom" index="0"]
+polygon = PoolVector2Array( -23, -8, -19, 25, 26, 25, 23, -26, -17, -33 )
+
+[node name="BaselineHelper" parent="Hotspots/EngineRoom" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/EngineRoom" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/EngineRoom/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 9 )]
+position = Vector2( -166, 61 )
+
+[editable path="Props/Painting"]
+[editable path="Props/PC"]
+[editable path="Hotspots/FirstFloor"]
+[editable path="Hotspots/EngineRoom"]

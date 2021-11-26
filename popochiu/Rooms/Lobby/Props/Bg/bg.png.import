@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/head_ladybug.png-6119fc7cb60d877babcb9721d094d3c4.stex"
+path="res://.import/bg.png-a85f2556696d6aed1d88e5022291e489.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Characters/Bug/parts/head_ladybug.png"
-dest_files=[ "res://.import/head_ladybug.png-6119fc7cb60d877babcb9721d094d3c4.stex" ]
+source_file="res://popochiu/Rooms/Lobby/Props/Bg/bg.png"
+dest_files=[ "res://.import/bg.png-a85f2556696d6aed1d88e5022291e489.stex" ]
 
 [params]
 

@@ -8,6 +8,20 @@ func get_screen_coords_for(node: Node) -> Vector2:
 	return node.get_viewport().canvas_transform * node.get_global_position()
 
 
+# Obtiene un elemento al azar de un arrego
+func get_random_array_element(arr: Array):
+	randomize()
+	var idx := randi() % arr.size()
+	return arr[idx]
+
+
+# Obtiene un índice (posición) al azar de un arreglo
+func get_random_array_idx(arr: Array) -> int:
+	randomize()
+	var idx := randi() % arr.size()
+	return idx
+
+
 # Funciones tomadas de ❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱❱
 # https://gist.github.com/me2beats/443b40ba79d5b589a96a16c565952419
 func snake2camel(string:String)->String:
