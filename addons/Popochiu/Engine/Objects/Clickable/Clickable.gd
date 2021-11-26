@@ -13,6 +13,8 @@ export(Cursor.Type) var cursor
 export var script_name := ''
 export var always_on_top := false
 
+var walk_point: Vector2 setget ,_get_walk_point
+
 onready var _description_code := description
 
 
@@ -162,3 +164,7 @@ func _toggle_input() -> void:
 func _translate() -> void:
 	if Engine.editor_hint or not is_inside_tree() or not E.use_translations: return
 	description = E.get_text('%s-%s' % [get_tree().current_scene.name, _description_code])
+
+
+func _get_walk_point() -> Vector2:
+	return walk_to_point + position

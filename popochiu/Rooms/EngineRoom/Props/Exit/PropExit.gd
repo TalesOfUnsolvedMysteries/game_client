@@ -1,11 +1,11 @@
 tool
-extends Hotspot
+extends Prop
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	yield(E.run([C.walk_to_clicked()]), 'completed')
-	E.goto_room('EngineRoom')
+	E.goto_room('Lobby')
 
 
 func on_look() -> void:

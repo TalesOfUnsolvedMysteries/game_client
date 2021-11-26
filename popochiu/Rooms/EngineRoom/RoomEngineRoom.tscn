@@ -1,0 +1,222 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Engine/PropEngine.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Bg/bg.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Engine/engine.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/FuseBox/PropFuseBox.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/FuseBox/fuse_box.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/PropBatteryCharger.gd" type="Script" id=9]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/battery_charger.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Exit/PropExit.gd" type="Script" id=11]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Exit/exit.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=13]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -34, 6 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 6 ), PoolIntArray( 3, 7, 0 ), PoolIntArray( 6, 3, 2 ), PoolIntArray( 5, 8, 6 ) ]
+outlines = [ PoolVector2Array( -91, 9, -107, 54, 25, 73, 130, 51, 89, 16, 43, 17, 45, 27, -34, 29, -34, 6 ) ]
+
+[node name="RoomEngineRoom" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "EngineRoom"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Bg"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 5 )
+
+[node name="Engine" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -3, -3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Engine"
+baseline = 22
+walk_to_point = Vector2( -1, 36 )
+cursor = 1
+script_name = "Engine"
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" parent="Props/Engine" index="0"]
+polygon = PoolVector2Array( -24, -28, 35, -30, 42, 27, -27, 28 )
+
+[node name="BaselineHelper" parent="Props/Engine" index="1"]
+position = Vector2( 0, 22 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Engine" index="2"]
+position = Vector2( -1, 36 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Engine/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Engine" index="3"]
+texture = ExtResource( 6 )
+hframes = 2
+
+[node name="FuseBox" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -77, -46 )
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "FuseBox"
+walk_to_point = Vector2( 7, 58 )
+cursor = 1
+script_name = "FuseBox"
+texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" parent="Props/FuseBox" index="0"]
+polygon = PoolVector2Array( -8, 2, 14, 1, 15, 20, -6, 22 )
+
+[node name="BaselineHelper" parent="Props/FuseBox" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/FuseBox" index="2"]
+position = Vector2( 7, 58 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/FuseBox/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/FuseBox" index="3"]
+texture = ExtResource( 8 )
+hframes = 2
+
+[node name="BatteryCharger" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 56, -9 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "BatteryCharger"
+walk_to_point = Vector2( 5, 30 )
+cursor = 1
+script_name = "BatteryCharger"
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/BatteryCharger" index="0"]
+polygon = PoolVector2Array( -10, -24, 8, -24, 11, -17, 11, 23, -9, 22, -12, -18 )
+
+[node name="BaselineHelper" parent="Props/BatteryCharger" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/BatteryCharger" index="2"]
+position = Vector2( 5, 30 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/BatteryCharger/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/BatteryCharger" index="3"]
+texture = ExtResource( 10 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -123, 12 )
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "To the lobby"
+walk_to_point = Vector2( 31, 18 )
+cursor = 1
+script_name = "Exit"
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
+polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Exit" index="2"]
+position = Vector2( 31, 18 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Exit" index="3"]
+texture = ExtResource( 12 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 13 )]
+position = Vector2( -92, 30 )
+dflt_walk_animation = "Bug"
+
+[editable path="Props/Engine"]
+[editable path="Props/FuseBox"]
+[editable path="Props/BatteryCharger"]
+[editable path="Props/Exit"]

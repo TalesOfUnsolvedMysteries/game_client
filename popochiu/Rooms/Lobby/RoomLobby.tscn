@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Lobby/RoomLobby.gd" type="Script" id=1]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=2]
@@ -12,6 +12,11 @@
 [ext_resource path="res://popochiu/Rooms/Lobby/Hotspots/HotspotFirstFloor.gd" type="Script" id=10]
 [ext_resource path="res://popochiu/Rooms/Lobby/Hotspots/HotspotEngineRoom.gd" type="Script" id=11]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=12]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=13]
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = ExtResource( 13 )
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -221, 41, 221, 41, 16, 46, -101, 45, -108, 60, -220, 88, 222, 88, 6, 61 )
@@ -48,11 +53,11 @@ __meta__ = {
 }
 
 [node name="EngineRoom" type="Label" parent="Props/Bg"]
-margin_left = 126.0
-margin_top = -41.0
-margin_right = 200.0
-margin_bottom = -29.0
-custom_fonts/font = ExtResource( 12 )
+margin_left = 131.0
+margin_top = -40.0
+margin_right = 205.0
+margin_bottom = -28.0
+custom_fonts/font = SubResource( 2 )
 text = "Engine room"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,11 +119,15 @@ position = Vector2( 0, 32 )
 position = Vector2( 160, 14 )
 script = ExtResource( 11 )
 description = "To engine room"
+walk_to_point = Vector2( 0, 31 )
 cursor = 1
 script_name = "EngineRoom"
 
 [node name="CollisionPolygon2D" parent="Hotspots/EngineRoom" index="0"]
 polygon = PoolVector2Array( -23, -8, -19, 25, 26, 25, 23, -26, -17, -33 )
+
+[node name="WalkToHelper" parent="Hotspots/EngineRoom" index="2"]
+position = Vector2( 0, 31 )
 
 [node name="Regions" type="Node2D" parent="."]
 
@@ -135,6 +144,7 @@ navpoly = SubResource( 1 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 9 )]
 position = Vector2( -166, 61 )
+dflt_walk_animation = "Bug"
 
 [editable path="Props/Painting"]
 [editable path="Props/PC"]
