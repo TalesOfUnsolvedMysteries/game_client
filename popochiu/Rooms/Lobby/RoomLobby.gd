@@ -1,6 +1,8 @@
 tool
 extends PopochiuRoom
 
+onready var pc: PanelContainer = find_node('PCContainer')
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
@@ -17,6 +19,11 @@ func on_room_entered() -> void:
 
 func on_room_transition_finished() -> void:
 	pass
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func use_pc() -> void:
+	pc.show()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
