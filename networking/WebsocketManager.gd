@@ -1,19 +1,21 @@
 extends Node2D
 
-
 # The URL we will connect to
 export var websocket_url = "ws://localhost:8080"
 
 # Our WebSocketClient instance
 var wsClient = WebSocketClient.new()
-
 var secret_key = 'XZA' # generate random one
 
+var user_file = "user://user.save"
+var user_id = '0' setget set_user_id
+var password = '' setget set_password
 var server_request = false
 signal userID_assigned
 signal turn_assigned
 
 func _ready():
+	randomize()
 	# connection to ws
 	# Connect base signals to get notified of connection open, close, and errors.
 	wsClient.connect("connection_closed", self, "_closed")
@@ -41,11 +43,31 @@ func _pass_arguments():
 
 func init(_server_request):
 	# Initiate connection to the given URL.
+	load_user_data()
 	server_request = _server_request
 	var err = wsClient.connect_to_url(websocket_url)
 	print (err)
 	if err != OK:
 		print("Unable to connect")
+
+func save_user ():
+	var file = File.new()
+	file.open(user_file, File.WRITE)
+	file.store_string('%s %s' % [user_id, password])
+	file.close()
+
+
+func load_user_data ():
+	var file = File.new()
+	if file.file_exists(user_file):
+		file.open(user_file, File.READ)
+		var data = file.get_as_text().split(' ')
+		user_id = data[0]
+		password = data[1]
+		file.close()
+	else:
+		password = Utils.generate_word(16)
+
 
 func register_game_server():
 	send_message_ws('registerGameServer:%s' % secret_key)
@@ -76,23 +98,22 @@ func _on_data():
 		print('connected to the server')
 		if server_request: NetworkManager.init_server()
 		else:
-			#send_message_ws('allocateUser:manito')
-			send_message_ws('recoverSession:1--manito')
+			if user_id != '0':
+				send_message_ws('recoverSession:%s--%s' % [user_id, password])
 	elif command == 'userRecoveryFails':
 		print('user recovery fails')
 	elif command == 'userRecovered':
 		var splittedData = data.split('-')
 		var userId = int(splittedData[0])
 		var turn = int(splittedData[1])
-		emit_signal('userID_assigned', userId)
+		set_user_id(userId)
 		if turn > 0:
 			emit_signal('turn_assigned', turn)
 		else:
-			print('request turn')
 			send_message_ws('requestTurn')
 	elif command == 'userAssigned':
-		print ('user assigned ', data)
-		emit_signal('userID_assigned', data)
+		set_user_id(data)
+		save_user()
 		send_message_ws('requestTurn')
 	elif command == 'ping':
 		send_message_ws('pong')
@@ -170,12 +191,7 @@ func player_disconnect(peer_id):
 
 remote func validate_connection(_secret_key):
 	var id = get_tree().get_rpc_sender_id()
-	print('validating connection for peer:%d' % id)
-	print(secret_key)
-	print(id)
-	print(_secret_key)
 	if secret_key != _secret_key:
-		print ('key is not the same')
 		get_tree().network_peer.disconnect_peer(id)
 		send_message_ws('gs_connectionFail:%s' % secret_key)
 	else:
@@ -184,8 +200,13 @@ remote func validate_connection(_secret_key):
 
 func request_join():
 	# generate random word or phrase save on local storage and send it to the server
-	send_message_ws('allocateUser:manito')
+	send_message_ws('allocateUser:%s' % password)
 
 
-
+func set_user_id(_user_id):
+	user_id = _user_id
+	emit_signal('userID_assigned', user_id)
+	
+func set_password(_password):
+	password = _password
 

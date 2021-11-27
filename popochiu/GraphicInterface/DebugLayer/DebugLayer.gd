@@ -13,6 +13,7 @@ func _ready():
 	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
 	WebsocketManager.connect('turn_assigned', self, '_turn_assigned')
 	$Control/Screenshot.connect('pressed', Utils, 'take_screenshot', ['./test.png'])
+	$Control/Join.connect('pressed', WebsocketManager, 'request_join')
 
 func _player_connected(peer_id):
 	$Control/Connection.text = 'Connection Status: connected'
@@ -28,7 +29,7 @@ func _connected_fail():
 	$Control/Connection.text = 'Connection Status: failed'
 
 func _server_disconnected():
-	$Connection.text = 'Connection Status: server disconnected'
+	$Control/Connection.text = 'Connection Status: server disconnected'
 
 func _server_started():
 	$Control/Connection.text = 'Connection Status: server'

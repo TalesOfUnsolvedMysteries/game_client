@@ -88,3 +88,12 @@ func take_screenshot(_name):
 	if _name:
 		img.save_png(_name)
 	return tex
+
+
+func generate_word(length):
+	var chars = 'abcdefghijklmnopqrstuvwxyz#$%@?ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+	var word: String
+	var n_char = len(chars)
+	for i in range(length):
+		word += chars[randi()% n_char]
+	return word

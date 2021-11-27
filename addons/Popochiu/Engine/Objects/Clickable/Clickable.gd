@@ -49,11 +49,19 @@ func _unhandled_input(event):
 			get_tree().set_input_as_handled()
 		elif event.is_action_pressed('popochiu-look'):
 			self._look()
+			if NetworkManager.isPilot():
+				rpc_id(1, '_net_look')
 
 remote func _net_interact():
 	if NetworkManager.isServerWithPilot():
 		print('replicate interaction %s' % self._description_code)
+		E.clicked = self
 		self._interact()
+
+remote func _net_look():
+	if NetworkManager.isServerWithPilot():
+		E.clicked = self
+		self._look()
 
 func _interact():
 	print('popochiu interact clicked')
@@ -153,6 +161,14 @@ func _set_walk_to_point(value: Vector2) -> void:
 	
 	if Engine.editor_hint and get_node_or_null('WalkToHelper'):
 		get_node('WalkToHelper').position = value
+	
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_set_walk_to_point', value)
+
+
+remote func _net_set_walk_to_point(value: Vector2) -> void:
+	if NetworkManager.isServerWithPilot():
+		_set_walk_to_point(value)
 
 
 func _toggle_input() -> void:

@@ -40,7 +40,7 @@ func set_pilot(peer_id):
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'take_control')
 	# demo - test
-	yield(get_tree().create_timer(5), 'timeout')
+	yield(get_tree().create_timer(60*5), 'timeout')
 	game_over('time is up')
 
 

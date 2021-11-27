@@ -49,6 +49,8 @@ func player_walk_to(position: Vector2, is_in_queue := true) -> void:
 
 func walk_to_clicked(is_in_queue := true) -> void:
 	if is_in_queue: yield()
+	print (E.clicked.walk_to_point)
+	print (E.clicked.position)
 	yield(
 		player_walk_to(E.clicked.walk_to_point + E.clicked.position, false),
 		'completed'

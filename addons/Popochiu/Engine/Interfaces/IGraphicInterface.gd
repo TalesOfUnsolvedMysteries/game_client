@@ -47,7 +47,12 @@ func done() -> void:
 # nombre del objeto, mostrar Usar ____ en ____).
 func show_info(msg := '') -> void:
 	emit_signal('show_info_requested', msg)
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_show_info', msg)
 
+remote func _net_show_info(msg):
+	if NetworkManager.isServerWithPilot():
+		emit_signal('show_info_requested', msg)
 
 func block() -> void:
 	Cursor.set_cursor(Cursor.Type.WAIT)
