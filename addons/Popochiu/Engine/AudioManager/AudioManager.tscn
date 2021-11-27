@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
+[ext_resource path="res://popochiu/Common/Music/MxMain.tres" type="Resource" id=3]
+[ext_resource path="res://popochiu/Common/SFX/SfxDoor.tres" type="Resource" id=4]
+[ext_resource path="res://popochiu/Common/SFX/SfxDoorClose.tres" type="Resource" id=5]
+[ext_resource path="res://popochiu/Common/SFX/SfxDoorOpen.tres" type="Resource" id=6]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
-sfx_cues = [ ExtResource( 2 ) ]
+mx_cues = [ ExtResource( 3 ) ]
+sfx_cues = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
 
 [node name="Positional" type="Node" parent="."]
 

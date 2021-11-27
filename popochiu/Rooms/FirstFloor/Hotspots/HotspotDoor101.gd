@@ -4,7 +4,13 @@ extends Hotspot
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([C.walk_to_clicked()]), 'completed')
+	yield(E.run([
+		C.walk_to_clicked(),
+		A.play({
+			cue_name = 'sfx_door_open',
+			is_in_queue = true
+		})
+	]), 'completed')
 	E.goto_room('Janitor')
 
 
