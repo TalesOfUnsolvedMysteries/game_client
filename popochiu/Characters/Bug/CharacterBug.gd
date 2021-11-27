@@ -19,7 +19,7 @@ func _ready():
 	
 	# Cargar por defecto partes aleatorias para facilitar las pruebas de las
 	# habitaciones.
-	if not _was_created and E.current_room.script_name:
+	if not _was_created and E.current_room.script_name != 'BugEditor':
 		_set_body(Utils.get_random_array_element(
 			[
 				preload('res://popochiu/Characters/Bug/parts/body_bee.png'),
