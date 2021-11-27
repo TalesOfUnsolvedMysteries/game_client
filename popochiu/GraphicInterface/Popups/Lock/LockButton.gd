@@ -21,5 +21,5 @@ func _check_open_app(e: InputEvent) -> void:
 		and mouse_event.pressed:
 			value = wrapi(value + 1, 0, 10)
 			text = str(value)
-			
+			A.play({cue_name = 'sfx_lock_move', is_in_queue = false})
 			emit_signal('changed', value)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
@@ -9,11 +9,20 @@
 [ext_resource path="res://popochiu/Common/SFX/SfxFootstepGrass.tres" type="Resource" id=7]
 [ext_resource path="res://popochiu/Common/SFX/SfxFootstepMetal.tres" type="Resource" id=8]
 [ext_resource path="res://popochiu/Common/SFX/SfxFootstepWood.tres" type="Resource" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/SfxLockEnter.tres" type="Resource" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/SfxLockMove.tres" type="Resource" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/SfxLockOpen.tres" type="Resource" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/SfxPcClickDown.tres" type="Resource" id=13]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/SfxPcClickRelease.tres" type="Resource" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/SfxPcError.tres" type="Resource" id=15]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/SfxPcHover.tres" type="Resource" id=16]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/SfxPcStartup.tres" type="Resource" id=17]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/SfxPcSuccess.tres" type="Resource" id=18]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
 mx_cues = [ ExtResource( 3 ) ]
-sfx_cues = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+sfx_cues = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 2 ) ]
 
 [node name="Positional" type="Node" parent="."]
 

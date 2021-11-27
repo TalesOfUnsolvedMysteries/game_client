@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_lock_open.ogg-091f61900931a2ec98b6832914fdbb16.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Lock/sfx_lock_open.ogg"
+dest_files=[ "res://.import/sfx_lock_open.ogg-091f61900931a2ec98b6832914fdbb16.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

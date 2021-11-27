@@ -28,10 +28,7 @@ func use_pc() -> void:
 	if Globals.state.has(script_name) and Globals.state[script_name].PC_UNLOCKED:
 		yield(E.run([
 			'Player: Uy ya prendió',
-			A.play({
-			cue_name = 'sfx_turn_on',
-			is_in_queue = true
-		})]), 'completed')
+			A.play({cue_name = 'sfx_pc_startup',is_in_queue = true})]), 'completed')
 		pc.show()
 	else:
 		C.player_say('Está bloqueao', false)
