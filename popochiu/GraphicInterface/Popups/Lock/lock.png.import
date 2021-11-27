@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/os_register.png-d4a5d7db35878b3979e03bcaf11ef31f.stex"
+path="res://.import/lock.png-a8872b5847cefbf85a64051753adeb9e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/GraphicInterface/Popups/OS/sprites/os_register.png"
-dest_files=[ "res://.import/os_register.png-d4a5d7db35878b3979e03bcaf11ef31f.stex" ]
+source_file="res://popochiu/GraphicInterface/Popups/Lock/lock.png"
+dest_files=[ "res://.import/lock.png-a8872b5847cefbf85a64051753adeb9e.stex" ]
 
 [params]
 

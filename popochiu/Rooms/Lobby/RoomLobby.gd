@@ -23,7 +23,11 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func use_pc() -> void:
-	pc.show()
+	if Globals.state.has(script_name) and Globals.state[script_name].PC_UNLOCKED:
+		pc.show()
+	else:
+		C.player_say('Está bloqueao', false)
+		G.done()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

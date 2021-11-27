@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/lock.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/LockButton.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 2 )
+
+[node name="Lock" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+
+[node name="Bg" type="TextureRect" parent="CenterContainer"]
+margin_left = 137.0
+margin_top = 51.0
+margin_right = 182.0
+margin_bottom = 129.0
+mouse_filter = 0
+texture = ExtResource( 3 )
+
+[node name="Number1" type="Label" parent="CenterContainer/Bg"]
+margin_left = 42.0
+margin_top = 37.0
+margin_right = 47.0
+margin_bottom = 46.0
+rect_rotation = 73.0
+mouse_filter = 0
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number2" type="Label" parent="CenterContainer/Bg"]
+margin_left = 43.0
+margin_top = 46.0
+margin_right = 48.0
+margin_bottom = 55.0
+rect_rotation = 73.0
+mouse_filter = 0
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number3" type="Label" parent="CenterContainer/Bg"]
+margin_left = 44.0
+margin_top = 55.0
+margin_right = 49.0
+margin_bottom = 64.0
+rect_rotation = 73.0
+mouse_filter = 0
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

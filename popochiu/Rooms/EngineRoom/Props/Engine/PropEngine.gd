@@ -4,7 +4,8 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([]), 'completed')
+	Globals.state['Lobby'] = {PC_UNLOCKED = true}
+	prints('Se desbloquió el computador')
 
 
 func on_look() -> void:

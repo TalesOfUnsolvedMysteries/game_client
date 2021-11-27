@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/os_elevator.png-17910235bc7c28501714150dc619ece6.stex"
+path="res://.import/os_progress.png-2649a7f4b4e2208201fd36f40f863d29.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/GraphicInterface/Popups/OS/sprites/os_elevator.png"
-dest_files=[ "res://.import/os_elevator.png-17910235bc7c28501714150dc619ece6.stex" ]
+source_file="res://popochiu/GraphicInterface/Popups/PCContainer/sprites/os_progress.png"
+dest_files=[ "res://.import/os_progress.png-2649a7f4b4e2208201fd36f40f863d29.stex" ]
 
 [params]
 

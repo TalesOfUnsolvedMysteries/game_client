@@ -10,3 +10,4 @@ enum Bodies {
 }
 
 var bug_name := ''
+var state := {}

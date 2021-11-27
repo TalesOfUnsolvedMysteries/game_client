@@ -4,7 +4,8 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([C.walk_to_clicked()]), 'completed')
+	E.current_room.show_lock()
 
 
 func on_look() -> void:

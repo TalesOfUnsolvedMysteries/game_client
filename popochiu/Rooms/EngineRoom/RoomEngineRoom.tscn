@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
-[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Engine/PropEngine.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Bg/bg.png" type="Texture" id=5]
@@ -29,11 +29,7 @@ limit_bottom = 0.0
 
 [node name="Props" type="Node2D" parent="."]
 
-[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
 description = "Bg"
 clickable = false
 baseline = -90
@@ -44,9 +40,6 @@ texture = ExtResource( 5 )
 [node name="Engine" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -3, -3 )
 script = ExtResource( 4 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Engine"
 baseline = 22
 walk_to_point = Vector2( -1, 36 )
@@ -59,24 +52,9 @@ polygon = PoolVector2Array( -24, -28, 35, -30, 42, 27, -27, 28 )
 
 [node name="BaselineHelper" parent="Props/Engine" index="1"]
 position = Vector2( 0, 22 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/Engine" index="2"]
 position = Vector2( -1, 36 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Engine/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Engine" index="3"]
 texture = ExtResource( 6 )
@@ -85,9 +63,6 @@ hframes = 2
 [node name="FuseBox" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -77, -46 )
 script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "FuseBox"
 walk_to_point = Vector2( 7, 58 )
 cursor = 1
@@ -97,25 +72,8 @@ texture = ExtResource( 8 )
 [node name="CollisionPolygon2D" parent="Props/FuseBox" index="0"]
 polygon = PoolVector2Array( -8, 2, 14, 1, 15, 20, -6, 22 )
 
-[node name="BaselineHelper" parent="Props/FuseBox" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
 [node name="WalkToHelper" parent="Props/FuseBox" index="2"]
 position = Vector2( 7, 58 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/FuseBox/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/FuseBox" index="3"]
 texture = ExtResource( 8 )
@@ -124,9 +82,6 @@ hframes = 2
 [node name="BatteryCharger" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 56, -9 )
 script = ExtResource( 9 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "BatteryCharger"
 walk_to_point = Vector2( 5, 30 )
 cursor = 1
@@ -136,25 +91,8 @@ texture = ExtResource( 10 )
 [node name="CollisionPolygon2D" parent="Props/BatteryCharger" index="0"]
 polygon = PoolVector2Array( -10, -24, 8, -24, 11, -17, 11, 23, -9, 22, -12, -18 )
 
-[node name="BaselineHelper" parent="Props/BatteryCharger" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
 [node name="WalkToHelper" parent="Props/BatteryCharger" index="2"]
 position = Vector2( 5, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/BatteryCharger/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/BatteryCharger" index="3"]
 texture = ExtResource( 10 )
@@ -162,9 +100,6 @@ texture = ExtResource( 10 )
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -123, 12 )
 script = ExtResource( 11 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "To the lobby"
 walk_to_point = Vector2( 31, 18 )
 cursor = 1
@@ -174,25 +109,8 @@ texture = ExtResource( 12 )
 [node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
 polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
 
-[node name="BaselineHelper" parent="Props/Exit" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
 [node name="WalkToHelper" parent="Props/Exit" index="2"]
 position = Vector2( 31, 18 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Exit" index="3"]
 texture = ExtResource( 12 )
@@ -215,6 +133,11 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 13 )]
 position = Vector2( -92, 30 )
 dflt_walk_animation = "Bug"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lock" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
 
 [editable path="Props/Engine"]
 [editable path="Props/FuseBox"]
