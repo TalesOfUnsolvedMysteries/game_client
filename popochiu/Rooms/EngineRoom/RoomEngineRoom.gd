@@ -17,5 +17,5 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func show_lock() -> void:
-	$CanvasLayer/Lock.show()
+	$CanvasLayer/Lock.appear()
 	A.play({cue_name = 'sfx_lock_enter', is_in_queue = false})
