@@ -1,0 +1,448 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Exit/PropExit.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Bg/bg.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Exit/exit.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/PropParagraph.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Plants/plant_02.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Plants/plant_01.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=10]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Plants/plant_03.png" type="Texture" id=11]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=12]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Table/table.png" type="Texture" id=13]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Magazine/PropMagazine.gd" type="Script" id=14]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Magazine/magazine.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Coffee/PropCoffee.gd" type="Script" id=16]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Coffee/coffee.png" type="Texture" id=17]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Sofa/sofa.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseYellow/PropVaseYellow.gd" type="Script" id=19]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseYellow/vase_yellow.png" type="Texture" id=20]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseGreen/PropVaseGreen.gd" type="Script" id=21]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseGreen/vase_green.png" type="Texture" id=22]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseRed/PropVaseRed.gd" type="Script" id=23]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseRed/vase_red.png" type="Texture" id=24]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseBlue/PropVaseBlue.gd" type="Script" id=25]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseBlue/vase_blue.png" type="Texture" id=26]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Shelf/shelf.png" type="Texture" id=27]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( -37, 15, 102, 9, 165, 10, 82, 19, 42, 18, 23, 4, -41, 7, 169, 32, 267, 37, 213, 74, -47, 52, 73, 36, -231, 70, -306, 37, -286, 20, -198, 12, -198, 40, -122, 36, 95, 31, 93, 23, -54, 1, -83, 9, -125, 7, -96, 15, -88, 25, -59, 25, 18, 26, 20, 20, 29, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 1, 0, 6 ), PoolIntArray( 7, 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14, 15, 16 ), PoolIntArray( 10, 12, 16, 17 ), PoolIntArray( 2, 7, 18, 19 ), PoolIntArray( 20, 5, 6 ), PoolIntArray( 20, 6, 21, 22 ), PoolIntArray( 22, 21, 23 ), PoolIntArray( 17, 22, 23, 24 ), PoolIntArray( 10, 17, 24, 25 ), PoolIntArray( 26, 10, 25, 0, 27 ), PoolIntArray( 2, 19, 3 ), PoolIntArray( 0, 4, 27 ), PoolIntArray( 10, 26, 28 ), PoolIntArray( 10, 28, 11 ), PoolIntArray( 7, 11, 18 ) ]
+outlines = [ PoolVector2Array( 267, 37, 169, 32, 165, 10, 102, 9, 23, 4, -54, 1, -125, 7, -122, 36, -198, 40, -198, 12, -286, 20, -306, 37, -231, 70, -47, 52, 213, 74 ), PoolVector2Array( 18, 26, 29, 32, 73, 36, 95, 31, 93, 23, 82, 19, 42, 18, 20, 20 ), PoolVector2Array( -96, 15, -88, 25, -59, 25, -37, 15, -41, 7, -83, 9 ) ]
+
+[node name="RoomPenthouse" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "Penthouse"
+limit_left = -320.0
+limit_right = 320.0
+limit_top = -90.0
+limit_bottom = 90.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
+description = "Bg"
+clickable = false
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 5 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 254, 26 )
+script = ExtResource( 4 )
+description = "Exit"
+baseline = 51
+walk_to_point = Vector2( -20, 24 )
+cursor = 10
+script_name = "Exit"
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
+polygon = PoolVector2Array( 13, 18, 39, 45, -22, 45 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="1"]
+position = Vector2( 0, 51 )
+
+[node name="WalkToHelper" parent="Props/Exit" index="2"]
+position = Vector2( -20, 24 )
+
+[node name="Sprite" parent="Props/Exit" index="3"]
+texture = ExtResource( 6 )
+
+[node name="Paragraph" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 220, -17 )
+script = ExtResource( 7 )
+description = "Paragraph"
+walk_to_point = Vector2( -4, 54 )
+cursor = 1
+script_name = "Paragraph"
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" parent="Props/Paragraph" index="0"]
+polygon = PoolVector2Array( -28, -37, 32, -33, 28, 38, -32, 35 )
+
+[node name="WalkToHelper" parent="Props/Paragraph" index="2"]
+position = Vector2( -4, 54 )
+
+[node name="Sprite" parent="Props/Paragraph" index="3"]
+texture = ExtResource( 2 )
+
+[node name="Sofa" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -68, -1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Sofa"
+clickable = false
+baseline = 17
+cursor = 10
+script_name = "Sofa"
+texture = ExtResource( 18 )
+
+[node name="Plant01" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 141, -11 )
+clickable = false
+baseline = 29
+cursor = 10
+script_name = "Plant01"
+texture = ExtResource( 9 )
+
+[node name="Plant02" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 100, 41 )
+clickable = false
+baseline = 12
+cursor = 10
+script_name = "Plant01"
+texture = ExtResource( 8 )
+
+[node name="Plant03" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -87, 22 )
+clickable = false
+baseline = 20
+cursor = 10
+script_name = "Plant01"
+texture = ExtResource( 11 )
+
+[node name="Table" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 57, 14 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Table"
+clickable = false
+baseline = 6
+cursor = 10
+script_name = "Table"
+texture = ExtResource( 13 )
+
+[node name="Magazine" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 65, 5 )
+script = ExtResource( 14 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Magazine"
+baseline = 6
+walk_to_point = Vector2( 8, 9 )
+cursor = 10
+script_name = "Magazine"
+texture = ExtResource( 15 )
+
+[node name="CollisionPolygon2D" parent="Props/Magazine" index="0"]
+polygon = PoolVector2Array( -10, -3, -2, -7, 10, -1, 10, 2, 1, 7, -10, 1 )
+
+[node name="BaselineHelper" parent="Props/Magazine" index="1"]
+position = Vector2( 0, 6 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Magazine" index="2"]
+position = Vector2( 8, 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Magazine/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Magazine" index="3"]
+texture = ExtResource( 15 )
+
+[node name="Coffee" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 47, 9 )
+script = ExtResource( 16 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Coffee"
+baseline = 4
+walk_to_point = Vector2( -9, 28 )
+cursor = 10
+script_name = "Coffee"
+texture = ExtResource( 17 )
+
+[node name="CollisionPolygon2D" parent="Props/Coffee" index="0"]
+polygon = PoolVector2Array( -6, -1, -1, -5, 5, -1, 3, 3, -4, 3 )
+
+[node name="BaselineHelper" parent="Props/Coffee" index="1"]
+position = Vector2( 0, 4 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Coffee" index="2"]
+position = Vector2( -9, 28 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Coffee/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Coffee" index="3"]
+texture = ExtResource( 17 )
+
+[node name="Shelf1" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -280, 29 )
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Shelf"
+clickable = false
+baseline = 8
+cursor = 10
+script_name = "Shelf"
+texture = ExtResource( 27 )
+
+[node name="Shelf2" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -253, 16 )
+description = "Shelf"
+clickable = false
+baseline = 8
+cursor = 10
+script_name = "Shelf"
+texture = ExtResource( 27 )
+
+[node name="Shelf3" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -232, 36 )
+description = "Shelf"
+clickable = false
+baseline = 8
+cursor = 10
+script_name = "Shelf"
+texture = ExtResource( 27 )
+
+[node name="Shelf4" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -210, 16 )
+description = "Shelf"
+clickable = false
+baseline = 16
+cursor = 10
+script_name = "Shelf"
+texture = ExtResource( 27 )
+
+[node name="VaseYellow" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -279, 5 )
+script = ExtResource( 19 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "VaseYellow"
+baseline = 39
+walk_to_point = Vector2( 3, 26 )
+cursor = 10
+script_name = "VaseYellow"
+texture = ExtResource( 20 )
+
+[node name="CollisionPolygon2D" parent="Props/VaseYellow" index="0"]
+polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 3 )
+
+[node name="BaselineHelper" parent="Props/VaseYellow" index="1"]
+position = Vector2( 0, 39 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/VaseYellow" index="2"]
+position = Vector2( 3, 26 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/VaseYellow/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/VaseYellow" index="3"]
+texture = ExtResource( 20 )
+
+[node name="VaseGreen" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -252, -8 )
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "VaseGreen"
+baseline = 39
+walk_to_point = Vector2( 4, 27 )
+cursor = 10
+script_name = "VaseGreen"
+texture = ExtResource( 22 )
+
+[node name="CollisionPolygon2D" parent="Props/VaseGreen" index="0"]
+polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 2 )
+
+[node name="BaselineHelper" parent="Props/VaseGreen" index="1"]
+position = Vector2( 0, 39 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/VaseGreen" index="2"]
+position = Vector2( 4, 27 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/VaseGreen/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/VaseGreen" index="3"]
+texture = ExtResource( 22 )
+
+[node name="VaseRed" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -231, 12 )
+script = ExtResource( 23 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "VaseRed"
+baseline = 39
+walk_to_point = Vector2( 4, 27 )
+cursor = 10
+script_name = "VaseRed"
+texture = ExtResource( 24 )
+
+[node name="CollisionPolygon2D" parent="Props/VaseRed" index="0"]
+polygon = PoolVector2Array( -3, -10, 1, -10, 9, 2, 4, 10, -7, 10, -9, 2 )
+
+[node name="BaselineHelper" parent="Props/VaseRed" index="1"]
+position = Vector2( 0, 39 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/VaseRed" index="2"]
+position = Vector2( 4, 27 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/VaseRed/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/VaseRed" index="3"]
+texture = ExtResource( 24 )
+
+[node name="VaseBlue" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -209, -8 )
+script = ExtResource( 25 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "VaseBlue"
+baseline = 39
+walk_to_point = Vector2( 4, 27 )
+cursor = 10
+script_name = "VaseBlue"
+texture = ExtResource( 26 )
+
+[node name="CollisionPolygon2D" parent="Props/VaseBlue" index="0"]
+polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 10, -6, 10, -9, 2 )
+
+[node name="BaselineHelper" parent="Props/VaseBlue" index="1"]
+position = Vector2( 0, 39 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/VaseBlue" index="2"]
+position = Vector2( 4, 27 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/VaseBlue/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/VaseBlue" index="3"]
+texture = ExtResource( 26 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 10 )]
+position = Vector2( 234, 50 )
+
+[editable path="Props/Exit"]
+[editable path="Props/Paragraph"]
+[editable path="Props/Magazine"]
+[editable path="Props/Coffee"]
+[editable path="Props/VaseYellow"]
+[editable path="Props/VaseGreen"]
+[editable path="Props/VaseRed"]
+[editable path="Props/VaseBlue"]
