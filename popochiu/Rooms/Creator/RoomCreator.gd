@@ -12,7 +12,13 @@ func on_room_entered() -> void:
 
 
 func on_room_transition_finished() -> void:
-	pass
+	E.run([
+		'...',
+		'Creator: You made it.',
+		'Player: Yes.',
+		'....',
+		'Creator: Well done.',
+	])
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

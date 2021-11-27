@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Creator/RoomCreator.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Creator/Props/CTR/ctr.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://popochiu/Rooms/Creator/Props/Exit/exit.png" type="Texture" id=9]
 [ext_resource path="res://popochiu/Rooms/Creator/Props/CTR/transmisions.png" type="Texture" id=10]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=11]
+[ext_resource path="res://popochiu/Characters/Creator/CharacterCreator.tscn" type="PackedScene" id=12]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 42, 20, 64, 22, 56, 29, 19, 42, 64, 37, 81, 37, 99, 46, 91, 54, 78, 58, 52, 64, 16, 49, 36, 72, 11, 74, 7, 51, -8, 72, -2, 49, -36, 70, 88, 27, 102, 35, 15, 15, 14, 38, 4, 37, -21, 13, -2, 39, -5, 44, -42, 16, -63, 66, -93, 36, -75, 21, -55, 13, -87, 58, -96, 45 )
@@ -82,9 +83,6 @@ texture = ExtResource( 6 )
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -79, 42 )
 script = ExtResource( 8 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Exit"
 baseline = 31
 walk_to_point = Vector2( 4, 14 )
@@ -97,24 +95,9 @@ polygon = PoolVector2Array( -19, 16, 10, 30, -25, 41 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="1"]
 position = Vector2( 0, 31 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/Exit" index="2"]
 position = Vector2( 4, 14 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Exit" index="3"]
 texture = ExtResource( 9 )
@@ -136,6 +119,9 @@ navpoly = SubResource( 1 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 11 )]
 position = Vector2( -75, 56 )
+
+[node name="CharacterCreator" parent="Characters" instance=ExtResource( 12 )]
+position = Vector2( 12.5, 1.5 )
 
 [editable path="Props/Camera"]
 [editable path="Props/Exit"]
