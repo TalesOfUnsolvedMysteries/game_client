@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
+sfx_cues = [ ExtResource( 2 ) ]
 
 [node name="Positional" type="Node" parent="."]
 
