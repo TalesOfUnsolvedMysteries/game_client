@@ -2,7 +2,6 @@ tool
 extends PopochiuRoom
 
 onready var pc: PanelContainer = find_node('PCContainer')
-var main_mx_play = false
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
@@ -16,9 +15,9 @@ func on_room_entered() -> void:
 		'EngineRoom':
 			C.player.position = get_hotspot('EngineRoom').walk_point
 
-	if !main_mx_play:
+	if !Globals.main_mx_play:
 		A.play_music('mx_main', false)
-		main_mx_play = true
+		Globals.main_mx_play = true
 
 func on_room_transition_finished() -> void:
 	pass

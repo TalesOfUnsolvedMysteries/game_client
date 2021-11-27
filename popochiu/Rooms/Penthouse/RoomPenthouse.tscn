@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Plants/plant_01.png" type="Texture" id=9]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=10]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Plants/plant_03.png" type="Texture" id=11]
-[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=12]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Table/table.png" type="Texture" id=13]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Magazine/PropMagazine.gd" type="Script" id=14]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Magazine/magazine.png" type="Texture" id=15]
@@ -90,12 +89,8 @@ position = Vector2( -4, 54 )
 [node name="Sprite" parent="Props/Paragraph" index="3"]
 texture = ExtResource( 2 )
 
-[node name="Sofa" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+[node name="Sofa" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -68, -1 )
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Sofa"
 clickable = false
 baseline = 17
@@ -127,12 +122,8 @@ cursor = 10
 script_name = "Plant01"
 texture = ExtResource( 11 )
 
-[node name="Table" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+[node name="Table" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 57, 14 )
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Table"
 clickable = false
 baseline = 6
@@ -143,9 +134,6 @@ texture = ExtResource( 13 )
 [node name="Magazine" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 65, 5 )
 script = ExtResource( 14 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Magazine"
 baseline = 6
 walk_to_point = Vector2( 8, 9 )
@@ -158,24 +146,9 @@ polygon = PoolVector2Array( -10, -3, -2, -7, 10, -1, 10, 2, 1, 7, -10, 1 )
 
 [node name="BaselineHelper" parent="Props/Magazine" index="1"]
 position = Vector2( 0, 6 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/Magazine" index="2"]
 position = Vector2( 8, 9 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Magazine/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Magazine" index="3"]
 texture = ExtResource( 15 )
@@ -183,9 +156,6 @@ texture = ExtResource( 15 )
 [node name="Coffee" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 47, 9 )
 script = ExtResource( 16 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Coffee"
 baseline = 4
 walk_to_point = Vector2( -9, 28 )
@@ -198,34 +168,15 @@ polygon = PoolVector2Array( -6, -1, -1, -5, 5, -1, 3, 3, -4, 3 )
 
 [node name="BaselineHelper" parent="Props/Coffee" index="1"]
 position = Vector2( 0, 4 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/Coffee" index="2"]
 position = Vector2( -9, 28 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Coffee/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Coffee" index="3"]
 texture = ExtResource( 17 )
 
-[node name="Shelf1" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+[node name="Shelf1" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -280, 29 )
-script = ExtResource( 12 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Shelf"
 clickable = false
 baseline = 8
@@ -263,9 +214,6 @@ texture = ExtResource( 27 )
 [node name="VaseYellow" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -279, 5 )
 script = ExtResource( 19 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "VaseYellow"
 baseline = 39
 walk_to_point = Vector2( 3, 26 )
@@ -278,24 +226,9 @@ polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 3 )
 
 [node name="BaselineHelper" parent="Props/VaseYellow" index="1"]
 position = Vector2( 0, 39 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/VaseYellow" index="2"]
 position = Vector2( 3, 26 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/VaseYellow/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/VaseYellow" index="3"]
 texture = ExtResource( 20 )
@@ -303,9 +236,6 @@ texture = ExtResource( 20 )
 [node name="VaseGreen" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -252, -8 )
 script = ExtResource( 21 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "VaseGreen"
 baseline = 39
 walk_to_point = Vector2( 4, 27 )
@@ -318,24 +248,9 @@ polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 2 )
 
 [node name="BaselineHelper" parent="Props/VaseGreen" index="1"]
 position = Vector2( 0, 39 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/VaseGreen" index="2"]
 position = Vector2( 4, 27 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/VaseGreen/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/VaseGreen" index="3"]
 texture = ExtResource( 22 )
@@ -343,9 +258,6 @@ texture = ExtResource( 22 )
 [node name="VaseRed" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -231, 12 )
 script = ExtResource( 23 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "VaseRed"
 baseline = 39
 walk_to_point = Vector2( 4, 27 )
@@ -358,24 +270,9 @@ polygon = PoolVector2Array( -3, -10, 1, -10, 9, 2, 4, 10, -7, 10, -9, 2 )
 
 [node name="BaselineHelper" parent="Props/VaseRed" index="1"]
 position = Vector2( 0, 39 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/VaseRed" index="2"]
 position = Vector2( 4, 27 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/VaseRed/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/VaseRed" index="3"]
 texture = ExtResource( 24 )
@@ -383,9 +280,6 @@ texture = ExtResource( 24 )
 [node name="VaseBlue" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -209, -8 )
 script = ExtResource( 25 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "VaseBlue"
 baseline = 39
 walk_to_point = Vector2( 4, 27 )
@@ -398,24 +292,9 @@ polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 10, -6, 10, -9, 2 )
 
 [node name="BaselineHelper" parent="Props/VaseBlue" index="1"]
 position = Vector2( 0, 39 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/VaseBlue" index="2"]
 position = Vector2( 4, 27 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/VaseBlue/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/VaseBlue" index="3"]
 texture = ExtResource( 26 )

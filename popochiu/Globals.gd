@@ -9,5 +9,7 @@ enum Bodies {
 	BEE
 }
 
+var main_mx_play = false
+
 var bug_name := ''
 var state := {}

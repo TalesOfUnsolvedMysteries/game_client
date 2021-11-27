@@ -213,6 +213,7 @@ func room_readied(room: PopochiuRoom) -> void:
 		if chr:
 			chr.position = c.position
 			room.add_character(chr)
+			chr.room = room.script_name
 	
 	if room.has_player and is_instance_valid(C.player):
 		if not room.has_character(C.player.script_name):
@@ -221,6 +222,7 @@ func room_readied(room: PopochiuRoom) -> void:
 		yield(C.player.idle(false), 'completed')
 
 	room.on_room_entered()
+		
 
 	if _use_transition_on_room_change:
 		$TransitionLayer.play_transition('fade_out')

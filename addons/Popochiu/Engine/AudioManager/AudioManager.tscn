@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
 [ext_resource path="res://popochiu/Common/Music/MxMain.tres" type="Resource" id=3]
-[ext_resource path="res://popochiu/Common/SFX/SfxDoor.tres" type="Resource" id=4]
+[ext_resource path="res://popochiu/Common/SFX/SfxDoorOpen.tres" type="Resource" id=4]
 [ext_resource path="res://popochiu/Common/SFX/SfxDoorClose.tres" type="Resource" id=5]
-[ext_resource path="res://popochiu/Common/SFX/SfxDoorOpen.tres" type="Resource" id=6]
+[ext_resource path="res://popochiu/Common/SFX/SfxFootstepBase.tres" type="Resource" id=6]
+[ext_resource path="res://popochiu/Common/SFX/SfxFootstepGrass.tres" type="Resource" id=7]
+[ext_resource path="res://popochiu/Common/SFX/SfxFootstepMetal.tres" type="Resource" id=8]
+[ext_resource path="res://popochiu/Common/SFX/SfxFootstepWood.tres" type="Resource" id=9]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
 mx_cues = [ ExtResource( 3 ) ]
-sfx_cues = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+sfx_cues = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
 
 [node name="Positional" type="Node" parent="."]
 

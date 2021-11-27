@@ -191,3 +191,14 @@ func _set_texture(value: Texture) -> void:
 func _translate() -> void:
 	if Engine.editor_hint or not is_inside_tree(): return
 	description = E.get_text(_description_code)
+
+var ye = false
+func _step():
+	ye = not ye
+	var sfx_steps = 'sfx_footstepbase'
+	if self.room == 'EngineRoom':
+		sfx_steps = 'sfx_footstepmetal'
+	elif self.room == 'Penthouse':
+		sfx_steps = 'sfx_footstepgrass'
+	if ye:
+		A.play({cue_name = sfx_steps,is_in_queue = false})
