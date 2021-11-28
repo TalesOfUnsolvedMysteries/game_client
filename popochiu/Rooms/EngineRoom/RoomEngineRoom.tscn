@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Exit/PropExit.gd" type="Script" id=11]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Exit/exit.png" type="Texture" id=12]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=13]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/Motherboard.tscn" type="PackedScene" id=14]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -34, 6 )
@@ -137,6 +138,9 @@ dflt_walk_animation = "Bug"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Lock" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Motherboard" parent="CanvasLayer" instance=ExtResource( 14 )]
 visible = false
 
 [editable path="Props/Engine"]

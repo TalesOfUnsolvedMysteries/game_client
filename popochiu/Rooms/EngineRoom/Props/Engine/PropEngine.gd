@@ -6,6 +6,12 @@ extends Prop
 func on_interact() -> void:
 	Globals.set_state('Lobby-PC_UNLOCKED', true)
 	prints('Se desbloquió el computador')
+	
+	yield(E.run([
+		C.walk_to_clicked(),
+		'.'
+	]), 'completed')
+	E.current_room.show_motherboard()
 
 
 func on_look() -> void:

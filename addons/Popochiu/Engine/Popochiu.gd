@@ -301,6 +301,8 @@ func add_history(data: Dictionary) -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _eval_string(text: String) -> void:
 	match text:
+		'.':
+			yield(wait(0.2, false), 'completed')
 		'..':
 			yield(wait(0.5, false), 'completed')
 		'...':

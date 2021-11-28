@@ -19,3 +19,7 @@ func on_room_transition_finished() -> void:
 func show_lock() -> void:
 	$CanvasLayer/Lock.appear()
 	A.play({cue_name = 'sfx_lock_enter', is_in_queue = false})
+
+
+func show_motherboard() -> void:
+	$CanvasLayer/Motherboard.show()

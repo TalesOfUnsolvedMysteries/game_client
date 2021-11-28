@@ -1,0 +1,234 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/motherboard.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/Motherboard.gd" type="Script" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/battery.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/motherboard_button_pressed.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/motherboard_button_normal.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/card.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=8]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/MotherboardButton.gd" type="Script" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/Battery.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 9 )
+
+[node name="Motherboard" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+
+[node name="Base" type="TextureRect" parent="CenterContainer"]
+margin_left = 80.0
+margin_top = 13.0
+margin_right = 239.0
+margin_bottom = 166.0
+mouse_filter = 0
+texture = ExtResource( 2 )
+
+[node name="Display" type="Label" parent="CenterContainer/Base"]
+margin_left = 15.0
+margin_top = 20.0
+margin_right = 59.0
+margin_bottom = 44.0
+rect_rotation = -6.0
+custom_colors/font_color = Color( 0.145098, 0.886275, 0.803922, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "welcome"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card" type="TextureRect" parent="CenterContainer/Base"]
+visible = false
+margin_left = 105.0
+margin_top = -11.0
+margin_right = 122.0
+margin_bottom = 71.0
+mouse_filter = 2
+texture = ExtResource( 7 )
+
+[node name="Battery" type="TextureRect" parent="CenterContainer/Base"]
+margin_left = 16.0
+margin_top = 71.0
+margin_right = 149.0
+margin_bottom = 135.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+script = ExtResource( 11 )
+
+[node name="Buttons" type="Control" parent="CenterContainer/Base"]
+margin_left = 18.0
+margin_top = 46.0
+margin_right = 19.0
+margin_bottom = 46.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="TextureButton" parent="CenterContainer/Base/Buttons"]
+margin_right = 15.0
+margin_bottom = 17.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Base/Buttons/Button1"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "1"
+
+[node name="Button2" type="TextureButton" parent="CenterContainer/Base/Buttons"]
+margin_left = 16.0
+margin_top = -2.0
+margin_right = 31.0
+margin_bottom = 15.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Base/Buttons/Button2"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="TextureButton" parent="CenterContainer/Base/Buttons"]
+margin_left = 32.0
+margin_top = -4.0
+margin_right = 47.0
+margin_bottom = 13.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Base/Buttons/Button3"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "6"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button4" type="TextureButton" parent="CenterContainer/Base/Buttons"]
+margin_left = 2.0
+margin_top = 18.0
+margin_right = 17.0
+margin_bottom = 35.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Base/Buttons/Button4"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "3"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button5" type="TextureButton" parent="CenterContainer/Base/Buttons"]
+margin_left = 18.0
+margin_top = 16.0
+margin_right = 33.0
+margin_bottom = 33.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Base/Buttons/Button5"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "8"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button6" type="TextureButton" parent="CenterContainer/Base/Buttons"]
+margin_left = 34.0
+margin_top = 14.0
+margin_right = 49.0
+margin_bottom = 31.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer/Base/Buttons/Button6"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "0"
+__meta__ = {
+"_editor_description_": ""
+}
