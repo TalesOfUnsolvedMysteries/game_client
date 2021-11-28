@@ -19,14 +19,12 @@ func on_room_entered() -> void:
 		A.play_music('mx_main', false)
 		Globals.main_mx_play = true
 	
-	if not Globals.state.has(script_name):
+	if not Globals.state.has('Lobby-ENGINE_ROOM_UNLOCKED'):
 		# Establecer el estado por defecto de la habitación
-		Globals.state[script_name] = {
-			ENGINE_ROOM_UNLOCKED = false
-		}
+		Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', false)
 		get_hotspot('EngineRoom').disable(false)
 	else:
-		if not Globals.state[script_name].ENGINE_ROOM_UNLOCKED:
+		if not Globals.state['Lobby-ENGINE_ROOM_UNLOCKED']:
 			get_hotspot('EngineRoom').disable(false)
 		else:
 			get_hotspot('EngineRoom').enable(false)
@@ -48,7 +46,7 @@ func use_pc() -> void:
 
 
 func open_engine_room() -> void:
-	Globals.state[script_name].ENGINE_ROOM_UNLOCKED = true
+	Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', true)
 	
 	yield(E.run([
 		C.walk_to_clicked(),
