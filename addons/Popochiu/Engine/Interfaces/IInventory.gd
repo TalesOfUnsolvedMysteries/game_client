@@ -9,32 +9,30 @@ signal item_remove_done(item)
 export var always_visible := false
 
 var _item_instances := []
+var _items_count := 0
 
 var active: InventoryItem
 var show_anims := true
 
-export(Array, PackedScene) var inventory_items
-export var items := []
-
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
-	if not inventory_items.empty():
-		for ii in inventory_items:
-			var item_instance: InventoryItem = ii.instance()
-			_item_instances.append({
-				script_name = item_instance.script_name,
-				node = item_instance
-			})
+	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func add_item(item_name: String, is_in_queue := true) -> void:
 	if is_in_queue: yield()
 	
+	if E.inventory_limit > 0 and _items_count == E.inventory_limit:
+		prints('No se puede añadir otro elemento')
+		yield(get_tree(), 'idle_frame')
+		return
+	
 	var i: InventoryItem = _get_item_instance(item_name)
 	if is_instance_valid(i) and not i.in_inventory:
 		i.in_inventory = true
+		_items_count += 1
 		
 		emit_signal('item_added', i)
 		

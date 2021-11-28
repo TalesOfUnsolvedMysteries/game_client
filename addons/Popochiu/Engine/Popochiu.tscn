@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://popochiu/TransitionLayer/TransitionLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/GraphicInterface.tscn" type="PackedScene" id=2]
@@ -20,15 +20,19 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.tres" type="Resource" id=21]
 [ext_resource path="res://popochiu/Rooms/Creator/RoomCreator.tres" type="Resource" id=22]
 [ext_resource path="res://popochiu/Characters/Creator/CharacterCreator.tres" type="Resource" id=23]
+[ext_resource path="res://popochiu/InventoryItems/KeyEngineRoom/InventoryKeyEngineRoom.tres" type="Resource" id=24]
 
 [node name="Popochiu" type="Node"]
 script = ExtResource( 7 )
 rooms = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ]
 characters = [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 23 ) ]
+inventory_items = [ ExtResource( 24 ) ]
 skip_cutscene_time = 0.25
 text_speeds = [ 0.05, 0.01, 0.0 ]
 text_speed_idx = 2
 text_continue_auto = true
+inventory_always_visible = true
+inventory_limit = 3
 
 [node name="Tween" type="Tween" parent="."]
 

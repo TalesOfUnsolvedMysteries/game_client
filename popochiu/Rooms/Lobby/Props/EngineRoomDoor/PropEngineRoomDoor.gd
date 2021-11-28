@@ -6,10 +6,9 @@ extends Prop
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		"Player: I have the engine room's key",
-		I.add_item('KeyEngineRoom')
+		'Player: La puerta a la sala de motores está cerrada....',
+		'Player: Y parece una puerta indestructible'
 	]), 'completed')
-	$Sprite.frame = 0
 
 
 func on_look() -> void:
@@ -17,4 +16,5 @@ func on_look() -> void:
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	if item.script_name == 'KeyEngineRoom':
+		E.current_room.open_engine_room()

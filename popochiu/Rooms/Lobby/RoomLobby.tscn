@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Lobby/RoomLobby.gd" type="Script" id=1]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=12]
 [ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/PCContainer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/PropEngineRoomDoor.gd" type="Script" id=15]
+[ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/engine_room_door.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
@@ -100,6 +102,42 @@ position = Vector2( 0, 20 )
 [node name="Sprite" parent="Props/PC" index="3"]
 texture = ExtResource( 7 )
 
+[node name="EngineRoomDoor" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 162, 9 )
+script = ExtResource( 15 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "EngineRoomDoor"
+cursor = 1
+script_name = "EngineRoomDoor"
+texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" parent="Props/EngineRoomDoor" index="0"]
+polygon = PoolVector2Array( -22, -31, 23, -23, 27, 31, -24, 31, -29, 1 )
+
+[node name="BaselineHelper" parent="Props/EngineRoomDoor" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/EngineRoomDoor" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/EngineRoomDoor/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/EngineRoomDoor" index="3"]
+texture = ExtResource( 16 )
+
 [node name="Hotspots" type="Node2D" parent="."]
 
 [node name="FirstFloor" parent="Hotspots" instance=ExtResource( 2 )]
@@ -154,5 +192,6 @@ visible = false
 
 [editable path="Props/Painting"]
 [editable path="Props/PC"]
+[editable path="Props/EngineRoomDoor"]
 [editable path="Hotspots/FirstFloor"]
 [editable path="Hotspots/EngineRoom"]

@@ -17,6 +17,8 @@ export var text_continue_auto := false
 export var languages := ['es_CO', 'es', 'en']
 export(int, 'co', 'es', 'en') var language_idx := 0 setget _set_language_idx
 export var use_translations := false
+export var inventory_always_visible := false
+export var inventory_limit := 0
 
 var in_run := false
 # Se usa para que no se pueda cambiar de escena si esta se ha cargado por completo,

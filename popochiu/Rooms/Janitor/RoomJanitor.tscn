@@ -145,7 +145,7 @@ texture = ExtResource( 7 )
 [node name="KeyEngineRoom" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 4, -39 )
 script = ExtResource( 16 )
-description = "KeyEngineRoom"
+description = "Engine room"
 cursor = 1
 script_name = "KeyEngineRoom"
 texture = ExtResource( 17 )
