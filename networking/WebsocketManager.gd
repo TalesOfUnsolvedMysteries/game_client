@@ -1,8 +1,10 @@
 extends Node2D
 
-# The URL we will connect to
-export var websocket_url = "ws://localhost:8080"
+# The URL we will connect to node server
 #export var websocket_url = "ws://54.196.243.17:7334"
+#const SERVER_IP = '54.196.243.17'
+const SERVER_IP = 'localhost'
+export var websocket_url = "ws://%s:7334" % SERVER_IP
 
 # Our WebSocketClient instance
 var wsClient = WebSocketClient.new()
@@ -170,8 +172,12 @@ func send_message_ws(message):
 
 
 func join_client(_secret_key):
+<<<<<<< HEAD
 	NetworkManager.request_join('localhost')
 #	NetworkManager.request_join('54.196.243.17')
+=======
+	NetworkManager.request_join(SERVER_IP)
+>>>>>>> set main server
 	secret_key = _secret_key
 	print('secret key saved on client %s' % _secret_key)
 	#rpc_id(1, "validate_connection", '#otra cosa')
