@@ -17,16 +17,19 @@ onready var _hide_y := rect_position.y - (rect_size.y - 4)
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	rect_position.y = _hide_y
 	
-	# Conectarse a señales del yo
-	connect('mouse_entered', self, '_open')
-	connect('mouse_exited', self, '_close')
 	
-	# Conectarse a señales de los hijos de la mamá
-	for b in _grid.get_children():
-		(b as TextureButton).connect('mouse_entered', self, '_disable_hide')
-		(b as TextureButton).connect('mouse_exited', self, '_enable_hide')
+	if not E.toolbar_always_visible:
+		rect_position.y = _hide_y
+	
+		# Conectarse a señales del yo
+		connect('mouse_entered', self, '_open')
+		connect('mouse_exited', self, '_close')
+	
+		# Conectarse a señales de los hijos de la mamá
+		for b in _grid.get_children():
+			(b as TextureButton).connect('mouse_entered', self, '_disable_hide')
+			(b as TextureButton).connect('mouse_exited', self, '_enable_hide')
 
 	if not used_in_game:
 		hide()
@@ -35,6 +38,9 @@ func _ready() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func disable() -> void:
 	is_disabled = true
+	
+	if E.toolbar_always_visible: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		_hide_y, _hide_y - 3.5,
@@ -45,6 +51,9 @@ func disable() -> void:
 
 func enable() -> void:
 	is_disabled = false
+	
+	if E.toolbar_always_visible: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		_hide_y - 3.5, _hide_y,
@@ -55,7 +64,9 @@ func enable() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _open() -> void:
+	if E.toolbar_always_visible: return
 	if not is_disabled and rect_position.y != _hide_y: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		_hide_y if not is_disabled else rect_position.y, 0.0,
@@ -65,8 +76,12 @@ func _open() -> void:
 
 
 func _close() -> void:
+	if E.toolbar_always_visible: return
+
 	yield(get_tree(), 'idle_frame')
+	
 	if not _can_hide: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		0.0, _hide_y if not is_disabled else _hide_y - 3.5,
@@ -81,3 +96,7 @@ func _disable_hide() -> void:
 
 func _enable_hide() -> void:
 	_can_hide = true
+
+
+func _show_settings() -> void:
+	pass

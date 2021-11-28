@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/DebugLayer/DebugLayer.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=2]
 
 [node name="DebugLayer" type="CanvasLayer"]
 layer = 3

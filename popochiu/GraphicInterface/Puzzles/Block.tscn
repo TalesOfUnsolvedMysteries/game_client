@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Puzzles/Block.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 

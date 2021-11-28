@@ -33,6 +33,7 @@ text_speed_idx = 2
 text_continue_auto = true
 inventory_always_visible = true
 inventory_limit = 3
+toolbar_always_visible = true
 
 [node name="Tween" type="Tween" parent="."]
 

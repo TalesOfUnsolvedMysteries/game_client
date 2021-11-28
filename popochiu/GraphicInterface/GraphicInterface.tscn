@@ -63,6 +63,14 @@ margin_bottom = -2.0
 [node name="DialogMenu" parent="MainContainer" instance=ExtResource( 5 )]
 
 [node name="Toolbar" parent="MainContainer" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -66.0
+margin_top = -18.0
+margin_right = -2.0
+margin_bottom = -2.0
 
 [node name="ClickHandler" type="Button" parent="MainContainer"]
 anchor_right = 1.0

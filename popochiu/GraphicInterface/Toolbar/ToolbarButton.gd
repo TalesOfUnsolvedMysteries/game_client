@@ -12,11 +12,12 @@ func _ready() -> void:
 	connect('mouse_exited', self, 'on_mouse_exited')
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_pressed() -> void:
 	pass
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func on_mouse_entered() -> void:
 	Cursor.set_cursor(cursor)
 	G.show_info(self.description)

@@ -14,16 +14,14 @@ onready var _grid: GridContainer = find_node('InventoryGrid')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
-	if not E.inventory_always_visible:
-		rect_position.y = _hide_y
 	rect_size.x = _foreground.rect_size.x
 	
-	# TODO: Hacer algo así para los casos en los que se quiera que el inventario
-	# inicie ya con unos objetos dentro.
-
-	# Conectarse a señales del yo
-	connect('mouse_entered', self, '_open')
-	connect('mouse_exited', self, '_close')
+	if not E.inventory_always_visible:
+		rect_position.y = _hide_y
+		
+		# Conectarse a señales del yo
+		connect('mouse_entered', self, '_open')
+		connect('mouse_exited', self, '_close')
 	
 	# Conectarse a las señales del papá de los inventarios
 	I.connect('item_added', self, '_add_item')
@@ -32,8 +30,10 @@ func _ready():
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func disable() -> void:
-	if E.inventory_always_visible: return
 	is_disabled = true
+	
+	if E.inventory_always_visible: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		_hide_y, _hide_y - 3.5,
@@ -43,8 +43,10 @@ func disable() -> void:
 
 
 func enable() -> void:
-	if E.inventory_always_visible: return
 	is_disabled = false
+	
+	if E.inventory_always_visible: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		_hide_y - 3.5, _hide_y,
@@ -57,6 +59,7 @@ func enable() -> void:
 func _open() -> void:
 	if E.inventory_always_visible: return
 	if not is_disabled and rect_position.y != _hide_y: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		_hide_y if not is_disabled else rect_position.y, 0.0,
@@ -67,8 +70,11 @@ func _open() -> void:
 
 func _close() -> void:
 	if E.inventory_always_visible: return
+	
 	yield(get_tree(), 'idle_frame')
+	
 	if not _can_hide_inventory: return
+	
 	$Tween.interpolate_property(
 		self, 'rect_position:y',
 		0.0, _hide_y if not is_disabled else _hide_y - 3.5,
