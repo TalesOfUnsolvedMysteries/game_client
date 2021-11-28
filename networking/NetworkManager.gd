@@ -48,16 +48,21 @@ func set_pilot(peer_id):
 	rpc_id(peer_id, 'take_control')
 	# demo - test
 	yield(get_tree().create_timer(20), 'timeout')
-	game_over('time is up')
+	game_over(peer_id, 'time is up')
 
 
-func game_over(death_cause):
+func game_over(_peer_id, death_cause):
 	print('remove control')
+	if pilot_peer_id != _peer_id:
+		print('player already removed')
+		return
+	
 	var peer_id = pilot_peer_id
 	pilot_peer_id = -1
 	pilotOn = false
-	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
-	rpc_id(peer_id, 'remove_control')
+	if death_cause != 'disconnection':
+		rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
+		rpc_id(peer_id, 'remove_control')
 	print('game over')
 	print('gs_gameOver:%d-%s' % [peer_id, death_cause])
 	WebsocketManager.send_message_ws('gs_gameOver:%d-%s' % [peer_id, death_cause])
@@ -117,6 +122,8 @@ func _player_connected(player_id):
 # server and client
 func _player_disconnected(player_id):
 	print('should register what players get disconected ', player_id)
+	if server and player_id == pilot_peer_id:
+		game_over(player_id, 'disconnection')
 
 
 # client

@@ -19,7 +19,7 @@ func _player_connected(peer_id):
 	$Control/Connection.text = 'Connection Status: connected'
 	$Control/PeerID.text = 'peerID: %d' % peer_id
 
-func _player_disconnected():
+func _player_disconnected(player_id):
 	$Control/Connection.text = 'Connection Status: disconnected'
 
 func _connected_ok():
