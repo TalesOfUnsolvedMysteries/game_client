@@ -34,6 +34,7 @@ func init_server():
 	get_tree().network_peer = server_peer
 	print('server started with peer: ', get_tree().get_network_unique_id())
 	server = true
+	Globals.load_state()
 	WebsocketManager.register_game_server()
 	emit_signal('server_started')
 
@@ -41,10 +42,12 @@ func init_server():
 func set_pilot(peer_id):
 	if !server: return
 	pilot_peer_id = peer_id
+	Globals.sync_state()
+	E.goto_room('Lobby')
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'take_control')
 	# demo - test
-	yield(get_tree().create_timer(60*5), 'timeout')
+	yield(get_tree().create_timer(20), 'timeout')
 	game_over('time is up')
 
 

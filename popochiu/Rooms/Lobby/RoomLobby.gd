@@ -25,7 +25,7 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func use_pc() -> void:
-	if Globals.state.has(script_name) and Globals.state[script_name].PC_UNLOCKED:
+	if Globals.state.has('Lobby-PC_UNLOCKED') and Globals.state['Lobby-PC_UNLOCKED']:
 		yield(E.run([
 			'Player: Uy ya prendió',
 			A.play({cue_name = 'sfx_pc_startup',is_in_queue = true})]), 'completed')
