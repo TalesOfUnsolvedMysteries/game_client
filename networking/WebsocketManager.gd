@@ -169,7 +169,7 @@ func send_message_ws(message):
 
 
 func join_client(_secret_key):
-	NetworkManager.request_join('127.0.0.1')
+	NetworkManager.request_join('localhost')
 	secret_key = _secret_key
 	print('secret key saved on client %s' % _secret_key)
 	#rpc_id(1, "validate_connection", '#otra cosa')
