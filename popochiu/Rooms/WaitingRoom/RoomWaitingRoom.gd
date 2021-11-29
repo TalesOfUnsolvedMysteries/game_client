@@ -8,7 +8,7 @@ var _messages := [
 	'Find the way to the penthouse',
 	'You have five minutes to play',
 	'Take notes and share them',
-	'Collab to resolve all the puzles',
+	'Collab to resolve all the puzzles',
 	'And die a lot of times...',
 	'Bzzzzz bzzzzz bzzzzzz',
 	'\\(>  o)/'
@@ -39,16 +39,7 @@ func on_room_transition_finished() -> void:
 	# TODO: ¿Esto debería ocurrir en base a una señal del servidor o algo así?
 	yield(get_tree().create_timer(10.0), 'timeout')
 	
-	yield(E.run([
-		C.character_walk_to('CoHost', get_point('CoHostEntry')),
-		'..',
-		C.player_walk_to(get_point('BugEntry')),
-		'CoHost: Hi [color=#0a89ff]%s[/color], Welcome to The Bug Adventure Show!'\
-		% Globals.bug_name,
-		"CoHost: I'm Pacheco. How do you feel?"
-	]), 'completed')
-	
-	yield(D.show_dialog('Welcome'), 'completed')
+	_enter_cohost()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -59,3 +50,15 @@ func _next_message() -> void:
 	
 	_current = wrapi(_current + 1, 0, _messages.size())
 	_next_message()
+
+
+func _enter_cohost() -> void:
+	yield(E.run([
+		C.character_walk_to('CoHost', get_point('CoHostEntry')),
+		'..',
+		C.player_walk_to(get_point('BugEntry')),
+	]), 'completed')
+	
+	yield(D.show_dialog('Welcome'), 'completed')
+	yield(D.show_dialog('Motivation'), 'completed')
+	yield(D.show_dialog('Expectations'), 'completed')

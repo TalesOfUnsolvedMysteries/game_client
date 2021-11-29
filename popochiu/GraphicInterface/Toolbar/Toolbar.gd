@@ -17,8 +17,6 @@ onready var _hide_y := rect_position.y - (rect_size.y - 4)
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	
-	
 	if not E.toolbar_always_visible:
 		rect_position.y = _hide_y
 	
@@ -39,27 +37,29 @@ func _ready() -> void:
 func disable() -> void:
 	is_disabled = true
 	
-	if E.toolbar_always_visible: return
-	
-	$Tween.interpolate_property(
-		self, 'rect_position:y',
-		_hide_y, _hide_y - 3.5,
-		0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT
-	)
-	$Tween.start()
+	if E.toolbar_always_visible:
+		hide()
+	else:
+		$Tween.interpolate_property(
+			self, 'rect_position:y',
+			_hide_y, _hide_y - 3.5,
+			0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT
+		)
+		$Tween.start()
 
 
 func enable() -> void:
 	is_disabled = false
 	
-	if E.toolbar_always_visible: return
-	
-	$Tween.interpolate_property(
-		self, 'rect_position:y',
-		_hide_y - 3.5, _hide_y,
-		0.3, Tween.TRANS_SINE, Tween.EASE_OUT
-	)
-	$Tween.start()
+	if E.toolbar_always_visible:
+		show()
+	else:
+		$Tween.interpolate_property(
+			self, 'rect_position:y',
+			_hide_y - 3.5, _hide_y,
+			0.3, Tween.TRANS_SINE, Tween.EASE_OUT
+		)
+		$Tween.start()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -96,7 +96,3 @@ func _disable_hide() -> void:
 
 func _enable_hide() -> void:
 	_can_hide = true
-
-
-func _show_settings() -> void:
-	pass

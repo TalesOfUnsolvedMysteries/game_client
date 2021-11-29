@@ -42,7 +42,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="SettingsMask" type="PanelContainer" parent="."]
-margin_top = -81.0
+margin_top = -61.0
 margin_right = 22.0
 rect_clip_content = true
 mouse_filter = 2
@@ -53,7 +53,7 @@ __meta__ = {
 
 [node name="Settings" type="PanelContainer" parent="SettingsMask"]
 margin_right = 22.0
-margin_bottom = 81.0
+margin_bottom = 61.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 19 )
 __meta__ = {
@@ -66,7 +66,7 @@ __meta__ = {
 margin_left = 3.0
 margin_top = 5.0
 margin_right = 19.0
-margin_bottom = 81.0
+margin_bottom = 61.0
 size_flags_horizontal = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,6 +101,7 @@ description = "Historial"
 cursor = 10
 
 [node name="BtnQuit" type="TextureButton" parent="SettingsMask/Settings/Buttons"]
+visible = false
 margin_top = 60.0
 margin_right = 16.0
 margin_bottom = 76.0

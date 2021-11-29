@@ -7,8 +7,10 @@ onready var _dflt_pos := rect_position
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	connect('visibility_changed', self, '_ultra_hide')
+	
 	yield(get_tree(), 'idle_frame')
-	rect_position.y += rect_size.y
+	rect_position.y = rect_position.y + rect_size.y
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -30,3 +32,11 @@ func appear() -> void:
 			0.3, Tween.TRANS_SINE, Tween.EASE_OUT
 		)
 	$Tween.start()
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
+func _ultra_hide() -> void:
+	yield(get_tree(), 'idle_frame')
+	
+	is_active = false
+	rect_position.y = rect_position.y + rect_size.y

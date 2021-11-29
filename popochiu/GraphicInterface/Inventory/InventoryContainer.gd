@@ -32,27 +32,29 @@ func _ready():
 func disable() -> void:
 	is_disabled = true
 	
-	if E.inventory_always_visible: return
-	
-	$Tween.interpolate_property(
-		self, 'rect_position:y',
-		_hide_y, _hide_y - 3.5,
-		0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT
-	)
-	$Tween.start()
+	if E.inventory_always_visible:
+		hide()
+	else:
+		$Tween.interpolate_property(
+			self, 'rect_position:y',
+			_hide_y, _hide_y - 3.5,
+			0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT
+		)
+		$Tween.start()
 
 
 func enable() -> void:
 	is_disabled = false
 	
-	if E.inventory_always_visible: return
-	
-	$Tween.interpolate_property(
-		self, 'rect_position:y',
-		_hide_y - 3.5, _hide_y,
-		0.3, Tween.TRANS_SINE, Tween.EASE_OUT
-	)
-	$Tween.start()
+	if E.inventory_always_visible:
+		show()
+	else:
+		$Tween.interpolate_property(
+			self, 'rect_position:y',
+			_hide_y - 3.5, _hide_y,
+			0.3, Tween.TRANS_SINE, Tween.EASE_OUT
+		)
+		$Tween.start()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

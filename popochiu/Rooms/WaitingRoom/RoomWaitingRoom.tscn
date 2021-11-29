@@ -138,9 +138,6 @@ texture = ExtResource( 9 )
 [node name="ScreenYours" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -117, -49 )
 script = ExtResource( 8 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "ScreenYours"
 cursor = 10
 script_name = "ScreenYours"
@@ -148,25 +145,6 @@ texture = ExtResource( 15 )
 
 [node name="CollisionPolygon2D" parent="Props/ScreenYours" index="0"]
 polygon = PoolVector2Array( -25, -15, 25, -15, 26, 15, -26, 13 )
-
-[node name="BaselineHelper" parent="Props/ScreenYours" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Props/ScreenYours" index="2"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/ScreenYours/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/ScreenYours" index="3"]
 texture = ExtResource( 15 )
@@ -202,9 +180,6 @@ texture = ExtResource( 14 )
 [node name="ScreenCurrent" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 90, -44 )
 script = ExtResource( 17 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "ScreenCurrent"
 cursor = 10
 script_name = "ScreenCurrent"
@@ -212,25 +187,6 @@ texture = ExtResource( 19 )
 
 [node name="CollisionPolygon2D" parent="Props/ScreenCurrent" index="0"]
 polygon = PoolVector2Array( -29, -15, 29, -13, 28, 14, -29, 12 )
-
-[node name="BaselineHelper" parent="Props/ScreenCurrent" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Props/ScreenCurrent" index="2"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/ScreenCurrent/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/ScreenCurrent" index="3"]
 texture = ExtResource( 19 )

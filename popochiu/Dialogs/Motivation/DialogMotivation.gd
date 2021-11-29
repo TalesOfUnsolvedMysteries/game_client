@@ -5,9 +5,7 @@ extends PopochiuDialog
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func start() -> void:
 	yield(E.run([
-		'CoHost: Hi [color=#0a89ff]%s[/color], Welcome to The Bug Adventure Show!'\
-		% Globals.bug_name,
-		"CoHost: I'm Pacheco. How do you feel?"
+		'CoHost: Now tell the audience what motivated you to participate',
 	]), 'completed')
 	
 	# La llamada al método start del padre hace que se muestren las opciones
@@ -17,6 +15,6 @@ func start() -> void:
 func option_selected(opt: DialogOption) -> void:
 	yield(E.run([
 		'Player: ' + opt.text,
-		'CoHost: That sounds great!'
+		'CoHost: Woooow! That is quite interesting'
 	]), 'completed')
 	D.emit_signal('dialog_finished')
