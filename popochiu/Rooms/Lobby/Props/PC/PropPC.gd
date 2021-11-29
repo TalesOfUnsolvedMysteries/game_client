@@ -9,7 +9,14 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	if not Globals.state['Lobby-PC_POWERED']:
+		yield(E.run([
+			'Player: Might be useful, but it has no power'
+		]), 'completed')
+	else:
+		yield(E.run([
+			'Player: Has some apps that might be useful'
+		]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:

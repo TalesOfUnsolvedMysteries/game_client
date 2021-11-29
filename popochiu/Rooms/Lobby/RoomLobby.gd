@@ -22,6 +22,7 @@ func on_room_entered() -> void:
 	if not Globals.state.has('Lobby-ENGINE_ROOM_UNLOCKED'):
 		# Establecer el estado por defecto de la habitación
 		Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', false)
+		Globals.set_state('Lobby-PC_POWERED', false)
 		get_hotspot('EngineRoom').disable(false)
 	else:
 		if not Globals.state['Lobby-ENGINE_ROOM_UNLOCKED']:
@@ -30,19 +31,27 @@ func on_room_entered() -> void:
 			get_hotspot('EngineRoom').enable(false)
 			get_prop('EngineRoomDoor').disable(false)
 
+
 func on_room_transition_finished() -> void:
-	pass
+	if C.player.last_room != 'FirstFloor' and C.player.last_room != 'EngineRoom':
+		yield(E.run([
+			C.player_walk_to(get_point('Entry')),
+			'Player: Well... here we go'
+		]), 'completed')
+	
+	# TODO: Iniciar la cuenta regresiva para la muerte del jugador
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func use_pc() -> void:
-	if Globals.state.has('Lobby-PC_UNLOCKED') and Globals.state['Lobby-PC_UNLOCKED']:
+	if Globals.state['Lobby-PC_POWERED']:
 		yield(E.run([
-			'Player: Uy ya prendió',
-			A.play({cue_name = 'sfx_pc_startup',is_in_queue = true})]), 'completed')
+			'Player: Its working now',
+			A.play({cue_name = 'sfx_pc_startup',is_in_queue = true})
+		]), 'completed')
 		pc.show()
 	else:
-		E.run(['Player: Está bloquiao'])
+		E.run(['Player: No power'])
 
 
 func open_engine_room() -> void:
@@ -50,13 +59,12 @@ func open_engine_room() -> void:
 	
 	yield(E.run([
 		C.walk_to_clicked(),
-		'Player: Eeeeeeeee!!!!',
-		'Player: Ya puedo entrar a la sala de motores',
+		'Player: Woooooooh!',
+		'Player: I can go to the engine room',
 		I.remove_item('KeyEngineRoom'),
 		get_hotspot('EngineRoom').enable(),
 		get_prop('EngineRoomDoor').disable()
 	]), 'completed')
-	
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

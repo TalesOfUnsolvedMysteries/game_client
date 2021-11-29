@@ -150,6 +150,9 @@ position = Vector2( 0, 31 )
 
 [node name="Points" type="Node2D" parent="."]
 
+[node name="Entry" type="Position2D" parent="Points"]
+position = Vector2( -140, 62 )
+
 [node name="WalkableAreas" type="Node2D" parent="."]
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
@@ -160,7 +163,7 @@ navpoly = SubResource( 1 )
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 9 )]
-position = Vector2( -166, 61 )
+position = Vector2( -275, 61 )
 dflt_walk_animation = "Bug"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

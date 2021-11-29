@@ -4,7 +4,10 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.walk_to_clicked(),
+		'Player: What is this?'
+	]), 'completed')
 
 
 func on_look() -> void:
