@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+onready var _bg: TextureRect = find_node('Bg')
 onready var _info_bar: Label = find_node('InfoBar')
 onready var _dialog_text: DialogText = find_node('DialogText')
 onready var _display_box: DisplayBox = find_node('DisplayBox')

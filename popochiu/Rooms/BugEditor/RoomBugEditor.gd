@@ -12,6 +12,9 @@ onready var _btn_walk: Button = _gi.find_node('Walk')
 onready var _btn_done: Button = _gi.find_node('Done')
 onready var _name_edit: LineEdit = _gi.find_node('NameEdit')
 
+onready var _user_id: Label = _gi.find_node('UserId')
+
+var _user_ready = false
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -28,6 +31,10 @@ func _ready() -> void:
 	_name_edit.text = _placeholder
 	_btn_done.disabled = true
 
+	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
+	_user_ready = WebsocketManager.user_id != 0
+	if _user_ready:
+		_user_id.text = 'Player %d' % WebsocketManager.user_id
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -51,7 +58,7 @@ func _check_placeholder() -> void:
 
 
 func _check_bug_name(new_text: String) -> void:
-	if not new_text or new_text == _placeholder:
+	if not _user_ready or not new_text or new_text == _placeholder:
 		_btn_done.disabled = true
 	else:
 		_btn_done.disabled = false
@@ -59,5 +66,13 @@ func _check_bug_name(new_text: String) -> void:
 
 func _start() -> void:
 	Globals.bug_name = _name_edit.text
-	E.goto_room('Lobby')
+	WebsocketManager.request_turn()
+	E.goto_room('WaitingRoom')
 	#E.goto_room('BugCard')
+
+func _userID_assigned(user_id):
+	print('user id assigned %d' % user_id)
+	_user_ready = user_id != 0
+	_user_id.text = 'Player %d' % user_id
+	_check_bug_name(_name_edit.text)
+

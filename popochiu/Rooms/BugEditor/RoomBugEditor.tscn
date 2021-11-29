@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugEditor/RoomBugEditor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://popochiu/Characters/Bug/parts/head_beetle.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Characters/Bug/parts/head_ladybird.png" type="Texture" id=5]
 [ext_resource path="res://popochiu/Characters/Bug/parts/head_bee.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=7]
 [ext_resource path="res://popochiu/Characters/Bug/parts/body_beetle.png" type="Texture" id=9]
 [ext_resource path="res://popochiu/Characters/Bug/parts/body_bee.png" type="Texture" id=10]
 [ext_resource path="res://popochiu/Characters/Bug/parts/body_ladybird.png" type="Texture" id=11]
@@ -267,3 +268,15 @@ custom_styles/disabled = SubResource( 9 )
 custom_styles/normal = SubResource( 4 )
 disabled = true
 text = "done"
+
+[node name="UserId" type="Label" parent="GraphicInterface/Control"]
+margin_left = 6.0
+margin_top = 166.0
+margin_right = 70.0
+margin_bottom = 180.0
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = ExtResource( 7 )
+text = "Allocating player..."
+__meta__ = {
+"_edit_use_anchors_": false
+}

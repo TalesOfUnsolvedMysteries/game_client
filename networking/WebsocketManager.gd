@@ -11,11 +11,28 @@ var wsClient = WebSocketClient.new()
 var secret_key = 'XZA' # generate random one
 
 var user_file = "user://user.save"
-var user_id = '0' setget set_user_id
+var user_id = 0 setget set_user_id
+var turn = 0
 var password = '' setget set_password
 var server_request = false
+
+signal connection_updated
 signal userID_assigned
 signal turn_assigned
+
+enum CONNECTION_STATUS {
+	OFFLINE,
+	RECOVERING_CREDENTIALS,
+	CONNECTING,
+	ESTABLISHED,
+	HANDSHAKING,
+	CONNECTED,
+	REJECTED,
+	ERROR,
+	CLOSED
+}
+var status = CONNECTION_STATUS.OFFLINE
+
 
 func _ready():
 	randomize()
@@ -48,6 +65,7 @@ func init(_server_request):
 	# Initiate connection to the given URL.
 	load_user_data()
 	server_request = _server_request
+	set_status(CONNECTION_STATUS.CONNECTING)
 	var err = wsClient.connect_to_url(websocket_url)
 	print (err)
 	if err != OK:
@@ -56,16 +74,17 @@ func init(_server_request):
 func save_user ():
 	var file = File.new()
 	file.open(user_file, File.WRITE)
-	file.store_string('%s %s' % [user_id, password])
+	file.store_string('%d %s' % [user_id, password])
 	file.close()
 
 
 func load_user_data ():
 	var file = File.new()
 	if file.file_exists(user_file):
+		set_status(CONNECTION_STATUS.RECOVERING_CREDENTIALS)
 		file.open(user_file, File.READ)
 		var data = file.get_as_text().split(' ')
-		user_id = data[0]
+		user_id = int(data[0])
 		password = data[1]
 		file.close()
 	else:
@@ -79,11 +98,16 @@ func register_game_server():
 # by the remote peer before closing the socket.
 func _closed(was_clean = false):
 	print("Closed, clean: ", was_clean)
+	if was_clean:
+		set_status(CONNECTION_STATUS.CLOSED)
+	else:
+		set_status(CONNECTION_STATUS.ERROR)
 
 # This is called on connection, "proto" will be the selected WebSocket
 # sub-protocol (which is optional)
 func _connected(proto = ""):
 	print("Connected with protocol: ", proto)
+	set_status(CONNECTION_STATUS.ESTABLISHED)
 
 # Print the received packet, you MUST always use get_peer(1).get_packet
 # to receive data from server, and not get_packet directly when not
@@ -95,32 +119,36 @@ func _on_data():
 	var command = split[0]
 	var data = split[1]
 	if command == 'connecting':
+		set_status(CONNECTION_STATUS.HANDSHAKING)
 		var reply = 'ack:' + data
 		send_message_ws(reply)
 	elif command == 'connected':
 		print('connected to the server')
+		set_status(CONNECTION_STATUS.CONNECTED)
 		if server_request: NetworkManager.init_server()
 		else:
-			if user_id != '0':
-				send_message_ws('recoverSession:%s--%s' % [user_id, password])
+			if user_id != 0:
+				send_message_ws('recoverSession:%d--%s' % [user_id, password])
 	elif command == 'userRecoveryFails':
+		set_status(CONNECTION_STATUS.REJECTED)
 		print('user recovery fails')
 	elif command == 'userRecovered':
 		var splittedData = data.split('-')
 		var userId = int(splittedData[0])
-		var turn = int(splittedData[1])
+		turn = int(splittedData[1])
 		set_user_id(userId)
 		if turn > 0:
 			emit_signal('turn_assigned', turn)
-		else:
-			send_message_ws('requestTurn')
+		#else:
+			#send_message_ws('requestTurn')
 	elif command == 'userAssigned':
 		set_user_id(data)
 		save_user()
-		send_message_ws('requestTurn')
+		#send_message_ws('requestTurn')
 	elif command == 'ping':
 		send_message_ws('pong')
 	elif command == 'replyTurn':
+		turn = data
 		print('turn assigned', data)
 		emit_signal('turn_assigned', data)
 	elif command == 'gc_connect':
@@ -172,12 +200,7 @@ func send_message_ws(message):
 
 
 func join_client(_secret_key):
-<<<<<<< HEAD
-	NetworkManager.request_join('localhost')
-#	NetworkManager.request_join('54.196.243.17')
-=======
 	NetworkManager.request_join(SERVER_IP)
->>>>>>> set main server
 	secret_key = _secret_key
 	print('secret key saved on client %s' % _secret_key)
 	#rpc_id(1, "validate_connection", '#otra cosa')
@@ -207,14 +230,23 @@ remote func validate_connection(_secret_key):
 		send_message_ws('gs_connectionSuccess:%s-%d' % [secret_key, id])
 
 func request_join():
+	if user_id != 0: return
 	# generate random word or phrase save on local storage and send it to the server
 	send_message_ws('allocateUser:%s' % password)
 
+func request_turn():
+	if user_id == 0: return	# request a user first
+	if turn != 0: return		# user with a turn already
+	send_message_ws('requestTurn')
 
 func set_user_id(_user_id):
-	user_id = _user_id
+	user_id = int(_user_id)
 	emit_signal('userID_assigned', user_id)
 	
 func set_password(_password):
 	password = _password
+
+func set_status(_new_status):
+	status = _new_status
+	emit_signal('connection_updated', status)
 

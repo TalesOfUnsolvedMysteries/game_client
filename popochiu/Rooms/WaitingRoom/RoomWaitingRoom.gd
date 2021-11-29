@@ -16,16 +16,17 @@ var _messages := [
 var _current := 0
 
 onready var _screen: Prop = get_prop('Screen')
-
+onready var _screen_yours: Prop = get_prop('ScreenYours')
+onready var _turn: Label = _screen_yours.find_node('Number')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	pass
+	WebsocketManager.connect('turn_assigned', self, '_on_turn_assigned')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	pass
+	G.done()
 
 
 func on_room_transition_finished() -> void:
@@ -62,3 +63,6 @@ func _enter_cohost() -> void:
 	yield(D.show_dialog('Welcome'), 'completed')
 	yield(D.show_dialog('Motivation'), 'completed')
 	yield(D.show_dialog('Expectations'), 'completed')
+
+func _on_turn_assigned(turn_value):
+	_turn.text = '%d' % turn_value
