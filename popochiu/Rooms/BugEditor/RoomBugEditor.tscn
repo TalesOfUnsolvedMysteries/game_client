@@ -1,30 +1,12 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugEditor/RoomBugEditor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/AttributeSelector.tscn" type="PackedScene" id=3]
-[ext_resource path="res://popochiu/Characters/Bug/parts/head_beetle.png" type="Texture" id=4]
-[ext_resource path="res://popochiu/Characters/Bug/parts/head_ladybird.png" type="Texture" id=5]
-[ext_resource path="res://popochiu/Characters/Bug/parts/head_bee.png" type="Texture" id=6]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=7]
-[ext_resource path="res://popochiu/Characters/Bug/parts/body_beetle.png" type="Texture" id=9]
-[ext_resource path="res://popochiu/Characters/Bug/parts/body_bee.png" type="Texture" id=10]
-[ext_resource path="res://popochiu/Characters/Bug/parts/body_ladybird.png" type="Texture" id=11]
-[ext_resource path="res://popochiu/Characters/Bug/parts/clothes_pointy.png" type="Texture" id=12]
-[ext_resource path="res://popochiu/Characters/Bug/parts/legs_bee.png" type="Texture" id=13]
-[ext_resource path="res://popochiu/Characters/Bug/parts/legs_beetle.png" type="Texture" id=14]
-[ext_resource path="res://popochiu/Characters/Bug/parts/legs_ladybird.png" type="Texture" id=16]
-[ext_resource path="res://popochiu/Characters/Bug/parts/eyes_oval.png" type="Texture" id=17]
-[ext_resource path="res://popochiu/Characters/Bug/parts/shoes_sandals.png" type="Texture" id=18]
-[ext_resource path="res://popochiu/Characters/Bug/parts/shoes_converse.png" type="Texture" id=19]
-[ext_resource path="res://popochiu/Characters/Bug/parts/shoes_boots.png" type="Texture" id=20]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=21]
 [ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=22]
 [ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=23]
-[ext_resource path="res://popochiu/Characters/Bug/parts/clothes_strong.png" type="Texture" id=24]
-[ext_resource path="res://popochiu/Characters/Bug/parts/clothes_thin.png" type="Texture" id=25]
-[ext_resource path="res://popochiu/Characters/Bug/parts/eyes_square.png" type="Texture" id=26]
-[ext_resource path="res://popochiu/Characters/Bug/parts/eyes_circle.png" type="Texture" id=27]
 
 [sub_resource type="StyleBoxFlat" id=7]
 
@@ -123,7 +105,6 @@ margin_bottom = 39.0
 size_flags_vertical = 3
 title = "head"
 main_color = Color( 1, 0.819608, 0, 1 )
-parts = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Body" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -134,7 +115,7 @@ margin_bottom = 83.0
 size_flags_vertical = 3
 title = "body"
 main_color = Color( 1, 0.14902, 0.454902, 1 )
-parts = [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 10 ) ]
+src = "BODIES"
 
 [node name="Legs" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/MainAttributes" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -145,7 +126,7 @@ margin_bottom = 123.0
 size_flags_vertical = 3
 title = "legs"
 main_color = Color( 0.0627451, 0.823529, 0.458824, 1 )
-parts = [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 13 ) ]
+src = "LEGS"
 
 [node name="VSeparator" type="VSeparator" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 64.0
@@ -167,7 +148,7 @@ margin_bottom = 38.0
 size_flags_vertical = 3
 title = "eyes"
 main_color = Color( 1, 0.501961, 0.643137, 1 )
-parts = [ ExtResource( 26 ), ExtResource( 17 ), ExtResource( 27 ) ]
+src = "EYES"
 has_none = true
 
 [node name="Clothes" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
@@ -179,7 +160,7 @@ margin_bottom = 80.0
 size_flags_vertical = 3
 title = "clothes"
 main_color = Color( 0.839216, 0.141176, 0.0666667, 1 )
-parts = [ ExtResource( 24 ), ExtResource( 12 ), ExtResource( 25 ) ]
+src = "CLOTHES"
 has_none = true
 
 [node name="Shoes" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
@@ -191,7 +172,7 @@ margin_bottom = 123.0
 size_flags_vertical = 3
 title = "shoes"
 main_color = Color( 0, 0.470588, 0.6, 1 )
-parts = [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 18 ) ]
+src = "SHOES"
 has_none = true
 
 [node name="NameAndAnims" type="VBoxContainer" parent="GraphicInterface/Control/CenterContainer/VBoxContainer"]

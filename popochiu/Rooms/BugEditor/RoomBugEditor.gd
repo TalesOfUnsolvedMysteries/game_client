@@ -4,9 +4,14 @@ extends PopochiuRoom
 var _placeholder := 'bug name'
 
 onready var _gi: CanvasLayer = $GraphicInterface
-onready var _head_selector: AttributeSelector = _gi.find_node('Head')
-onready var _body_selector: AttributeSelector = _gi.find_node('Body')
-onready var _legs_selector: AttributeSelector = _gi.find_node('Legs')
+onready var _selectors := [
+	_gi.find_node('Head'),
+	_gi.find_node('Body'),
+	_gi.find_node('Legs'),
+	_gi.find_node('Eyes'),
+	_gi.find_node('Clothes'),
+	_gi.find_node('Shoes')
+]
 onready var _btn_idle: Button = _gi.find_node('Idle')
 onready var _btn_walk: Button = _gi.find_node('Walk')
 onready var _btn_done: Button = _gi.find_node('Done')
@@ -18,10 +23,10 @@ var _user_ready = false
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	C.player.set_part(_head_selector)
-	C.player.set_part(_body_selector)
-	C.player.set_part(_legs_selector)
+	_update_adn()
 	
+	for s in _selectors:
+		(s as AttributeSelector).connect('part_updated', self, '_update_adn')
 	_btn_idle.connect('pressed', C.player, 'idle', [false])
 	_btn_walk.connect('pressed', C.player, 'play_walk', [0.5])
 	_btn_done.connect('pressed', self, '_start')
@@ -35,6 +40,7 @@ func _ready() -> void:
 	_user_ready = WebsocketManager.user_id != 0
 	if _user_ready:
 		_user_id.text = 'Player %d' % WebsocketManager.user_id
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -72,9 +78,17 @@ func _start() -> void:
 	E.goto_room('WaitingRoom')
 	#E.goto_room('BugCard')
 
+
 func _userID_assigned(user_id):
 	print('user id assigned %d' % user_id)
 	_user_ready = user_id != 0
 	_user_id.text = 'Player %d' % user_id
 	_check_bug_name(_name_edit.text)
 
+
+func _update_adn(node: AttributeSelector = null) -> void:
+	var adn := ''
+	for s in _selectors:
+		var idx := (s as AttributeSelector).get_part_idx()
+		adn += str(idx) if idx > -1 else 'x'
+	Globals.set_appearance(adn)

@@ -20,27 +20,14 @@ func _ready():
 	# Cargar por defecto partes aleatorias para facilitar las pruebas de las
 	# habitaciones.
 	if not _was_created and E.current_room.script_name != 'BugEditor':
-		_set_body(Utils.get_random_array_element(
-			[
-				preload('res://popochiu/Characters/Bug/parts/body_bee.png'),
-				preload('res://popochiu/Characters/Bug/parts/body_beetle.png'),
-				preload('res://popochiu/Characters/Bug/parts/body_ladybird.png'),
-			]
-		))
-		_set_head(Utils.get_random_array_element(
-			[
-				preload('res://popochiu/Characters/Bug/parts/head_bee.png'),
-				preload('res://popochiu/Characters/Bug/parts/head_beetle.png'),
-				preload('res://popochiu/Characters/Bug/parts/head_ladybird.png'),
-			]
-		))
-		_set_legs(Utils.get_random_array_element(
-			[
-				preload('res://popochiu/Characters/Bug/parts/legs_bee.png'),
-				preload('res://popochiu/Characters/Bug/parts/legs_beetle.png'),
-				preload('res://popochiu/Characters/Bug/parts/legs_ladybird.png'),
-			]
-		))
+		Globals.set_appearance(
+			str(randi() % Globals.HEADS.size()) +\
+			str(randi() % Globals.BODIES.size()) +\
+			str(randi() % Globals.LEGS.size()) +\
+			str(randi() % Globals.EYES.size()) +\
+			str(randi() % Globals.CLOTHES.size()) +\
+			str(randi() % Globals.SHOES.size())
+		)
 		ready_to_play()
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -53,6 +40,49 @@ func on_look() -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func set_head(txt: Texture) -> void:
+	_head.offset.y = txt.get_height() / 2 * -1
+	_head.texture = txt
+	
+	_update_head_and_legs_positions()
+
+
+func set_body(txt: Texture) -> void:
+	_body.texture = txt
+	
+	_update_head_and_legs_positions()
+
+
+func set_legs(txt: Texture) -> void:
+	_legs.offset.y = txt.get_height() / 2
+	_legs.texture = txt
+	
+	_update_head_and_legs_positions()
+
+
+func set_eyes(txt: Texture) -> void:
+	_eyes.position.y = -(txt.get_height() / 2) - 3.0
+	_eyes.texture = txt
+	
+	_update_head_and_legs_positions()	
+
+
+func set_clothes(txt: Texture) -> void:
+	_clothes.position.x = 5.0
+	_clothes.texture = txt
+	
+	_update_head_and_legs_positions()
+
+
+
+func set_shoes(txt: Texture) -> void:
+	_shoes.offset.y = txt.get_height() / 2 * -1
+	_shoes.position.y = _legs.texture.get_height()
+	_shoes.texture = txt
+	
+	_update_head_and_legs_positions()
+
+
 func set_part(node: AttributeSelector) -> void:
 	if not _body or not _head or not _legs: return
 	
@@ -60,27 +90,22 @@ func set_part(node: AttributeSelector) -> void:
 	
 	match node.name:
 		'Head':
-			_set_head(node.part.texture)
+			set_head(node.part.texture)
 		'Legs':
-			_set_legs(node.part.texture)
+			set_legs(node.part.texture)
 		'Eyes', 'Clothes', 'Shoes':
 			if node.get_part_idx() == -1:
 				s.texture = null
 				return
 			continue
 		'Eyes':
-			s.position.y = -(node.part.texture.get_height() / 2) - 3.0
+			set_eyes(node.part.texture)
 		'Clothes':
-			s.position.x = 5.0
+			set_clothes(node.part.texture)
 		'Shoes':
-			s.offset.y = node.part.texture.get_height() / 2 * -1
-			s.position.y = _legs.texture.get_height()
+			set_shoes(node.part.texture)
 		_:
-			_set_body(node.part.texture)
-	
-	s.texture = node.part.texture
-	
-	_update_head_and_legs_positions()
+			set_body(node.part.texture)
 
 
 func ready_to_play() -> void:
@@ -97,29 +122,10 @@ func ready_to_play() -> void:
 func get_adn():
 	return '000000'
 
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _get_left_position(target: Sprite) -> int:
 	return -(_body.texture.get_width() / 2 - target.texture.get_width() / 2)
-
-
-func _set_head(txt: Texture) -> void:
-	_head.offset.y = txt.get_height() / 2 * -1
-	_head.texture = txt
-	
-	_update_head_and_legs_positions()
-
-
-func _set_legs(txt: Texture) -> void:
-	_legs.offset.y = txt.get_height() / 2
-	_legs.texture = txt
-	
-	_update_head_and_legs_positions()
-
-
-func _set_body(txt: Texture) -> void:
-	_body.texture = txt
-	
-	_update_head_and_legs_positions()
 
 
 func _update_head_and_legs_positions() -> void:
