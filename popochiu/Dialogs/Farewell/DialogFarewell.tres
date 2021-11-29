@@ -1,0 +1,38 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/Dialogs/Farewell/DialogFarewell.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Dialog/DialogOption.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Opt1"
+script = ExtResource( 2 )
+id = "Opt1"
+text = "Thank you for this great opportunity"
+visible = true
+
+[sub_resource type="Resource" id=2]
+resource_name = "Opt2"
+script = ExtResource( 2 )
+id = "Opt2"
+text = "Lets go for the puzzles"
+visible = true
+
+[sub_resource type="Resource" id=3]
+resource_name = "Opt3"
+script = ExtResource( 2 )
+id = "Opt3"
+text = "F**k you men gonorreas!"
+visible = true
+
+[sub_resource type="Resource" id=4]
+resource_name = "Opt4"
+script = ExtResource( 2 )
+id = "Opt4"
+text = "No"
+visible = true
+
+[resource]
+resource_name = "Farewell"
+script = ExtResource( 1 )
+options = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+script_name = "Farewell"

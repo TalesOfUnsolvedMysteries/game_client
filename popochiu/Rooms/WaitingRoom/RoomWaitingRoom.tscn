@@ -23,9 +23,9 @@
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 153, 48, 154, 85, -155, 84, 121, 47, -136, 42, -66, 39, 46, 42, -156, 46 )
+vertices = PoolVector2Array( 216, 50, 227, 89, -155, 84, 121, 47, -136, 42, -66, 39, 46, 42, -156, 46 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 3, 2, 7 ) ]
-outlines = [ PoolVector2Array( -155, 84, -156, 46, -136, 42, -66, 39, 46, 42, 121, 47, 153, 48, 154, 85 ) ]
+outlines = [ PoolVector2Array( -155, 84, -156, 46, -136, 42, -66, 39, 46, 42, 121, 47, 216, 50, 227, 89 ) ]
 
 [node name="RoomWaitingRoom" type="Node2D"]
 script = ExtResource( 1 )
@@ -231,6 +231,9 @@ position = Vector2( -124, 64 )
 
 [node name="CoHostEntry" type="Position2D" parent="Points"]
 position = Vector2( 26, 55 )
+
+[node name="Exit" type="Position2D" parent="Points"]
+position = Vector2( 212, 66 )
 
 [node name="WalkableAreas" type="Node2D" parent="."]
 

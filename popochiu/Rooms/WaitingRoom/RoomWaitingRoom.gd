@@ -68,10 +68,21 @@ func _enter_cohost() -> void:
 	yield(D.show_dialog('Welcome'), 'completed')
 	yield(D.show_dialog('Motivation'), 'completed')
 	yield(D.show_dialog('Expectations'), 'completed')
+	yield(D.show_dialog('Parents'), 'completed')
+	yield(D.show_dialog('Farewell'), 'completed')
+	
+	yield(E.run([
+		'CoHost: Well [color=#0a89ff]%s[/color].' % Globals.bug_name,
+		'CoHost: I wish you luck and, go ahead!',
+		C.player_walk_to(get_point('Exit'))
+	]), 'completed')
+	
 	NetworkManager.set_ready_to_pilot(true)
+
 
 func _on_turn_assigned(turn_value):
 	_turn.text = '%d' % int(turn_value)
+
 
 func _start_countdown():
 	_messages_loop = false
@@ -84,5 +95,4 @@ func _start_countdown():
 	_screen.show_message('1')
 	yield(get_tree().create_timer(1.0), 'timeout')
 	_screen.show_message('go!')
-	
 

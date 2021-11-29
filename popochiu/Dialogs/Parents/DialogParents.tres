@@ -1,0 +1,38 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/Dialogs/Parents/DialogParents.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Dialog/DialogOption.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+resource_name = "Opt1"
+script = ExtResource( 2 )
+id = "Opt1"
+text = "They support me and know I can do it."
+visible = true
+
+[sub_resource type="Resource" id=2]
+resource_name = "Opt2"
+script = ExtResource( 2 )
+id = "Opt2"
+text = "They know I love this and trust that I will succeed."
+visible = true
+
+[sub_resource type="Resource" id=3]
+resource_name = "Opt3"
+script = ExtResource( 2 )
+id = "Opt3"
+text = "I don't think they know. I haven't seen them for a long time."
+visible = true
+
+[sub_resource type="Resource" id=4]
+resource_name = "Opt4"
+script = ExtResource( 2 )
+id = "Opt4"
+text = "They can't. They died long ago in an accident."
+visible = true
+
+[resource]
+resource_name = "Parents"
+script = ExtResource( 1 )
+options = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+script_name = "Parents"
