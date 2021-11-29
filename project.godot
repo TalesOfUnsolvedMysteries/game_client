@@ -196,6 +196,10 @@ NetworkManager="*res://networking/NetworkManager.gd"
 WebsocketManager="*res://networking/WebsocketManager.gd"
 Console="*res://addons/quentincaffeino/console/src/Console.tscn"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [display]
 
 window/size/width=320

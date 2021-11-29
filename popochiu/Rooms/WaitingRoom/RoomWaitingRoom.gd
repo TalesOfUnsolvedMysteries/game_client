@@ -28,6 +28,15 @@ func _ready() -> void:
 		_turn.text = '%d' % WebsocketManager.turn
 	else:
 		_turn.text = '???'
+	
+	if OS.has_feature('editor'):
+		Console.add_command('start', self, '_dev_start').register()
+
+
+func _exit_tree() -> void:
+	if OS.has_feature('editor'):
+		Console.remove_command('start')
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -73,8 +82,7 @@ func _enter_cohost() -> void:
 	
 	yield(E.run([
 		'CoHost: Well [color=#0a89ff]%s[/color].' % Globals.bug_name,
-		'CoHost: I wish you luck and, go ahead!',
-		C.player_walk_to(get_point('Exit'))
+		'CoHost: I wish you luck!',
 	]), 'completed')
 	
 	NetworkManager.set_ready_to_pilot(true)
@@ -95,4 +103,12 @@ func _start_countdown():
 	_screen.show_message('1')
 	yield(get_tree().create_timer(1.0), 'timeout')
 	_screen.show_message('go!')
+	
+	yield(E.run([
+		C.player_walk_to(get_point('Exit'))
+	]), 'completed')
 
+
+func _dev_start() -> void:
+	yield(_start_countdown(), 'completed')
+	E.goto_room('Lobby')
