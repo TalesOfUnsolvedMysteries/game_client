@@ -8,7 +8,7 @@ func on_room_entered() -> void:
 
 
 func on_room_transition_finished() -> void:
-	E.goto_room('BugEditor')
+	E.goto_room('Menu')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

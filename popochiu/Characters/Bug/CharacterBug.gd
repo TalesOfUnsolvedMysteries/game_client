@@ -94,6 +94,8 @@ func ready_to_play() -> void:
 	
 #	_was_created = true
 
+func get_adn():
+	return '000000'
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _get_left_position(target: Sprite) -> int:

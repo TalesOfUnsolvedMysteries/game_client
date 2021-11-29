@@ -12,9 +12,12 @@ sync var pilot_peer_id = -1
 var pilotOn = false
 
 var _connected = false
+var is_ready_to_pilot = false setget set_ready_to_pilot
 signal server_started
 signal control_taken
 signal control_lost
+signal ready_to_pilot
+signal pilot_engaged
 
 func _ready():
 	get_tree().connect('network_peer_connected', self, '_player_connected')
@@ -26,6 +29,7 @@ func _ready():
 
 func init_server():
 	print('initializating server')
+	E.goto_room('Menu')
 	#var net = NetworkedMultiplayerENet.new()
 	server_peer = WebSocketServer.new()
 	#net.create_server(SERVER_PORT, MAX_PLAYERS)
@@ -38,6 +42,21 @@ func init_server():
 	WebsocketManager.register_game_server()
 	emit_signal('server_started')
 
+func start_sync_pilot(peer_id):
+	rpc_id(peer_id, 'prepare_pilot')
+
+remote func prepare_pilot():
+	if !is_ready_to_pilot:
+		yield(self, 'ready_to_pilot')
+	# notify to display a countdown from 5 to 0
+	emit_signal('pilot_engaged')
+	yield(get_tree().create_timer(6), 'timeout')
+	rpc_id(1, 'pilot_ready')
+
+remote func pilot_ready():
+	var peer_id = get_tree().get_rpc_sender_id()
+	set_pilot(peer_id)
+	WebsocketManager.send_message_ws('gs_pilotReady')
 
 func set_pilot(peer_id):
 	if !server: return
@@ -75,6 +94,7 @@ remote func take_control():
 		pilot_peer_id = -1
 		return
 	print('this player has the control!')
+	E.goto_room('Lobby')
 	emit_signal('control_taken')
 	rpc_id(1, 'pilot_engage')
 
@@ -92,6 +112,7 @@ remote func remove_control():
 	if !client: return
 	print('control lost')
 	emit_signal('control_lost')
+	E.goto_room('Menu')
 
 
 func request_join(server_ip):
@@ -124,6 +145,8 @@ func _player_disconnected(player_id):
 	print('should register what players get disconected ', player_id)
 	if server and player_id == pilot_peer_id:
 		game_over(player_id, 'disconnection')
+	else:
+		WebsocketManager.send_message_ws('gs_player_disconnected:%s' % player_id)
 
 
 # client
@@ -159,3 +182,6 @@ func _process(_delta):
 	if (server and (server_peer.is_listening())):
 		server_peer.poll()
 
+func set_ready_to_pilot(ready):
+	is_ready_to_pilot = ready
+	emit_signal('ready_to_pilot')

@@ -4,7 +4,6 @@ extends PopochiuRoom
 onready var _status: Label = find_node('Status')
 onready var _join_btn: Button = find_node('Join')
 onready var _player: Label = find_node('Player')
-onready var _UserId_label: Label = find_node('UserId')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
@@ -50,9 +49,8 @@ func _on_connection_updated(connection_status):
 			_status.text = 'connection closed'
 
 func _userID_assigned(player_id):
-	_UserId_label.text = '%d' % player_id
+	_player.text = 'Player: #%d' % player_id
 	_join_btn.text = 'Continue'
-	_UserId_label.show()
 	_player.show()
 
 func _on_join():

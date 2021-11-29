@@ -14,6 +14,7 @@ var _messages := [
 	'\\(>  o)/'
 ]
 var _current := 0
+var _messages_loop = true
 
 onready var _screen: Prop = get_prop('Screen')
 onready var _screen_yours: Prop = get_prop('ScreenYours')
@@ -22,7 +23,11 @@ onready var _turn: Label = _screen_yours.find_node('Number')
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	WebsocketManager.connect('turn_assigned', self, '_on_turn_assigned')
-
+	NetworkManager.connect('pilot_engaged', self, '_start_countdown')
+	if WebsocketManager.turn > 0:
+		_turn.text = '%d' % WebsocketManager.turn
+	else:
+		_turn.text = '???'
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -50,7 +55,7 @@ func _next_message() -> void:
 	yield(get_tree().create_timer(6.0), 'timeout')
 	
 	_current = wrapi(_current + 1, 0, _messages.size())
-	_next_message()
+	if _messages_loop: _next_message()
 
 
 func _enter_cohost() -> void:
@@ -63,6 +68,21 @@ func _enter_cohost() -> void:
 	yield(D.show_dialog('Welcome'), 'completed')
 	yield(D.show_dialog('Motivation'), 'completed')
 	yield(D.show_dialog('Expectations'), 'completed')
+	NetworkManager.set_ready_to_pilot(true)
 
 func _on_turn_assigned(turn_value):
-	_turn.text = '%d' % turn_value
+	_turn.text = '%d' % int(turn_value)
+
+func _start_countdown():
+	_messages_loop = false
+	_screen.show_message('ready!')
+	yield(get_tree().create_timer(3.0), 'timeout')
+	_screen.show_message('3')
+	yield(get_tree().create_timer(1.0), 'timeout')
+	_screen.show_message('2')
+	yield(get_tree().create_timer(1.0), 'timeout')
+	_screen.show_message('1')
+	yield(get_tree().create_timer(1.0), 'timeout')
+	_screen.show_message('go!')
+	
+

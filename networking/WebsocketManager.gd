@@ -148,7 +148,7 @@ func _on_data():
 	elif command == 'ping':
 		send_message_ws('pong')
 	elif command == 'replyTurn':
-		turn = data
+		turn = int(data)
 		print('turn assigned', data)
 		emit_signal('turn_assigned', data)
 	elif command == 'gc_connect':
@@ -163,18 +163,22 @@ func _on_data():
 		send_message_ws('gs_waitingConnection:%s' % secret_key)
 	elif command == 'gs_assignPilot':
 		if !NetworkManager.server: return
-		NetworkManager.set_pilot(int(data))
+		#NetworkManager.set_pilot(int(data))
+		NetworkManager.start_sync_pilot(int(data))
 	elif command == 'gs_generateCard':
 		if !NetworkManager.server: return
+		# capture death scene
 		var _filename = '%s.png' % data
 		E.goto_room('BugCard')
-		yield(get_tree().create_timer(2), 'timeout')
+		yield(get_tree().create_timer(3), 'timeout')
 		Utils.take_screenshot(_filename)
-		yield(get_tree().create_timer(1), 'timeout')
+		yield(get_tree().create_timer(2), 'timeout')
 		send_message_ws('gs_cardGenerated:%s' % _filename)
 		# TODO 
 		# restore game to allow a new player - moves to another scene?
-		E.goto_room('WaitingRoom')
+		E.goto_room('Menu')
+	elif command == 'gs_gotomenu':
+		E.goto_room('Menu')
 
 var max_interval = 1/20
 var delta_acc = 0
