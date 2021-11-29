@@ -25,9 +25,7 @@ onready var _tween = $Tween
 # warning-ignore-all:return_value_discarded
 func _ready() -> void:
 	for arr in ['mx_cues', 'sfx_cues', 'vo_cues', 'ui_cues']:
-		print (arr)
 		for ac in self[arr]:
-			print (ac)
 			self['_%s' % arr][ac.resource_name] = ac
 			_all_in_one[ac.resource_name] = ac
 

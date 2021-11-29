@@ -4,8 +4,8 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
+	pass
 	#E.goto_room('forest')
-	print('oh yeah!')
 	#print(get_tree().network_peer.get_connection_status())
 
 

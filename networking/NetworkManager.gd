@@ -25,7 +25,11 @@ func _ready():
 	get_tree().connect('connected_to_server', self, '_connected_ok')
 	get_tree().connect('connection_failed', self, '_connected_fail')
 	get_tree().connect('server_disconnected', self, '_server_disconnected')
-
+	G.connect('continue_clicked', self, '_on_continue_clicked')
+	if OS.has_feature('editor'):
+		Console\
+			.add_command('ready', self, 'set_ready_to_pilot')\
+			.add_argument('ready', TYPE_BOOL).register()
 
 func init_server():
 	print('initializating server')
@@ -66,7 +70,7 @@ func set_pilot(peer_id):
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'take_control')
 	# demo - test
-	yield(get_tree().create_timer(20), 'timeout')
+	yield(get_tree().create_timer(120), 'timeout')
 	game_over(peer_id, 'time is up')
 
 
@@ -185,3 +189,13 @@ func _process(_delta):
 func set_ready_to_pilot(ready):
 	is_ready_to_pilot = ready
 	emit_signal('ready_to_pilot')
+
+
+func _on_continue_clicked():
+	if isPilot():
+		rpc_id(1, '_net_on_continue_clicked')
+
+remote func _net_on_continue_clicked():
+	if isServerWithPilot():
+		G.emit_signal('continue_clicked')
+

@@ -45,6 +45,8 @@ func _ready():
 	# a full packet is received.
 	# Alternatively, you could check get_peer(1).get_available_packets() in a loop.
 	wsClient.connect("data_received", self, "_on_data")
+	if OS.has_feature('editor'):
+		Console.add_command('turn', self, 'request_turn').register()
 	self._pass_arguments()
 
 func _pass_arguments():
@@ -114,7 +116,6 @@ func _connected(proto = ""):
 # using the MultiplayerAPI.
 func _on_data():
 	var message: String = wsClient.get_peer(1).get_packet().get_string_from_utf8()
-	print("Got data from server: ", message)
 	var split = message.split(':')
 	var command = split[0]
 	var data = split[1]
@@ -206,7 +207,6 @@ func send_message_ws(message):
 func join_client(_secret_key):
 	NetworkManager.request_join(SERVER_IP)
 	secret_key = _secret_key
-	print('secret key saved on client %s' % _secret_key)
 	#rpc_id(1, "validate_connection", '#otra cosa')
 
 remote func player_joined(message):
@@ -214,7 +214,6 @@ remote func player_joined(message):
 	# Store the info
 	print(message)
 	if !NetworkManager.server:
-		print('sending private key message: %s' % secret_key)
 		rpc_id(1, "validate_connection", secret_key)
 
 

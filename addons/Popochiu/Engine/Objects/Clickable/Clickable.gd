@@ -39,22 +39,21 @@ func _ready():
 
 func _unhandled_input(event):
 	var mouse_event: = event as InputEventMouseButton 
+	var _is_pilot = NetworkManager.has_method('isPilot') and NetworkManager.isPilot()
 	if mouse_event and mouse_event.pressed:
 		E.clicked = self
 		if event.is_action_pressed('popochiu-interact'):
 			self._interact()
-			if NetworkManager.isPilot():
-				print('click on element %s' % self._description_code)
+			if _is_pilot:
 				rpc_id(1, '_net_interact')
 			get_tree().set_input_as_handled()
 		elif event.is_action_pressed('popochiu-look'):
 			self._look()
-			if NetworkManager.isPilot():
+			if _is_pilot:
 				rpc_id(1, '_net_look')
 
 remote func _net_interact():
 	if NetworkManager.isServerWithPilot():
-		print('replicate interaction %s' % self._description_code)
 		E.clicked = self
 		self._interact()
 
@@ -64,8 +63,6 @@ remote func _net_look():
 		self._look()
 
 func _interact():
-	print('popochiu interact clicked')
-	print(self._description_code)
 	# TODO: Verificar si hay un elemento de inventario seleccionado
 	if I.active:
 		on_item_used(I.active)
@@ -78,7 +75,6 @@ func _interact():
 
 func _look():
 	if I.active: return
-	print('look')
 	E.add_history({
 		action = 'Looked at: %s' % description
 	})
@@ -162,7 +158,7 @@ func _set_walk_to_point(value: Vector2) -> void:
 	if Engine.editor_hint and get_node_or_null('WalkToHelper'):
 		get_node('WalkToHelper').position = value
 	
-	if NetworkManager.isPilot():
+	if NetworkManager.has_method('isPilot') and NetworkManager.isPilot():
 		rpc_id(1, '_net_set_walk_to_point', value)
 
 

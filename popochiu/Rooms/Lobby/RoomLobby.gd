@@ -44,7 +44,7 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func use_pc() -> void:
-	if Globals.state['Lobby-PC_POWERED']:
+	if Globals.state.get('Lobby-PC_POWERED'):
 		yield(E.run([
 			'Player: Its working now',
 			A.play({cue_name = 'sfx_pc_startup',is_in_queue = true})

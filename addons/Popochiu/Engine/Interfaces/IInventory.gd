@@ -51,6 +51,7 @@ func add_item_as_active(item_name: String, is_in_queue := true) -> void:
 
 
 func set_active_item(item: InventoryItem = null) -> void:
+	print('set active item')  # CHECK
 	if item:
 		active = item
 		Cursor.set_item_cursor((item.get_node('Icon') as TextureRect).texture)

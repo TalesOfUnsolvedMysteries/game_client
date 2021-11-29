@@ -26,10 +26,18 @@ func _check_close(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
-			Cursor.set_cursor()
-			G.show_info()
-			hide()
+			close_lock()
+			if NetworkManager.isPilot():
+				rpc_id(1, '_net_close_lock')
 
+func close_lock():
+	Cursor.set_cursor()
+	G.show_info()
+	hide()
+
+remote func _net_close_lock():
+	if NetworkManager.isServerWithPilot():
+		close_lock()
 
 func _check_combination(number: Label) -> void:
 	self._combination[number.get_index()] = str(number.value)
@@ -37,4 +45,4 @@ func _check_combination(number: Label) -> void:
 
 func _set_combination(value: String) -> void:
 	_combination = value
-	G.show_info(_combination)
+	if visible: G.show_info(_combination)

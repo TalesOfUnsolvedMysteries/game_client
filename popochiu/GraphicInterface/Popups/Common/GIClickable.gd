@@ -19,3 +19,9 @@ func _check_click(e: InputEvent) -> void:
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
 			_clicked()
+			if NetworkManager.isPilot():
+				rpc_id(1, '_net_clicked')
+
+remote func _net_clicked():
+	if NetworkManager.isServerWithPilot():
+		_clicked()

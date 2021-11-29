@@ -74,13 +74,19 @@ func _unhandled_input(event):
 	if not has_player: return
 	if not event.is_action_pressed('popochiu-interact'):
 		if event.is_action_released('popochiu-look'):
-			if I.active: I.set_active_item()
+			if I.active: 
+				I.set_active_item()
+				if NetworkManager.isPilot():
+					rpc_id(1, '_net_remove_active_item')
 		return
 
-	print('unhandled input', event)
 	C.player.walk(get_local_mouse_position(), false)
 	if NetworkManager.isPilot():
-		rpc('_net_player_move', get_local_mouse_position())
+		rpc_id(1, '_net_player_move', get_local_mouse_position())
+
+remote func _net_remove_active_item():
+	if NetworkManager.isServerWithPilot():
+		I.set_active_item()
 
 remote func _net_player_move(position):
 	if NetworkManager.isServerWithPilot():

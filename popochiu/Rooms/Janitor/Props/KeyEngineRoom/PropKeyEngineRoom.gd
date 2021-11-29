@@ -1,6 +1,9 @@
 tool
 extends Prop
 
+func _ready():
+	if Globals.state.get('Lobby-ENGINE_ROOM_UNLOCKED'):
+		hide()
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:

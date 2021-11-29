@@ -83,7 +83,6 @@ func take_screenshot(_name):
 
 	# Create a texture for it.
 	var tex = ImageTexture.new()
-	print('will save the file %s' % _name)
 	tex.create_from_image(img)
 	if _name:
 		img.save_png(_name)
