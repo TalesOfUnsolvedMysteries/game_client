@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-85dd51e99b3e6d81cde99cb0f4f4ce5e.stex"
+path="res://.import/screen_ctr.png-dd01af9bf0dfb2ed8f4286b42e07d203.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/WaitingRoom/sprites/light.png"
-dest_files=[ "res://.import/light.png-85dd51e99b3e6d81cde99cb0f4f4ce5e.stex" ]
+source_file="res://popochiu/Rooms/WaitingRoom/Props/Screen/screen_ctr.png"
+dest_files=[ "res://.import/screen_ctr.png-dd01af9bf0dfb2ed8f4286b42e07d203.stex" ]
 
 [params]
 

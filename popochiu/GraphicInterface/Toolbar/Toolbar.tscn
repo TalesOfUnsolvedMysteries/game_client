@@ -154,7 +154,7 @@ margin_right = 64.0
 margin_bottom = 16.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 16 )
-text = "05:00"
+text = "xx:xx"
 align = 1
 valign = 3
 

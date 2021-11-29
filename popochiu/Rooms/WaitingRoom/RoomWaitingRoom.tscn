@@ -1,10 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://popochiu/Rooms/WaitingRoom/RoomWaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Characters/CoHost/CharacterCoHost.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/WaitingRoom/sprites/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=5]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/Light/PropLight.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/Light/light.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/ScreenYours/PropScreenYours.gd" type="Script" id=8]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/Plant1/plant.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/Screen/PropScreen.gd" type="Script" id=10]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/Screen/screen.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/Screen/screen_ctr.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/MonkeyIsland24.tres" type="DynamicFont" id=13]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/ScreenYours/screen_yours_ctr.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/ScreenYours/screen_yours.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=16]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/ScreenCurrent/PropScreenCurrent.gd" type="Script" id=17]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/ScreenCurrent/screen_current_ctr.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/WaitingRoom/Props/ScreenCurrent/screen_current.png" type="Texture" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 153, 48, 154, 85, -155, 84, 121, 47, -136, 42, -66, 39, 46, 42, -156, 46 )
@@ -27,6 +43,226 @@ clickable = false
 cursor = 10
 script_name = "Bg"
 texture = ExtResource( 4 )
+
+[node name="Screen" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -16, -28 )
+script = ExtResource( 10 )
+description = "Screen"
+walk_to_point = Vector2( -2, 72 )
+cursor = 10
+script_name = "Screen"
+texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" parent="Props/Screen" index="0"]
+polygon = PoolVector2Array( -70, -45, 71, -48, 73, 45, -72, 47 )
+
+[node name="WalkToHelper" parent="Props/Screen" index="2"]
+position = Vector2( -2, 72 )
+
+[node name="Sprite" parent="Props/Screen" index="3"]
+texture = ExtResource( 11 )
+
+[node name="TextContainer" type="PanelContainer" parent="Props/Screen"]
+margin_left = -66.0
+margin_top = -42.0
+margin_right = 67.0
+margin_bottom = 41.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="Props/Screen/TextContainer"]
+margin_top = 32.0
+margin_right = 133.0
+margin_bottom = 51.0
+mouse_filter = 2
+size_flags_vertical = 4
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 13 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CTR" type="Sprite" parent="Props/Screen"]
+position = Vector2( 0, -1 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 86, 25 )
+script = ExtResource( 6 )
+description = "Light"
+baseline = 26
+walk_to_point = Vector2( -12, 31 )
+cursor = 10
+script_name = "Light"
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Props/Light" index="0"]
+polygon = PoolVector2Array( -17, -10, -17, -31, -3, -32, 17, -28, 17, -13, 4, -6, 6, 20, 15, 21, 16, 26, 13, 30, 5, 31, -2, 30, -6, 26, -4, 22, 2, 20, 0, -7 )
+
+[node name="BaselineHelper" parent="Props/Light" index="1"]
+position = Vector2( 0, 26 )
+
+[node name="WalkToHelper" parent="Props/Light" index="2"]
+position = Vector2( -12, 31 )
+
+[node name="Sprite" parent="Props/Light" index="3"]
+texture = ExtResource( 7 )
+
+[node name="Plant1" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -88, 34 )
+description = "Plant1"
+clickable = false
+baseline = 11
+cursor = 10
+script_name = "Plant1"
+texture = ExtResource( 9 )
+
+[node name="Plant2" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 54, 36 )
+description = "Plant1"
+clickable = false
+baseline = 11
+cursor = 10
+script_name = "Plant1"
+texture = ExtResource( 9 )
+
+[node name="ScreenYours" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -117, -49 )
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "ScreenYours"
+cursor = 10
+script_name = "ScreenYours"
+texture = ExtResource( 15 )
+
+[node name="CollisionPolygon2D" parent="Props/ScreenYours" index="0"]
+polygon = PoolVector2Array( -25, -15, 25, -15, 26, 15, -26, 13 )
+
+[node name="BaselineHelper" parent="Props/ScreenYours" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/ScreenYours" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/ScreenYours/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/ScreenYours" index="3"]
+texture = ExtResource( 15 )
+
+[node name="Title" type="Label" parent="Props/ScreenYours"]
+margin_left = -16.0
+margin_top = -15.0
+margin_right = 19.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 16 )
+text = "yours"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="Props/ScreenYours"]
+margin_left = -22.0
+margin_top = -3.0
+margin_right = 22.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 1, 0.905882, 0.215686, 1 )
+custom_fonts/font = ExtResource( 16 )
+text = "000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CTR" type="Sprite" parent="Props/ScreenYours"]
+position = Vector2( 0.1, -0.4 )
+texture = ExtResource( 14 )
+
+[node name="ScreenCurrent" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 90, -44 )
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "ScreenCurrent"
+cursor = 10
+script_name = "ScreenCurrent"
+texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/ScreenCurrent" index="0"]
+polygon = PoolVector2Array( -29, -15, 29, -13, 28, 14, -29, 12 )
+
+[node name="BaselineHelper" parent="Props/ScreenCurrent" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/ScreenCurrent" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/ScreenCurrent/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/ScreenCurrent" index="3"]
+texture = ExtResource( 19 )
+
+[node name="Title" type="Label" parent="Props/ScreenCurrent"]
+margin_left = -24.0
+margin_top = -14.0
+margin_right = 24.0
+custom_fonts/font = ExtResource( 16 )
+text = "current"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Number" type="Label" parent="Props/ScreenCurrent"]
+margin_left = -26.0
+margin_top = -3.0
+margin_right = 25.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.345098, 0.827451, 0.196078, 1 )
+custom_fonts/font = ExtResource( 16 )
+text = "000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CTR" type="Sprite" parent="Props/ScreenCurrent"]
+position = Vector2( 0, -0.3 )
+texture = ExtResource( 18 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -54,3 +290,8 @@ position = Vector2( -228, 55 )
 
 [node name="CharacterCoHost" parent="Characters" instance=ExtResource( 2 )]
 position = Vector2( 195, 73 )
+
+[editable path="Props/Screen"]
+[editable path="Props/Light"]
+[editable path="Props/ScreenYours"]
+[editable path="Props/ScreenCurrent"]

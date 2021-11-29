@@ -56,6 +56,7 @@ func _disable_panels(props := { blocking = true }) -> void:
 
 	_inventory_container.disable()
 	_toolbar.disable()
+	$MainContainer/Bg.hide()
 
 
 func _enable_panels() -> void:
@@ -69,6 +70,7 @@ func _enable_panels() -> void:
 	_info_bar.show()
 	_inventory_container.show()
 	_toolbar.show()
+	$MainContainer/Bg.show()
 
 	_inventory_container.enable()
 	_toolbar.enable()
@@ -87,9 +89,11 @@ func _hide_panels() -> void:
 	_inventory_container.hide()
 	_info_bar.hide()
 	_toolbar.hide()
+	$MainContainer/Bg.hide()
 
 
 func _show_panels() -> void:
 	_inventory_container.show()
 	_info_bar.show()
 	_toolbar.show()
+	$MainContainer/Bg.show()
