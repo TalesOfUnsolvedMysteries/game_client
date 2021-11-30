@@ -4,7 +4,6 @@ extends Hotspot
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	print('on clicked to first floor')
 	yield(E.run([
 		C.walk_to_clicked()
 	]), 'completed')
@@ -13,7 +12,9 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	pass
+	E.run([
+		'Player: Those are the stairs to go up to the first floor'
+	])
 
 
 func on_item_used(item: InventoryItem) -> void:

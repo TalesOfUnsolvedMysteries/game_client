@@ -11,7 +11,9 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		'Player: It has symbols that I don´t understand'
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:

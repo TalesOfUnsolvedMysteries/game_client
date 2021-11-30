@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Resources/PopochiuTheme.tres" type="Theme" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/InfoBar/InfoBar.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
 [node name="InfoBar" type="Label"]
 anchor_top = 1.0
@@ -11,7 +17,7 @@ margin_top = -16.0
 margin_bottom = -4.0
 theme = ExtResource( 1 )
 custom_colors/font_color = Color( 0.709804, 0.690196, 0.603922, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "pa' mostrar info."
 align = 1
 valign = 1

@@ -9,7 +9,9 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	pass
+	E.run([
+		'Player: Those are the stairs to go to the engine room'
+	])
 
 
 func on_item_used(item: InventoryItem) -> void:

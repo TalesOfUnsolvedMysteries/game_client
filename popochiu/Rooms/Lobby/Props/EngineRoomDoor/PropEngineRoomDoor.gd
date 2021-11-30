@@ -6,13 +6,16 @@ extends Prop
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		'Player: La puerta a la sala de motores está cerrada....',
-		'Player: Y parece una puerta indestructible'
+		# TODO: Un sonido como de alguien intentando abrir una puerta de metal
+		'Player: The door to the engine room is closed',
+		'Player: And it looks immovable'
 	]), 'completed')
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		'Player: Is the door to the engine room'
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:

@@ -132,6 +132,11 @@ func get_description() -> String:
 	return E.get_text(description)
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func lock() -> void:
+	input_pickable = false
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _toggle_description(display: bool) -> void:
 	set_process_unhandled_input(display)
@@ -140,7 +145,7 @@ func _toggle_description(display: bool) -> void:
 		if not I.active:
 			G.show_info(description)
 		else:
-			G.show_info('Usar %s en %s' % [I.active.description, description])
+			G.show_info('Use %s with %s' % [I.active.description, description])
 	else:
 		G.show_info()
 

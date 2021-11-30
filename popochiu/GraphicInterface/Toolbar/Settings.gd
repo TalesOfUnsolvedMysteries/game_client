@@ -7,6 +7,7 @@ onready var _dflt_pos := rect_position
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	modulate.a = 0.0
 	connect('visibility_changed', self, '_ultra_hide')
 	
 	yield(get_tree(), 'idle_frame')
@@ -15,6 +16,7 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func appear() -> void:
+	modulate.a = 1.0
 	if not is_active:
 		is_active = true
 		
@@ -36,6 +38,7 @@ func appear() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _ultra_hide() -> void:
+	modulate.a = 0.0
 	yield(get_tree(), 'idle_frame')
 	
 	is_active = false

@@ -73,6 +73,11 @@ func remove_item(item_name: String, is_in_queue := true) -> void:
 		yield(self, 'item_remove_done')
 
 
+func is_item_in_inventory(item_name: String) -> bool:
+	var i: InventoryItem = _get_item_instance(item_name)
+	return is_instance_valid(i) and i.in_inventory
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _get_item_instance(item_name: String) -> InventoryItem:
 	for ii in _item_instances:

@@ -1,7 +1,6 @@
 tool
 extends PopochiuCharacter
 
-var _parts_config := preload('res://popochiu/Characters/Bug/PartsConfig.gd')
 var _parts_id := {}
 var _was_created := false
 

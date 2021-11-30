@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Key102/PropKey102.gd" type="Script" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Bg/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Exit/PropExit.gd" type="Script" id=5]
@@ -145,7 +146,7 @@ texture = ExtResource( 7 )
 [node name="KeyEngineRoom" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 4, -39 )
 script = ExtResource( 16 )
-description = "Engine room"
+description = "Key"
 cursor = 1
 script_name = "KeyEngineRoom"
 texture = ExtResource( 17 )
@@ -154,6 +155,22 @@ texture = ExtResource( 17 )
 polygon = PoolVector2Array( -3, -7, 3, -7, 2, 6, -1, 6 )
 
 [node name="Sprite" parent="Props/KeyEngineRoom" index="3"]
+texture = ExtResource( 17 )
+hframes = 2
+frame = 1
+
+[node name="Key102" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 15, -48 )
+script = ExtResource( 2 )
+description = "Key"
+cursor = 1
+script_name = "Key102"
+texture = ExtResource( 17 )
+
+[node name="CollisionPolygon2D" parent="Props/Key102" index="0"]
+polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
+
+[node name="Sprite" parent="Props/Key102" index="3"]
 texture = ExtResource( 17 )
 hframes = 2
 frame = 1
@@ -181,3 +198,4 @@ position = Vector2( -63, 55 )
 [editable path="Props/Painting"]
 [editable path="Props/Exit"]
 [editable path="Props/KeyEngineRoom"]
+[editable path="Props/Key102"]
