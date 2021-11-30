@@ -64,7 +64,7 @@ hframes = 2
 [node name="FuseBox" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -77, -46 )
 script = ExtResource( 7 )
-description = "FuseBox"
+description = "Switch box"
 walk_to_point = Vector2( 7, 58 )
 cursor = 1
 script_name = "FuseBox"
@@ -78,7 +78,7 @@ position = Vector2( 7, 58 )
 
 [node name="Sprite" parent="Props/FuseBox" index="3"]
 texture = ExtResource( 8 )
-hframes = 2
+hframes = 3
 
 [node name="BatteryCharger" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 56, -9 )

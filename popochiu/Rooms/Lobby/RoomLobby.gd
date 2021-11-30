@@ -19,17 +19,16 @@ func on_room_entered() -> void:
 		A.play_music('mx_main', false)
 		Globals.main_mx_play = true
 	
-	if not Globals.state.has('Lobby-ENGINE_ROOM_UNLOCKED'):
+	if not Globals.state.get('Lobby-ENGINE_ROOM_UNLOCKED'):
 		# Establecer el estado por defecto de la habitación
 		Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', false)
-		Globals.set_state('Lobby-PC_POWERED', false)
 		get_hotspot('EngineRoom').disable(false)
 	else:
-		if not Globals.state['Lobby-ENGINE_ROOM_UNLOCKED']:
-			get_hotspot('EngineRoom').disable(false)
-		else:
-			get_hotspot('EngineRoom').enable(false)
-			get_prop('EngineRoomDoor').disable(false)
+		get_hotspot('EngineRoom').enable(false)
+		get_prop('EngineRoomDoor').disable(false)
+	
+	if not Globals.state.get('Lobby-PC_POWERED'):
+		Globals.set_state('Lobby-PC_POWERED', false)
 
 
 func on_room_transition_finished() -> void:

@@ -1,5 +1,7 @@
 extends PanelContainer
 
+signal closed
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -17,10 +19,13 @@ func _check_close(e: InputEvent) -> void:
 			if NetworkManager.isPilot():
 				rpc_id(1, '_net_close_motherboard')
 
+
 func close_motherboard():
 	Cursor.set_cursor()
 	G.show_info()
 	hide()
+	emit_signal('closed')
+
 
 remote func _net_close_motherboard():
 	if NetworkManager.isServerWithPilot():

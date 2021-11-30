@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://popochiu/Dialogs/SwitchPCPower/DialogSwitchPCPower.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Dialog/DialogOption.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+resource_name = "TurnOn"
+script = ExtResource( 2 )
+id = "TurnOn"
+text = "Yes"
+visible = true
+
+[sub_resource type="Resource" id=2]
+resource_name = "Exit"
+script = ExtResource( 2 )
+id = "Exit"
+text = "No"
+visible = true
+
+[resource]
+resource_name = "SwitchPCPower"
+script = ExtResource( 1 )
+options = [ SubResource( 1 ), SubResource( 2 ) ]
+script_name = "SwitchPCPower"
