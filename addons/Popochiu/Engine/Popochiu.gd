@@ -32,6 +32,8 @@ var clicked: Node
 var cutscene_skipped := false
 var rooms_states := {}
 var history := []
+# Para bloquear las interacciones en el juego sin tener que recurrir a G.block()
+var is_frozen := false
 
 # TODO: Estas podrían no estar aquí sino en un nodo de VFX que tenga la escena
 var _is_camera_shaking := false

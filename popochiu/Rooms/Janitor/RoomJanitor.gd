@@ -17,5 +17,4 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func show_jigsaw() -> void:
-	$JigsawPopup.show()
-	$JigsawPopup/Jigsaw.appear()
+	$Overlay2D.appear()

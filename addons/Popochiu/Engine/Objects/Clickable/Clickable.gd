@@ -38,7 +38,9 @@ func _ready():
 
 
 func _unhandled_input(event):
-	var mouse_event: = event as InputEventMouseButton 
+	if E.is_frozen: return
+	
+	var mouse_event: = event as InputEventMouseButton
 	var _is_pilot = NetworkManager.has_method('isPilot') and NetworkManager.isPilot()
 	if mouse_event and mouse_event.pressed:
 		E.clicked = self
@@ -139,6 +141,8 @@ func lock() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _toggle_description(display: bool) -> void:
+	if E.is_frozen: return
+	
 	set_process_unhandled_input(display)
 	Cursor.set_cursor(cursor if display else null)
 	if display:

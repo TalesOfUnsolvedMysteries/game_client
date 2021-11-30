@@ -45,9 +45,11 @@ func _unhandled_input(event):
 		# starts dragging
 		if _drag && !dragged:
 			on_picked()
+			get_tree().set_input_as_handled()
 		# stops dragging
 		if !_drag && dragged:
 			on_dropped()
+			get_tree().set_input_as_handled()
 
 func on_picked():
 	_drag_point = position - get_global_mouse_position()

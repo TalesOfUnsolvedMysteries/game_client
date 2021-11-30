@@ -57,7 +57,7 @@ func _ready():
 
 
 func _process(delta):
-	if Engine.editor_hint or not is_instance_valid(C.player):
+	if Engine.editor_hint or not is_instance_valid(C.player) or E.is_frozen:
 		return
 	
 	for c in $Characters.get_children():
@@ -71,7 +71,7 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	if not has_player: return
+	if not has_player or E.is_frozen: return
 	if not event.is_action_pressed('popochiu-interact'):
 		if event.is_action_released('popochiu-look'):
 			if I.active: 

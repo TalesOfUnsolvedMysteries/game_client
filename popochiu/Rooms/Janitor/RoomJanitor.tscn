@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Key102/PropKey102.gd" type="Script" id=2]
@@ -20,7 +20,8 @@
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/PropJigsaw.gd" type="Script" id=18]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw.png" type="Texture" id=19]
 [ext_resource path="res://popochiu/GraphicInterface/Puzzles/MoveBlockPuzzle.tscn" type="PackedScene" id=20]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/sprites/overlay.png" type="Texture" id=21]
+[ext_resource path="res://popochiu/Common/Overlay2D.tscn" type="PackedScene" id=21]
+[ext_resource path="res://popochiu/Rooms/Janitor/JigsawPopup.gd" type="Script" id=22]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
@@ -219,13 +220,11 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 15 )]
 position = Vector2( -63, 55 )
 
-[node name="JigsawPopup" type="Node2D" parent="."]
+[node name="Overlay2D" parent="." instance=ExtResource( 21 )]
 visible = false
+script = ExtResource( 22 )
 
-[node name="TextureRect" type="Sprite" parent="JigsawPopup"]
-texture = ExtResource( 21 )
-
-[node name="Jigsaw" parent="JigsawPopup" instance=ExtResource( 20 )]
+[node name="JigsawPuzzle" parent="Overlay2D" instance=ExtResource( 20 )]
 visible = false
 
 [editable path="Props/Bed"]

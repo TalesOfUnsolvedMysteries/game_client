@@ -22,10 +22,11 @@ var offset = Vector2(0, 0)
 var targets_to_reach = 0
 
 func _ready():
+	connect('visibility_changed', self, '_toggle_blocks')
+	
 	var idx = 0
 	offset.x = grid[0].size()*-10 + 10
 	offset.y = grid.size()*-10 + 10
-	print(offset)
 	targets_to_reach = 0
 	for block_config in config:
 		var block = Block.instance()
@@ -117,11 +118,9 @@ func target_lost():
 	pass
 
 
-func appear() -> void:
-	show()
+func _toggle_blocks() -> void:
 	for b in $Blocks.get_children():
-		b.show()
-
+		b.visible = visible
 
 # puzzle 0
 #var config = [

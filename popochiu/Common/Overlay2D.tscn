@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/sprites/overlay.png" type="Texture" id=1]
+[ext_resource path="res://popochiu/Common/Overlay2D.gd" type="Script" id=2]
+
+[node name="Overlay2D" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -160, -90, 160, -90, 160, 90, -160, 90 )
