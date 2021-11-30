@@ -95,3 +95,7 @@ func _get_item_instance(item_name: String) -> InventoryItem:
 		return new_intentory_item
 	
 	return null
+
+func reset():
+	_item_instances = []
+	_items_count = 0

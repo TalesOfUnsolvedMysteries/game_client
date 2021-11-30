@@ -19,14 +19,18 @@ func _ready():
 	# Cargar por defecto partes aleatorias para facilitar las pruebas de las
 	# habitaciones.
 	if not _was_created and E.current_room.script_name != 'BugEditor':
-		Globals.set_appearance(
-			str(randi() % Globals.HEADS.size()) +\
-			str(randi() % Globals.BODIES.size()) +\
-			str(randi() % Globals.LEGS.size()) +\
-			str(randi() % Globals.EYES.size()) +\
-			str(randi() % Globals.CLOTHES.size()) +\
-			str(randi() % Globals.SHOES.size())
-		)
+		if Globals.bug_adn.empty():
+			Globals.set_appearance(
+				str(randi() % Globals.HEADS.size()) +\
+				str(randi() % Globals.BODIES.size()) +\
+				str(randi() % Globals.LEGS.size()) +\
+				str(randi() % Globals.EYES.size()) +\
+				str(randi() % Globals.CLOTHES.size()) +\
+				str(randi() % Globals.SHOES.size())
+			)
+		else:
+			load_appearance(Globals.bug_adn)
+		_was_created = true
 		ready_to_play()
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -60,14 +64,19 @@ func set_legs(txt: Texture) -> void:
 
 
 func set_eyes(txt: Texture) -> void:
-	_eyes.position.y = -(txt.get_height() / 2) - 3.0
-	_eyes.texture = txt
+	print ('eyes')
+	print (txt)
+	if txt:
+		_eyes.position.y = -(txt.get_height() / 2) - 3.0
+		_eyes.texture = txt
+	else:
+		_eyes.texture = null
 	
-	_update_head_and_legs_positions()	
+	_update_head_and_legs_positions()
 
 
 func set_clothes(txt: Texture) -> void:
-	_clothes.position.x = 5.0
+	if txt: _clothes.position.x = 5.0
 	_clothes.texture = txt
 	
 	_update_head_and_legs_positions()
@@ -75,8 +84,9 @@ func set_clothes(txt: Texture) -> void:
 
 
 func set_shoes(txt: Texture) -> void:
-	_shoes.offset.y = txt.get_height() / 2 * -1
-	_shoes.position.y = _legs.texture.get_height()
+	if txt:
+		_shoes.offset.y = txt.get_height() / 2 * -1
+		_shoes.position.y = _legs.texture.get_height()
 	_shoes.texture = txt
 	
 	_update_head_and_legs_positions()
@@ -108,6 +118,7 @@ func set_part(node: AttributeSelector) -> void:
 
 
 func ready_to_play() -> void:
+	_update_head_and_legs_positions()
 	# Poner el punto de ancla del personaje en la base
 	var _offset := _legs.position.y + _legs.texture.get_height()
 	_head.position.y -= _offset
@@ -117,9 +128,6 @@ func ready_to_play() -> void:
 	$DialogPos.position.y = _head.position.y - _head.texture.get_height()
 	
 #	_was_created = true
-
-func get_adn():
-	return '000000'
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -137,3 +145,24 @@ func _update_head_and_legs_positions() -> void:
 			0.0,
 			(_body.texture.get_height() / 2) + 1
 		)
+
+func load_appearance(adn: String):
+	_body.position.y = 0
+	for idx in adn.length():
+		match idx:
+			0:
+				set_head(Globals.HEADS[int(adn[idx])])
+			1:
+				set_body(Globals.BODIES[int(adn[idx])])
+			2:
+				set_legs(Globals.LEGS[int(adn[idx])])
+			3:
+				if adn[idx] == 'x': set_eyes(null)
+				else: set_eyes(Globals.EYES[int(adn[idx])])
+			4:
+				if adn[idx] == 'x': set_clothes(null)
+				else: set_clothes(Globals.CLOTHES[int(adn[idx])])
+			5:
+				if adn[idx] == 'x': set_shoes(null)
+				else: set_shoes(Globals.SHOES[int(adn[idx])])
+

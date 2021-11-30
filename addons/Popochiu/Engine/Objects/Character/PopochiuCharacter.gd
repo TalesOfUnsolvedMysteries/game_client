@@ -49,7 +49,8 @@ func walk(target_pos: Vector2, is_in_queue := true) -> void:
 	
 	is_moving = true
 	
-	$Sprite.flip_h = target_pos.x < position.x
+	$Sprite.set_flip_h(target_pos.x < position.x)
+	print($Sprite.flip_h)
 #	_looking_dir = 'l' if $Sprite.flip_h else 'r'
 #	_looking_dir = 'l' if $Sprite.flip_h else 'r'
 

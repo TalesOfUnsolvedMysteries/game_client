@@ -1,7 +1,8 @@
 tool
 extends PopochiuRoom
 
-
+onready var _interface = $Interface
+onready var _bug_name = _interface.find_node('Name')
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
 
@@ -10,6 +11,7 @@ extends PopochiuRoom
 func on_room_entered() -> void:
 	C.player.position = Vector2(-80, 6)
 	C.player.scale = Vector2(1.5, 1.5)
+	_bug_name.text = Globals.bug_name
 	#Utils.take_screenshot()
 
 

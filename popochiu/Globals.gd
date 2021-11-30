@@ -44,6 +44,7 @@ const SHOES := [
 var main_mx_play = false
 
 var bug_name := ''
+var bug_adn := ''
 sync var state := {}
 var server_file = "user://server.save"
 
@@ -79,22 +80,6 @@ func load_state ():
 # Establece la apariencia del PC en base a una cadena de códigos:
 # HEAD BODY LEGS EYES CLOTHES SHOES
 func set_appearance(adn: String) -> void:
-	prints(adn)
+	bug_adn = adn
 	if is_instance_valid(C.player):
-		for idx in adn.length():
-			match idx:
-				0:
-					C.player.set_head(HEADS[int(adn[idx])])
-				1:
-					C.player.set_body(BODIES[int(adn[idx])])
-				2:
-					C.player.set_legs(LEGS[int(adn[idx])])
-				3,4,5:
-					if adn[idx] != 'x':
-						continue
-				3:
-					C.player.set_eyes(EYES[int(adn[idx])])
-				4:
-					C.player.set_clothes(CLOTHES[int(adn[idx])])
-				5:
-					C.player.set_shoes(SHOES[int(adn[idx])])
+		C.player.load_appearance(adn)

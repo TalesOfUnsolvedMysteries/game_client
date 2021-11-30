@@ -30,6 +30,9 @@ func _ready():
 		Console\
 			.add_command('ready', self, 'set_ready_to_pilot')\
 			.add_argument('ready', TYPE_BOOL).register()
+		Console\
+			.add_command('goto', E, 'goto_room')\
+			.add_argument('room', TYPE_STRING).register()
 
 func init_server():
 	print('initializating server')
@@ -70,7 +73,7 @@ func set_pilot(peer_id):
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'take_control')
 	# demo - test
-	yield(get_tree().create_timer(120), 'timeout')
+	yield(get_tree().create_timer(20), 'timeout')
 	game_over(peer_id, 'time is up')
 
 
@@ -86,6 +89,7 @@ func game_over(_peer_id, death_cause):
 	if death_cause != 'disconnection':
 		rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 		rpc_id(peer_id, 'remove_control')
+	Globals.bug_adn = ''
 	print('game over')
 	print('gs_gameOver:%d-%s' % [peer_id, death_cause])
 	WebsocketManager.send_message_ws('gs_gameOver:%d-%s' % [peer_id, death_cause])
@@ -100,22 +104,33 @@ remote func take_control():
 	print('this player has the control!')
 	E.goto_room('Lobby')
 	emit_signal('control_taken')
-	rpc_id(1, 'pilot_engage')
+	rpc_id(1, 'pilot_engage', Globals.bug_name, Globals.bug_adn)
 
 
-remote func pilot_engage():
+remote func pilot_engage(bug_name, bug_adn):
 	if !server: return
 	var peer_id = get_tree().get_rpc_sender_id()
 	if peer_id != pilot_peer_id:
 		print('not authorized')
 		return
 	pilotOn = true
+	if C.player._was_created:
+		Globals.set_appearance(bug_adn)
+		C.player.ready_to_play()
+	else:
+		Globals.bug_adn = bug_adn
+	Globals.bug_name = bug_name
+	print('set bug appearence ', bug_adn)
+	I.reset()
 
 
 remote func remove_control():
 	if !client: return
 	print('control lost')
 	emit_signal('control_lost')
+	WebsocketManager.turn = 0
+	is_ready_to_pilot = false
+	I.reset()
 	E.goto_room('Menu')
 
 

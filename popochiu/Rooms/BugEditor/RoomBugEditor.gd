@@ -44,7 +44,8 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	pass
+	C.player.position = Vector2(0, 0)
+	Globals.set_appearance('000xxx')
 
 
 func on_room_transition_finished() -> void:
@@ -73,7 +74,7 @@ func _check_bug_name(new_text: String) -> void:
 func _start() -> void:
 	Globals.bug_name = _name_edit.text
 	WebsocketManager.send_message_ws('setBugName:%s' % Globals.bug_name)
-	WebsocketManager.send_message_ws('setADN:%s' % C.player.get_adn())
+	WebsocketManager.send_message_ws('setADN:%s' % Globals.bug_adn)
 	WebsocketManager.request_turn()
 	E.goto_room('WaitingRoom')
 	#E.goto_room('BugCard')
