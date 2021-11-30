@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/ToolbarButton.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/sprites/btn_power.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/BtnSettings.gd" type="Script" id=17]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/sprites/settings_bg.png" type="Texture" id=18]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/Settings.gd" type="Script" id=19]
+[ext_resource path="res://popochiu/GraphicInterface/Toolbar/LifeTime.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -158,6 +159,7 @@ custom_fonts/font = ExtResource( 16 )
 text = "xx:xx"
 align = 1
 valign = 3
+script = ExtResource( 20 )
 
 [node name="Foreground" type="TextureRect" parent="."]
 visible = false

@@ -2,6 +2,7 @@ extends Node
 
 const SERVER_PORT = 7333
 const MAX_PLAYERS = 255
+const TIME_TO_PLAY = 5*60
 
 var server = false
 var client = false
@@ -10,6 +11,8 @@ var server_peer
 
 sync var pilot_peer_id = -1
 var pilotOn = false
+
+var countdown_timer = 0
 
 var _connected = false
 var is_ready_to_pilot = false setget set_ready_to_pilot
@@ -37,11 +40,8 @@ func _ready():
 func init_server():
 	print('initializating server')
 	E.goto_room('Menu')
-	#var net = NetworkedMultiplayerENet.new()
 	server_peer = WebSocketServer.new()
-	#net.create_server(SERVER_PORT, MAX_PLAYERS)
 	server_peer.listen(SERVER_PORT, PoolStringArray(), true)
-	#get_tree().network_peer = net
 	get_tree().network_peer = server_peer
 	print('server started with peer: ', get_tree().get_network_unique_id())
 	server = true
@@ -73,9 +73,15 @@ func set_pilot(peer_id):
 	rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 	rpc_id(peer_id, 'take_control')
 	# demo - test
-	yield(get_tree().create_timer(20), 'timeout')
-	game_over(peer_id, 'time is up')
+	set_countdown_timer(TIME_TO_PLAY) # 5 minutes
 
+func set_countdown_timer(new_time):
+	countdown_timer = new_time
+	if isServerWithPilot():
+		rpc_unreliable_id(pilot_peer_id, 'set_countdown_timer_client', countdown_timer)
+
+remote func set_countdown_timer_client(time):
+	countdown_timer = time
 
 func game_over(_peer_id, death_cause):
 	print('remove control')
@@ -200,6 +206,14 @@ func _process(_delta):
 		client_peer.poll()
 	if (server and (server_peer.is_listening())):
 		server_peer.poll()
+	if isServerWithPilot():
+		set_countdown_timer(countdown_timer - _delta)
+		if (countdown_timer <= 0):
+			game_over(pilot_peer_id, 'timeout')
+
+
+func get_countdown_timer():
+	return countdown_timer
 
 func set_ready_to_pilot(ready):
 	is_ready_to_pilot = ready

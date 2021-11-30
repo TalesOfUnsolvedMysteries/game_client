@@ -71,9 +71,9 @@ func _enter_cohost() -> void:
 	yield(E.run([
 		C.character_walk_to('CoHost', get_point('CoHostEntry')),
 		'..',
-		C.player_walk_to(get_point('BugEntry')),
+		C.player_walk_to(get_point('BugEntry'))
 	]), 'completed')
-	
+	C.player.get_node('Sprite').set_flip_h(false)
 	yield(D.show_dialog('Welcome'), 'completed')
 	yield(D.show_dialog('Motivation'), 'completed')
 	yield(D.show_dialog('Expectations'), 'completed')

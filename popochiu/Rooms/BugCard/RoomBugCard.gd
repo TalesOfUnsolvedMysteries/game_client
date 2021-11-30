@@ -11,6 +11,7 @@ onready var _bug_name = _interface.find_node('Name')
 func on_room_entered() -> void:
 	C.player.position = Vector2(-80, 6)
 	C.player.scale = Vector2(1.5, 1.5)
+	C.player.get_node('Sprite').set_flip_h(false)
 	_bug_name.text = Globals.bug_name
 	#Utils.take_screenshot()
 
