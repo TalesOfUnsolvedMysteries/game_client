@@ -49,6 +49,7 @@ func _ready():
 		if block_config.has('lock_on_match'):
 			block.lock_on_match = block_config.lock_on_match
 		idx += 1
+		block.visible = visible
 		$Blocks.add_child(block)
 
 func pick_block(block: PuzzleBlock):
@@ -114,6 +115,13 @@ func target_reach():
 
 func target_lost():
 	pass
+
+
+func appear() -> void:
+	show()
+	for b in $Blocks.get_children():
+		b.show()
+
 
 # puzzle 0
 #var config = [

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Key102/PropKey102.gd" type="Script" id=2]
@@ -17,6 +17,10 @@
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=15]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/KeyEngineRoom/PropKeyEngineRoom.gd" type="Script" id=16]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/KeyEngineRoom/key.png" type="Texture" id=17]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/PropJigsaw.gd" type="Script" id=18]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw.png" type="Texture" id=19]
+[ext_resource path="res://popochiu/GraphicInterface/Puzzles/MoveBlockPuzzle.tscn" type="PackedScene" id=20]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/sprites/overlay.png" type="Texture" id=21]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
@@ -175,6 +179,28 @@ texture = ExtResource( 17 )
 hframes = 2
 frame = 1
 
+[node name="Jigsaw" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -71, 4 )
+script = ExtResource( 18 )
+description = "Jigsaw"
+baseline = 18
+walk_to_point = Vector2( 13, 30 )
+cursor = 1
+script_name = "Jigsaw"
+texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/Jigsaw" index="0"]
+polygon = PoolVector2Array( -2, -5, 4, -4, 6, 1, 2, 4, -3, 3, -6, 0 )
+
+[node name="BaselineHelper" parent="Props/Jigsaw" index="1"]
+position = Vector2( 0, 18 )
+
+[node name="WalkToHelper" parent="Props/Jigsaw" index="2"]
+position = Vector2( 13, 30 )
+
+[node name="Sprite" parent="Props/Jigsaw" index="3"]
+texture = ExtResource( 19 )
+
 [node name="Hotspots" type="Node2D" parent="."]
 
 [node name="Regions" type="Node2D" parent="."]
@@ -193,9 +219,19 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 15 )]
 position = Vector2( -63, 55 )
 
+[node name="JigsawPopup" type="Node2D" parent="."]
+visible = false
+
+[node name="TextureRect" type="Sprite" parent="JigsawPopup"]
+texture = ExtResource( 21 )
+
+[node name="Jigsaw" parent="JigsawPopup" instance=ExtResource( 20 )]
+visible = false
+
 [editable path="Props/Bed"]
 [editable path="Props/Photos"]
 [editable path="Props/Painting"]
 [editable path="Props/Exit"]
 [editable path="Props/KeyEngineRoom"]
 [editable path="Props/Key102"]
+[editable path="Props/Jigsaw"]

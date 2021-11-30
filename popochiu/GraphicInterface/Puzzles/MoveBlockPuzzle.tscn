@@ -26,24 +26,28 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -20, -50 )
 shape = SubResource( 2 )
 disabled = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 20, 50 )
 shape = SubResource( 2 )
 disabled = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 30, -40 )
 shape = SubResource( 3 )
 disabled = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -30, 40 )
 shape = SubResource( 3 )
