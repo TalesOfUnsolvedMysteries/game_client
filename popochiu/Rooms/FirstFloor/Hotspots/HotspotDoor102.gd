@@ -23,7 +23,7 @@ func on_interact() -> void:
 func on_look() -> void:
 	if Globals.state.get('FirstFloor-102_UNLOCKED'):
 		E.run([
-			'Player: Is the door to the technicians room',
+			'Player: Is the opened door to the 102',
 		])
 	else:
 		E.run([

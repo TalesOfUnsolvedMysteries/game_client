@@ -26,7 +26,10 @@ func on_interact() -> void:
 		$Sprite.frame = 0
 		description = _final_description
 	else:
-		E.run(['Player: What for?'])
+		E.run([
+			'Player: The key to door 102 is not there',
+			'Player: Too bad'
+		])
 
 
 func on_look() -> void:

@@ -2,7 +2,7 @@ extends Node2D
 
 # The URL we will connect to node server
 #export var websocket_url = "ws://54.196.243.17:7334"
-#const SERVER_IP = '54.196.243.17'
+#const SERVER_IP = '52.200.170.177'
 const SERVER_IP = 'localhost'
 export var websocket_url = "ws://%s:7334" % SERVER_IP
 

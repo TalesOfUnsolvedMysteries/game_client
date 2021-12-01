@@ -15,7 +15,10 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	pass
+	E.run([
+		'Player: Is the door to the 101',
+		'Player: Who lives there?',
+	])
 
 
 func on_item_used(item: InventoryItem) -> void:

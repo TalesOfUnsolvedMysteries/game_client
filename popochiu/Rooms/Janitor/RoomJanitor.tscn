@@ -188,7 +188,6 @@ polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
 [node name="Sprite" parent="Props/Key102" index="3"]
 texture = ExtResource( 17 )
 hframes = 2
-frame = 1
 
 [node name="Jigsaw" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -71, 4 )
@@ -241,6 +240,7 @@ texture = ExtResource( 31 )
 [node name="JigsawPuzzle" parent="Overlay2D" instance=ExtResource( 20 )]
 visible = false
 blocks_textures = [ ExtResource( 23 ), ExtResource( 26 ), ExtResource( 29 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 25 ) ]
+show_labels = false
 
 [node name="Solved" type="Sprite" parent="Overlay2D"]
 position = Vector2( 0, 3 )
