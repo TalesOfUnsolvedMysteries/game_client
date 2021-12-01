@@ -35,7 +35,7 @@ func _ready():
 	offset.y = grid.size()*-10 + 10
 	targets_to_reach = 0
 	for block_config in config:
-		var block = Block.instance()
+		var block = $Blocks.get_children()[idx]
 		block.offset = offset
 		block.connect('drag_started', self, 'pick_block')
 		block.connect('drag_ended', self, 'update_grid')
@@ -61,7 +61,6 @@ func _ready():
 		)
 		idx += 1
 		block.visible = visible
-		$Blocks.add_child(block)
 
 func pick_block(block: PuzzleBlock):
 	var tile = block.tile_position

@@ -133,3 +133,13 @@ func _on_option_clicked(opt: DialogOption) -> void:
 	hide()
 	opt.used = true
 	D.emit_signal('option_selected', opt)
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_on_option_clicked', opt.id)
+
+remote func _net_on_option_clicked(id):
+	if NetworkManager.isServerWithPilot():
+		hide()
+		for opt in current_options:
+			if opt.id == id:
+				opt.used = true
+				D.emit_signal('option_selected', opt)

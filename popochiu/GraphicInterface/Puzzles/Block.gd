@@ -59,6 +59,12 @@ func on_picked():
 	dragged = true
 	$CollisionShape2D.modulate = Color.blue
 	emit_signal('drag_started', self)
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_on_picked')
+
+remote func _net_on_picked():
+	if NetworkManager.isServerWithPilot():
+		emit_signal('drag_started', self)
 
 func on_dropped():
 	move_x = false
@@ -78,6 +84,12 @@ func on_dropped():
 	elif _matched:
 		_matched = false
 		emit_signal('target_exited')
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_on_dropped')
+
+remote func _net_on_dropped():
+	if NetworkManager.isServerWithPilot():
+		on_dropped()
 
 var _target_position
 func _process(delta):
@@ -91,7 +103,12 @@ func _process(delta):
 	if move_y: position.y = _target_position.y
 	position.x = clamp(position.x, boundaries_x[0], boundaries_x[1])
 	position.y = clamp(position.y, boundaries_y[0], boundaries_y[1])
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_update_position', position)
 
+remote func _net_update_position(_position):
+	if NetworkManager.isServerWithPilot():
+		position = _position
 
 func set_size(_size):
 	size = _size

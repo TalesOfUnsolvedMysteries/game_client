@@ -1,10 +1,14 @@
 extends Node2D
 
 # The URL we will connect to node server
-#export var websocket_url = "ws://54.196.243.17:7334"
+#export var websocket_url = "wss://52.200.170.177:7334"
 #const SERVER_IP = '52.200.170.177'
-const SERVER_IP = 'localhost'
-export var websocket_url = "ws://%s:7334" % SERVER_IP
+#export var SERVER_IP = 'wss://server.bugadventure.show'
+#export var SERVER_IP_GAME = 'wss://bugadventure.show'
+var SERVER_IP = 'ws://localhost:7334'
+var SERVER_IP_GAME = 'ws://localhost:7333'
+#const SERVER_IP = 'localhost'
+#export var websocket_url = "wss://%s" % SERVER_IP
 
 # Our WebSocketClient instance
 var wsClient = WebSocketClient.new()
@@ -68,7 +72,7 @@ func init(_server_request):
 	load_user_data()
 	server_request = _server_request
 	set_status(CONNECTION_STATUS.CONNECTING)
-	var err = wsClient.connect_to_url(websocket_url)
+	var err = wsClient.connect_to_url(SERVER_IP)
 	print (err)
 	if err != OK:
 		print("Unable to connect")
@@ -88,6 +92,7 @@ func load_user_data ():
 		var data = file.get_as_text().split(' ')
 		user_id = int(data[0])
 		password = data[1]
+		print(user_id, password)
 		file.close()
 	else:
 		password = Utils.generate_word(16)
@@ -133,6 +138,7 @@ func _on_data():
 	elif command == 'userRecoveryFails':
 		set_status(CONNECTION_STATUS.REJECTED)
 		print('user recovery fails')
+		request_join()
 	elif command == 'userRecovered':
 		var splittedData = data.split('-')
 		var userId = int(splittedData[0])
@@ -201,11 +207,12 @@ func _process(delta):
 		pass
 
 func send_message_ws(message):
+	if !wsClient.get_peer(1).is_connected_to_host(): return
 	wsClient.get_peer(1).put_packet(message.to_utf8())
 
 
 func join_client(_secret_key):
-	NetworkManager.request_join(SERVER_IP)
+	NetworkManager.request_join(SERVER_IP_GAME)
 	secret_key = _secret_key
 	#rpc_id(1, "validate_connection", '#otra cosa')
 

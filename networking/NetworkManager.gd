@@ -2,7 +2,7 @@ extends Node
 
 const SERVER_PORT = 7333
 const MAX_PLAYERS = 255
-const TIME_TO_PLAY = 5*60
+const TIME_TO_PLAY = 3*60
 
 var server = false
 var client = false
@@ -148,8 +148,8 @@ func request_join(server_ip):
 	client_peer.connect("connection_closed", self, "_server_disconnected")
 	client_peer.connect("connection_error", self, "_connected_fail")
 	client_peer.connect("connection_established", self, "_player_connected")
-	var url = 'ws://%s:%s' % [server_ip, SERVER_PORT]
-	var error = client_peer.connect_to_url(url, PoolStringArray(), true)
+	#var url = 'ws://%s:%s' % [server_ip, SERVER_PORT]
+	var error = client_peer.connect_to_url(server_ip, PoolStringArray(), true)
 	if (error):
 		print(error)
 

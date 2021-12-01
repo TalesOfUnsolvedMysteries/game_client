@@ -18,6 +18,12 @@ func _check_close(e: InputEvent) -> void:
 		and mouse_event.pressed:
 			print('es aca') # CHECK
 			hide()
+			if NetworkManager.isPilot():
+				rpc_id(1, '_net_hide')
+
+remote func _net_hide():
+	if NetworkManager.isServerWithPilot():
+		hide()
 
 
 func _on_meta_clicked(meta) -> void:
