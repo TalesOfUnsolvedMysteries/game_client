@@ -1,15 +1,21 @@
 extends Node2D
 const Block = preload("res://popochiu/GraphicInterface/Puzzles/Block.tscn")
 
+signal solved
+
+export(Array, Texture) var blocks_textures := []
+export var show_labels := true
+export var lock_on_success := true
+
 var config = [
-	{ 'tile': [1, 1], 'size': [1, 1], 'target': [2, 0], 'label': '3', 'lock_on_match': false},
-	{ 'tile': [2, 0], 'size': [1, 1], 'target': [1, 1], 'label': '5', 'lock_on_match': false},
-	{ 'tile': [0, 1], 'size': [1, 1], 'target': [0, 2], 'label': '7', 'lock_on_match': false},
-	{ 'tile': [0, 0], 'size': [1, 1], 'target': [0, 0], 'label': '1', 'lock_on_match': false},
-	{ 'tile': [1, 0], 'size': [1, 1], 'target': [2, 1], 'label': '6', 'lock_on_match': false},
-	{ 'tile': [2, 1], 'size': [1, 1], 'target': [1, 2], 'label': '8', 'lock_on_match': false},
-	{ 'tile': [2, 2], 'size': [1, 1], 'target': [1, 0], 'label': '2', 'lock_on_match': false},
-	{ 'tile': [1, 2], 'size': [1, 1], 'target': [0, 1], 'label': '4', 'lock_on_match': false}
+	{ 'tile': [1, 1], 'size': [1, 1], 'target': [2, 0], 'label': '3', 'lock_on_match': false, textures_idx = 2},
+	{ 'tile': [2, 0], 'size': [1, 1], 'target': [1, 1], 'label': '5', 'lock_on_match': false, textures_idx = 4},
+	{ 'tile': [0, 1], 'size': [1, 1], 'target': [0, 2], 'label': '7', 'lock_on_match': false, textures_idx = 6},
+	{ 'tile': [0, 0], 'size': [1, 1], 'target': [0, 0], 'label': '1', 'lock_on_match': false, textures_idx = 0},
+	{ 'tile': [1, 0], 'size': [1, 1], 'target': [2, 1], 'label': '6', 'lock_on_match': false, textures_idx = 5},
+	{ 'tile': [2, 1], 'size': [1, 1], 'target': [1, 2], 'label': '8', 'lock_on_match': false, textures_idx = 7},
+	{ 'tile': [2, 2], 'size': [1, 1], 'target': [1, 0], 'label': '2', 'lock_on_match': false, textures_idx = 1},
+	{ 'tile': [1, 2], 'size': [1, 1], 'target': [0, 1], 'label': '4', 'lock_on_match': false, textures_idx = 3}
 ]
 
 var grid = [
@@ -35,7 +41,6 @@ func _ready():
 		block.connect('drag_ended', self, 'update_grid')
 		block.connect('target_entered', self, 'target_reach')
 		block.connect('target_exited', self, 'target_lost')
-		block.set_tile_position(Vector2(block_config.tile[0], block_config.tile[1]))
 		block.set_size(Vector2(block_config.size[0], block_config.size[1]))
 		for j in range(block.size.y):
 			for i in range(block.size.x):
@@ -43,12 +48,17 @@ func _ready():
 		if block_config.has('target'):
 			block.set_target_tile(Vector2(block_config.target[0], block_config.target[1]))
 			targets_to_reach+=1
-		if block_config.has('label'):
+		if show_labels and block_config.has('label'):
 			var label = block.get_node('Label')
 			label.show()
 			label.text = block_config.label
 		if block_config.has('lock_on_match'):
 			block.lock_on_match = block_config.lock_on_match
+		if not blocks_textures.empty() and block_config.has('textures_idx'):
+			block.set_texture(blocks_textures[block_config.textures_idx])
+		block.set_tile_position(
+			Vector2(block_config.tile[0], block_config.tile[1])
+		)
 		idx += 1
 		block.visible = visible
 		$Blocks.add_child(block)
@@ -105,14 +115,20 @@ func update_grid(block: PuzzleBlock):
 	for j in range(block.size.y):
 		for i in range(block.size.x):
 			grid[tile[1]+j][tile[0]+i] = 1
+			
+			# TODO: Usar esta información para guardar el estado de las piezas
+			#		en el puzle en caso de que se quiera guardar su estado.
 
 func target_reach():
 	var targets_reached = 0
 	for block in $Blocks.get_children():
 		if block._matched:
 			targets_reached += 1
-	if targets_to_reach == targets_reached:
-		$Success.show()
+	if targets_reached >= targets_to_reach:
+		if lock_on_success:
+			for block in $Blocks.get_children():
+				block.locked = true
+		emit_signal('solved')
 
 func target_lost():
 	pass

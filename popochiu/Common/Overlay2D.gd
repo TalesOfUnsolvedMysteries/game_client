@@ -40,5 +40,6 @@ func disappear() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _check_click(_v: Node, e: InputEvent, _i: int) -> void:
 	var mouse_event: = e as InputEventMouseButton
-	if mouse_event and mouse_event.pressed:
+	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
+	and mouse_event.pressed:
 		disappear()

@@ -1,9 +1,12 @@
 extends "res://popochiu/Common/Overlay2D.gd"
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _appeared() -> void:
-	$JigsawPuzzle.show()
+	if get_node_or_null('JigsawPuzzle'):
+		$JigsawPuzzle.show()
 
 
 func _disappeared() -> void:
-	$JigsawPuzzle.hide()
+	if get_node_or_null('JigsawPuzzle'):
+		$JigsawPuzzle.hide()

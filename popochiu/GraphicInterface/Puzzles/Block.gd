@@ -35,6 +35,9 @@ func set_tile_position(_tile_position):
 	tile_position = _tile_position
 	position.x = tile_position.x * 20 + offset.x
 	position.y = tile_position.y * 20 + offset.y
+	
+	if tile_position == target_tile:
+		_matched = true
 
 
 func _unhandled_input(event):
@@ -101,3 +104,7 @@ func set_size(_size):
 
 func set_target_tile(_target):
 	target_tile = _target
+
+
+func set_texture(txt: Texture) -> void:
+	$Sprite.texture = txt
