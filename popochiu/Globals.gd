@@ -40,13 +40,19 @@ const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
 ]
 
-
 var main_mx_play = false
-
 var bug_name := ''
 var bug_adn := ''
 sync var state := {}
 var server_file = "user://server.save"
+
+
+func _ready() -> void:
+	Console.add_command('set_state', self)\
+		.set_description('Sets a global state')\
+		.add_argument('key', TYPE_STRING)\
+		.add_argument('value', TYPE_BOOL)\
+		.register()
 
 
 func set_state(key, value):

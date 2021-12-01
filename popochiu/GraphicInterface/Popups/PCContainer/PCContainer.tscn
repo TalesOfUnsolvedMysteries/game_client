@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sprites/pc_screen.png" type="Texture" id=2]
@@ -8,8 +8,13 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=6]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/Icon.gd" type="Script" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/PCContainer.gd" type="Script" id=8]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 9 )
 
 [node name="PCContainer" type="PanelContainer"]
 anchor_right = 1.0
@@ -22,9 +27,11 @@ __meta__ = {
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_left = 48.0
+margin_top = 12.0
 margin_right = 271.0
-margin_bottom = 180.0
+margin_bottom = 167.0
 size_flags_horizontal = 4
+size_flags_vertical = 4
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,24 +39,24 @@ __meta__ = {
 
 [node name="Screen" type="TextureRect" parent="PanelContainer"]
 margin_right = 223.0
-margin_bottom = 180.0
+margin_bottom = 155.0
 size_flags_horizontal = 0
 texture = ExtResource( 2 )
 
 [node name="Desktop" type="MarginContainer" parent="PanelContainer"]
+visible = false
 margin_right = 76.0
-margin_bottom = 180.0
+margin_bottom = 155.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 4
-custom_constants/margin_top = 30
+custom_constants/margin_top = 26
 custom_constants/margin_left = 16
 
-[node name="Apps" type="VBoxContainer" parent="PanelContainer/Desktop"]
+[node name="Apps" type="GridContainer" parent="PanelContainer/Desktop"]
 margin_left = 16.0
-margin_top = 30.0
+margin_top = 26.0
 margin_right = 72.0
-margin_bottom = 180.0
-custom_constants/separation = 8
+margin_bottom = 155.0
 
 [node name="Register" type="VBoxContainer" parent="PanelContainer/Desktop/Apps"]
 margin_right = 56.0
@@ -79,9 +86,9 @@ text = "register"
 align = 1
 
 [node name="Elevator" type="VBoxContainer" parent="PanelContainer/Desktop/Apps"]
-margin_top = 40.0
+margin_top = 36.0
 margin_right = 56.0
-margin_bottom = 72.0
+margin_bottom = 68.0
 mouse_filter = 0
 script = ExtResource( 7 )
 
@@ -107,9 +114,9 @@ text = "elevator"
 align = 1
 
 [node name="Progress" type="VBoxContainer" parent="PanelContainer/Desktop/Apps"]
-margin_top = 80.0
+margin_top = 72.0
 margin_right = 56.0
-margin_bottom = 112.0
+margin_bottom = 104.0
 mouse_filter = 0
 script = ExtResource( 7 )
 
@@ -132,3 +139,60 @@ custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "progress"
 align = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+margin_right = 223.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+
+[node name="Thanks" type="RichTextLabel" parent="PanelContainer/CenterContainer"]
+margin_left = 9.0
+margin_top = 32.0
+margin_right = 213.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 204, 0 )
+custom_colors/default_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]That´s all for now
+
+Follow us for updates:
+[url=https://twitter.com/TheBugAdventure]Twitter[/url]
+
+Thanks for playing
+[/center]"
+text = "That´s all for now
+
+Follow us for updates:
+Twitter
+
+Thanks for playing
+"
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="DateContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 123.0
+margin_right = 223.0
+margin_bottom = 17.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 8
+
+[node name="Label" type="Label" parent="PanelContainer/DateContainer"]
+margin_top = 8.0
+margin_right = 84.0
+margin_bottom = 17.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "wed 10, 89 - 04:35"
+align = 1
+__meta__ = {
+"_editor_description_": ""
+}

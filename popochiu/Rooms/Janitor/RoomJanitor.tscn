@@ -231,6 +231,7 @@ navpoly = SubResource( 1 )
 position = Vector2( -63, 55 )
 
 [node name="Overlay2D" parent="." instance=ExtResource( 21 )]
+visible = false
 script = ExtResource( 22 )
 
 [node name="Bg" type="Sprite" parent="Overlay2D"]

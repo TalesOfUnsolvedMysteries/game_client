@@ -4,6 +4,8 @@ extends PopochiuRoom
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	$Overlay2D.hide()
+	
 	if not Globals.state.get('Janitor-JIGSAW_SOLVED'):
 		$Overlay2D/Solved.hide()
 		$Overlay2D/JigsawPuzzle.connect('solved', self, '_on_jigsaw_solved')
