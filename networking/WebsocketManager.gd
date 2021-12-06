@@ -39,6 +39,9 @@ var status = CONNECTION_STATUS.OFFLINE
 
 
 func _ready():
+	if OS.has_feature('web'):
+		return
+	
 	randomize()
 	# connection to ws
 	# Connect base signals to get notified of connection open, close, and errors.

@@ -85,7 +85,10 @@ func _enter_cohost() -> void:
 		'CoHost: I wish you luck!',
 	]), 'completed')
 	
-	NetworkManager.set_ready_to_pilot(true)
+	if OS.has_feature('web'):
+		_dev_start()
+	else:
+		NetworkManager.set_ready_to_pilot(true)
 
 
 func _on_turn_assigned(turn_value):

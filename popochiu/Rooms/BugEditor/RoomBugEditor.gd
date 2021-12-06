@@ -40,6 +40,9 @@ func _ready() -> void:
 	_user_ready = WebsocketManager.user_id != 0
 	if _user_ready:
 		_user_id.text = 'Player %d' % WebsocketManager.user_id
+	elif OS.has_feature('web'):
+		_user_ready = true
+		_user_id.text = 'Offline player'
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░

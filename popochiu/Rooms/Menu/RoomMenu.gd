@@ -11,6 +11,9 @@ func _ready():
 	WebsocketManager.connect('connection_updated', self, '_on_connection_updated')
 	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
 	_join_btn.connect('button_down', self, '_on_join')
+	
+	if OS.has_feature('web'):
+		$MainMenu/Control/Extra.show()
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -26,6 +29,7 @@ func on_room_transition_finished() -> void:
 # TODO: Poner aquí los métodos privados
 func _on_connection_updated(connection_status):
 	_join_btn.disabled = true
+	
 	match connection_status:
 		WebsocketManager.CONNECTION_STATUS.OFFLINE:
 			_status.text = 'not connected to server'
@@ -54,6 +58,7 @@ func _userID_assigned(player_id):
 	_player.show()
 
 func _on_join():
-	WebsocketManager.request_join()
-	_status.text = 'joining to the show'
+	if not OS.has_feature('web'):
+		WebsocketManager.request_join()
+		_status.text = 'joining to the show'
 	E.goto_room('BugEditor')

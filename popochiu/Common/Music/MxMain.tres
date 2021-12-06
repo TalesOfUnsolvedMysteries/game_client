@@ -7,12 +7,12 @@
 resource_name = "mx_main"
 script = ExtResource( 1 )
 audio = ExtResource( 2 )
-loop = true
+loop = false
 is_2d = false
 pitch = 0.0
-volume = -24.0
+volume = 1.0
 rnd_pitch = Vector2( 0, 0 )
 rnd_volume = Vector2( 0, 0 )
 max_distance = 2000
-attenuation = 0.287174
-bus = "Music"
+attenuation = 1.0
+bus = "0"

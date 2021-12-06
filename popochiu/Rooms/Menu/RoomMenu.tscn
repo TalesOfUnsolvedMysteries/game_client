@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Menu/RoomMenu.gd" type="Script" id=1]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
@@ -7,6 +7,10 @@
 [ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
 font_data = ExtResource( 6 )
 
 [node name="RoomMenu" type="Node2D"]
@@ -63,25 +67,23 @@ rect_scale = Vector2( 1.5, 1.5 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[center][shake]The Bug Adventure Show[/shake][/center]"
+bbcode_text = "[center][shake]The [color=#ffe737]Bug[/color] Adventure [color=#e03c28]Show[/color][/shake][/center]"
 text = "The Bug Adventure Show"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Status" type="Label" parent="MainMenu/Control"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = -15.0
-margin_right = 32.0
-margin_bottom = -1.99998
+[node name="Player" type="Label" parent="MainMenu/Control"]
+visible = false
+margin_left = 137.0
+margin_top = 103.0
+margin_right = 193.0
+margin_bottom = 117.0
+grow_horizontal = 2
 rect_scale = Vector2( 0.8, 0.8 )
 custom_fonts/font = ExtResource( 5 )
-text = "Offline"
+text = "Player:"
 align = 1
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -102,17 +104,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" type="Label" parent="MainMenu/Control"]
-visible = false
-margin_left = 137.0
-margin_top = 103.0
-margin_right = 193.0
-margin_bottom = 117.0
-grow_horizontal = 2
+[node name="Status" type="Label" parent="MainMenu/Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -29.0
+margin_right = 32.0
+margin_bottom = -16.0
 rect_scale = Vector2( 0.8, 0.8 )
 custom_fonts/font = ExtResource( 5 )
-text = "Player:"
+text = "Offline mode"
 align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Extra" type="Label" parent="MainMenu/Control"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -13.0
+margin_right = 80.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_colors/font_color = Color( 0.886275, 0.788235, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "To play ONLINE use the windows|mac|linux version"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
