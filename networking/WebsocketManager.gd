@@ -3,10 +3,10 @@ extends Node2D
 # The URL we will connect to node server
 #export var websocket_url = "wss://52.200.170.177:7334"
 #const SERVER_IP = '52.200.170.177'
-#export var SERVER_IP = 'wss://server.bugadventure.show'
-#export var SERVER_IP_GAME = 'wss://bugadventure.show'
-var SERVER_IP = 'ws://localhost:7334'
-var SERVER_IP_GAME = 'ws://localhost:7333'
+export var SERVER_IP = 'wss://server.bugadventure.show'
+export var SERVER_IP_GAME = 'wss://bugadventure.show'
+#var SERVER_IP = 'ws://localhost:7334'
+#var SERVER_IP_GAME = 'ws://localhost:7333'
 #const SERVER_IP = 'localhost'
 #export var websocket_url = "wss://%s" % SERVER_IP
 
