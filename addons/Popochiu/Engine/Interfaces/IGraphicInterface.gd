@@ -13,6 +13,7 @@ signal interface_hidden
 signal inventory_show_requested(time)
 signal inventory_shown
 signal history_opened
+signal documents_requested(data) # Un diccionario con la información por página
 
 var blocked := false
 var waiting_click := false
@@ -76,3 +77,8 @@ func show_inventory(time := 1.0, is_in_queue := true) -> void:
 
 func show_history() -> void:
 	emit_signal('history_opened')
+
+
+# Recibe un Dictionary con la información a mostrar por página.
+func show_documents(data: Dictionary) -> void:
+	emit_signal('documents_requested', data)

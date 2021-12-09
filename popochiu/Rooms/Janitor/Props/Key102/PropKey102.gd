@@ -27,8 +27,7 @@ func on_interact() -> void:
 		description = _final_description
 	else:
 		E.run([
-			'Player: The key to door 102 is not there',
-			'Player: Too bad'
+			'Player: The key to door 102 is not in its place',
 		])
 
 

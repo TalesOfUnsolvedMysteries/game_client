@@ -3,7 +3,9 @@ extends PopochiuRoom
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
+func _ready() -> void:
+	if not Globals.state.get('FirstFloor-102_UNLOCKED'):
+		Globals.set_state('FirstFloor-102_UNLOCKED', true)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░

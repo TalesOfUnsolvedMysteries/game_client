@@ -188,6 +188,7 @@ polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
 [node name="Sprite" parent="Props/Key102" index="3"]
 texture = ExtResource( 17 )
 hframes = 2
+frame = 1
 
 [node name="Jigsaw" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -71, 4 )

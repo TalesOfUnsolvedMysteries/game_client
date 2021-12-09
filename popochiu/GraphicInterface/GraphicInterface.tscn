@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/GraphicInterface.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/PopochiuTheme.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://popochiu/GraphicInterface/History/History.tscn" type="PackedScene" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/bg.png" type="Texture" id=8]
 [ext_resource path="res://popochiu/GraphicInterface/InfoBar/InfoBar.tscn" type="PackedScene" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/Documents.tscn" type="PackedScene" id=10]
 [ext_resource path="res://popochiu/GraphicInterface/DisplayBox/DisplayBox.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -87,3 +88,5 @@ __meta__ = {
 }
 
 [node name="History" parent="." instance=ExtResource( 7 )]
+
+[node name="Documents" parent="." instance=ExtResource( 10 )]

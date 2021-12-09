@@ -35,3 +35,9 @@ func on_look() -> void:
 func on_item_used(item: InventoryItem) -> void:
 	if item.script_name == 'Key102':
 		Globals.set_state('FirstFloor-102_UNLOCKED', true)
+		E.run([
+			C.walk_to_clicked(),
+			I.remove_item('Key102'),
+			# TODO: Poner sonido de desbloqueo de puerta
+			'Player: Great! Now the 102 is open',
+		])
