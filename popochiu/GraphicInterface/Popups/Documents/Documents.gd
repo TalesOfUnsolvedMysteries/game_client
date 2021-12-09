@@ -6,6 +6,7 @@ var _total_pages := 0
 
 onready var _btn_left: TextureButton = find_node('BtnLeft')
 onready var _btn_right: TextureButton = find_node('BtnRight')
+onready var _btn_exit: Button = find_node('BtnExit')
 onready var _pages_counter: Label = find_node('PagesCounter')
 onready var _content: Label = find_node('Content')
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 	# Conectarse a señales de los hijos
 	_btn_left.connect('pressed', self, '_prev_page')
 	_btn_right.connect('pressed', self, '_next_page')
+	_btn_exit.connect('pressed', self, '_close')
 	
 	# Conectarse a señales de los singletones
 	G.connect('documents_requested', self, 'show_documents')
@@ -46,7 +48,8 @@ func _set_current_page(value: int) -> void:
 	_content.text = _current_document.pages[_current_page]
 	_pages_counter.text = '%d/%d' % [_current_page + 1, _total_pages + 1]
 	_btn_left.disabled = false
-	_btn_right.disabled = false
+	_btn_right.show()
+	_btn_exit.hide()
 	
 	A.play({
 		cue_name = 'sfx_paper',
@@ -56,4 +59,9 @@ func _set_current_page(value: int) -> void:
 	if _current_page == 0:
 		_btn_left.disabled = true
 	elif _current_page == _total_pages:
-		_btn_right.disabled = true
+		_btn_right.hide()
+		_btn_exit.show()
+
+
+func _close() -> void:
+	hide()
