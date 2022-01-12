@@ -79,6 +79,19 @@ cursor = 1
 script_name = "Notes"
 always_on_top = true
 texture = ExtResource( 11 )
+pages = [ "From the previous technician
+
+To make the elevator to work, its mainboard needs a battery and a memory card with the program that establishes its behavior (that is the floors it can access)
+
+Why they do something like this?", "Codes to reset the mainboard:
+
+WELCOME 653        CAR 081
+PRESS 1530        DESK 6538
+MASK 6830        BACK 615
+TOY 86531        POOL 01568
+
+This must be done each time the battery is plugged in.
+", "To change the functionality of the elevator use the PC in the lobby." ]
 
 [node name="CollisionPolygon2D" parent="Props/Notes" index="0"]
 polygon = PoolVector2Array( -8, -2, 0, -6, 9, -1, 9, 1, 0, 5, -8, 0 )

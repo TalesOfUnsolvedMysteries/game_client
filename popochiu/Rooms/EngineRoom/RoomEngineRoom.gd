@@ -35,7 +35,7 @@ func hide_lock() -> void:
 
 
 func show_motherboard() -> void:
-	$CanvasLayer/Motherboard.show()
+	$CanvasLayer/Motherboard.appear()
 
 
 func turn_on_pc_switch() -> void:

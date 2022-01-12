@@ -15,3 +15,8 @@ func _toggled(button_pressed: bool) -> void:
 		$Label.rect_position = _dflt_pos + Vector2.DOWN * 2.0
 	else:
 		$Label.rect_position = _dflt_pos
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func get_value() -> int:
+	return $Label.text
