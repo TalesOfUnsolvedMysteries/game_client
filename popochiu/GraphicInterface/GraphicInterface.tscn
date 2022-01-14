@@ -43,6 +43,8 @@ mouse_filter = 2
 texture = ExtResource( 8 )
 
 [node name="InfoBar" parent="MainContainer" instance=ExtResource( 9 )]
+margin_top = -36.0
+margin_bottom = -24.0
 
 [node name="DialogText" parent="MainContainer" instance=ExtResource( 3 )]
 margin_left = 104.0
@@ -90,3 +92,4 @@ __meta__ = {
 [node name="History" parent="." instance=ExtResource( 7 )]
 
 [node name="Documents" parent="." instance=ExtResource( 10 )]
+visible = false

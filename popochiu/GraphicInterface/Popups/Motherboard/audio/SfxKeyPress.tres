@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioCue.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/audio/sfx_paper.ogg" type="AudioStream" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/audio/sfx_key_press.ogg" type="AudioStream" id=2]
 
 [resource]
-resource_name = "sfx_paper"
+resource_name = "sfx_key_press"
 script = ExtResource( 1 )
 audio = ExtResource( 2 )
 loop = false

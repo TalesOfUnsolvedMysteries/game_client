@@ -4,6 +4,9 @@ extends PopochiuRoom
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	if not Globals.state.get('Lobby-ENGINE_ROOM_UNLOCKED'):
+		Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', true)
+	
 	if not Globals.state.get('EngineRoom-SWITCH_BOX_OPENED'):
 		$CanvasLayer/Lock.connect(
 			'combination_changed',
@@ -12,6 +15,7 @@ func _ready() -> void:
 		)
 	else:
 		get_prop('FuseBox').open()
+	
 	$CanvasLayer/Motherboard.connect('closed', self, '_change_engine_frame')
 
 

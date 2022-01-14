@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_key_release.ogg-e6125c456809d519100b068eb3e5d2e3.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Motherboard/audio/sfx_key_release.ogg"
+dest_files=[ "res://.import/sfx_key_release.ogg-e6125c456809d519100b068eb3e5d2e3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

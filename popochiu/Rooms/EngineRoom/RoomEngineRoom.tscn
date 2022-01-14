@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.tscn" type="PackedScene" id=2]
@@ -9,11 +9,13 @@
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/FuseBox/PropFuseBox.gd" type="Script" id=7]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/FuseBox/fuse_box.png" type="Texture" id=8]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/PropBatteryCharger.gd" type="Script" id=9]
-[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/battery_charger.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/sprites/battery_charger.png" type="Texture" id=10]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Exit/PropExit.gd" type="Script" id=11]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/Exit/exit.png" type="Texture" id=12]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=13]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/Motherboard.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/sprites/battery_charger_progress_over.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/sprites/battery_charger_progress.png" type="Texture" id=16]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -34, 6 )
@@ -83,7 +85,7 @@ hframes = 3
 [node name="BatteryCharger" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 56, -9 )
 script = ExtResource( 9 )
-description = "BatteryCharger"
+description = "Battery charger"
 walk_to_point = Vector2( 5, 30 )
 cursor = 1
 script_name = "BatteryCharger"
@@ -97,6 +99,19 @@ position = Vector2( 5, 30 )
 
 [node name="Sprite" parent="Props/BatteryCharger" index="3"]
 texture = ExtResource( 10 )
+hframes = 2
+
+[node name="ChargingProgress" type="TextureProgress" parent="Props/BatteryCharger"]
+margin_left = -7.7
+margin_top = -12.0
+margin_right = 7.3
+margin_bottom = -6.0
+texture_over = ExtResource( 15 )
+texture_progress = ExtResource( 16 )
+texture_progress_offset = Vector2( 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -123, 12 )

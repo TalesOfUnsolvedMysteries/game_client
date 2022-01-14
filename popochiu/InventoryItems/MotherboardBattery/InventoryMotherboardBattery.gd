@@ -1,8 +1,12 @@
 extends InventoryItem
 
+export var empty: Texture = null
+export var full: Texture = null
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
+func _ready() -> void:
+	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -19,6 +23,13 @@ func on_look() -> void:
 # Lo que pasará cuando se use otro InventoryItem del inventario sobre este
 func on_item_used(_item: InventoryItem) -> void:
 	pass
+
+
+func added_to_inventory() -> void:
+	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		$Icon.texture = full
+	else:
+		$Icon.texture = empty
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/battery.png-50ecc2c83b2a25c488c065442f1da8bd.stex"
+path="res://.import/motherboard_battery_full.png-4fd588015999ef9b9f4d22d47cebdadb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/battery.png"
-dest_files=[ "res://.import/battery.png-50ecc2c83b2a25c488c065442f1da8bd.stex" ]
+source_file="res://popochiu/InventoryItems/MotherboardBattery/motherboard_battery_full.png"
+dest_files=[ "res://.import/motherboard_battery_full.png-4fd588015999ef9b9f4d22d47cebdadb.stex" ]
 
 [params]
 

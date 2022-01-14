@@ -3,6 +3,8 @@ extends Node
 # guardar información que se usará en varias habitaciones, o cosas relacionadas
 # con el estado del juego.
 
+signal battery_charge_updated
+
 enum Bodies {
 	BEETLE,
 	LADYBUG,
@@ -39,14 +41,19 @@ const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_boots.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
 ]
+const BATTERY_CHARGING_TIME := 1 * 60
 
 var main_mx_play = false
 var bug_name := ''
 var bug_adn := ''
 sync var state := {}
 var server_file = "user://server.save"
+var battery_power := 0
+
+var _battery_charging_elapsed := 0
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	Console.add_command('set_state', self)\
 		.set_description('Sets a global state')\
@@ -55,6 +62,7 @@ func _ready() -> void:
 		.register()
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func set_state(key, value):
 	state[key] = value
 	if NetworkManager.server:
@@ -89,3 +97,33 @@ func set_appearance(adn: String) -> void:
 	bug_adn = adn
 	if is_instance_valid(C.player):
 		C.player.load_appearance(adn)
+
+
+func start_battery_charging() -> void:
+	set_state('EngineRoom-CHARGING_BATTERY', true)
+	add_battery_power()
+
+
+# Aumenta en X la carga de la batería en la sala de motores (RoomEngineRoom)
+func add_battery_power() -> void:
+	yield(get_tree().create_timer(1.0), 'timeout')
+
+	if not state.get('EngineRoom-CHARGING_BATTERY'): return
+	
+	_battery_charging_elapsed += 1
+	battery_power += _battery_charging_elapsed * 100 / BATTERY_CHARGING_TIME
+	
+	emit_signal('battery_charge_updated')
+	
+	if battery_power < 100:
+		add_battery_power()
+	else:
+		set_state('EngineRoom-CHARGING_BATTERY', false)
+		set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', true)
+
+
+func stop_battery_charging() -> void:
+	set_state('EngineRoom-CHARGING_BATTERY', false)
+	
+	_battery_charging_elapsed = 0
+	battery_power = 0

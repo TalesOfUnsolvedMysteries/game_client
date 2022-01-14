@@ -12,8 +12,16 @@ func _ready() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func _toggled(button_pressed: bool) -> void:
 	if button_pressed:
+		A.play({
+			cue_name = 'sfx_key_press',
+			is_in_queue = false
+		})
 		$Label.rect_position = _dflt_pos + Vector2.DOWN * 2.0
 	else:
+		A.play({
+			cue_name = 'sfx_key_release',
+			is_in_queue = false
+		})
 		$Label.rect_position = _dflt_pos
 
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/battery_charger.png-043c5ebda1bc144b85448f729a146125.stex"
+path="res://.import/motherboard_battery_empty.png-820c6d2cbbabeaddc8b7b71951f9cb82.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/battery_charger.png"
-dest_files=[ "res://.import/battery_charger.png-043c5ebda1bc144b85448f729a146125.stex" ]
+source_file="res://popochiu/InventoryItems/MotherboardBattery/motherboard_battery_empty.png"
+dest_files=[ "res://.import/motherboard_battery_empty.png-820c6d2cbbabeaddc8b7b71951f9cb82.stex" ]
 
 [params]
 

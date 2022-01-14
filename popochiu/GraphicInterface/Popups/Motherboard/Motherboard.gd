@@ -2,6 +2,9 @@ extends PanelContainer
 
 signal closed
 
+export var battery_empty: Texture = null
+export var battery_full: Texture = null
+
 # NOTA: No sé si esto debería ir en el script de la escena (RoomEngineRoom)
 #		para que eventualmente se puedan tomar los códigos del script y no que
 #		estén quemados en el texto del inspector (para RoomTechnician/PropNotes).
@@ -19,20 +22,32 @@ var codes := {
 var _current_code := ''
 var _matches := 0 setget _set_matches
 
+onready var _display: Label = find_node('Display')
+onready var _battery: TextureRect = find_node('Battery')
+onready var _buttons: Control = find_node('Buttons')
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	# Definir estado
+	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		_battery.texture = battery_full
+	else:
+		_battery.texture = battery_empty
+		_display.text = 'replace battery'
+	
 	connect('gui_input', self, '_check_close')
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
-	
-	for b in $CenterContainer/Base/Buttons.get_children():
-		(b as TextureButton).connect('pressed', self, '_check_secuence', [b])
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func appear() -> void:
-	_pick_code()
+	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		_pick_code()
+		
+		for b in _buttons.get_children():
+			(b as TextureButton).connect('pressed', self, '_check_secuence', [b])
 	
 	show()
 
@@ -61,7 +76,7 @@ remote func _net_close_motherboard():
 
 func _pick_code() -> void:
 	_current_code = Utils.get_random_array_element(codes.keys())
-	$CenterContainer/Base/Display.text = _current_code.to_upper()
+	_display.text = _current_code.to_upper()
 
 
 func _check_secuence(button: TextureButton) -> void:
@@ -97,5 +112,5 @@ func _check_secuence(button: TextureButton) -> void:
 func _set_matches(value: int) -> void:
 	_matches = value
 	
-	for b in $CenterContainer/Base/Buttons.get_children():
+	for b in _buttons.get_children():
 		(b as TextureButton).pressed = false
