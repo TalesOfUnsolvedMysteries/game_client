@@ -4,11 +4,6 @@ export var empty: Texture = null
 export var full: Texture = null
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-func _ready() -> void:
-	pass
-
-
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 # Cuando se le hace clic en el inventario
 func on_interact() -> void:
@@ -28,8 +23,10 @@ func on_item_used(_item: InventoryItem) -> void:
 func added_to_inventory() -> void:
 	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		$Icon.texture = full
+		description = 'Motherboard battery charged'
 	else:
 		$Icon.texture = empty
+		description = 'Motherboard battery empty'
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

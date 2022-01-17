@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/motherboard.png" type="Texture" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/MotherboardButton.gd" type="Script" id=10]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/Battery.gd" type="Script" id=11]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/battery_full.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/battery_slot.png" type="Texture" id=13]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/BatterySlot.gd" type="Script" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/sprites/motherboard_reset_bulbs.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -58,6 +61,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ResetBulbs" type="Sprite" parent="CenterContainer/Base"]
+position = Vector2( 64, 27 )
+texture = ExtResource( 15 )
+hframes = 4
+
+[node name="CardSlot" type="TextureRect" parent="CenterContainer/Base"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Card" type="TextureRect" parent="CenterContainer/Base"]
 visible = false
 margin_left = 105.0
@@ -67,6 +82,18 @@ margin_bottom = 71.0
 mouse_filter = 2
 texture = ExtResource( 7 )
 
+[node name="BatterySlot" type="TextureRect" parent="CenterContainer/Base"]
+margin_left = 13.0
+margin_top = 94.0
+margin_right = 152.0
+margin_bottom = 145.0
+texture = ExtResource( 13 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+description = "Battery slot"
+
 [node name="Battery" type="TextureRect" parent="CenterContainer/Base"]
 margin_left = 16.0
 margin_top = 71.0
@@ -75,6 +102,10 @@ margin_bottom = 135.0
 mouse_filter = 0
 texture = ExtResource( 4 )
 script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+description = "Battery"
 
 [node name="Buttons" type="Control" parent="CenterContainer/Base"]
 margin_left = 18.0

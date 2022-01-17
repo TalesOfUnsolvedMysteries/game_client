@@ -111,7 +111,7 @@ func add_battery_power() -> void:
 	if not state.get('EngineRoom-CHARGING_BATTERY'): return
 	
 	_battery_charging_elapsed += 1
-	battery_power += _battery_charging_elapsed * 100 / BATTERY_CHARGING_TIME
+	battery_power = _battery_charging_elapsed * 100 / BATTERY_CHARGING_TIME
 	
 	emit_signal('battery_charge_updated')
 	
@@ -127,3 +127,8 @@ func stop_battery_charging() -> void:
 	
 	_battery_charging_elapsed = 0
 	battery_power = 0
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
+func _dev_charge_battery() -> void:
+	pass

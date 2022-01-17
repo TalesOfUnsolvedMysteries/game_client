@@ -23,6 +23,8 @@ var _current_code := ''
 var _matches := 0 setget _set_matches
 
 onready var _display: Label = find_node('Display')
+onready var _reset_bulbs: Sprite = find_node('ResetBulbs')
+onready var _battery_slot: TextureRect = find_node('BatterySlot')
 onready var _battery: TextureRect = find_node('Battery')
 onready var _buttons: Control = find_node('Buttons')
 
@@ -39,15 +41,16 @@ func _ready() -> void:
 	connect('gui_input', self, '_check_close')
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
+	
+	_battery_slot.connect('battery_put', self, '_put_battery')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func appear() -> void:
-	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
-		_pick_code()
-		
-		for b in _buttons.get_children():
-			(b as TextureButton).connect('pressed', self, '_check_secuence', [b])
+	if Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
+		_battery.hide()
+	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		_wait_reset()
 	
 	show()
 
@@ -74,6 +77,13 @@ remote func _net_close_motherboard():
 		_close_motherboard()
 
 
+func _wait_reset() -> void:
+	_pick_code()
+	
+	for b in _buttons.get_children():
+		(b as TextureButton).connect('pressed', self, '_check_secuence', [b])
+
+
 func _pick_code() -> void:
 	_current_code = Utils.get_random_array_element(codes.keys())
 	_display.text = _current_code.to_upper()
@@ -97,6 +107,8 @@ func _check_secuence(button: TextureButton) -> void:
 		return
 	
 	if _matches == codes[_current_code].length():
+		_reset_bulbs.frame += 1
+		
 		yield(E.run([
 			A.play({
 				cue_name = 'sfx_motherboard_success',
@@ -106,7 +118,13 @@ func _check_secuence(button: TextureButton) -> void:
 		]), 'completed')
 		
 		self._matches = 0
-		_pick_code()
+		
+		if _reset_bulbs.frame == 3:
+			_display.text = 'RESET DONE'
+			# TODO: Reproducir un sonido para reforzar que ya se hizo la resetiada
+			#		de la motherboard.
+		else:
+			_pick_code()
 
 
 func _set_matches(value: int) -> void:
@@ -114,3 +132,13 @@ func _set_matches(value: int) -> void:
 	
 	for b in _buttons.get_children():
 		(b as TextureButton).pressed = false
+
+
+func _put_battery() -> void:
+	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		_battery.texture = battery_full
+		_wait_reset()
+	else:
+		_battery.texture = battery_empty
+	
+	_battery.show()

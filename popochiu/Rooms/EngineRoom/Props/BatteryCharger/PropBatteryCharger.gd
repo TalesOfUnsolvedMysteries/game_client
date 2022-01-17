@@ -33,12 +33,14 @@ func on_interact() -> void:
 		else:
 			E.run(['Player: Yeah. Let it charge in peace.'])
 	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
-		E.run([
+		yield(E.run([
 			C.walk_to_clicked(),
 			'Player: Great. Now the battery is fully charged',
 			I.add_item('MotherboardBattery')
-		])
+		]), 'completed')
+		
 		$Sprite.frame = 0
+		$ChargingProgress.value = 0
 	else:
 		yield(E.run([
 			C.walk_to_clicked(),
@@ -54,16 +56,22 @@ func on_look() -> void:
 
 func on_item_used(item: InventoryItem) -> void:
 	if item.script_name == 'MotherboardBattery':
-		yield(E.run([
-			C.walk_to_clicked(),
-			I.remove_item(item.script_name),
-			_listen_battery_charging(),
-			'Player: This should charge the battery.',
-			'Player: ...and it will take just %d minutes.' %\
-			(Globals.BATTERY_CHARGING_TIME / 60)
-		]), 'completed')
-		
-		Globals.start_battery_charging()
+		if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+			E.run([
+				'Player: The battery is fully charged already.',
+				'Player: There is no point in charging it again.'
+			])
+		else:
+			yield(E.run([
+				C.walk_to_clicked(),
+				I.remove_item(item.script_name),
+				_listen_battery_charging(),
+				'Player: This should charge the battery.',
+				'Player: ...and it will take just %d minutes.' %\
+				(Globals.BATTERY_CHARGING_TIME / 60)
+			]), 'completed')
+			
+			Globals.start_battery_charging()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
