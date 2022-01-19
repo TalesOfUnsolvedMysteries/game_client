@@ -21,6 +21,7 @@ var codes := {
 
 var _current_code := ''
 var _matches := 0 setget _set_matches
+var _available_codes := []
 
 onready var _display: Label = find_node('Display')
 onready var _reset_bulbs: Sprite = find_node('ResetBulbs')
@@ -50,7 +51,10 @@ func appear() -> void:
 	if Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
 		_battery.hide()
 	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
-		_wait_reset()
+		if Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
+			_wait_card()
+		else:
+			_wait_reset()
 	
 	show()
 
@@ -77,7 +81,10 @@ remote func _net_close_motherboard():
 		_close_motherboard()
 
 
+# Hace que inicie el ingreso de códigos en secuencia para resetear la motherboard.
 func _wait_reset() -> void:
+	_available_codes = codes.keys()
+	
 	_pick_code()
 	
 	for b in _buttons.get_children():
@@ -85,7 +92,10 @@ func _wait_reset() -> void:
 
 
 func _pick_code() -> void:
-	_current_code = Utils.get_random_array_element(codes.keys())
+	randomize()
+	_available_codes.shuffle()
+	
+	_current_code = _available_codes.pop_front()
 	_display.text = _current_code.to_upper()
 
 
@@ -93,7 +103,7 @@ func _check_secuence(button: TextureButton) -> void:
 	if codes[_current_code].find(button.get_value()) > -1:
 		_matches += 1
 	else:
-		# El botón no corresponde al código. Resetear.
+		# El botón no corresponde al código -> Resetear.
 		yield(E.run([
 			'.',
 			A.play({
@@ -108,37 +118,62 @@ func _check_secuence(button: TextureButton) -> void:
 	
 	if _matches == codes[_current_code].length():
 		_reset_bulbs.frame += 1
-		
-		yield(E.run([
-			A.play({
-				cue_name = 'sfx_motherboard_success',
-				is_in_queue = true,
-				wait_audio_complete = true,
-			})
-		]), 'completed')
-		
 		self._matches = 0
 		
 		if _reset_bulbs.frame == 3:
+			# Se resetió la motherboard
+			Globals.set_state('EngineRoom-MOTHERBOARD_RESET', true)
+			
 			_display.text = 'RESET DONE'
-			# TODO: Reproducir un sonido para reforzar que ya se hizo la resetiada
-			#		de la motherboard.
+			_current_code = ''
+			
+			for b in _buttons.get_children():
+				(b as TextureButton).disconnect('pressed', self, '_check_secuence')
+			
+			yield(E.run([
+				A.play({
+					cue_name = 'sfx_motherboard_reset',
+					is_in_queue = true,
+					wait_audio_complete = true
+				}),
+				'Player: Looks like it is ready to read the card with the programm.',
+				'Player: Or at least that whats the instructions said.'
+			]), 'completed')
+			
+			_wait_card()
 		else:
+			yield(E.run([
+				A.play({
+					cue_name = 'sfx_motherboard_success',
+					is_in_queue = true,
+					wait_audio_complete = true,
+				})
+			]), 'completed')
+			
 			_pick_code()
-
-
-func _set_matches(value: int) -> void:
-	_matches = value
-	
-	for b in _buttons.get_children():
-		(b as TextureButton).pressed = false
 
 
 func _put_battery() -> void:
 	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		_battery.texture = battery_full
+		
+		Globals.set_state('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY', false)
 		_wait_reset()
 	else:
 		_battery.texture = battery_empty
 	
 	_battery.show()
+
+
+func _wait_card() -> void:
+	_display.text = 'INSERT CARD'
+	_reset_bulbs.frame = 3
+
+
+func _set_matches(value: int) -> void:
+	_matches = value
+	
+	yield(get_tree().create_timer(0.3), 'timeout')
+	
+	for b in _buttons.get_children():
+		(b as TextureButton).pressed = false

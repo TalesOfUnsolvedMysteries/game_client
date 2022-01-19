@@ -29,5 +29,6 @@ func added_to_inventory() -> void:
 		description = 'Motherboard battery empty'
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-# TODO: Poner aquí los métodos privados
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func is_full() -> bool:
+	return $Icon.texture == full

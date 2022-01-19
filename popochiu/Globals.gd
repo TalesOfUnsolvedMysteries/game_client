@@ -48,7 +48,7 @@ var bug_name := ''
 var bug_adn := ''
 sync var state := {}
 var server_file = "user://server.save"
-var battery_power := 0
+var battery_power := 0 setget _set_battery_power
 
 var _battery_charging_elapsed := 0
 
@@ -59,6 +59,10 @@ func _ready() -> void:
 		.set_description('Sets a global state')\
 		.add_argument('key', TYPE_STRING)\
 		.add_argument('value', TYPE_BOOL)\
+		.register()
+	
+	Console.add_command('charge_battery', self, '_dev_charge_battery')\
+		.set_description('Fully charges the battery for the elevator motherboard')\
 		.register()
 
 
@@ -111,24 +115,31 @@ func add_battery_power() -> void:
 	if not state.get('EngineRoom-CHARGING_BATTERY'): return
 	
 	_battery_charging_elapsed += 1
-	battery_power = _battery_charging_elapsed * 100 / BATTERY_CHARGING_TIME
-	
-	emit_signal('battery_charge_updated')
-	
-	if battery_power < 100:
-		add_battery_power()
-	else:
-		set_state('EngineRoom-CHARGING_BATTERY', false)
-		set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', true)
+	self.battery_power = _battery_charging_elapsed * 100 / BATTERY_CHARGING_TIME
 
 
 func stop_battery_charging() -> void:
-	set_state('EngineRoom-CHARGING_BATTERY', false)
-	
 	_battery_charging_elapsed = 0
-	battery_power = 0
+	self.battery_power = 0
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _dev_charge_battery() -> void:
-	pass
+	self.battery_power = 100
+
+
+func _set_battery_power(value: int) -> void:
+	battery_power = value
+	
+	if battery_power == 0:
+		set_state('EngineRoom-CHARGING_BATTERY', false)
+		set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', false)
+	else:
+		emit_signal('battery_charge_updated')
+	
+		if battery_power < 100:
+			add_battery_power()
+		else:
+			# Se cargó la batería
+			set_state('EngineRoom-CHARGING_BATTERY', false)
+			set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', true)

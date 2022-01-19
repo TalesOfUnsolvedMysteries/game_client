@@ -8,6 +8,9 @@ func _ready() -> void:
 	
 	if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
 		_listen_battery_charging(false)
+	elif not Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
+		$Sprite.frame = 0
+		$ChargingProgress.value = 0
 
 
 func _exit_tree() -> void:
@@ -19,6 +22,12 @@ func _exit_tree() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
+	if not Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
+		if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+			E.run(["Player: I don't need that anymore."])
+		
+		return
+	
 	if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
 		yield(E.run(['Player: Should I extract the battery?']), 'completed')
 		
