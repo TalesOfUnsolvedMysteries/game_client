@@ -64,6 +64,11 @@ func _ready() -> void:
 	Console.add_command('charge_battery', self, '_dev_charge_battery')\
 		.set_description('Fully charges the battery for the elevator motherboard')\
 		.register()
+	
+	Console.add_command('add_item', self, '_dev_add_item')\
+		.set_description('Adds an item to the inventory')\
+		.add_argument('script_name', TYPE_STRING)\
+		.register()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -126,6 +131,10 @@ func stop_battery_charging() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _dev_charge_battery() -> void:
 	self.battery_power = 100
+
+
+func _dev_add_item(script_name: String) -> void:
+	I.add_item(script_name, false)
 
 
 func _set_battery_power(value: int) -> void:

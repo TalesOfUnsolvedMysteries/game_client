@@ -2,7 +2,7 @@ extends 'res://popochiu/GraphicInterface/Popups/Common/GIClickable.gd'
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
-func _clicked() -> void:
+func on_interact() -> void:
 	if not Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		Globals.set_state('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY', true)
 		E.run([

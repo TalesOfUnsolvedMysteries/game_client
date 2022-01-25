@@ -25,6 +25,8 @@ var _available_codes := []
 
 onready var _display: Label = find_node('Display')
 onready var _reset_bulbs: Sprite = find_node('ResetBulbs')
+onready var _card_slot: TextureRect = find_node('CardSlot')
+onready var _card: TextureRect = find_node('Card')
 onready var _battery_slot: TextureRect = find_node('BatterySlot')
 onready var _battery: TextureRect = find_node('Battery')
 onready var _buttons: Control = find_node('Buttons')
@@ -37,12 +39,13 @@ func _ready() -> void:
 		_battery.texture = battery_full
 	else:
 		_battery.texture = battery_empty
-		_display.text = 'replace battery'
 	
 	connect('gui_input', self, '_check_close')
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
 	
+	_card_slot.connect('card_put', self, '_put_elevator_card')
+	_card.connect('removed', self, '_check_display_message')
 	_battery_slot.connect('battery_put', self, '_put_battery')
 
 
@@ -52,9 +55,16 @@ func appear() -> void:
 		_battery.hide()
 	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		if Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
-			_wait_card()
+			_reset_bulbs.frame = 3
 		else:
 			_wait_reset()
+	
+	if Globals.state.get('EngineRoom-MOTHERBOARD_WITH_CARD'):
+		_card.show()
+	else:
+		_card.hide()
+	
+	_check_display_message()
 	
 	show()
 
@@ -140,7 +150,7 @@ func _check_secuence(button: TextureButton) -> void:
 				'Player: Or at least that whats the instructions said.'
 			]), 'completed')
 			
-			_wait_card()
+			_check_display_message()
 		else:
 			yield(E.run([
 				A.play({
@@ -165,11 +175,6 @@ func _put_battery() -> void:
 	_battery.show()
 
 
-func _wait_card() -> void:
-	_display.text = 'INSERT CARD'
-	_reset_bulbs.frame = 3
-
-
 func _set_matches(value: int) -> void:
 	_matches = value
 	
@@ -177,3 +182,22 @@ func _set_matches(value: int) -> void:
 	
 	for b in _buttons.get_children():
 		(b as TextureButton).pressed = false
+
+
+func _put_elevator_card() -> void:
+	Globals.set_state('EngineRoom-MOTHERBOARD_WITH_CARD', true)
+	_card.show()
+	
+	_check_display_message()
+
+
+func _check_display_message() -> void:
+	if not Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		_display.text = 'replace battery'
+	
+	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL') \
+	and Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
+		_display.text = 'insert card'
+		
+		if Globals.state.get('EngineRoom-MOTHERBOARD_WITH_CARD'):
+			_display.text = 'elevator working'

@@ -43,19 +43,21 @@ onready var _am_groups := {
 }
 onready var _asp: AudioStreamPlayer = find_node('AudioStreamPlayer')
 onready var _am_search_files: Button = find_node('BtnSearchAudioFiles')
+onready var _am_delete_duplicates: Button = find_node('BtnDeleteDuplicates')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	audio_manager = load(AUDIO_MANAGER_SCENE).instance()
 	_am_search_files.icon = get_icon('Search', 'EditorIcons')
+	_am_delete_duplicates.icon = get_icon('Remove', 'EditorIcons')
+	
 	_am_search_files.connect('pressed', self, '_search_audio_files')
+	_am_delete_duplicates.connect('pressed', self, '_delete_duplicates')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func fill_data() -> void:
-	_read_audio_manager_cues()
-	
 	# Buscar archivos de audio sin AudioCue
 	search_audio_files()
 
@@ -63,6 +65,7 @@ func fill_data() -> void:
 func search_audio_files() -> void:
 	_created_audio_cues = 0
 	
+	_read_audio_manager_cues()
 	_read_directory(main_dock.fs.get_filesystem_path(SEARCH_PATH))
 	
 	if _created_audio_cues > 0:
@@ -273,6 +276,27 @@ func _create_audio_cue(
 func _audio_cue_deleted(file_path: String) -> void:
 	_audio_files_in_group.erase(file_path)
 	_create_audio_file_row(file_path)
+
+
+# Busca rutas repetidas en los distintos arreglos de cues en el AudioManager para
+# eliminar las que estén duplicadas.
+func _delete_duplicates() -> void:
+	for d in _am_groups:
+		var group: Dictionary = _am_groups[d]
+		var unique_cues := []
+		var elements_to_delete := []
+		
+		if not audio_manager[group.array].empty():
+			for m in audio_manager[group.array]:
+				if (m as AudioCue).audio.resource_path in unique_cues:
+					elements_to_delete.append(m)
+				else:
+					unique_cues.append((m as AudioCue).audio.resource_path)
+			
+			for m in elements_to_delete:
+				audio_manager[group.array].erase(m)
+	
+	save_audio_manager()
 
 
 func _set_main_dock(value: Panel) -> void:

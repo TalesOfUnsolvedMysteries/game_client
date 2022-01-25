@@ -178,7 +178,7 @@ _global_script_class_icons={
 
 config/name="The bug adventure show"
 config/description="A graphic adventure for the blockchain. A multi-game-jam-entry for the Game Off, AdvXJam 2021, Theta Hackathon Q3 2021 and GoGodotJam 2021."
-run/main_scene="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.tscn"
+run/main_scene="res://popochiu/Rooms/Lobby/RoomLobby.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -208,6 +208,10 @@ window/size/test_width=640
 window/size/test_height=360
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor]
+
+script_templates_search_path="res://addons/Popochiu/Engine/Templates"
 
 [editor_plugins]
 

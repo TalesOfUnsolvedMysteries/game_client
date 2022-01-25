@@ -54,34 +54,6 @@ func _unhandled_input(event):
 			if _is_pilot:
 				rpc_id(1, '_net_look')
 
-remote func _net_interact():
-	if NetworkManager.isServerWithPilot():
-		E.clicked = self
-		self._interact()
-
-remote func _net_look():
-	if NetworkManager.isServerWithPilot():
-		E.clicked = self
-		self._look()
-
-func _interact():
-	# TODO: Verificar si hay un elemento de inventario seleccionado
-	if I.active:
-		on_item_used(I.active)
-	else:
-		E.add_history({
-			action = 'Interacted with: %s' % description
-		})
-		on_interact()
-
-
-func _look():
-	if I.active: return
-	E.add_history({
-		action = 'Looked at: %s' % description
-	})
-	on_look()
-
 
 func _process(delta):
 	if Engine.editor_hint:
@@ -152,6 +124,36 @@ func _toggle_description(display: bool) -> void:
 			G.show_info('Use %s with %s' % [I.active.description, description])
 	else:
 		G.show_info()
+
+
+remote func _net_interact():
+	if NetworkManager.isServerWithPilot():
+		E.clicked = self
+		self._interact()
+
+
+func _interact():
+	if I.active:
+		on_item_used(I.active)
+	else:
+		E.add_history({
+			action = 'Interacted with: %s' % description
+		})
+		on_interact()
+
+
+remote func _net_look():
+	if NetworkManager.isServerWithPilot():
+		E.clicked = self
+		self._look()
+
+
+func _look():
+	if I.active: return
+	E.add_history({
+		action = 'Looked at: %s' % description
+	})
+	on_look()
 
 
 func _set_baseline(value: int) -> void:

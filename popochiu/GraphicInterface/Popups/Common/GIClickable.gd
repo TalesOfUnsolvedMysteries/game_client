@@ -11,23 +11,41 @@ func _ready() -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
-func _clicked() -> void:
+func on_interact() -> void:
+	pass
+
+
+func on_look() -> void:
+	pass
+
+
+func on_item_used(item: InventoryItem) -> void:
 	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _check_click(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
+	
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 	and mouse_event.pressed:
-		_clicked()
+		_interact()
+		
 		if NetworkManager.isPilot():
-			rpc_id(1, '_net_clicked')
+			rpc_id(1, '_net_interact')
 
 
-remote func _net_clicked():
+remote func _net_interact():
 	if NetworkManager.isServerWithPilot():
-		_clicked()
+		_interact()
+
+
+func _interact() -> void:
+	if not I.active:
+		# TODO: ¿Registrar esta acción en el historial?
+		on_interact()
+	else:
+		on_item_used(I.active)
 
 
 func _toggle_description(is_mouse_inside: bool) -> void:

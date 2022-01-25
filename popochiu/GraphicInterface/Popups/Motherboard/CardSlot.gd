@@ -1,11 +1,19 @@
 extends 'res://popochiu/GraphicInterface/Popups/Common/GIClickable.gd'
 
-signal battery_put
+signal card_put
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
+func on_interact() -> void:
+	pass
+
+
+func on_look() -> void:
+	pass
+
+
 func on_item_used(item: InventoryItem) -> void:
-	if item.script_name == 'MotherboardBattery':
+	if item.script_name == 'ElevatorCard':
 		I.remove_item(item.script_name, false)
 		# TODO: Reproducir un sonido de estar poniendo algo en un slot.
-		emit_signal('battery_put')
+		emit_signal('card_put')
