@@ -8,7 +8,7 @@ func on_interact() -> void:
 	Globals.set_state('EngineRoom-MOTHERBOARD_WITH_CARD', false)
 	
 	yield(E.run([
-		"Player: I'll take the elevator programm card.",
+		"Player: I'll take the elevator program card.",
 		I.add_item('ElevatorCard')
 	]), 'completed')
 	

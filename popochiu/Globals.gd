@@ -2,6 +2,7 @@ extends Node
 # Clase de uso transversal para todos los objetos del proyecto. Aquí se puede
 # guardar información que se usará en varias habitaciones, o cosas relacionadas
 # con el estado del juego.
+# ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 signal battery_charge_updated
 
@@ -46,7 +47,9 @@ const BATTERY_CHARGING_TIME := 1 * 60
 var main_mx_play = false
 var bug_name := ''
 var bug_adn := ''
-sync var state := {}
+sync var state := {
+	'Lobby-PC_POWERED': true
+}
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power
 

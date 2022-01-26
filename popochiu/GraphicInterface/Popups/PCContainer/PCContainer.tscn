@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sprites/pc_screen.png" type="Texture" id=2]
@@ -9,8 +9,28 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/Icon.gd" type="Script" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/PCContainer.gd" type="Script" id=8]
 [ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/IconElevator.gd" type="Script" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sprites/os_popup.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sprites/os_icon_warning.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/OSPopup.gd" type="Script" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 128, 54 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 12.0
+margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.254902, 0.364706, 0.4, 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 12
@@ -44,7 +64,6 @@ size_flags_horizontal = 0
 texture = ExtResource( 2 )
 
 [node name="Desktop" type="MarginContainer" parent="PanelContainer"]
-visible = false
 margin_right = 76.0
 margin_bottom = 155.0
 size_flags_horizontal = 0
@@ -90,7 +109,7 @@ margin_top = 36.0
 margin_right = 56.0
 margin_bottom = 68.0
 mouse_filter = 0
-script = ExtResource( 7 )
+script = ExtResource( 10 )
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/Desktop/Apps/Elevator"]
 margin_left = 21.0
@@ -143,9 +162,11 @@ align = 1
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
 margin_right = 223.0
 margin_bottom = 155.0
+mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Thanks" type="RichTextLabel" parent="PanelContainer/CenterContainer"]
+visible = false
 margin_left = 9.0
 margin_top = 32.0
 margin_right = 213.0
@@ -172,6 +193,92 @@ fit_content_height = true
 scroll_active = false
 __meta__ = {
 "_editor_description_": ""
+}
+
+[node name="OSPopup" type="PanelContainer" parent="PanelContainer/CenterContainer"]
+margin_left = 47.0
+margin_top = 50.0
+margin_right = 175.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 128, 54 )
+custom_styles/panel = SubResource( 4 )
+script = ExtResource( 13 )
+icon_warning = ExtResource( 12 )
+
+[node name="FrameContainer" type="PanelContainer" parent="PanelContainer/CenterContainer/OSPopup"]
+margin_right = 128.0
+margin_bottom = 54.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="ContentContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/OSPopup/FrameContainer"]
+margin_left = 4.0
+margin_top = 12.0
+margin_right = 124.0
+margin_bottom = 52.0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/OSPopup/FrameContainer/ContentContainer"]
+margin_top = 10.0
+margin_right = 120.0
+margin_bottom = 22.0
+size_flags_horizontal = 5
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/CenterContainer/OSPopup/FrameContainer/ContentContainer/HBoxContainer"]
+margin_top = 6.0
+margin_right = 23.0
+margin_bottom = 6.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.25
+stretch_mode = 4
+
+[node name="Message" type="Label" parent="PanelContainer/CenterContainer/OSPopup/FrameContainer/ContentContainer/HBoxContainer"]
+margin_left = 27.0
+margin_right = 120.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "message"
+autowrap = true
+
+[node name="BtnClose" type="Button" parent="PanelContainer/CenterContainer/OSPopup/FrameContainer/ContentContainer"]
+margin_left = 78.0
+margin_top = 26.0
+margin_right = 120.0
+margin_bottom = 40.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
+text = "ok"
+
+[node name="TitleContainer" type="MarginContainer" parent="PanelContainer/CenterContainer/OSPopup"]
+margin_right = 128.0
+margin_bottom = 11.0
+size_flags_vertical = 0
+custom_constants/margin_right = 4
+custom_constants/margin_top = -1
+custom_constants/margin_left = 4
+
+[node name="Title" type="Label" parent="PanelContainer/CenterContainer/OSPopup/TitleContainer"]
+margin_left = 4.0
+margin_top = -1.0
+margin_right = 35.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "title"
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="DateContainer" type="MarginContainer" parent="PanelContainer"]

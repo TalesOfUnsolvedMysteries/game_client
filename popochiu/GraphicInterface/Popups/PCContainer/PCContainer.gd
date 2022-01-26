@@ -1,17 +1,28 @@
 extends PanelContainer
+# ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+var _opened_app: Control = null
 
 onready var _thanks: RichTextLabel = find_node('Thanks')
+onready var _os_popup: PanelContainer = find_node('OSPopup')
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	connect('gui_input', self, '_check_close')
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
 	_thanks.connect('meta_clicked', self, '_on_meta_clicked')
+	_os_popup.connect('closed', self, '_notify_popup_close')
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func show_popup(type: String, message: String, origin: Control) -> void:
+	_opened_app = origin
+	_os_popup.show_popup(type, message)
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _check_close(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
@@ -21,6 +32,7 @@ func _check_close(e: InputEvent) -> void:
 			if NetworkManager.isPilot():
 				rpc_id(1, '_net_hide')
 
+
 remote func _net_hide():
 	if NetworkManager.isServerWithPilot():
 		hide()
@@ -28,3 +40,8 @@ remote func _net_hide():
 
 func _on_meta_clicked(meta) -> void:
 	OS.shell_open(str(meta))
+
+
+func _notify_popup_close() -> void:
+	if is_instance_valid(_opened_app):
+		_opened_app.on_popup_closed()

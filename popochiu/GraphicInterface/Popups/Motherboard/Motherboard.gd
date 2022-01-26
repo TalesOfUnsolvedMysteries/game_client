@@ -146,7 +146,7 @@ func _check_secuence(button: TextureButton) -> void:
 					is_in_queue = true,
 					wait_audio_complete = true
 				}),
-				'Player: Looks like it is ready to read the card with the programm.',
+				'Player: Looks like it is ready to read the card with the program.',
 				'Player: Or at least that whats the instructions said.'
 			]), 'completed')
 			

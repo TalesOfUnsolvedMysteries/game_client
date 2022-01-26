@@ -8,7 +8,7 @@ func on_interact() -> void:
 	or Globals.state.get('EngineRoom-MOTHERBOARD_WITH_CARD'):
 		E.run([
 			'Player: There is nothing in the lockers of interest.',
-			'Player: I already took the elevator programm card.'
+			'Player: I already took the elevator program card.'
 		])
 	else:
 		yield(E.run([
@@ -18,7 +18,7 @@ func on_interact() -> void:
 			#				metal y esculcando.
 			'Player: Well... the only thing that looks useful here is this card.',
 			I.add_item('ElevatorCard'),
-			'Player: Its label says: Elevator programm.'
+			'Player: Its label says: Elevator program.'
 		]), 'completed')
 		
 		Globals.set_state('Technician-CARD_TAKEN', true)
