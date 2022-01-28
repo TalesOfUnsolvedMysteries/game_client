@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/GraphicInterface.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/PopochiuTheme.tres" type="Theme" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://popochiu/GraphicInterface/InfoBar/InfoBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/Documents.tscn" type="PackedScene" id=10]
 [ext_resource path="res://popochiu/GraphicInterface/DisplayBox/DisplayBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ElevatorPanel/ElevatorPanel.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -27,6 +28,9 @@ layer = 10
 script = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ElevatorPanel" parent="." instance=ExtResource( 12 )]
+visible = false
 
 [node name="MainContainer" type="Control" parent="."]
 anchor_right = 1.0

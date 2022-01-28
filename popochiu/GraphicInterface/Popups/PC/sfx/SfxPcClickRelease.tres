@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioCue.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/sfx/sfx_pc_success.ogg" type="AudioStream" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sfx/sfx_pc_click_release.ogg" type="AudioStream" id=2]
 
 [resource]
-resource_name = "sfx_pc_success"
+resource_name = "sfx_pc_click_release"
 script = ExtResource( 1 )
 audio = ExtResource( 2 )
 loop = false

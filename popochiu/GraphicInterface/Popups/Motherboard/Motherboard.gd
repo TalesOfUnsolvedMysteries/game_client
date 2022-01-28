@@ -188,6 +188,9 @@ func _put_elevator_card() -> void:
 	Globals.set_state('EngineRoom-MOTHERBOARD_WITH_CARD', true)
 	_card.show()
 	
+	if Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
+		Globals.set_state('EngineRoom-ELEVATOR_WORKING', true)
+	
 	_check_display_message()
 
 

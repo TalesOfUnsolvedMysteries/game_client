@@ -13,7 +13,7 @@
 [ext_resource path="res://popochiu/Rooms/Lobby/Hotspots/HotspotEngineRoom.gd" type="Script" id=11]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=12]
 [ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PCContainer/PCContainer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/PC.tscn" type="PackedScene" id=14]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/PropEngineRoomDoor.gd" type="Script" id=15]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/engine_room_door.png" type="Texture" id=16]
 

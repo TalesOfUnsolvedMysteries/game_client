@@ -14,6 +14,7 @@ signal inventory_show_requested(time)
 signal inventory_shown
 signal history_opened
 signal documents_requested(data) # Un diccionario con la información por página
+signal elevator_panel_requested
 
 var blocked := false
 var waiting_click := false
@@ -51,9 +52,11 @@ func show_info(msg := '') -> void:
 	if NetworkManager.isPilot():
 		rpc_id(1, '_net_show_info', msg)
 
+
 remote func _net_show_info(msg):
 	if NetworkManager.isServerWithPilot():
 		emit_signal('show_info_requested', msg)
+
 
 func block() -> void:
 	Cursor.set_cursor(Cursor.Type.WAIT)
