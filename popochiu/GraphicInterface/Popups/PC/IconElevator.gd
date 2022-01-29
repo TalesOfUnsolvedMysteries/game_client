@@ -1,4 +1,4 @@
-extends 'res://popochiu/GraphicInterface/Popups/PCContainer/Icon.gd'
+extends 'res://popochiu/GraphicInterface/Popups/PC/Icon.gd'
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░

@@ -11,13 +11,13 @@ func _ready() -> void:
 	for b in _buttons.get_children():
 		b.connect('floor_selected', self, 'hide')
 	
-#	G.connect('elevator_panel_requested', self, '_open')
-	G.connect('elevator_panel_requested', self, 'show')
+	G.connect('elevator_panel_requested', self, '_open')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _open() -> void:
-#	for b in _buttons.get_children():
+	for b in _buttons.get_children():
+		b.set_pressed_no_signal(false)
 #		if b.go_to == E.current_room.script_name:
 #			b.set_pressed_no_signal(true)
 	

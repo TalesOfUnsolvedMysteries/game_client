@@ -168,7 +168,7 @@ dflt_walk_animation = "Bug"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PCContainer" parent="CanvasLayer" instance=ExtResource( 14 )]
+[node name="PC" parent="CanvasLayer" instance=ExtResource( 14 )]
 visible = false
 
 [editable path="Props/Painting"]

@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://popochiu/Rooms/SecondFloor/RoomSecondFloor.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/SecondFloor/Props/Bg/bg.png" type="Texture" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
-[ext_resource path="res://popochiu/Rooms/FirstFloor/Props/Bg/bg.png" type="Texture" id=4]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=6]
+[ext_resource path="res://popochiu/Rooms/SecondFloor/Hotspots/HotspotDoor201.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/Rooms/FirstFloor/Hotspots/HotspotElevator.gd" type="Script" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -189, 63, -158, 43, 152, 43, 186, 63, 185, 85, -187, 84 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
-outlines = [ PoolVector2Array( -189, 63, -158, 43, 152, 43, 186, 63, 185, 85, -187, 84 ) ]
+vertices = PoolVector2Array( -117, 43, -117, 39, -84, 40, 152, 43, 186, 63, 185, 85, -187, 84, 98, 41, 60, 39, 97, 39, -158, 43, -189, 63 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 4, 5, 6, 7 ), PoolIntArray( 2, 8, 9, 7, 6, 0 ), PoolIntArray( 10, 0, 6, 11 ) ]
+outlines = [ PoolVector2Array( -189, 63, -158, 43, -117, 43, -117, 39, -84, 40, 60, 39, 97, 39, 98, 41, 152, 43, 186, 63, 185, 85, -187, 84 ) ]
 
 [node name="RoomSecondFloor" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,13 +29,13 @@ description = "Bg"
 clickable = false
 cursor = 10
 script_name = "Bg"
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 
 [node name="Door201" type="Label" parent="Props/Bg"]
-margin_left = -142.0
-margin_top = -36.0
-margin_right = -121.0
-margin_bottom = -22.0
+margin_left = -110.0
+margin_top = -43.0
+margin_right = -89.0
+margin_bottom = -29.0
 custom_colors/font_color = Color( 1, 0.733333, 0.192157, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "201"
@@ -41,10 +44,10 @@ __meta__ = {
 }
 
 [node name="Door202" type="Label" parent="Props/Bg"]
-margin_left = 114.0
-margin_top = -35.0
-margin_right = 135.0
-margin_bottom = -21.0
+margin_left = 68.0
+margin_top = -39.0
+margin_right = 89.0
+margin_bottom = -25.0
 custom_colors/font_color = Color( 1, 0.733333, 0.192157, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "202"
@@ -53,6 +56,45 @@ __meta__ = {
 }
 
 [node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Door201" parent="Hotspots" instance=ExtResource( 4 )]
+position = Vector2( -94, 10 )
+script = ExtResource( 7 )
+description = "Door201"
+cursor = 1
+script_name = "Door201"
+
+[node name="CollisionPolygon2D" parent="Hotspots/Door201" index="0"]
+polygon = PoolVector2Array( -23, -27, -17, 2, -24, 29, 16, 29, 23, 6, 18, -25, -3, -36 )
+
+[node name="BaselineHelper" parent="Hotspots/Door201" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/Door201" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/Door201/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Elevator" parent="Hotspots" instance=ExtResource( 4 )]
+position = Vector2( -10, 11 )
+script = ExtResource( 8 )
+description = "Elevator"
+cursor = 1
+script_name = "Elevator"
+
+[node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]
+polygon = PoolVector2Array( -26, -27, -29, 28, 28, 28, 25, -27, -3, -37 )
 
 [node name="Regions" type="Node2D" parent="."]
 
@@ -69,3 +111,6 @@ navpoly = SubResource( 1 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 5 )]
 position = Vector2( 37, 48 )
+
+[editable path="Hotspots/Door201"]
+[editable path="Hotspots/Elevator"]

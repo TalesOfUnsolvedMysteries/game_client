@@ -1,7 +1,7 @@
 tool
 extends PopochiuRoom
 
-onready var pc: PanelContainer = find_node('PCContainer')
+onready var pc: PanelContainer = $CanvasLayer/PC
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
