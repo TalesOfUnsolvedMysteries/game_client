@@ -54,6 +54,7 @@ sync var state := {
 }
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power
+var elevator_used := false
 
 var _battery_charging_elapsed := 0
 

@@ -39,6 +39,7 @@ var _directory := Directory.new()
 var _is_first_install := false
 var _input_actions :=\
 preload('res://addons/Popochiu/Engine/Others/InputActions.gd')
+var _shown_helpers := []
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -90,6 +91,12 @@ func _enter_tree() -> void:
 		connect('scene_closed', main_dock, 'scene_closed')
 		
 		main_dock.scene_changed(_editor_interface.get_edited_scene_root())
+
+
+func _ready() -> void:
+	_editor_interface.get_selection().connect(
+		'selection_changed', self, '_check_nodes'
+	)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -290,3 +297,21 @@ func _fix_dependency(dependency, directory, resource_path):
 func _on_sources_changed(exist: bool) -> void:
 	if Engine.editor_hint and is_instance_valid(main_dock):
 		main_dock.search_audio_files()
+
+
+# Toggles Clickable helpers in order to show walk-to-point, baseline and dialog
+# position (PopochiuCharacter) only when a node of that type is selected in the
+# scene tree.
+func _check_nodes() -> void:
+	for n in _shown_helpers:
+		n.hide_helpers()
+	
+	_shown_helpers.clear()
+	
+	for n in _editor_interface.get_selection().get_selected_nodes():
+		if n is Clickable:
+			n.show_helpers()
+			_shown_helpers.append(n)
+		elif n.get_parent() is Clickable:
+			n.get_parent().show_helpers()
+			_shown_helpers.append(n.get_parent())

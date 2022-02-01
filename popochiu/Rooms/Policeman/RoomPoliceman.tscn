@@ -52,9 +52,11 @@ texture = ExtResource( 10 )
 polygon = PoolVector2Array( -7, -16, -2, -21, 9, -19, 9, -12, 5, -6, -7, -8 )
 
 [node name="BaselineHelper" parent="Props/MusicBox" index="1"]
+visible = false
 position = Vector2( 0, 16 )
 
 [node name="WalkToHelper" parent="Props/MusicBox" index="2"]
+visible = false
 position = Vector2( -9, 23 )
 
 [node name="Sprite" parent="Props/MusicBox" index="3"]
@@ -74,9 +76,11 @@ texture = ExtResource( 12 )
 polygon = PoolVector2Array( -3, -7, 9, -6, 9, 1, 5, 7, -10, 6, -8, -5 )
 
 [node name="BaselineHelper" parent="Props/MetalBox" index="1"]
+visible = false
 position = Vector2( 0, 1 )
 
 [node name="WalkToHelper" parent="Props/MetalBox" index="2"]
+visible = false
 position = Vector2( -4, 12 )
 
 [node name="Sprite" parent="Props/MetalBox" index="3"]
@@ -96,9 +100,11 @@ texture = ExtResource( 11 )
 polygon = PoolVector2Array( -25, -13, 12, -20, 18, -19, 28, -8, 25, 13, -13, 19, -23, 10 )
 
 [node name="BaselineHelper" parent="Props/Keyboard" index="1"]
+visible = false
 position = Vector2( 0, 13 )
 
 [node name="WalkToHelper" parent="Props/Keyboard" index="2"]
+visible = false
 position = Vector2( 12, 20 )
 
 [node name="Sprite" parent="Props/Keyboard" index="3"]
@@ -118,9 +124,11 @@ texture = ExtResource( 2 )
 polygon = PoolVector2Array( -7, 13, 11, 32, -22, 30 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="1"]
+visible = false
 position = Vector2( 0, 36 )
 
 [node name="WalkToHelper" parent="Props/Exit" index="2"]
+visible = false
 position = Vector2( 14, 9 )
 
 [node name="Sprite" parent="Props/Exit" index="3"]
@@ -140,9 +148,11 @@ texture = ExtResource( 13 )
 polygon = PoolVector2Array( -14, -13, 9, -15, 13, 12, -10, 15 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="1"]
+visible = false
 position = Vector2( 0, -90 )
 
 [node name="WalkToHelper" parent="Props/Painting" index="2"]
+visible = false
 position = Vector2( 4, 42 )
 
 [node name="Sprite" parent="Props/Painting" index="3"]

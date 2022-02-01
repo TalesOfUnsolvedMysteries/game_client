@@ -32,6 +32,8 @@ func _ready():
 	if not Engine.editor_hint:
 		remove_child($BaselineHelper)
 		remove_child($WalkToHelper)
+	else:
+		hide_helpers()
 	
 	set_process_unhandled_input(false)
 	_translate()
@@ -104,6 +106,17 @@ func get_description() -> String:
 			description = name
 		return description
 	return E.get_text(description)
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func hide_helpers() -> void:
+	$BaselineHelper.hide()
+	$WalkToHelper.hide()
+
+
+func show_helpers() -> void:
+	$BaselineHelper.show()
+	$WalkToHelper.show()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░

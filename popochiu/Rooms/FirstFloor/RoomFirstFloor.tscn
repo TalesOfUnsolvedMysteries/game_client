@@ -81,7 +81,11 @@ script_name = "Door101"
 [node name="CollisionPolygon2D" parent="Hotspots/Door101" index="0"]
 polygon = PoolVector2Array( -18, -33, -20, 25, 16, 25, 18, -29 )
 
+[node name="BaselineHelper" parent="Hotspots/Door101" index="1"]
+visible = false
+
 [node name="WalkToHelper" parent="Hotspots/Door101" index="2"]
+visible = false
 position = Vector2( -1, 31 )
 
 [node name="Door102" parent="Hotspots" instance=ExtResource( 7 )]
@@ -95,7 +99,11 @@ script_name = "Door102"
 [node name="CollisionPolygon2D" parent="Hotspots/Door102" index="0"]
 polygon = PoolVector2Array( -22, -28, -20, 24, 20, 24, 17, -28, -1, -32 )
 
+[node name="BaselineHelper" parent="Hotspots/Door102" index="1"]
+visible = false
+
 [node name="WalkToHelper" parent="Hotspots/Door102" index="2"]
+visible = false
 position = Vector2( 2, 30 )
 
 [node name="Lobby" parent="Hotspots" instance=ExtResource( 7 )]
@@ -108,15 +116,29 @@ script_name = "Lobby"
 [node name="CollisionPolygon2D" parent="Hotspots/Lobby" index="0"]
 polygon = PoolVector2Array( -26, -5, -22, 28, 25, 28, 21, -24, -20, -31 )
 
+[node name="BaselineHelper" parent="Hotspots/Lobby" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/Lobby" index="2"]
+visible = false
+
 [node name="Elevator" parent="Hotspots" instance=ExtResource( 7 )]
 position = Vector2( -38, 10 )
 script = ExtResource( 2 )
 description = "Elevator"
+walk_to_point = Vector2( -2, 35 )
 cursor = 1
 script_name = "Elevator"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]
 polygon = PoolVector2Array( -26, -27, -29, 28, 28, 28, 25, -27, -3, -37 )
+
+[node name="BaselineHelper" parent="Hotspots/Elevator" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/Elevator" index="2"]
+visible = false
+position = Vector2( -2, 35 )
 
 [node name="Regions" type="Node2D" parent="."]
 

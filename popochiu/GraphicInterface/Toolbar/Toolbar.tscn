@@ -1,8 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://popochiu/GraphicInterface/Toolbar/ToolbarButton.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/sprites/btn_power.png" type="Texture" id=2]
-[ext_resource path="res://popochiu/GraphicInterface/Toolbar/sprites/btn_epitaphs.png" type="Texture" id=3]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/sprites/btn_dialog_speed_01.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/Toolbar.gd" type="Script" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Toolbar/sprites/btn_dialog_speed_02.png" type="Texture" id=6]
@@ -128,9 +126,9 @@ margin_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 custom_constants/hseparation = 0
-columns = 3
+columns = 2
 
 [node name="BtnSettings" type="TextureButton" parent="Panel/Grid"]
 margin_right = 16.0
@@ -140,24 +138,15 @@ script = ExtResource( 17 )
 cursor = 10
 settings_path = NodePath("../../../SettingsMask/Settings")
 
-[node name="BtnEpitaphs" type="TextureButton" parent="Panel/Grid"]
-margin_left = 16.0
-margin_right = 32.0
-margin_bottom = 16.0
-texture_normal = ExtResource( 3 )
-script = ExtResource( 1 )
-description = "Epitaphs"
-script_name = "epitaphs"
-cursor = 10
-
 [node name="LifeTime" type="Label" parent="Panel/Grid"]
-margin_left = 32.0
+margin_left = 16.0
 margin_right = 64.0
 margin_bottom = 16.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 16 )
 text = "xx:xx"
-align = 1
+align = 2
 valign = 3
 script = ExtResource( 20 )
 

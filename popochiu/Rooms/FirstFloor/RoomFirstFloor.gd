@@ -15,6 +15,9 @@ func on_room_entered() -> void:
 		'Technician':
 			C.player.position = get_hotspot('Door102').walk_point
 			A.play({cue_name = 'sfx_door_close',is_in_queue = false})
+		'SecondFloor', 'ThirdFloor', 'Penthouse':
+			C.player.position = get_hotspot('Elevator').walk_point
+			A.play({cue_name = 'sfx_elevator_beep',is_in_queue = false})
 
 
 func on_room_transition_finished() -> void:

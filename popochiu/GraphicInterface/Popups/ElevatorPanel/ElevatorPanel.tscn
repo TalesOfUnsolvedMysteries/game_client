@@ -18,13 +18,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Overlay" type="TextureRect" parent="."]
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Overlay" type="TextureButton" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = ExtResource( 6 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_left = 0.5
