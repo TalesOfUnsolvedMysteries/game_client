@@ -1,0 +1,325 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Painting/PropPainting.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Bg/bg.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Painting/painting.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Diplomas/PropDiplomas.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/KillertronPlatform/PropKillertronPlatform.gd" type="Script" id=8]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Diplomas/diplomas.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/KillertronPlatform/killertron_platform.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Killertron/PropKillertron.gd" type="Script" id=11]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Killertron/killertron.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/KillertronPower/PropKillertronPower.gd" type="Script" id=13]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/KillertronPower/killertron_power.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Desk/desk.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Shelf/shelf.png" type="Texture" id=16]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Documents/PropDocuments.gd" type="Script" id=17]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Documents/documents.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/doctor_pc.png" type="Texture" id=19]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/PropDoctorPC.gd" type="Script" id=20]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Fg/fg.png" type="Texture" id=21]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=22]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/PropExit.gd" type="Script" id=23]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/exit.png" type="Texture" id=24]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 3, 5, 6, 7, 4 ), PoolIntArray( 0, 4, 8, 9 ) ]
+outlines = [ PoolVector2Array( -103, 32, -38, 75, 81, 64, 107, 22, 67, 18, 66, 8, 23, 7, 19, 15, -72, 7, -94, 22 ) ]
+
+[node name="RoomDoctor" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "Doctor"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
+description = "Bg"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 5 )
+
+[node name="Painting" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 92, -20 )
+script = ExtResource( 4 )
+description = "Painting"
+baseline = -90
+cursor = 1
+script_name = "Painting"
+texture = ExtResource( 6 )
+
+[node name="BaselineHelper" parent="Props/Painting" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/Painting" index="2"]
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="3"]
+polygon = PoolVector2Array( -10, -18, 14, -14, 12, 16, -13, 17 )
+
+[node name="Diplomas" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 5, -57 )
+script = ExtResource( 7 )
+description = "Diplomas"
+baseline = -90
+cursor = 1
+script_name = "Diplomas"
+texture = ExtResource( 9 )
+
+[node name="KillertronPower" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -46, -22 )
+script = ExtResource( 13 )
+description = "Another device"
+baseline = -90
+cursor = 1
+script_name = "KillertronPower"
+texture = ExtResource( 14 )
+
+[node name="BaselineHelper" parent="Props/KillertronPower" index="0"]
+visible = false
+position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/KillertronPower" index="1"]
+visible = false
+
+[node name="Sprite" parent="Props/KillertronPower" index="2"]
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" parent="Props/KillertronPower" index="3"]
+polygon = PoolVector2Array( -21, -19, -11, -27, 13, -29, 23, 14, 7, 29, -23, 26 )
+
+[node name="Killertron" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -75, -28 )
+script = ExtResource( 11 )
+description = "Device"
+baseline = 40
+cursor = 1
+script_name = "Killertron"
+texture = ExtResource( 12 )
+
+[node name="BaselineHelper" parent="Props/Killertron" index="0"]
+visible = false
+position = Vector2( 0, 40 )
+
+[node name="WalkToHelper" parent="Props/Killertron" index="1"]
+visible = false
+
+[node name="Sprite" parent="Props/Killertron" index="2"]
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Killertron" index="3"]
+polygon = PoolVector2Array( -22, -42, -16, -48, -3, -52, 9, -47, 15, -37, 15, -32, 19, -31, 24, -25, 21, -17, 22, -9, 18, -6, 17, 0, 16, 0, 16, -6, 13, -7, 11, -10, 11, -18, 10, -20, 3, -15, -10, -13, -23, -24 )
+
+[node name="KillertronPlatform" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -59, 21 )
+script = ExtResource( 8 )
+description = "Platform"
+baseline = -6
+cursor = 1
+script_name = "KillertronPlatform"
+texture = ExtResource( 10 )
+
+[node name="BaselineHelper" parent="Props/KillertronPlatform" index="0"]
+visible = false
+position = Vector2( 0, -6 )
+
+[node name="WalkToHelper" parent="Props/KillertronPlatform" index="1"]
+visible = false
+
+[node name="Sprite" parent="Props/KillertronPlatform" index="2"]
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/KillertronPlatform" index="3"]
+polygon = PoolVector2Array( -11, -10, 24, -8, 17, 10, -22, 2 )
+
+[node name="Desk" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -2, -11 )
+description = "Desk"
+clickable = false
+cursor = 10
+script_name = "Desk"
+texture = ExtResource( 15 )
+
+[node name="BaselineHelper" parent="Props/Desk" index="0"]
+visible = false
+
+[node name="WalkToHelper" parent="Props/Desk" index="1"]
+visible = false
+
+[node name="Sprite" parent="Props/Desk" index="2"]
+texture = ExtResource( 15 )
+
+[node name="CollisionPolygon2D" parent="Props/Desk" index="3"]
+visible = false
+
+[node name="Shelf" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 46, -6 )
+description = "Shelf"
+clickable = false
+cursor = 10
+script_name = "Shelf"
+texture = ExtResource( 16 )
+
+[node name="BaselineHelper" parent="Props/Shelf" index="0"]
+visible = false
+
+[node name="WalkToHelper" parent="Props/Shelf" index="1"]
+visible = false
+
+[node name="Sprite" parent="Props/Shelf" index="2"]
+texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" parent="Props/Shelf" index="3"]
+visible = false
+
+[node name="Documents" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 46, -10 )
+script = ExtResource( 17 )
+description = "Documents"
+cursor = 1
+script_name = "Documents"
+texture = ExtResource( 18 )
+
+[node name="BaselineHelper" parent="Props/Documents" index="0"]
+visible = false
+
+[node name="WalkToHelper" parent="Props/Documents" index="1"]
+visible = false
+
+[node name="Sprite" parent="Props/Documents" index="2"]
+texture = ExtResource( 18 )
+
+[node name="CollisionPolygon2D" parent="Props/Documents" index="3"]
+polygon = PoolVector2Array( -10, -12, 13, -10, 10, -3, -13, -5 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Props/Documents"]
+polygon = PoolVector2Array( -8, 9, -4, 4, 8, 5, 8, 8, 4, 12, -3, 12, -8, 11 )
+
+[node name="DoctorPC" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -1, -34 )
+script = ExtResource( 20 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "PC"
+cursor = 1
+script_name = "DoctorPC"
+texture = ExtResource( 19 )
+
+[node name="BaselineHelper" parent="Props/DoctorPC" index="0"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/DoctorPC" index="1"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/DoctorPC/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/DoctorPC" index="2"]
+texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/DoctorPC" index="3"]
+polygon = PoolVector2Array( -22, -14, 26, -14, 28, 4, 19, 15, 5, 14, -27, 14, -16, 5, -24, 4 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 105, 23 )
+script = ExtResource( 23 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "To second floor"
+baseline = 6
+cursor = 1
+script_name = "Exit"
+always_on_top = true
+texture = ExtResource( 24 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
+visible = false
+position = Vector2( 0, 6 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/Exit" index="2"]
+texture = ExtResource( 24 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( 5, 9, 27, 28, -10, 36 )
+
+[node name="Fg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Fg"
+clickable = false
+baseline = 90
+cursor = 10
+script_name = "Fg"
+always_on_top = true
+texture = ExtResource( 21 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 22 )]
+position = Vector2( 89, 40 )
+
+[editable path="Props/Painting"]
+[editable path="Props/KillertronPower"]
+[editable path="Props/Killertron"]
+[editable path="Props/KillertronPlatform"]
+[editable path="Props/Desk"]
+[editable path="Props/Shelf"]
+[editable path="Props/Documents"]
+[editable path="Props/DoctorPC"]
+[editable path="Props/Exit"]

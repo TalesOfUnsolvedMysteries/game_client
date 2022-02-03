@@ -65,19 +65,19 @@ cursor = 1
 script_name = "Bed"
 texture = ExtResource( 8 )
 
-[node name="CollisionPolygon2D" parent="Props/Bed" index="0"]
-polygon = PoolVector2Array( 12, -8, 16, -23, 29, -19, 38, -7, 36, 23, -31, 24, -38, 16, -37, -4 )
-
-[node name="BaselineHelper" parent="Props/Bed" index="1"]
+[node name="BaselineHelper" parent="Props/Bed" index="0"]
 visible = false
 position = Vector2( 0, 17 )
 
-[node name="WalkToHelper" parent="Props/Bed" index="2"]
+[node name="WalkToHelper" parent="Props/Bed" index="1"]
 visible = false
 position = Vector2( 12, 30 )
 
-[node name="Sprite" parent="Props/Bed" index="3"]
+[node name="Sprite" parent="Props/Bed" index="2"]
 texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" parent="Props/Bed" index="3"]
+polygon = PoolVector2Array( 12, -8, 16, -23, 29, -19, 38, -7, 36, 23, -31, 24, -38, 16, -37, -4 )
 
 [node name="Table" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -71, 15 )
@@ -107,19 +107,19 @@ cursor = 1
 script_name = "Photos"
 texture = ExtResource( 12 )
 
-[node name="CollisionPolygon2D" parent="Props/Photos" index="0"]
-polygon = PoolVector2Array( -16, -10, 7, -16, 16, -12, 17, -2, -6, 15, -17, 15 )
-
-[node name="BaselineHelper" parent="Props/Photos" index="1"]
+[node name="BaselineHelper" parent="Props/Photos" index="0"]
 visible = false
 position = Vector2( 0, -90 )
 
-[node name="WalkToHelper" parent="Props/Photos" index="2"]
+[node name="WalkToHelper" parent="Props/Photos" index="1"]
 visible = false
 position = Vector2( 27, 47 )
 
-[node name="Sprite" parent="Props/Photos" index="3"]
+[node name="Sprite" parent="Props/Photos" index="2"]
 texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Photos" index="3"]
+polygon = PoolVector2Array( -16, -10, 7, -16, 16, -12, 17, -2, -6, 15, -17, 15 )
 
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -32, -39 )
@@ -130,18 +130,18 @@ cursor = 1
 script_name = "Painting"
 texture = ExtResource( 14 )
 
-[node name="CollisionPolygon2D" parent="Props/Painting" index="0"]
-polygon = PoolVector2Array( -14, -16, 12, -17, 14, 16, -13, 15 )
-
-[node name="BaselineHelper" parent="Props/Painting" index="1"]
+[node name="BaselineHelper" parent="Props/Painting" index="0"]
 visible = false
 
-[node name="WalkToHelper" parent="Props/Painting" index="2"]
+[node name="WalkToHelper" parent="Props/Painting" index="1"]
 visible = false
 position = Vector2( -2, 50 )
 
-[node name="Sprite" parent="Props/Painting" index="3"]
+[node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="3"]
+polygon = PoolVector2Array( -14, -16, 12, -17, 14, 16, -13, 15 )
 
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -68, 45 )
@@ -154,19 +154,19 @@ script_name = "Exit"
 always_on_top = true
 texture = ExtResource( 7 )
 
-[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
-polygon = PoolVector2Array( 20, 24, -11, 37, -15, 18 )
-
-[node name="BaselineHelper" parent="Props/Exit" index="1"]
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
 visible = false
 position = Vector2( 0, 36 )
 
-[node name="WalkToHelper" parent="Props/Exit" index="2"]
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
 visible = false
 position = Vector2( 5, 10 )
 
-[node name="Sprite" parent="Props/Exit" index="3"]
+[node name="Sprite" parent="Props/Exit" index="2"]
 texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( 20, 24, -11, 37, -15, 18 )
 
 [node name="KeyEngineRoom" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 4, -39 )
@@ -176,19 +176,19 @@ cursor = 1
 script_name = "KeyEngineRoom"
 texture = ExtResource( 17 )
 
-[node name="CollisionPolygon2D" parent="Props/KeyEngineRoom" index="0"]
-polygon = PoolVector2Array( -3, -7, 3, -7, 2, 6, -1, 6 )
-
-[node name="BaselineHelper" parent="Props/KeyEngineRoom" index="1"]
+[node name="BaselineHelper" parent="Props/KeyEngineRoom" index="0"]
 visible = false
 
-[node name="WalkToHelper" parent="Props/KeyEngineRoom" index="2"]
+[node name="WalkToHelper" parent="Props/KeyEngineRoom" index="1"]
 visible = false
 
-[node name="Sprite" parent="Props/KeyEngineRoom" index="3"]
+[node name="Sprite" parent="Props/KeyEngineRoom" index="2"]
 texture = ExtResource( 17 )
 hframes = 2
 frame = 1
+
+[node name="CollisionPolygon2D" parent="Props/KeyEngineRoom" index="3"]
+polygon = PoolVector2Array( -3, -7, 3, -7, 2, 6, -1, 6 )
 
 [node name="Key102" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 15, -48 )
@@ -198,19 +198,19 @@ cursor = 1
 script_name = "Key102"
 texture = ExtResource( 17 )
 
-[node name="CollisionPolygon2D" parent="Props/Key102" index="0"]
-polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
-
-[node name="BaselineHelper" parent="Props/Key102" index="1"]
+[node name="BaselineHelper" parent="Props/Key102" index="0"]
 visible = false
 
-[node name="WalkToHelper" parent="Props/Key102" index="2"]
+[node name="WalkToHelper" parent="Props/Key102" index="1"]
 visible = false
 
-[node name="Sprite" parent="Props/Key102" index="3"]
+[node name="Sprite" parent="Props/Key102" index="2"]
 texture = ExtResource( 17 )
 hframes = 2
 frame = 1
+
+[node name="CollisionPolygon2D" parent="Props/Key102" index="3"]
+polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
 
 [node name="Jigsaw" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -71, 4 )
@@ -222,19 +222,19 @@ cursor = 1
 script_name = "Jigsaw"
 texture = ExtResource( 19 )
 
-[node name="CollisionPolygon2D" parent="Props/Jigsaw" index="0"]
-polygon = PoolVector2Array( -2, -5, 4, -4, 6, 1, 2, 4, -3, 3, -6, 0 )
-
-[node name="BaselineHelper" parent="Props/Jigsaw" index="1"]
+[node name="BaselineHelper" parent="Props/Jigsaw" index="0"]
 visible = false
 position = Vector2( 0, 18 )
 
-[node name="WalkToHelper" parent="Props/Jigsaw" index="2"]
+[node name="WalkToHelper" parent="Props/Jigsaw" index="1"]
 visible = false
 position = Vector2( 13, 30 )
 
-[node name="Sprite" parent="Props/Jigsaw" index="3"]
+[node name="Sprite" parent="Props/Jigsaw" index="2"]
 texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/Jigsaw" index="3"]
+polygon = PoolVector2Array( -2, -5, 4, -4, 6, 1, 2, 4, -3, 3, -6, 0 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 

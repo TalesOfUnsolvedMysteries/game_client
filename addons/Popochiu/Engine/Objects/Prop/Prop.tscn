@@ -8,14 +8,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
-
 [node name="BaselineHelper" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( -10000, 0, 10000, 0 )
 width = 1.0
 
 [node name="WalkToHelper" type="Position2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_group_": true
 }
@@ -31,3 +30,6 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )

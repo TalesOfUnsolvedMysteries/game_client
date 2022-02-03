@@ -11,6 +11,12 @@ export var parallax_alignment := Vector2.ZERO
 onready var _sprite: Sprite = $Sprite
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
+func _ready() -> void:
+	if not clickable:
+		$CollisionPolygon2D.hide()
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func on_interact() -> void:
 	pass
