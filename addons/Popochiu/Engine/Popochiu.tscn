@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://popochiu/TransitionLayer/TransitionLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/GraphicInterface.tscn" type="PackedScene" id=2]
@@ -36,10 +36,11 @@
 [ext_resource path="res://popochiu/InventoryItems/ElevatorCard/InventoryElevatorCard.tres" type="Resource" id=34]
 [ext_resource path="res://popochiu/Rooms/SecondFloor/RoomSecondFloor.tres" type="Resource" id=35]
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.tres" type="Resource" id=36]
+[ext_resource path="res://popochiu/Rooms/Writer/RoomWriter.tres" type="Resource" id=37]
 
 [node name="Popochiu" type="Node"]
 script = ExtResource( 7 )
-rooms = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 36 ) ]
+rooms = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ]
 characters = [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 23 ) ]
 inventory_items = [ ExtResource( 24 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 34 ) ]
 dialogs = [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ) ]

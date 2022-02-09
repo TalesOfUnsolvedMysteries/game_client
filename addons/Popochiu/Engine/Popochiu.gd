@@ -97,9 +97,11 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func wait(time := 1.0, is_in_queue := true) -> void:
 	if is_in_queue: yield()
+	
 	if cutscene_skipped:
 		yield(get_tree(), 'idle_frame')
 		return
+	
 	yield(get_tree().create_timer(time), 'timeout')
 
 

@@ -4,6 +4,7 @@ extends Sprite
 func _ready():
 	pass
 
+
 func set_flip_h(new_value):
 	var change = $Body.flip_h != new_value
 	if !change: return
@@ -14,4 +15,3 @@ func set_flip_h(new_value):
 	$Head/Eyes.flip_h = new_value
 	$Legs.flip_h = new_value
 	$Legs/Shoes.flip_h = new_value
-

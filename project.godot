@@ -178,7 +178,7 @@ _global_script_class_icons={
 
 config/name="The bug adventure show"
 config/description="A graphic adventure for the blockchain. A multi-game-jam-entry for the Game Off, AdvXJam 2021, Theta Hackathon Q3 2021 and GoGodotJam 2021."
-run/main_scene="res://popochiu/Rooms/FirstFloor/RoomFirstFloor.tscn"
+run/main_scene="res://popochiu/Rooms/Writer/RoomWriter.tscn"
 config/icon="res://icon.png"
 
 [autoload]

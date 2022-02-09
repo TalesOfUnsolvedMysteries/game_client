@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
-[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Painting/PropPainting.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Bg/bg.png" type="Texture" id=5]
@@ -85,11 +84,7 @@ script_name = "KillertronPower"
 texture = ExtResource( 14 )
 
 [node name="BaselineHelper" parent="Props/KillertronPower" index="0"]
-visible = false
 position = Vector2( 0, -90 )
-
-[node name="WalkToHelper" parent="Props/KillertronPower" index="1"]
-visible = false
 
 [node name="Sprite" parent="Props/KillertronPower" index="2"]
 texture = ExtResource( 14 )
@@ -107,11 +102,7 @@ script_name = "Killertron"
 texture = ExtResource( 12 )
 
 [node name="BaselineHelper" parent="Props/Killertron" index="0"]
-visible = false
 position = Vector2( 0, 40 )
-
-[node name="WalkToHelper" parent="Props/Killertron" index="1"]
-visible = false
 
 [node name="Sprite" parent="Props/Killertron" index="2"]
 texture = ExtResource( 12 )
@@ -129,11 +120,7 @@ script_name = "KillertronPlatform"
 texture = ExtResource( 10 )
 
 [node name="BaselineHelper" parent="Props/KillertronPlatform" index="0"]
-visible = false
 position = Vector2( 0, -6 )
-
-[node name="WalkToHelper" parent="Props/KillertronPlatform" index="1"]
-visible = false
 
 [node name="Sprite" parent="Props/KillertronPlatform" index="2"]
 texture = ExtResource( 10 )
@@ -149,12 +136,6 @@ cursor = 10
 script_name = "Desk"
 texture = ExtResource( 15 )
 
-[node name="BaselineHelper" parent="Props/Desk" index="0"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/Desk" index="1"]
-visible = false
-
 [node name="Sprite" parent="Props/Desk" index="2"]
 texture = ExtResource( 15 )
 
@@ -168,12 +149,6 @@ clickable = false
 cursor = 10
 script_name = "Shelf"
 texture = ExtResource( 16 )
-
-[node name="BaselineHelper" parent="Props/Shelf" index="0"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/Shelf" index="1"]
-visible = false
 
 [node name="Sprite" parent="Props/Shelf" index="2"]
 texture = ExtResource( 16 )
@@ -189,12 +164,6 @@ cursor = 1
 script_name = "Documents"
 texture = ExtResource( 18 )
 
-[node name="BaselineHelper" parent="Props/Documents" index="0"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/Documents" index="1"]
-visible = false
-
 [node name="Sprite" parent="Props/Documents" index="2"]
 texture = ExtResource( 18 )
 
@@ -207,34 +176,10 @@ polygon = PoolVector2Array( -8, 9, -4, 4, 8, 5, 8, 8, 4, 12, -3, 12, -8, 11 )
 [node name="DoctorPC" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -1, -34 )
 script = ExtResource( 20 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "PC"
 cursor = 1
 script_name = "DoctorPC"
 texture = ExtResource( 19 )
-
-[node name="BaselineHelper" parent="Props/DoctorPC" index="0"]
-visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Props/DoctorPC" index="1"]
-visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/DoctorPC/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/DoctorPC" index="2"]
 texture = ExtResource( 19 )
@@ -245,9 +190,6 @@ polygon = PoolVector2Array( -22, -14, 26, -14, 28, 4, 19, 15, 5, 14, -27, 14, -1
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 105, 23 )
 script = ExtResource( 23 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "To second floor"
 baseline = 6
 cursor = 1
@@ -256,26 +198,7 @@ always_on_top = true
 texture = ExtResource( 24 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
-visible = false
 position = Vector2( 0, 6 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Props/Exit" index="1"]
-visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Exit" index="2"]
 texture = ExtResource( 24 )
@@ -283,11 +206,7 @@ texture = ExtResource( 24 )
 [node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
 polygon = PoolVector2Array( 5, 9, 27, 28, -10, 36 )
 
-[node name="Fg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Fg" parent="Props" instance=ExtResource( 3 )]
 description = "Fg"
 clickable = false
 baseline = 90

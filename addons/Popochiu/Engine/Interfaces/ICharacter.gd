@@ -46,6 +46,7 @@ func player_walk_to(position: Vector2, is_in_queue := true) -> void:
 	if is_in_queue: yield()
 	yield(player.walk(position, false), 'completed')
 
+
 func walk_to_clicked(is_in_queue := true) -> void:
 	if is_in_queue: yield()
 	yield(
@@ -74,6 +75,16 @@ func get_character(script_name: String) -> PopochiuCharacter:
 		return new_character
 
 	return null
+
+
+func face_clicked(is_in_queue := true) -> void:
+	if is_in_queue: yield()
+	
+	if E.clicked.global_position < C.player.global_position:
+		yield(C.player.face_left(false), 'completed')
+	else:
+		yield(C.player.face_right(false), 'completed')
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 # ???

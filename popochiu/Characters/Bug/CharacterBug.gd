@@ -64,8 +64,6 @@ func set_legs(txt: Texture) -> void:
 
 
 func set_eyes(txt: Texture) -> void:
-	print ('eyes')
-	print (txt)
 	if txt:
 		_eyes.position.y = -(txt.get_height() / 2) - 3.0
 		_eyes.texture = txt

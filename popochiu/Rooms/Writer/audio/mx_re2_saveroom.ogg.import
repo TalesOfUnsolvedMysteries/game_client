@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mx_re2_saveroom.ogg-760167a7b26716964d32e4a87d2989e1.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/Writer/audio/mx_re2_saveroom.ogg"
+dest_files=[ "res://.import/mx_re2_saveroom.ogg-760167a7b26716964d32e4a87d2989e1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

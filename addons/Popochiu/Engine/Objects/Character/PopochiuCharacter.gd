@@ -50,10 +50,7 @@ func walk(target_pos: Vector2, is_in_queue := true) -> void:
 	
 	is_moving = true
 	
-	$Sprite.set_flip_h(target_pos.x < position.x)
-	print($Sprite.flip_h)
-#	_looking_dir = 'l' if $Sprite.flip_h else 'r'
-#	_looking_dir = 'l' if $Sprite.flip_h else 'r'
+	_looking_dir = 'l' if target_pos.x < position.x else 'r'
 
 	if E.cutscene_skipped:
 		is_moving = false
@@ -92,7 +89,6 @@ func idle(is_in_queue := true) -> void:
 	if is_in_queue: yield()
 	
 	var anim_name := 'idle_%s' % _looking_dir + anim_suffix
-	prints(name, anim_name)
 
 	if $AnimationPlayer.has_animation(anim_name):
 		$AnimationPlayer.play(anim_name)
@@ -124,15 +120,13 @@ func face_down(is_in_queue := true) -> void:
 
 func face_left(is_in_queue := true) -> void:
 	if is_in_queue: yield()
-	_looking_dir = 'r'
-	$Sprite.flip_h = true
+	_looking_dir = 'l'
 	yield(idle(false), 'completed')
 
 
 func face_right(is_in_queue := true) -> void:
 	if is_in_queue: yield()
 	_looking_dir = 'r'
-	$Sprite.flip_h = false
 	yield(idle(false), 'completed')
 
 
