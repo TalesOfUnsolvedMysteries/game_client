@@ -5,6 +5,8 @@ onready var _status: Label = find_node('Status')
 onready var _join_btn: Button = find_node('Join')
 onready var _player: Label = find_node('Player')
 
+var wallet_connection
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
 func _ready():
@@ -14,6 +16,18 @@ func _ready():
 	
 	if OS.has_feature('web'):
 		$MainMenu/Control/Extra.show()
+	
+	# test NEAR connection
+	var config = {
+		"network_id": "testnet",
+		"node_url": "https://rpc.testnet.near.org",
+		"wallet_url": "https://wallet.testnet.near.org",
+	}
+	Near.start_connection(config)
+	wallet_connection = WalletConnection.new(Near.near_connection)
+	wallet_connection.sign_in("dev-1643248303417-39450742687599")
+	yield(wallet_connection, "user_signed_in")
+	print('se conecto?')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -62,3 +76,4 @@ func _on_join():
 		WebsocketManager.request_join()
 		_status.text = 'joining to the show'
 	E.goto_room('BugEditor')
+

@@ -79,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/Popochiu/Engine/Objects/InventoryItem/PopochiuInventoryItem.gd"
 }, {
+"base": "Reference",
+"class": "NearConnection",
+"language": "GDScript",
+"path": "res://addons/godot-near-sdk/NearConnection.gd"
+}, {
 "base": "Node",
 "class": "Popochiu",
 "language": "GDScript",
@@ -158,6 +163,11 @@ _global_script_classes=[ {
 "class": "ToolbarButton",
 "language": "GDScript",
 "path": "res://popochiu/GraphicInterface/Toolbar/ToolbarButton.gd"
+}, {
+"base": "Reference",
+"class": "WalletConnection",
+"language": "GDScript",
+"path": "res://addons/godot-near-sdk/WalletConnection.gd"
 } ]
 _global_script_class_icons={
 "AttributeSelector": "",
@@ -174,6 +184,7 @@ _global_script_class_icons={
 "Hotspot": "res://addons/Popochiu/icons/hotspot.png",
 "InventoryContainer": "",
 "InventoryItem": "res://addons/Popochiu/icons/inventory_item.png",
+"NearConnection": "",
 "Popochiu": "",
 "PopochiuCharacter": "res://addons/Popochiu/icons/character.png",
 "PopochiuCharacterData": "res://addons/Popochiu/icons/character.png",
@@ -189,7 +200,8 @@ _global_script_class_icons={
 "Region": "res://addons/Popochiu/icons/region.png",
 "Sort": "",
 "Toolbar": "",
-"ToolbarButton": ""
+"ToolbarButton": "",
+"WalletConnection": ""
 }
 
 [application]
@@ -213,6 +225,8 @@ G="*res://addons/Popochiu/Engine/Interfaces/IGraphicInterface.gd"
 A="*res://addons/Popochiu/Engine/AudioManager/AudioManager.tscn"
 Globals="*res://popochiu/Globals.gd"
 Console="*res://addons/quentincaffeino/console/src/Console.tscn"
+Near="*res://addons/godot-near-sdk/Near.tscn"
+CryptoProxy="*res://addons/godot-near-sdk/utils/CryptoProxy.gd"
 
 [debug]
 
@@ -238,6 +252,10 @@ enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg", "res://addons/lospe
 [gui]
 
 theme/custom_font="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres"
+
+[global]
+
+mono=true
 
 [importer_defaults]
 
