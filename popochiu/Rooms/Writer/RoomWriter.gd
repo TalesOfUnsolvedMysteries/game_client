@@ -8,7 +8,7 @@ extends PopochiuRoom
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	pass
+	A.play({cue_name = 'sfx_door_close',is_in_queue = false})
 
 
 func on_room_transition_finished() -> void:

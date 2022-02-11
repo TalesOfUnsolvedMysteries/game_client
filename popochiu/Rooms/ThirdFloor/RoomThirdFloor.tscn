@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://popochiu/Rooms/ThirdFloor/RoomThirdFloor.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/ThirdFloor/Props/Bg/bg.png" type="Texture" id=4]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://popochiu/Rooms/FirstFloor/Hotspots/HotspotElevator.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/Rooms/ThirdFloor/Hotspots/HotspotDoor301.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=8]
+[ext_resource path="res://popochiu/Rooms/ThirdFloor/Hotspots/HotspotDoor302.gd" type="Script" id=9]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( -190, 62, -175, 50, -158, 42, -134, 41, 3, 40, 145, 39, 166, 44, 182, 55, 190, 66, 190, 88, -190, 87 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ) ]
+outlines = [ PoolVector2Array( -190, 62, -175, 50, -158, 42, -134, 41, 3, 40, 145, 39, 166, 44, 182, 55, 190, 66, 190, 88, -190, 87 ) ]
+
+[node name="RoomThirdFloor" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "ThirdFloor"
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Bg"
+clickable = false
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 4 )
+
+[node name="Door301" type="Label" parent="Props/Bg"]
+margin_left = -27.0
+margin_top = -46.0
+margin_right = -6.0
+margin_bottom = -32.0
+custom_colors/font_color = Color( 1, 0.733333, 0.192157, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "301"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Door302" type="Label" parent="Props/Bg"]
+margin_left = 85.0
+margin_top = -39.0
+margin_right = 106.0
+margin_bottom = -25.0
+custom_colors/font_color = Color( 1, 0.733333, 0.192157, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "302"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Elevator" parent="Hotspots" instance=ExtResource( 5 )]
+position = Vector2( -107, 11 )
+script = ExtResource( 6 )
+description = "Elevator"
+walk_to_point = Vector2( -1, 33 )
+cursor = 1
+script_name = "Elevator"
+
+[node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]
+polygon = PoolVector2Array( -26, -27, -29, 28, 28, 28, 25, -27, -3, -37 )
+
+[node name="BaselineHelper" parent="Hotspots/Elevator" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/Elevator" index="2"]
+position = Vector2( -1, 33 )
+
+[node name="Door301" parent="Hotspots" instance=ExtResource( 5 )]
+position = Vector2( -20, 12 )
+script = ExtResource( 7 )
+description = "Door 301"
+walk_to_point = Vector2( -10, 33 )
+cursor = 1
+script_name = "Door301"
+
+[node name="CollisionPolygon2D" parent="Hotspots/Door301" index="0"]
+polygon = PoolVector2Array( -10, -38, -28, 2, -22, 26, 24, 25, 17, -35 )
+
+[node name="BaselineHelper" parent="Hotspots/Door301" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/Door301" index="2"]
+position = Vector2( -10, 33 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/Door301/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Door302" parent="Hotspots" instance=ExtResource( 5 )]
+position = Vector2( 97, 11 )
+script = ExtResource( 9 )
+description = "Door 302"
+walk_to_point = Vector2( -8, 34 )
+cursor = 1
+script_name = "Door302"
+
+[node name="CollisionPolygon2D" parent="Hotspots/Door302" index="0"]
+polygon = PoolVector2Array( -20, -14, -23, 26, 22, 26, 18, -14, 12, -24, 2, -32, -6, -32, -16, -24 )
+
+[node name="BaselineHelper" parent="Hotspots/Door302" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/Door302" index="2"]
+position = Vector2( -8, 34 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/Door302/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Characters" type="Node2D" parent="."]
+
+[editable path="Hotspots/Elevator"]
+[editable path="Hotspots/Door301"]
+[editable path="Hotspots/Door302"]

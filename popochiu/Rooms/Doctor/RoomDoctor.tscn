@@ -192,6 +192,7 @@ position = Vector2( 105, 23 )
 script = ExtResource( 23 )
 description = "To second floor"
 baseline = 6
+walk_to_point = Vector2( -19, 18 )
 cursor = 1
 script_name = "Exit"
 always_on_top = true
@@ -199,6 +200,10 @@ texture = ExtResource( 24 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
 position = Vector2( 0, 6 )
+
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
+visible = true
+position = Vector2( -19, 18 )
 
 [node name="Sprite" parent="Props/Exit" index="2"]
 texture = ExtResource( 24 )

@@ -2,7 +2,7 @@ extends TextureButton
 
 signal floor_selected(target)
 
-export(String, 'Penthouse', 'ThirdFloor', 'SecondFloor', 'FirstFloor') var go_to := ''
+export(String, 'Penthouse', 'ThirdFloor', 'SecondFloor', 'FirstFloor') var go_to := 'Penthouse'
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░

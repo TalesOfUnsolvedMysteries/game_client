@@ -1,21 +1,21 @@
 tool
-extends Prop
+extends Hotspot
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([
+	E.run([
 		C.walk_to_clicked(),
-		A.play({
-			cue_name = 'sfx_door_open',
-			is_in_queue = true
-		})
-	]), 'completed')
-	E.goto_room('ThirdFloor')
+		C.face_clicked(),
+		"Player: I don't reach."
+	])
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	E.run([
+		C.face_clicked(),
+		'Player: Beady.'
+	])
 
 
 func on_item_used(item: InventoryItem) -> void:

@@ -75,14 +75,14 @@ cursor = 1
 script_name = "Painting"
 texture = ExtResource( 8 )
 
-[node name="CollisionPolygon2D" parent="Props/Painting" index="0"]
-polygon = PoolVector2Array( -19, -23, 18, -24, 19, 21, -17, 23 )
-
-[node name="BaselineHelper" parent="Props/Painting" index="1"]
+[node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -26 )
 
-[node name="Sprite" parent="Props/Painting" index="3"]
+[node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 8 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="3"]
+polygon = PoolVector2Array( -19, -23, 18, -24, 19, 21, -17, 23 )
 
 [node name="PC" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -47, 35 )
@@ -93,14 +93,14 @@ cursor = 1
 script_name = "PC"
 texture = ExtResource( 7 )
 
-[node name="CollisionPolygon2D" parent="Props/PC" index="0"]
-polygon = PoolVector2Array( -59, 1, -43, -13, -23, -12, -24, -26, 1, -24, 2, -11, 13, -10, 13, -20, 18, -26, 30, -26, 31, -9, 53, -8, 56, 16, 48, 23, -55, 22 )
-
-[node name="BaselineHelper" parent="Props/PC" index="1"]
+[node name="BaselineHelper" parent="Props/PC" index="0"]
 position = Vector2( 0, 20 )
 
-[node name="Sprite" parent="Props/PC" index="3"]
+[node name="Sprite" parent="Props/PC" index="2"]
 texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Props/PC" index="3"]
+polygon = PoolVector2Array( -59, 1, -43, -13, -23, -12, -24, -26, 1, -24, 2, -11, 13, -10, 13, -20, 18, -26, 30, -26, 31, -9, 53, -8, 56, 16, 48, 23, -55, 22 )
 
 [node name="EngineRoomDoor" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 162, 9 )
@@ -110,11 +110,11 @@ cursor = 1
 script_name = "EngineRoomDoor"
 texture = ExtResource( 16 )
 
-[node name="CollisionPolygon2D" parent="Props/EngineRoomDoor" index="0"]
-polygon = PoolVector2Array( -22, -31, 23, -23, 27, 31, -24, 31, -29, 1 )
-
-[node name="Sprite" parent="Props/EngineRoomDoor" index="3"]
+[node name="Sprite" parent="Props/EngineRoomDoor" index="2"]
 texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" parent="Props/EngineRoomDoor" index="3"]
+polygon = PoolVector2Array( -22, -31, 23, -23, 27, 31, -24, 31, -29, 1 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -129,7 +129,11 @@ script_name = "FirstFloor"
 [node name="CollisionPolygon2D" parent="Hotspots/FirstFloor" index="0"]
 polygon = PoolVector2Array( -24, -32, -21, 25, 21, 25, 22, -23, 7, -36, -11, -36 )
 
+[node name="BaselineHelper" parent="Hotspots/FirstFloor" index="1"]
+visible = false
+
 [node name="WalkToHelper" parent="Hotspots/FirstFloor" index="2"]
+visible = false
 position = Vector2( 0, 32 )
 
 [node name="EngineRoom" parent="Hotspots" instance=ExtResource( 2 )]
@@ -143,7 +147,11 @@ script_name = "EngineRoom"
 [node name="CollisionPolygon2D" parent="Hotspots/EngineRoom" index="0"]
 polygon = PoolVector2Array( -23, -8, -19, 25, 26, 25, 23, -26, -17, -33 )
 
+[node name="BaselineHelper" parent="Hotspots/EngineRoom" index="1"]
+visible = false
+
 [node name="WalkToHelper" parent="Hotspots/EngineRoom" index="2"]
+visible = false
 position = Vector2( 0, 31 )
 
 [node name="Regions" type="Node2D" parent="."]

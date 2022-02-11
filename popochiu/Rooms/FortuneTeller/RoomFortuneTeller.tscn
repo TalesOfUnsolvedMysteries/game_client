@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/RoomFortuneTeller.gd" type="Script" id=1]
-[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/Rooms/FortuneTeller/Hotspots/HotspotVoodooBeads.gd" type="Script" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Bg/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Fg/fg.png" type="Texture" id=5]
@@ -34,11 +34,7 @@ limit_bottom = 0.0
 
 [node name="Props" type="Node2D" parent="."]
 
-[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
 description = "Bg"
 clickable = false
 baseline = -90
@@ -49,36 +45,14 @@ texture = ExtResource( 4 )
 [node name="Workspace" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -41, -15 )
 script = ExtResource( 7 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Workspace"
 baseline = 32
-cursor = 10
+cursor = 1
 script_name = "Workspace"
 texture = ExtResource( 9 )
 
 [node name="BaselineHelper" parent="Props/Workspace" index="0"]
-visible = false
 position = Vector2( 0, 32 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Props/Workspace" index="1"]
-visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Workspace/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Workspace" index="2"]
 texture = ExtResource( 9 )
@@ -86,11 +60,7 @@ texture = ExtResource( 9 )
 [node name="CollisionPolygon2D" parent="Props/Workspace" index="3"]
 polygon = PoolVector2Array( -2, 10, 5, 6, 13, 5, 27, 6, 30, 8, 27, 13, 16, 21, 5, 20 )
 
-[node name="Fg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Fg" parent="Props" instance=ExtResource( 3 )]
 description = "Fg"
 clickable = false
 cursor = 10
@@ -101,36 +71,14 @@ texture = ExtResource( 5 )
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 99, 1 )
 script = ExtResource( 8 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Painting"
 baseline = -90
-cursor = 10
+cursor = 1
 script_name = "Painting"
 texture = ExtResource( 10 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
-visible = false
 position = Vector2( 0, -90 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
-
-[node name="WalkToHelper" parent="Props/Painting" index="1"]
-visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Painting/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 10 )
@@ -141,36 +89,19 @@ polygon = PoolVector2Array( -18, -21, 15, -18, 17, 20, -18, 12 )
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 109, 35 )
 script = ExtResource( 11 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Exit"
 baseline = 30
-cursor = 10
+walk_to_point = Vector2( -18, 12 )
+cursor = 1
 script_name = "Exit"
 texture = ExtResource( 12 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
-visible = false
 position = Vector2( 0, 30 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/Exit" index="1"]
-visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Exit/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+visible = true
+position = Vector2( -18, 12 )
 
 [node name="Sprite" parent="Props/Exit" index="2"]
 texture = ExtResource( 12 )
@@ -193,25 +124,10 @@ polygon = PoolVector2Array( 2, -13, -1, -13, -4, 6, 6, 7, 5, -6 )
 
 [node name="BaselineHelper" parent="Hotspots/Totem" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/Totem" index="2"]
 visible = false
 position = Vector2( 9, 31 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/Totem/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RoosterTotem" parent="Hotspots" instance=ExtResource( 14 )]
 position = Vector2( -40, 17 )
@@ -226,25 +142,10 @@ polygon = PoolVector2Array( -5, -4, -7, 0, -4, 6, 3, 7, 7, -1, 6, -5 )
 
 [node name="BaselineHelper" parent="Hotspots/RoosterTotem" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/RoosterTotem" index="2"]
 visible = false
 position = Vector2( 14, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/RoosterTotem/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BeeTotem" parent="Hotspots" instance=ExtResource( 14 )]
 position = Vector2( -25, 18 )
@@ -259,25 +160,10 @@ polygon = PoolVector2Array( -5, -5, -4, 5, -2, 8, 2, 8, 4, 6, 1, 5, 3, -3, 2, -5
 
 [node name="BaselineHelper" parent="Hotspots/BeeTotem" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/BeeTotem" index="2"]
 visible = false
 position = Vector2( 12, 30 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/BeeTotem/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LadybirdTotem" parent="Hotspots" instance=ExtResource( 14 )]
 position = Vector2( -15, 24 )
@@ -292,25 +178,10 @@ polygon = PoolVector2Array( -2, -2, -6, 2, -4, 4, 2, 4, 4, 2, 2, -2 )
 
 [node name="BaselineHelper" parent="Hotspots/LadybirdTotem" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/LadybirdTotem" index="2"]
 visible = false
 position = Vector2( 13, 26 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/LadybirdTotem/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BeetleTotem" parent="Hotspots" instance=ExtResource( 14 )]
 position = Vector2( -4, 25 )
@@ -325,25 +196,28 @@ polygon = PoolVector2Array( 1, -7, 1, -2, -1, -3, -5, -1, -5, 4, -1, 5, 2, 3, 4,
 
 [node name="BaselineHelper" parent="Hotspots/BeetleTotem" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/BeetleTotem" index="2"]
 visible = false
 position = Vector2( 13, 27 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="ColorRect" parent="Hotspots/BeetleTotem/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="VoodooBeads" parent="Hotspots" instance=ExtResource( 14 )]
+position = Vector2( -6, -55 )
+script = ExtResource( 2 )
+description = "Voodoo beads"
+walk_to_point = Vector2( 12, 79 )
+cursor = 1
+script_name = "VoodooBeads"
+
+[node name="CollisionPolygon2D" parent="Hotspots/VoodooBeads" index="0"]
+polygon = PoolVector2Array( -36, -13, -34, 21, -20, 13, -10, 20, 2, 11, 10, 23, 21, 16, 31, 25, 34, 6, 32, -3, 20, -16, 11, -8, 1, -21, -9, -11, -20, -19 )
+
+[node name="BaselineHelper" parent="Hotspots/VoodooBeads" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/VoodooBeads" index="2"]
+visible = false
+position = Vector2( 12, 79 )
 
 [node name="Regions" type="Node2D" parent="."]
 
@@ -369,3 +243,4 @@ position = Vector2( 87, 49 )
 [editable path="Hotspots/BeeTotem"]
 [editable path="Hotspots/LadybirdTotem"]
 [editable path="Hotspots/BeetleTotem"]
+[editable path="Hotspots/VoodooBeads"]
