@@ -187,8 +187,8 @@ func _on_data():
 		# TODO 
 		# restore game to allow a new player - moves to another scene?
 		E.goto_room('Menu')
-	elif command == 'gs_gotomenu':
-		E.goto_room('Menu')
+	#elif command == 'gs_gotomenu':
+	#	E.goto_room('Menu')
 
 var max_interval = 1/20
 var delta_acc = 0

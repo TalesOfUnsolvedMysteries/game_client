@@ -6,8 +6,6 @@ const TIME_TO_PLAY = 3*60
 
 var server = false
 var client = false
-var client_peer
-var server_peer
 
 sync var pilot_peer_id = -1
 var pilotOn = false
@@ -40,12 +38,13 @@ func _ready():
 func init_server():
 	print('initializating server')
 	E.goto_room('Menu')
-	server_peer = WebSocketServer.new()
-	server_peer.listen(SERVER_PORT, PoolStringArray(), true)
-	get_tree().network_peer = server_peer
+	var net = NetworkedMultiplayerENet.new()
+	net.create_server(SERVER_PORT, MAX_PLAYERS)
+	get_tree().network_peer = net
 	print('server started with peer: ', get_tree().get_network_unique_id())
 	server = true
 	Globals.load_state()
+	
 	WebsocketManager.register_game_server()
 	emit_signal('server_started')
 
@@ -143,18 +142,9 @@ remote func remove_control():
 func request_join(server_ip):
 	client = true
 	print('connecting to the server...')
-	#var peer = NetworkedMultiplayerENet.new()
-	client_peer = WebSocketClient.new()
-	client_peer.connect("connection_closed", self, "_server_disconnected")
-	client_peer.connect("connection_error", self, "_connected_fail")
-	client_peer.connect("connection_established", self, "_player_connected")
-	#var url = 'ws://%s:%s' % [server_ip, SERVER_PORT]
-	var error = client_peer.connect_to_url(server_ip, PoolStringArray(), true)
-	if (error):
-		print(error)
-
-	#peer.create_client(server_ip, SERVER_PORT)
-	get_tree().network_peer = client_peer
+	var peer = NetworkedMultiplayerENet.new()
+	peer.create_client(server_ip, SERVER_PORT)
+	get_tree().network_peer = peer
 
 
 # server and client
@@ -162,7 +152,6 @@ func _player_connected(player_id):
 	print('should register players connected to the game ', player_id)
 	if server:
 		WebsocketManager.player_connected(player_id)
-		#rpc_id(player_id, 'player_joined', 'hola')
 
 
 # server and client
@@ -202,10 +191,6 @@ func isPilot():
 	return _connected and client and pilot_peer_id == get_tree().get_network_unique_id()
 
 func _process(_delta):
-	if (client and (client_peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTED || client_peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTING)):
-		client_peer.poll()
-	if (server and (server_peer.is_listening())):
-		server_peer.poll()
 	if isServerWithPilot():
 		set_countdown_timer(countdown_timer - _delta)
 		if (countdown_timer <= 0):

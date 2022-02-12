@@ -25,9 +25,18 @@ func _ready():
 	}
 	Near.start_connection(config)
 	wallet_connection = WalletConnection.new(Near.near_connection)
-	wallet_connection.sign_in("dev-1643248303417-39450742687599")
-	yield(wallet_connection, "user_signed_in")
-	print('se conecto?')
+	var result = Near.call_view_method("dev-1643248303417-39450742687599", "getLine")
+	if result is GDScriptFunctionState:
+		result = yield(result, "completed")
+	if result.has("error"):
+		print(result)
+		pass # Error handling here
+	else:
+		var data = result.data
+		print(data)
+	#wallet_connection.sign_in("dev-1643248303417-39450742687599")
+	#yield(wallet_connection, "user_signed_in")
+	#print('se conecto?')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
