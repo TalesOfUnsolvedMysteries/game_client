@@ -14,11 +14,10 @@ onready var _shoes: Sprite = find_node('Shoes')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func _ready():
-	._ready()
-	
 	# Cargar por defecto partes aleatorias para facilitar las pruebas de las
 	# habitaciones.
-	if not _was_created and E.current_room.script_name != 'BugEditor':
+	if not Engine.editor_hint\
+	and not _was_created and E.current_room.script_name != 'BugEditor':
 		if Globals.bug_adn.empty():
 			Globals.set_appearance(
 				str(randi() % Globals.HEADS.size()) +\

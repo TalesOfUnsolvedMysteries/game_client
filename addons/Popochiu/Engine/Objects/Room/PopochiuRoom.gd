@@ -43,16 +43,16 @@ func _enter_tree() -> void:
 func _ready():
 	set_process_unhandled_input(false)
 	
-	if limit_left != 0.0:
-		E.main_camera.limit_left = limit_left
-	if limit_right != 0.0:
-		E.main_camera.limit_right = limit_right
-	if limit_top != 0.0:
-		E.main_camera.limit_top = limit_top
-	if limit_bottom != 0.0:
-		E.main_camera.limit_bottom = limit_bottom
-	
 	if not Engine.editor_hint:
+		if limit_left != 0.0:
+			E.main_camera.limit_left = limit_left
+		if limit_right != 0.0:
+			E.main_camera.limit_right = limit_right
+		if limit_top != 0.0:
+			E.main_camera.limit_top = limit_top
+		if limit_bottom != 0.0:
+			E.main_camera.limit_bottom = limit_bottom
+		
 		E.room_readied(self)
 
 

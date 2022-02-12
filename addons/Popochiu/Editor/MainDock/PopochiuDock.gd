@@ -94,6 +94,8 @@ func fill_data() -> void:
 		var type_dir: EditorFileSystemDirectory = fs.get_filesystem_path(
 			_types[t].path
 		)
+		
+		if not type_dir: continue
 
 		for d in type_dir.get_subdir_count():
 			var dir: EditorFileSystemDirectory = type_dir.get_subdir(d)
