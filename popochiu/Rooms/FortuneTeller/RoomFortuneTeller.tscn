@@ -100,7 +100,6 @@ texture = ExtResource( 12 )
 position = Vector2( 0, 30 )
 
 [node name="WalkToHelper" parent="Props/Exit" index="1"]
-visible = true
 position = Vector2( -18, 12 )
 
 [node name="Sprite" parent="Props/Exit" index="2"]
@@ -210,7 +209,7 @@ cursor = 1
 script_name = "VoodooBeads"
 
 [node name="CollisionPolygon2D" parent="Hotspots/VoodooBeads" index="0"]
-polygon = PoolVector2Array( -36, -13, -34, 21, -20, 13, -10, 20, 2, 11, 10, 23, 21, 16, 31, 25, 34, 6, 32, -3, 20, -16, 11, -8, 1, -21, -9, -11, -20, -19 )
+polygon = PoolVector2Array( -36, -9, -36, 6, -33, 21, -20, 13, -9, 28, 2, 11, 11, 26, 21, 16, 31, 29, 34, 12, 32, 2, 20, -17, 11, -8, 1, -22, -9, -11, -20, -16 )
 
 [node name="BaselineHelper" parent="Hotspots/VoodooBeads" index="1"]
 visible = false

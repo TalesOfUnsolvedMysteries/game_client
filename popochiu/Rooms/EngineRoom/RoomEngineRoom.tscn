@@ -50,20 +50,18 @@ cursor = 1
 script_name = "Engine"
 texture = ExtResource( 6 )
 
-[node name="CollisionPolygon2D" parent="Props/Engine" index="0"]
-polygon = PoolVector2Array( -24, -28, 35, -30, 42, 27, -27, 28 )
-
-[node name="BaselineHelper" parent="Props/Engine" index="1"]
-visible = false
+[node name="BaselineHelper" parent="Props/Engine" index="0"]
 position = Vector2( 0, 22 )
 
-[node name="WalkToHelper" parent="Props/Engine" index="2"]
-visible = false
+[node name="WalkToHelper" parent="Props/Engine" index="1"]
 position = Vector2( -1, 36 )
 
-[node name="Sprite" parent="Props/Engine" index="3"]
+[node name="Sprite" parent="Props/Engine" index="2"]
 texture = ExtResource( 6 )
 hframes = 2
+
+[node name="CollisionPolygon2D" parent="Props/Engine" index="3"]
+polygon = PoolVector2Array( -24, -28, 35, -30, 42, 27, -27, 28 )
 
 [node name="FuseBox" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -77, -46 )
@@ -74,19 +72,15 @@ cursor = 1
 script_name = "FuseBox"
 texture = ExtResource( 8 )
 
-[node name="CollisionPolygon2D" parent="Props/FuseBox" index="0"]
-polygon = PoolVector2Array( -8, 2, 14, 1, 15, 20, -6, 22 )
-
-[node name="BaselineHelper" parent="Props/FuseBox" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/FuseBox" index="2"]
-visible = false
+[node name="WalkToHelper" parent="Props/FuseBox" index="1"]
 position = Vector2( 7, 58 )
 
-[node name="Sprite" parent="Props/FuseBox" index="3"]
+[node name="Sprite" parent="Props/FuseBox" index="2"]
 texture = ExtResource( 8 )
 hframes = 3
+
+[node name="CollisionPolygon2D" parent="Props/FuseBox" index="3"]
+polygon = PoolVector2Array( -8, 2, 14, 1, 15, 20, -6, 22 )
 
 [node name="BatteryCharger" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 56, -9 )
@@ -98,20 +92,18 @@ cursor = 1
 script_name = "BatteryCharger"
 texture = ExtResource( 10 )
 
-[node name="CollisionPolygon2D" parent="Props/BatteryCharger" index="0"]
-polygon = PoolVector2Array( -10, -24, 8, -24, 11, -17, 11, 23, -9, 22, -12, -18 )
-
-[node name="BaselineHelper" parent="Props/BatteryCharger" index="1"]
-visible = false
+[node name="BaselineHelper" parent="Props/BatteryCharger" index="0"]
 position = Vector2( 0, -23 )
 
-[node name="WalkToHelper" parent="Props/BatteryCharger" index="2"]
-visible = false
+[node name="WalkToHelper" parent="Props/BatteryCharger" index="1"]
 position = Vector2( 5, 30 )
 
-[node name="Sprite" parent="Props/BatteryCharger" index="3"]
+[node name="Sprite" parent="Props/BatteryCharger" index="2"]
 texture = ExtResource( 10 )
 hframes = 2
+
+[node name="CollisionPolygon2D" parent="Props/BatteryCharger" index="3"]
+polygon = PoolVector2Array( -10, -24, 8, -24, 11, -17, 11, 23, -9, 22, -12, -18 )
 
 [node name="ChargingProgress" type="TextureProgress" parent="Props/BatteryCharger"]
 margin_left = -7.7
@@ -134,18 +126,14 @@ cursor = 1
 script_name = "Exit"
 texture = ExtResource( 12 )
 
-[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
-polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
-
-[node name="BaselineHelper" parent="Props/Exit" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/Exit" index="2"]
-visible = false
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
 position = Vector2( 31, 18 )
 
-[node name="Sprite" parent="Props/Exit" index="3"]
+[node name="Sprite" parent="Props/Exit" index="2"]
 texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 

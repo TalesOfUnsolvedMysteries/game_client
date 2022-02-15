@@ -48,12 +48,12 @@ var main_mx_play = false
 var bug_name := ''
 var bug_adn := ''
 sync var state := {
-	'Lobby-PC_POWERED': true,
-	'EngineRoom-ELEVATOR_WORKING': true,
-	'SecondFloor-201_UNLOCKED': true,
-	'SecondFloor-202_UNLOCKED': true,
-	'ThirdFloor-301_UNLOCKED': true,
-	'ThirdFloor-302_UNLOCKED': true,
+#	'Lobby-PC_POWERED': true,
+#	'EngineRoom-ELEVATOR_WORKING': true,
+#	'SecondFloor-201_UNLOCKED': true,
+#	'SecondFloor-202_UNLOCKED': true,
+#	'ThirdFloor-301_UNLOCKED': true,
+#	'ThirdFloor-302_UNLOCKED': true,
 }
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power

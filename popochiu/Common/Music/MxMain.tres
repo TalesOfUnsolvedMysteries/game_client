@@ -7,7 +7,7 @@
 resource_name = "mx_main"
 script = ExtResource( 1 )
 audio = ExtResource( 2 )
-loop = false
+loop = true
 is_2d = false
 pitch = 0.0
 volume = -18.0
