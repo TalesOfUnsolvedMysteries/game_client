@@ -5,6 +5,7 @@ var _current_document := {}
 var _total_pages := 0
 
 onready var _btn_left: TextureButton = find_node('BtnLeft')
+onready var _type: TextureRect = find_node('Type')
 onready var _btn_right: TextureButton = find_node('BtnRight')
 onready var _btn_exit: Button = find_node('BtnExit')
 onready var _pages_counter: Label = find_node('PagesCounter')
@@ -30,6 +31,7 @@ func show_documents(data: Dictionary) -> void:
 	_current_document = data
 	_total_pages = data.pages.size() - 1
 	self._current_page = 0
+	_type.texture = data.bg
 	
 	show()
 

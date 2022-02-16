@@ -8,7 +8,7 @@ func on_interact() -> void:
 		C.walk_to_clicked(),
 		'.',
 		open_door(),
-		'Player: I can see the motherboard of the engine'
+		'Player: I can see the motherboard of the engine.'
 	]), 'completed')
 	E.current_room.show_motherboard()
 

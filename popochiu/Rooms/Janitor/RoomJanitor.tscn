@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Key102/PropKey102.gd" type="Script" id=2]
@@ -30,8 +30,9 @@
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/block_06.png" type="Texture" id=28]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/block_03.png" type="Texture" id=29]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/block_07.png" type="Texture" id=30]
-[ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bg.png" type="Texture" id=31]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_frame.png" type="Texture" id=31]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_solved.png" type="Texture" id=32]
+[ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bubble.png" type="Texture" id=33]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
@@ -66,11 +67,9 @@ script_name = "Bed"
 texture = ExtResource( 8 )
 
 [node name="BaselineHelper" parent="Props/Bed" index="0"]
-visible = false
 position = Vector2( 0, 17 )
 
 [node name="WalkToHelper" parent="Props/Bed" index="1"]
-visible = false
 position = Vector2( 12, 30 )
 
 [node name="Sprite" parent="Props/Bed" index="2"]
@@ -108,11 +107,9 @@ script_name = "Photos"
 texture = ExtResource( 12 )
 
 [node name="BaselineHelper" parent="Props/Photos" index="0"]
-visible = false
 position = Vector2( 0, -90 )
 
 [node name="WalkToHelper" parent="Props/Photos" index="1"]
-visible = false
 position = Vector2( 27, 47 )
 
 [node name="Sprite" parent="Props/Photos" index="2"]
@@ -130,11 +127,7 @@ cursor = 1
 script_name = "Painting"
 texture = ExtResource( 14 )
 
-[node name="BaselineHelper" parent="Props/Painting" index="0"]
-visible = false
-
 [node name="WalkToHelper" parent="Props/Painting" index="1"]
-visible = false
 position = Vector2( -2, 50 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
@@ -155,11 +148,9 @@ always_on_top = true
 texture = ExtResource( 7 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
-visible = false
 position = Vector2( 0, 36 )
 
 [node name="WalkToHelper" parent="Props/Exit" index="1"]
-visible = false
 position = Vector2( 5, 10 )
 
 [node name="Sprite" parent="Props/Exit" index="2"]
@@ -175,12 +166,6 @@ description = "Key"
 cursor = 1
 script_name = "KeyEngineRoom"
 texture = ExtResource( 17 )
-
-[node name="BaselineHelper" parent="Props/KeyEngineRoom" index="0"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/KeyEngineRoom" index="1"]
-visible = false
 
 [node name="Sprite" parent="Props/KeyEngineRoom" index="2"]
 texture = ExtResource( 17 )
@@ -198,12 +183,6 @@ cursor = 1
 script_name = "Key102"
 texture = ExtResource( 17 )
 
-[node name="BaselineHelper" parent="Props/Key102" index="0"]
-visible = false
-
-[node name="WalkToHelper" parent="Props/Key102" index="1"]
-visible = false
-
 [node name="Sprite" parent="Props/Key102" index="2"]
 texture = ExtResource( 17 )
 hframes = 2
@@ -217,18 +196,16 @@ position = Vector2( -71, 4 )
 script = ExtResource( 18 )
 description = "Jigsaw"
 baseline = 18
-walk_to_point = Vector2( 13, 30 )
+walk_to_point = Vector2( 18, 31 )
 cursor = 1
 script_name = "Jigsaw"
 texture = ExtResource( 19 )
 
 [node name="BaselineHelper" parent="Props/Jigsaw" index="0"]
-visible = false
 position = Vector2( 0, 18 )
 
 [node name="WalkToHelper" parent="Props/Jigsaw" index="1"]
-visible = false
-position = Vector2( 13, 30 )
+position = Vector2( 18, 31 )
 
 [node name="Sprite" parent="Props/Jigsaw" index="2"]
 texture = ExtResource( 19 )
@@ -258,17 +235,22 @@ position = Vector2( -63, 55 )
 visible = false
 script = ExtResource( 22 )
 
-[node name="Bg" type="Sprite" parent="Overlay2D"]
-position = Vector2( 0, 4 )
+[node name="Bubble" type="Sprite" parent="Overlay2D"]
+position = Vector2( -7, 2.5 )
+texture = ExtResource( 33 )
+
+[node name="Frame" type="Sprite" parent="Overlay2D"]
+position = Vector2( 0, 2.5 )
 texture = ExtResource( 31 )
 
 [node name="JigsawPuzzle" parent="Overlay2D" instance=ExtResource( 20 )]
 visible = false
+id = "janitor"
 blocks_textures = [ ExtResource( 23 ), ExtResource( 26 ), ExtResource( 29 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 30 ), ExtResource( 25 ) ]
 show_labels = false
 
 [node name="Solved" type="Sprite" parent="Overlay2D"]
-position = Vector2( 0, 3 )
+position = Vector2( 0, 2.5 )
 texture = ExtResource( 32 )
 
 [editable path="Props/Bed"]

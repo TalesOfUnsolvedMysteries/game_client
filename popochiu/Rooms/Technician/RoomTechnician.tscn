@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Technician/RoomTechnician.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/technician_notes.png" type="Texture" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Technician/Props/Lockers/PropLockers.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/Rooms/Technician/Props/Notes/PropNotes.gd" type="Script" id=5]
@@ -58,17 +59,17 @@ cursor = 1
 script_name = "Lockers"
 texture = ExtResource( 10 )
 
-[node name="CollisionPolygon2D" parent="Props/Lockers" index="0"]
-polygon = PoolVector2Array( -12, -24, 3, -27, 16, -19, 14, 21, 2, 26, -11, 16 )
-
-[node name="BaselineHelper" parent="Props/Lockers" index="1"]
+[node name="BaselineHelper" parent="Props/Lockers" index="0"]
 position = Vector2( 0, 19 )
 
-[node name="WalkToHelper" parent="Props/Lockers" index="2"]
+[node name="WalkToHelper" parent="Props/Lockers" index="1"]
 position = Vector2( -12, 23 )
 
-[node name="Sprite" parent="Props/Lockers" index="3"]
+[node name="Sprite" parent="Props/Lockers" index="2"]
 texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/Lockers" index="3"]
+polygon = PoolVector2Array( -12, -24, 3, -27, 16, -19, 14, 21, 2, 26, -11, 16 )
 
 [node name="Notes" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 3, 8 )
@@ -92,15 +93,16 @@ TOY 86531        POOL 01568
 
 This must be done each time the battery is plugged in.
 ", "To change the functionality of the elevator use the PC in the lobby." ]
+background = ExtResource( 2 )
 
-[node name="CollisionPolygon2D" parent="Props/Notes" index="0"]
-polygon = PoolVector2Array( -8, -2, 0, -6, 9, -1, 9, 1, 0, 5, -8, 0 )
-
-[node name="WalkToHelper" parent="Props/Notes" index="2"]
+[node name="WalkToHelper" parent="Props/Notes" index="1"]
 position = Vector2( 11, 13 )
 
-[node name="Sprite" parent="Props/Notes" index="3"]
+[node name="Sprite" parent="Props/Notes" index="2"]
 texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" parent="Props/Notes" index="3"]
+polygon = PoolVector2Array( -8, -2, 0, -6, 9, -1, 9, 1, 0, 5, -8, 0 )
 
 [node name="Whisky" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -11, 13 )
@@ -112,14 +114,14 @@ script_name = "Whisky"
 always_on_top = true
 texture = ExtResource( 12 )
 
-[node name="CollisionPolygon2D" parent="Props/Whisky" index="0"]
-polygon = PoolVector2Array( -2, -3, 4, -3, 4, 4, -4, 4 )
-
-[node name="WalkToHelper" parent="Props/Whisky" index="2"]
+[node name="WalkToHelper" parent="Props/Whisky" index="1"]
 position = Vector2( -5, 30 )
 
-[node name="Sprite" parent="Props/Whisky" index="3"]
+[node name="Sprite" parent="Props/Whisky" index="2"]
 texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Whisky" index="3"]
+polygon = PoolVector2Array( -2, -3, 4, -3, 4, 4, -4, 4 )
 
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 73, 32 )
@@ -131,17 +133,17 @@ cursor = 1
 script_name = "Exit"
 texture = ExtResource( 13 )
 
-[node name="CollisionPolygon2D" parent="Props/Exit" index="0"]
-polygon = PoolVector2Array( 13, 14, 23, 37, -11, 33 )
-
-[node name="BaselineHelper" parent="Props/Exit" index="1"]
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
 position = Vector2( 0, 37 )
 
-[node name="WalkToHelper" parent="Props/Exit" index="2"]
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
 position = Vector2( -12, 16 )
 
-[node name="Sprite" parent="Props/Exit" index="3"]
+[node name="Sprite" parent="Props/Exit" index="2"]
 texture = ExtResource( 13 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( 13, 14, 23, 37, -11, 33 )
 
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -16, -33 )
@@ -151,11 +153,11 @@ cursor = 1
 script_name = "Painting"
 texture = ExtResource( 16 )
 
-[node name="CollisionPolygon2D" parent="Props/Painting" index="0"]
-polygon = PoolVector2Array( -24, -15, 23, -14, 25, 11, -22, 14 )
-
-[node name="Sprite" parent="Props/Painting" index="3"]
+[node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" parent="Props/Painting" index="3"]
+polygon = PoolVector2Array( -24, -15, 23, -14, 25, 11, -22, 14 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 

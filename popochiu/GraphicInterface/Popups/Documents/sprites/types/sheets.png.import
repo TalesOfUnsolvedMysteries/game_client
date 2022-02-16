@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jigsaw_bg.png-59329b64296aa6c918f60d86c566da8c.stex"
+path="res://.import/sheets.png-2df96497846d89a7518908bfedbec404.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bg.png"
-dest_files=[ "res://.import/jigsaw_bg.png-59329b64296aa6c918f60d86c566da8c.stex" ]
+source_file="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/sheets.png"
+dest_files=[ "res://.import/sheets.png-2df96497846d89a7518908bfedbec404.stex" ]
 
 [params]
 

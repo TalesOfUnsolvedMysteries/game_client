@@ -3,19 +3,20 @@ const Block = preload("res://popochiu/GraphicInterface/Puzzles/Block.tscn")
 
 signal solved
 
+export var id := ''
 export(Array, Texture) var blocks_textures := []
 export var show_labels := true
 export var lock_on_success := true
 
 var config = [
-	{ 'tile': [1, 1], 'size': [1, 1], 'target': [2, 0], 'label': '3', 'lock_on_match': false, textures_idx = 2},
-	{ 'tile': [2, 0], 'size': [1, 1], 'target': [1, 1], 'label': '5', 'lock_on_match': false, textures_idx = 4},
-	{ 'tile': [0, 1], 'size': [1, 1], 'target': [0, 2], 'label': '7', 'lock_on_match': false, textures_idx = 6},
-	{ 'tile': [0, 0], 'size': [1, 1], 'target': [0, 0], 'label': '1', 'lock_on_match': false, textures_idx = 0},
-	{ 'tile': [1, 0], 'size': [1, 1], 'target': [2, 1], 'label': '6', 'lock_on_match': false, textures_idx = 5},
-	{ 'tile': [2, 1], 'size': [1, 1], 'target': [1, 2], 'label': '8', 'lock_on_match': false, textures_idx = 7},
-	{ 'tile': [2, 2], 'size': [1, 1], 'target': [1, 0], 'label': '2', 'lock_on_match': false, textures_idx = 1},
-	{ 'tile': [1, 2], 'size': [1, 1], 'target': [0, 1], 'label': '4', 'lock_on_match': false, textures_idx = 3}
+	{ 'tile': Vector2(1, 1), 'size': [1, 1], 'target': Vector2(2, 0), 'label': '3', 'lock_on_match': false, textures_idx = 2},
+	{ 'tile': Vector2(2, 0), 'size': [1, 1], 'target': Vector2(1, 1), 'label': '5', 'lock_on_match': false, textures_idx = 4},
+	{ 'tile': Vector2(0, 1), 'size': [1, 1], 'target': Vector2(0, 2), 'label': '7', 'lock_on_match': false, textures_idx = 6},
+	{ 'tile': Vector2(0, 0), 'size': [1, 1], 'target': Vector2(0, 0), 'label': '1', 'lock_on_match': false, textures_idx = 0},
+	{ 'tile': Vector2(1, 0), 'size': [1, 1], 'target': Vector2(2, 1), 'label': '6', 'lock_on_match': false, textures_idx = 5},
+	{ 'tile': Vector2(2, 1), 'size': [1, 1], 'target': Vector2(1, 2), 'label': '8', 'lock_on_match': false, textures_idx = 7},
+	{ 'tile': Vector2(2, 2), 'size': [1, 1], 'target': Vector2(1, 0), 'label': '2', 'lock_on_match': false, textures_idx = 1},
+	{ 'tile': Vector2(1, 2), 'size': [1, 1], 'target': Vector2(0, 1), 'label': '4', 'lock_on_match': false, textures_idx = 3}
 ]
 
 var grid = [
@@ -37,30 +38,45 @@ func _ready():
 	for block_config in config:
 		var block = $Blocks.get_children()[idx]
 		block.offset = offset
+		
+		# Verificar si en el Globals hay una posición guardada para la pieza
+		if Globals.puzzle_state.has(id)\
+		and Globals.puzzle_state[id].has(var2str(block_config.target)):
+			block_config.tile = str2var(
+				Globals.puzzle_state[id][var2str(block_config.target)]
+			)
+		
 		block.connect('drag_started', self, 'pick_block')
 		block.connect('drag_ended', self, 'update_grid')
 		block.connect('target_entered', self, 'target_reach')
 		block.connect('target_exited', self, 'target_lost')
 		block.set_size(Vector2(block_config.size[0], block_config.size[1]))
+		
 		for j in range(block.size.y):
 			for i in range(block.size.x):
-				grid[block_config.tile[1]+j][block_config.tile[0]+i] = 1
+				grid[block_config.tile.y + j][block_config.tile.x + i] = 1
+		
+		# Definir la posición objetivo de la pieza
 		if block_config.has('target'):
-			block.set_target_tile(Vector2(block_config.target[0], block_config.target[1]))
+			block.set_target_tile(block_config.target)
 			targets_to_reach+=1
+		
+		# Asignar y mostrar el texto de la pieza
 		if show_labels and block_config.has('label'):
 			var label = block.get_node('Label')
 			label.show()
 			label.text = block_config.label
+		
 		if block_config.has('lock_on_match'):
 			block.lock_on_match = block_config.lock_on_match
+		
 		if not blocks_textures.empty() and block_config.has('textures_idx'):
 			block.set_texture(blocks_textures[block_config.textures_idx])
-		block.set_tile_position(
-			Vector2(block_config.tile[0], block_config.tile[1])
-		)
-		idx += 1
+		
+		block.set_tile_position(block_config.tile)
 		block.visible = visible
+		
+		idx += 1
 
 func pick_block(block: PuzzleBlock):
 	var tile = block.tile_position
@@ -111,12 +127,16 @@ func pick_block(block: PuzzleBlock):
 
 func update_grid(block: PuzzleBlock):
 	var tile = block.tile_position
+	
 	for j in range(block.size.y):
 		for i in range(block.size.x):
 			grid[tile[1]+j][tile[0]+i] = 1
 			
-			# TODO: Usar esta información para guardar el estado de las piezas
-			#		en el puzle en caso de que se quiera guardar su estado.
+	# Guardar el estado de las piezas.
+	if not Globals.puzzle_state.has(id):
+		Globals.puzzle_state[id] = {}
+	
+	Globals.puzzle_state[id][var2str(block.target_tile)] = var2str(tile)
 
 func target_reach():
 	var targets_reached = 0

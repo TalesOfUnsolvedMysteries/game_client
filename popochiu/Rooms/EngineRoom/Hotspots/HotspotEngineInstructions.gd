@@ -1,5 +1,5 @@
 tool
-extends Prop
+extends Hotspot
 
 export(Array, String, MULTILINE) var pages = []
 export var background: Texture = null
@@ -9,14 +9,14 @@ export var background: Texture = null
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		'Player: Lets check this notes... because I am a chismoso.'
+		'Player: This are the instructions for the engine.'
 	]), 'completed')
 	
 	G.show_documents({pages = pages, bg = background})
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	pass
 
 
 func on_item_used(item: InventoryItem) -> void:

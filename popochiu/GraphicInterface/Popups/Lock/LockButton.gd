@@ -7,8 +7,9 @@ sync var value := -1 setget set_value
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	randomize()
-	value = randi() % 10
+#	randomize()
+#	value = randi() % 10
+	value = 0
 	self.text = str(value)
 	if NetworkManager.isServerWithPilot():
 		rset_id(NetworkManager.pilot_peer_id, 'value', value)

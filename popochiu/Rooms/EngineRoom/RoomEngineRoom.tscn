@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.tscn" type="PackedScene" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/Motherboard.tscn" type="PackedScene" id=14]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/sprites/battery_charger_progress_over.png" type="Texture" id=15]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/sprites/battery_charger_progress.png" type="Texture" id=16]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=17]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Hotspots/HotspotEngineInstructions.gd" type="Script" id=18]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/engine_instructions.png" type="Texture" id=19]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -34, 6 )
@@ -137,6 +140,28 @@ polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+[node name="EngineInstructions" parent="Hotspots" instance=ExtResource( 17 )]
+position = Vector2( 27, 10 )
+script = ExtResource( 18 )
+description = "Engine instructions"
+cursor = 1
+script_name = "EngineInstructions"
+pages = [ "Restartin instructions
+
+1. Replace the battery with one that is fully-charged.
+2. After placing the battery, insert the 3-step-password sequence.", "3. Once succeded, insert the card with the program for the elevator.
+4. Now inhabitants will be able to use the elevator. Congrats!" ]
+background = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/EngineInstructions" index="0"]
+polygon = PoolVector2Array( -6, -6, -6, 7, 6, 6, 6, -7 )
+
+[node name="BaselineHelper" parent="Hotspots/EngineInstructions" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/EngineInstructions" index="2"]
+visible = false
+
 [node name="Regions" type="Node2D" parent="."]
 
 [node name="Points" type="Node2D" parent="."]
@@ -166,3 +191,4 @@ visible = false
 [editable path="Props/FuseBox"]
 [editable path="Props/BatteryCharger"]
 [editable path="Props/Exit"]
+[editable path="Hotspots/EngineInstructions"]

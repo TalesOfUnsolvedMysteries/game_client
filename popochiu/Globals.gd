@@ -49,7 +49,7 @@ var bug_name := ''
 var bug_adn := ''
 sync var state := {
 #	'Lobby-PC_POWERED': true,
-#	'EngineRoom-ELEVATOR_WORKING': true,
+	'EngineRoom-ELEVATOR_WORKING': true,
 #	'SecondFloor-201_UNLOCKED': true,
 #	'SecondFloor-202_UNLOCKED': true,
 #	'ThirdFloor-301_UNLOCKED': true,
@@ -58,6 +58,7 @@ sync var state := {
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power
 var elevator_used := false
+sync var puzzle_state := {} # Mapeados por ID
 
 var _battery_charging_elapsed := 0
 

@@ -6,7 +6,7 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/right_arrow-hover.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/right_arrow-normal.png" type="Texture" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/right_arrow-pressed.png" type="Texture" id=6]
-[ext_resource path="res://popochiu/Rooms/Technician/sheets.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/engine_instructions.png" type="Texture" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/left_arrow-normal.png" type="Texture" id=8]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/left_arrow-disabled.png" type="Texture" id=9]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-14.tres" type="DynamicFont" id=10]
@@ -46,15 +46,15 @@ custom_constants/separation = 16
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BackgroundContainer/VBoxContainer"]
-margin_top = 17.0
+margin_top = 4.0
 margin_right = 272.0
-margin_bottom = 119.0
+margin_bottom = 132.0
 alignment = 1
 
 [node name="BtnLeft" type="TextureButton" parent="BackgroundContainer/VBoxContainer/HBoxContainer"]
-margin_top = 39.0
+margin_top = 52.0
 margin_right = 22.0
-margin_bottom = 62.0
+margin_bottom = 75.0
 rect_min_size = Vector2( 22, 0 )
 size_flags_horizontal = 8
 size_flags_vertical = 4
@@ -66,17 +66,20 @@ texture_disabled = ExtResource( 9 )
 [node name="Type" type="TextureRect" parent="BackgroundContainer/VBoxContainer/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.498039 )
 margin_left = 72.0
-margin_right = 199.0
-margin_bottom = 102.0
+margin_right = 200.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 mouse_filter = 2
 size_flags_horizontal = 6
 texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
 
 [node name="BtnRight" type="TextureButton" parent="BackgroundContainer/VBoxContainer/HBoxContainer"]
 margin_left = 250.0
-margin_top = 39.0
+margin_top = 52.0
 margin_right = 272.0
-margin_bottom = 62.0
+margin_bottom = 75.0
 rect_min_size = Vector2( 22, 0 )
 size_flags_vertical = 4
 texture_normal = ExtResource( 5 )
@@ -103,9 +106,9 @@ text = "EXIT"
 flat = true
 
 [node name="PagesCounter" type="Label" parent="BackgroundContainer/VBoxContainer"]
-margin_top = 135.0
+margin_top = 148.0
 margin_right = 272.0
-margin_bottom = 146.0
+margin_bottom = 159.0
 custom_colors/font_color = Color( 1, 0.733333, 0.192157, 1 )
 custom_fonts/font = ExtResource( 10 )
 text = "0/0"

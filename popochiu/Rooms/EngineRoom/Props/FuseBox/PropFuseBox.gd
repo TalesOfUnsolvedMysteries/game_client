@@ -1,7 +1,7 @@
 tool
 extends Prop
 
-export var combination := '666'
+const COMBINATION := '682'
 
 
 func _ready() -> void:
@@ -38,7 +38,7 @@ func on_item_used(item: InventoryItem) -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func check_combination(comb: String) -> void:
-	if combination == comb:
+	if COMBINATION == comb:
 		Globals.set_state('EngineRoom-SWITCH_BOX_OPENED', true)
 		$Sprite.frame = 1
 		A.play({cue_name = 'sfx_lock_open', is_in_queue = false})
