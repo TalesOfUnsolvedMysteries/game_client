@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clothes_thin.png-13031b94e1e8eb947ebed98f48a14997.stex"
+path="res://.import/head_ant.png-ba52bacaf8c1012bf03186c34e4004a9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Characters/Bug/parts/clothes_thin.png"
-dest_files=[ "res://.import/clothes_thin.png-13031b94e1e8eb947ebed98f48a14997.stex" ]
+source_file="res://popochiu/Characters/Bug/parts/head_ant.png"
+dest_files=[ "res://.import/head_ant.png-ba52bacaf8c1012bf03186c34e4004a9.stex" ]
 
 [params]
 

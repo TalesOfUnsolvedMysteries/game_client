@@ -16,31 +16,37 @@ const HEADS := [
 	preload('res://popochiu/Characters/Bug/parts/head_bee.png'),
 	preload('res://popochiu/Characters/Bug/parts/head_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/head_ladybird.png'),
+	preload('res://popochiu/Characters/Bug/parts/head_ant.png'),
 ]
 const BODIES := [
 	preload('res://popochiu/Characters/Bug/parts/body_bee.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_ladybird.png'),
+	preload('res://popochiu/Characters/Bug/parts/body_ant.png'),
 ]
 const LEGS := [
 	preload('res://popochiu/Characters/Bug/parts/legs_bee.png'),
 	preload('res://popochiu/Characters/Bug/parts/legs_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/legs_ladybird.png'),
+	preload('res://popochiu/Characters/Bug/parts/legs_ant.png'),
 ]
 const EYES := [
 	preload('res://popochiu/Characters/Bug/parts/eyes_square.png'),
 	preload('res://popochiu/Characters/Bug/parts/eyes_oval.png'),
 	preload('res://popochiu/Characters/Bug/parts/eyes_circle.png'),
+	preload('res://popochiu/Characters/Bug/parts/eyes_sunglasses.png'),
 ]
-const CLOTHES := [
-	preload('res://popochiu/Characters/Bug/parts/clothes_strong.png'),
-	preload('res://popochiu/Characters/Bug/parts/clothes_pointy.png'),
-	preload('res://popochiu/Characters/Bug/parts/clothes_thin.png'),
+const ARMS := [
+	preload('res://popochiu/Characters/Bug/parts/arms_strong.png'),
+	preload('res://popochiu/Characters/Bug/parts/arms_pointy.png'),
+	preload('res://popochiu/Characters/Bug/parts/arms_thin.png'),
+	preload('res://popochiu/Characters/Bug/parts/arms_sexy.png'),
 ]
 const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_converse.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_boots.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
+	preload('res://popochiu/Characters/Bug/parts/shoes_gogo.png'),
 ]
 const BATTERY_CHARGING_TIME := 1 * 60
 
@@ -111,7 +117,7 @@ func load_state ():
 
 
 # Establece la apariencia del PC en base a una cadena de códigos:
-# HEAD BODY LEGS EYES CLOTHES SHOES
+# HEAD BODY LEGS EYES ARMS SHOES
 func set_appearance(adn: String) -> void:
 	bug_adn = adn
 	if is_instance_valid(C.player):

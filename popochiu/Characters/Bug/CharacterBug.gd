@@ -5,7 +5,7 @@ var _parts_id := {}
 var _was_created := false
 
 onready var _body: Sprite = find_node('Body')
-onready var _clothes: Sprite = find_node('Clothes')
+onready var _arms: Sprite = find_node('Arms')
 onready var _head: Sprite = find_node('Head')
 onready var _eyes: Sprite = find_node('Eyes')
 onready var _legs: Sprite = find_node('Legs')
@@ -24,7 +24,7 @@ func _ready():
 				str(randi() % Globals.BODIES.size()) +\
 				str(randi() % Globals.LEGS.size()) +\
 				str(randi() % Globals.EYES.size()) +\
-				str(randi() % Globals.CLOTHES.size()) +\
+				str(randi() % Globals.ARMS.size()) +\
 				str(randi() % Globals.SHOES.size())
 			)
 		else:
@@ -72,9 +72,9 @@ func set_eyes(txt: Texture) -> void:
 	_update_head_and_legs_positions()
 
 
-func set_clothes(txt: Texture) -> void:
-	if txt: _clothes.position.x = 5.0
-	_clothes.texture = txt
+func set_arms(txt: Texture) -> void:
+	if txt: _arms.position.x = 5.0
+	_arms.texture = txt
 	
 	_update_head_and_legs_positions()
 
@@ -99,15 +99,15 @@ func set_part(node: AttributeSelector) -> void:
 			set_head(node.part.texture)
 		'Legs':
 			set_legs(node.part.texture)
-		'Eyes', 'Clothes', 'Shoes':
+		'Eyes', 'Arms', 'Shoes':
 			if node.get_part_idx() == -1:
 				s.texture = null
 				return
 			continue
 		'Eyes':
 			set_eyes(node.part.texture)
-		'Clothes':
-			set_clothes(node.part.texture)
+		'Arms':
+			set_arms(node.part.texture)
 		'Shoes':
 			set_shoes(node.part.texture)
 		_:
@@ -157,8 +157,8 @@ func load_appearance(adn: String):
 				if adn[idx] == 'x': set_eyes(null)
 				else: set_eyes(Globals.EYES[int(adn[idx])])
 			4:
-				if adn[idx] == 'x': set_clothes(null)
-				else: set_clothes(Globals.CLOTHES[int(adn[idx])])
+				if adn[idx] == 'x': set_arms(null)
+				else: set_arms(Globals.ARMS[int(adn[idx])])
 			5:
 				if adn[idx] == 'x': set_shoes(null)
 				else: set_shoes(Globals.SHOES[int(adn[idx])])

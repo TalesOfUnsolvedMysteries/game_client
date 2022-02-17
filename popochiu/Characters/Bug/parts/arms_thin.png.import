@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clothes_pointy.png-473768f60c76581b17d593ffe0828a5b.stex"
+path="res://.import/arms_thin.png-145d2679341f449517c91f571e991906.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Characters/Bug/parts/clothes_pointy.png"
-dest_files=[ "res://.import/clothes_pointy.png-473768f60c76581b17d593ffe0828a5b.stex" ]
+source_file="res://popochiu/Characters/Bug/parts/arms_thin.png"
+dest_files=[ "res://.import/arms_thin.png-145d2679341f449517c91f571e991906.stex" ]
 
 [params]
 

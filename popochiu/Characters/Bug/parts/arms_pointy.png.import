@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/body_shadow.png-3e87ae3f556f0d7e26d6c87920419b9d.stex"
+path="res://.import/arms_pointy.png-e4b9510fd7f41d45f3eabb9be5621b6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/BugEditor/sprites/body_shadow.png"
-dest_files=[ "res://.import/body_shadow.png-3e87ae3f556f0d7e26d6c87920419b9d.stex" ]
+source_file="res://popochiu/Characters/Bug/parts/arms_pointy.png"
+dest_files=[ "res://.import/arms_pointy.png-e4b9510fd7f41d45f3eabb9be5621b6e.stex" ]
 
 [params]
 

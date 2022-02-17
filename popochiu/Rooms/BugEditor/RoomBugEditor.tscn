@@ -5,7 +5,7 @@
 [ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/AttributeSelector.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=21]
-[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=22]
+[ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=22]
 [ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=23]
 
 [sub_resource type="StyleBoxFlat" id=7]
@@ -28,7 +28,7 @@ font_data = ExtResource( 23 )
 [sub_resource type="StyleBoxFlat" id=8]
 draw_center = false
 border_width_bottom = 2
-border_color = Color( 1, 0.905882, 0.215686, 1 )
+border_color = Color( 0.811765, 0.235294, 0.443137, 1 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 2.0
@@ -47,7 +47,7 @@ limit_bottom = 0.0
 [node name="Props" type="Node2D" parent="."]
 
 [node name="Bg" parent="Props" instance=ExtResource( 21 )]
-modulate = Color( 0.529412, 0.0862745, 0.27451, 1 )
+modulate = Color( 0.65098, 0.458824, 0.996078, 1 )
 description = "Bg"
 clickable = false
 cursor = 10
@@ -151,16 +151,16 @@ main_color = Color( 1, 0.501961, 0.643137, 1 )
 src = "EYES"
 has_none = true
 
-[node name="Clothes" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
+[node name="Arms" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 40.0
 margin_right = 60.0
 margin_bottom = 76.0
 size_flags_vertical = 3
-title = "clothes"
+title = "arms"
 main_color = Color( 0.839216, 0.141176, 0.0666667, 1 )
-src = "CLOTHES"
+src = "ARMS"
 has_none = true
 
 [node name="Shoes" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/HBoxContainer/SecondaryAttributes" instance=ExtResource( 3 )]

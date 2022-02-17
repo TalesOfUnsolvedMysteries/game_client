@@ -2,7 +2,7 @@
 
 [ext_resource path="res://popochiu/Rooms/Menu/RoomMenu.gd" type="Script" id=1]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
-[ext_resource path="res://popochiu/Rooms/BugEditor/sprites/bg.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=5]
 [ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=6]
 

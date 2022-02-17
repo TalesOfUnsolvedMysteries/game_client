@@ -9,7 +9,7 @@ onready var _selectors := [
 	_gi.find_node('Body'),
 	_gi.find_node('Legs'),
 	_gi.find_node('Eyes'),
-	_gi.find_node('Clothes'),
+	_gi.find_node('Arms'),
 	_gi.find_node('Shoes')
 ]
 onready var _btn_idle: Button = _gi.find_node('Idle')

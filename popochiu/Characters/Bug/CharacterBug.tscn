@@ -639,10 +639,12 @@ polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, -10 )
 disabled = true
 
 [node name="BaselineHelper" type="Line2D" parent="."]
+visible = false
 points = PoolVector2Array( -10000, 0, 10000, 0 )
 width = 1.0
 
 [node name="WalkToHelper" type="Position2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_group_": true
 }
@@ -676,7 +678,7 @@ script = ExtResource( 3 )
 
 [node name="Body" type="Sprite" parent="Sprite"]
 
-[node name="Clothes" type="Sprite" parent="Sprite/Body"]
+[node name="Arms" type="Sprite" parent="Sprite/Body"]
 
 [node name="Head" type="Sprite" parent="Sprite"]
 

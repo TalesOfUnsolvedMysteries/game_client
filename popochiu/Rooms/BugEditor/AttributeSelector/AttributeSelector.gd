@@ -6,7 +6,7 @@ signal part_updated(node)
 
 export var title := ''
 export var main_color: Color = Color.white
-export(String, 'HEADS', 'BODIES', 'LEGS', 'EYES', 'CLOTHES', 'SHOES') var src := 'HEADS'
+export(String, 'HEADS', 'BODIES', 'LEGS', 'EYES', 'ARMS', 'SHOES') var src := 'HEADS'
 export var shadow_texture: Texture = null
 export var has_none := false
 
