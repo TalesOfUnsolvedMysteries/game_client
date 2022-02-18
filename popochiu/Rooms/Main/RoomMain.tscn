@@ -16,10 +16,10 @@ script = ExtResource( 3 )
 cursor = 1
 texture = ExtResource( 5 )
 
-[node name="CollisionPolygon2D" parent="Props/Bg" index="0"]
-polygon = PoolVector2Array( -160, -90, 160, -90, 160, 90, -160, 90 )
-
-[node name="Sprite" parent="Props/Bg" index="3"]
+[node name="Sprite" parent="Props/Bg" index="2"]
 texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" parent="Props/Bg" index="3"]
+polygon = PoolVector2Array( -160, -90, 160, -90, 160, 90, -160, 90 )
 
 [editable path="Props/Bg"]

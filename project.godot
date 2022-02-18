@@ -49,6 +49,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://popochiu/GraphicInterface/DisplayBox/DisplayBox.gd"
 }, {
+"base": "Node",
+"class": "Filter",
+"language": "GDScript",
+"path": "res://addons/lospec_palette_list/classes/filter.gd"
+}, {
+"base": "Container",
+"class": "HFlowContainer",
+"language": "GDScript",
+"path": "res://addons/lospec_palette_list/h_flow_container/h_flow_container.gd"
+}, {
 "base": "Control",
 "class": "History",
 "language": "GDScript",
@@ -134,6 +144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/Popochiu/Engine/Objects/Region/Region.gd"
 }, {
+"base": "Node",
+"class": "Sort",
+"language": "GDScript",
+"path": "res://addons/lospec_palette_list/classes/sort.gd"
+}, {
 "base": "NinePatchRect",
 "class": "Toolbar",
 "language": "GDScript",
@@ -153,6 +168,8 @@ _global_script_class_icons={
 "DialogOption": "",
 "DialogText": "",
 "DisplayBox": "",
+"Filter": "",
+"HFlowContainer": "",
 "History": "",
 "Hotspot": "res://addons/Popochiu/icons/hotspot.png",
 "InventoryContainer": "",
@@ -170,6 +187,7 @@ _global_script_class_icons={
 "Prop": "res://addons/Popochiu/icons/prop.png",
 "PuzzleBlock": "",
 "Region": "res://addons/Popochiu/icons/region.png",
+"Sort": "",
 "Toolbar": "",
 "ToolbarButton": ""
 }
@@ -178,7 +196,7 @@ _global_script_class_icons={
 
 config/name="The bug adventure show"
 config/description="A graphic adventure for the blockchain. A multi-game-jam-entry for the Game Off, AdvXJam 2021, Theta Hackathon Q3 2021 and GoGodotJam 2021."
-run/main_scene="res://popochiu/Rooms/FirstFloor/RoomFirstFloor.tscn"
+run/main_scene="res://popochiu/Rooms/MainMenu/RoomMainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -215,7 +233,11 @@ script_templates_search_path="res://addons/Popochiu/Engine/Templates"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg", "res://addons/quentincaffeino/console/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg", "res://addons/lospec_palette_list/plugin.cfg", "res://addons/quentincaffeino/console/plugin.cfg" )
+
+[gui]
+
+theme/custom_font="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres"
 
 [importer_defaults]
 

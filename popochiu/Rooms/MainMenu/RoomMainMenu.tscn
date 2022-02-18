@@ -1,0 +1,855 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://popochiu/Rooms/MainMenu/RoomMainMenu.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/twitch_logo.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/ladybird.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/btn_left-pressed.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/btn_right-normal.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/btn_left-disabled.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/btn_right-disabled.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/btn_left-normal.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/btn_right-pressed.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-14.tres" type="DynamicFont" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-8.tres" type="DynamicFont" id=13]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/nft_shape.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/nft_new_floors.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn_right_collection-normal.png" type="Texture" id=16]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn_left_collection-normal.png" type="Texture" id=17]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn_left_collection-pressed.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn_right_collection-pressed.png" type="Texture" id=19]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.384314, 0.392157, 0.862745, 1 )
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+grow_begin = 0.0
+grow_end = 0.0
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0.12549, 0.709804, 0.384314, 1 )
+corner_detail = 1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 2, 2 )
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0.384314, 0.392157, 0.862745, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color( 0.239216, 0.203922, 0.647059, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.384314, 0.392157, 0.862745, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 12
+use_mipmaps = true
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 1, 1, 1, 1 )
+grow_begin = -2.0
+grow_end = -2.0
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0.415686, 0.192157, 0.792157, 1 )
+corner_detail = 1
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 2, 2 )
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
+[sub_resource type="DynamicFont" id=6]
+size = 12
+use_mipmaps = true
+extra_spacing_top = -2
+extra_spacing_bottom = -2
+font_data = ExtResource( 4 )
+
+[node name="RoomMainMenu" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "MainMenu"
+has_player = false
+hide_gi = true
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+margin_right = 320.0
+margin_bottom = 180.0
+custom_constants/separation = 0
+
+[node name="InfoContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer"]
+margin_right = 320.0
+margin_bottom = 160.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer"]
+margin_right = 158.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+
+[node name="PlayerDataContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer"]
+margin_left = 4.0
+margin_right = 154.0
+margin_bottom = 160.0
+
+[node name="NearIdContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
+margin_right = 150.0
+margin_bottom = 12.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/NearIdContainer"]
+margin_left = 24.0
+margin_right = 69.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.886275, 0.788235, 1, 1 )
+text = "near id"
+uppercase = true
+
+[node name="NearId" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/NearIdContainer"]
+margin_left = 73.0
+margin_top = 3.0
+margin_right = 125.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+custom_colors/font_color = Color( 1, 0.905882, 0.215686, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "agar3s.near"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
+margin_top = 16.0
+margin_right = 150.0
+margin_bottom = 20.0
+custom_styles/separator = SubResource( 7 )
+
+[node name="PlayerInfoContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
+margin_top = 24.0
+margin_right = 150.0
+margin_bottom = 86.0
+
+[node name="AvatarContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer"]
+margin_right = 29.0
+margin_bottom = 62.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/AvatarContainer"]
+margin_right = 29.0
+margin_bottom = 45.0
+texture = ExtResource( 5 )
+
+[node name="BtnEdit" type="Button" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/AvatarContainer"]
+margin_top = 49.0
+margin_right = 27.0
+margin_bottom = 60.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/normal = SubResource( 9 )
+text = "edit"
+
+[node name="InfoContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer"]
+margin_left = 33.0
+margin_right = 150.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+
+[node name="Adn" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
+margin_right = 117.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "adn: [color=#FFE737]ACBF00[/color]"
+text = "adn: ACBF00"
+fit_content_height = true
+
+[node name="Name" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
+margin_top = 14.0
+margin_right = 117.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "adn: [color=#FFE737]pancha[/color]"
+text = "adn: pancha"
+fit_content_height = true
+
+[node name="TurnsToPlay" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
+margin_top = 28.0
+margin_right = 117.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "turns to play: [color=#FFE737]12[/color]"
+text = "turns to play: 12"
+fit_content_height = true
+
+[node name="FamousQuote" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
+margin_top = 42.0
+margin_right = 117.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "famous quote: [color=#FFE737]Adiós mundo cruel![/color]"
+text = "famous quote: Adiós mundo cruel!"
+fit_content_height = true
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
+margin_top = 90.0
+margin_right = 150.0
+margin_bottom = 94.0
+custom_styles/separator = SubResource( 7 )
+
+[node name="PlayerRecordContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
+margin_top = 98.0
+margin_right = 150.0
+margin_bottom = 160.0
+size_flags_vertical = 3
+
+[node name="MemoriesContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer"]
+margin_right = 150.0
+margin_bottom = 44.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BtnLeft" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer/MemoriesContainer"]
+margin_left = 14.0
+margin_top = 15.0
+margin_right = 24.0
+margin_bottom = 29.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 8 )
+
+[node name="NoMemories" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer/MemoriesContainer"]
+margin_left = 28.0
+margin_top = 17.0
+margin_right = 122.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "no memories to show"
+
+[node name="BtnRight" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer/MemoriesContainer"]
+margin_left = 126.0
+margin_top = 15.0
+margin_right = 136.0
+margin_bottom = 29.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 11 )
+texture_disabled = ExtResource( 9 )
+
+[node name="ScoreContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer"]
+margin_left = 28.0
+margin_top = 48.0
+margin_right = 121.0
+margin_bottom = 62.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer/ScoreContainer"]
+margin_top = 2.0
+margin_right = 53.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.996078, 0.788235, 0.929412, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "total score"
+
+[node name="Score" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerRecordContainer/ScoreContainer"]
+margin_left = 57.0
+margin_top = 2.0
+margin_right = 93.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 36, 0 )
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "1200"
+align = 1
+
+[node name="GameDataTabs" type="TabContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer"]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+custom_colors/font_color_bg = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_colors/font_color_fg = Color( 1, 1, 1, 1 )
+custom_constants/side_margin = 0
+custom_fonts/font = ExtResource( 12 )
+custom_styles/tab_fg = SubResource( 10 )
+custom_styles/tab_bg = SubResource( 11 )
+custom_styles/panel = SubResource( 12 )
+
+[node name="Collection" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 23.0
+margin_right = -2.0
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_tab_name": "collection"
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection"]
+margin_top = 4.0
+margin_right = 154.0
+margin_bottom = 133.0
+size_flags_vertical = 3
+
+[node name="NFTsContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer"]
+margin_left = 7.0
+margin_right = 147.0
+margin_bottom = 111.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+custom_constants/vseparation = 8
+columns = 4
+
+[node name="NFTContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_right = 32.0
+margin_bottom = 33.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 15 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 1, 0.905882, 0.215686, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "elevator unlocked"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer2" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 33.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer2"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer2"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer3" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 33.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer3"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer3"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer4" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 108.0
+margin_right = 140.0
+margin_bottom = 33.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer4"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer4"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer5" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_top = 41.0
+margin_right = 32.0
+margin_bottom = 68.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer5"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer5"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer6" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 36.0
+margin_top = 41.0
+margin_right = 68.0
+margin_bottom = 68.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer6"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer6"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer7" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 72.0
+margin_top = 41.0
+margin_right = 104.0
+margin_bottom = 68.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer7"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer7"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer8" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 108.0
+margin_top = 41.0
+margin_right = 140.0
+margin_bottom = 68.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer8"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer8"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer9" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_top = 76.0
+margin_right = 32.0
+margin_bottom = 103.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer9"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer9"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer10" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 36.0
+margin_top = 76.0
+margin_right = 68.0
+margin_bottom = 103.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer10"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer10"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer11" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 72.0
+margin_top = 76.0
+margin_right = 104.0
+margin_bottom = 103.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer11"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer11"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NFTContainer12" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer"]
+margin_left = 108.0
+margin_top = 76.0
+margin_right = 140.0
+margin_bottom = 103.0
+custom_constants/separation = 0
+
+[node name="NFT" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer12"]
+margin_right = 32.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/NFTsContainer/NFTContainer12"]
+margin_top = 24.0
+margin_right = 32.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "????"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer"]
+margin_top = 115.0
+margin_right = 154.0
+margin_bottom = 129.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BtnLeft" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/HBoxContainer"]
+margin_left = 52.0
+margin_top = 1.0
+margin_right = 64.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_top = 2.0
+margin_right = 85.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "1/4"
+
+[node name="BtnRight" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/Collection/VBoxContainer/HBoxContainer"]
+margin_left = 89.0
+margin_top = 1.0
+margin_right = 101.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 4
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+expand = true
+stretch_mode = 3
+
+[node name="GameLog" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 23.0
+margin_right = -2.0
+__meta__ = {
+"_tab_name": "game log"
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog"]
+margin_right = 40.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "game log"
+align = 1
+valign = 1
+
+[node name="BannerContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/MainContainer"]
+margin_top = 160.0
+margin_right = 320.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 0, 20 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer"]
+margin_right = 320.0
+margin_bottom = 20.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 2
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 316.0
+margin_bottom = 18.0
+custom_constants/separation = 1
+
+[node name="CompletionPercent" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 48.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 48, 0 )
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "10% completed"
+valign = 1
+autowrap = true
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 53.0
+margin_bottom = 16.0
+custom_styles/separator = SubResource( 3 )
+
+[node name="NarrationContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 250.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Narration" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer/NarrationContainer"]
+margin_top = 3.0
+margin_right = 174.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center][color=#F68F37]mapedorr[/color] [color=#A675FE]entered[/color] [color=#58D332]room 301[/color][/center]"
+text = "mapedorr entered room 301"
+fit_content_height = true
+
+[node name="BtnTwitch" type="Button" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer/NarrationContainer"]
+margin_left = 178.0
+margin_top = 1.0
+margin_right = 192.0
+margin_bottom = 15.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.1
+custom_styles/normal = SubResource( 4 )
+icon = ExtResource( 2 )
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer"]
+margin_left = 251.0
+margin_right = 255.0
+margin_bottom = 16.0
+custom_styles/separator = SubResource( 3 )
+
+[node name="InlinePlayers" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/BannerContainer/MarginContainer/HBoxContainer"]
+margin_left = 256.0
+margin_top = 1.0
+margin_right = 312.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 56, 0 )
+custom_colors/font_color = Color( 0.145098, 0.886275, 0.803922, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "45 players in line"
+align = 2
+valign = 1
+autowrap = true
