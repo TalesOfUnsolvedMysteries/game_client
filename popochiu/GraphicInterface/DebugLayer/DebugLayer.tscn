@@ -1,10 +1,101 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/DebugLayer/DebugLayer.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://addons/Popochiu/Editor/Resources/DynamicFonts/NotoSansUIBold.tres" type="DynamicFont" id=3]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Button
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	print('recovering user')
+	var response = yield(ServerConnection.can_connect(), 'completed')
+	print(response)
+
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Button
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	print('ready to pilot')
+	NetworkManager.set_ready_to_pilot(true)
+
+"
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	var response = yield(ServerConnection.request_user_session(), 'completed')
+	print(response)
+
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	print('recovering user')
+	var response = yield(ServerConnection.recover_user_session(), 'completed')
+	print(response)
+
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	print('recovering user')
+	var response = yield(ServerConnection.request_turn(), 'completed')
+	print(response)
+
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	print('recovering user')
+	var response = yield(ServerConnection.get_server_status(), 'completed')
+	print(response)
+
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _ready():
+	connect(\"button_down\", self, '_on_pressed')
+
+func _on_pressed():
+	ServerConnection.secret_key = 'papito'
+	print('recovering user')
+	var response = yield(ServerConnection.register_server(), 'completed')
+	print(response)
+"
 
 [node name="DebugLayer" type="CanvasLayer"]
-layer = 3
+layer = 0
 script = ExtResource( 1 )
 
 [node name="Control" type="Control" parent="."]
@@ -12,6 +103,15 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.113725, 0.0235294, 0.0235294, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,6 +124,21 @@ margin_bottom = 183.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 2 )
 text = "Connection status: Disconnected"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Log" type="TextEdit" parent="Control"]
+margin_left = 9.0
+margin_top = 16.0
+margin_right = 387.0
+margin_bottom = 224.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 3 )
+text = "Debug log"
+show_line_numbers = true
+smooth_scrolling = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,17 +179,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Countdown" type="Label" parent="Control"]
-margin_left = 103.0
-margin_top = 4.0
-margin_right = 199.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 2 )
-text = "time left: -"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Screenshot" type="Button" parent="Control"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -86,6 +190,21 @@ margin_right = 55.0
 margin_bottom = 7.0
 rect_scale = Vector2( 0.5, 0.5 )
 text = "Take Screenshot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clean" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -311.0
+margin_top = -56.0
+margin_right = -195.0
+margin_bottom = -36.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Clean"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,3 +223,148 @@ text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="home" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -172.0
+margin_right = 82.0
+margin_bottom = -152.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "GET /"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="user" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -160.0
+margin_right = 82.0
+margin_bottom = -140.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "GET /user"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="userCanConnect" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -112.0
+margin_right = 82.0
+margin_bottom = -92.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "GET /user/can-connect"
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="userReadyToPilot" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -100.0
+margin_right = 82.0
+margin_bottom = -80.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "READY TO PILOT"
+script = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="userRequest" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -148.0
+margin_right = 82.0
+margin_bottom = -128.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "POST /user/request"
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="userRecover" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -136.0
+margin_right = 82.0
+margin_bottom = -116.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "POST /user/recover"
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="requestTurn" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -124.0
+margin_right = 81.0
+margin_bottom = -104.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "POST /user/request/turn"
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="serverStatus" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -82.0
+margin_right = 82.0
+margin_bottom = -62.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "GET /server/status"
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="serverRegister" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -70.0
+margin_right = 82.0
+margin_bottom = -50.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "GET /server/register"
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Control/home" to="." method="_get_request" binds= [ "" ]]
+[connection signal="button_down" from="Control/user" to="." method="_get_request" binds= [ "user" ]]

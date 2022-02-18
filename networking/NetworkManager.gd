@@ -45,7 +45,8 @@ func init_server():
 	server = true
 	Globals.load_state()
 	
-	WebsocketManager.register_game_server()
+	yield(ServerConnection.register_server(), 'completed')
+	#WebsocketManager.register_game_server()
 	emit_signal('server_started')
 
 func start_sync_pilot(peer_id):
@@ -61,8 +62,9 @@ remote func prepare_pilot():
 
 remote func pilot_ready():
 	var peer_id = get_tree().get_rpc_sender_id()
+	yield(ServerConnection.notify_pilot_ready(), 'completed')
 	set_pilot(peer_id)
-	WebsocketManager.send_message_ws('gs_pilotReady')
+	#WebsocketManager.send_message_ws('gs_pilotReady')
 
 func set_pilot(peer_id):
 	if !server: return
@@ -97,7 +99,8 @@ func game_over(_peer_id, death_cause):
 	Globals.bug_adn = ''
 	print('game over')
 	print('gs_gameOver:%d-%s' % [peer_id, death_cause])
-	WebsocketManager.send_message_ws('gs_gameOver:%d-%s' % [peer_id, death_cause])
+	ServerConnection.notify_game_over(peer_id, death_cause)
+	#WebsocketManager.send_message_ws('gs_gameOver:%d-%s' % [peer_id, death_cause])
 
 
 remote func take_control():
@@ -133,7 +136,8 @@ remote func remove_control():
 	if !client: return
 	print('control lost')
 	emit_signal('control_lost')
-	WebsocketManager.turn = 0
+	ServerConnection.turn = 0
+	#WebsocketManager.turn = 0
 	is_ready_to_pilot = false
 	I.reset()
 	E.goto_room('Menu')
@@ -151,7 +155,7 @@ func request_join(server_ip):
 func _player_connected(player_id):
 	print('should register players connected to the game ', player_id)
 	if server:
-		WebsocketManager.player_connected(player_id)
+		ServerConnection.player_connected(player_id)
 
 
 # server and client
@@ -160,7 +164,8 @@ func _player_disconnected(player_id):
 	if server and player_id == pilot_peer_id:
 		game_over(player_id, 'disconnection')
 	else:
-		WebsocketManager.send_message_ws('gs_player_disconnected:%s' % player_id)
+		ServerConnection.notify_player_disconnected(player_id)
+		#WebsocketManager.send_message_ws('gs_player_disconnected:%s' % player_id)
 
 
 # client

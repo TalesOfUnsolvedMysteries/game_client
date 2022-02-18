@@ -22,10 +22,10 @@ onready var _turn: Label = _screen_yours.find_node('Number')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	WebsocketManager.connect('turn_assigned', self, '_on_turn_assigned')
+	ServerConnection.connect('turn_assigned', self, '_on_turn_assigned')
 	NetworkManager.connect('pilot_engaged', self, '_start_countdown')
-	if WebsocketManager.turn > 0:
-		_turn.text = '%d' % WebsocketManager.turn
+	if ServerConnection.turn > 0:
+		_turn.text = '%d' % ServerConnection.turn
 	else:
 		_turn.text = '???'
 	

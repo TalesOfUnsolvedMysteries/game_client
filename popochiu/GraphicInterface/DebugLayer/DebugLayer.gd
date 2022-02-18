@@ -10,10 +10,11 @@ func _ready():
 	NetworkManager.connect('server_started', self, '_server_started')
 	NetworkManager.connect('control_taken', self, '_control_taken')
 	NetworkManager.connect('control_lost', self, '_control_lost')
-	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
-	WebsocketManager.connect('turn_assigned', self, '_turn_assigned')
+	ServerConnection.connect('userID_assigned', self, '_userID_assigned')
+	ServerConnection.connect('turn_assigned', self, '_turn_assigned')
 	$Control/Screenshot.connect('pressed', Utils, 'take_screenshot', ['./test.png'])
-	$Control/Join.connect('pressed', WebsocketManager, 'request_join')
+	$Control/Join.connect('pressed', ServerConnection, 'request_user_session')
+	$Control/Clean.connect('pressed', self, 'clean_console')
 
 func _player_connected(peer_id):
 	$Control/Connection.text = 'Connection Status: connected'
@@ -48,7 +49,17 @@ func _userID_assigned(userID):
 func _turn_assigned(turn):
 	$Control/Turn.text = 'turn: %s' % turn
 
+func clean_console():
+	$Control/Log.text = ''
+
 func _process(delta):
 	if time > 0:
 		time -= delta
-		$Control/Countdown.text = 'time left: %ds' % int(time)
+		#$Control/Countdown.text = 'time left: %ds' % int(time)
+
+
+func _get_request(url):
+	var result = yield(ServerConnection._get_request(url), 'completed')
+	$Control/Log.text = $Control/Log.text + '\n' + JSON.print(result)
+
+

@@ -10,8 +10,8 @@ var wallet_connection
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
 func _ready():
-	WebsocketManager.connect('connection_updated', self, '_on_connection_updated')
-	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
+	ServerConnection.connect('connection_updated', self, '_on_connection_updated')
+	ServerConnection.connect('userID_assigned', self, '_userID_assigned')
 	_join_btn.connect('button_down', self, '_on_join')
 	
 	if OS.has_feature('web'):
@@ -54,25 +54,25 @@ func _on_connection_updated(connection_status):
 	_join_btn.disabled = true
 	
 	match connection_status:
-		WebsocketManager.CONNECTION_STATUS.OFFLINE:
+		ServerConnection.CONNECTION_STATUS.OFFLINE:
 			_status.text = 'not connected to server'
-		WebsocketManager.CONNECTION_STATUS.CONNECTING:
+		ServerConnection.CONNECTION_STATUS.CONNECTING:
 			_status.text = 'connecting to the server'
-		WebsocketManager.CONNECTION_STATUS.RECOVERING_CREDENTIALS:
+		ServerConnection.CONNECTION_STATUS.RECOVERING_CREDENTIALS:
 			_status.text = 'recovering existing session'
-		WebsocketManager.CONNECTION_STATUS.ESTABLISHED:
+		ServerConnection.CONNECTION_STATUS.ESTABLISHED:
 			_status.text = 'connection established'
-		WebsocketManager.CONNECTION_STATUS.HANDSHAKING:
+		ServerConnection.CONNECTION_STATUS.HANDSHAKING:
 			_status.text = 'validating connection'
-		WebsocketManager.CONNECTION_STATUS.CONNECTED:
+		ServerConnection.CONNECTION_STATUS.CONNECTED:
 			_status.text = 'online'
 			_join_btn.disabled = false
-		WebsocketManager.CONNECTION_STATUS.REJECTED:
+		ServerConnection.CONNECTION_STATUS.REJECTED:
 			_status.text = 'on line '
 			_join_btn.disabled = false
-		WebsocketManager.CONNECTION_STATUS.ERROR:
+		ServerConnection.CONNECTION_STATUS.ERROR:
 			_status.text = 'error on connection'
-		WebsocketManager.CONNECTION_STATUS.CLOSED:
+		ServerConnection.CONNECTION_STATUS.CLOSED:
 			_status.text = 'connection closed'
 
 func _userID_assigned(player_id):
@@ -82,7 +82,7 @@ func _userID_assigned(player_id):
 
 func _on_join():
 	if not OS.has_feature('web'):
-		WebsocketManager.request_join()
+		ServerConnection.request_user_session()
 		_status.text = 'joining to the show'
 	E.goto_room('BugEditor')
 

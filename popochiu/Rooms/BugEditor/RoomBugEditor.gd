@@ -34,10 +34,10 @@ func _ready() -> void:
 	_name_edit.text = _placeholder
 	_btn_done.disabled = true
 
-	WebsocketManager.connect('userID_assigned', self, '_userID_assigned')
-	_user_ready = WebsocketManager.user_id != 0
+	ServerConnection.connect('userID_assigned', self, '_userID_assigned')
+	_user_ready = ServerConnection.user_id != 0
 	if _user_ready:
-		_user_id.text = 'Player %d' % WebsocketManager.user_id
+		_user_id.text = 'Player %d' % ServerConnection.user_id
 	elif OS.has_feature('web'):
 		_user_ready = true
 		_user_id.text = 'Offline player'
@@ -73,9 +73,12 @@ func _check_bug_name(new_text: String) -> void:
 
 func _start() -> void:
 	Globals.bug_name = _name_edit.text
-	WebsocketManager.send_message_ws('setBugName:%s' % Globals.bug_name)
-	WebsocketManager.send_message_ws('setADN:%s' % Globals.bug_adn)
-	WebsocketManager.request_turn()
+	ServerConnection.set_bug_name(Globals.bug_name)
+	ServerConnection.set_bug_adn(Globals.bug_adn)
+	ServerConnection.request_turn()
+	#WebsocketManager.send_message_ws('setBugName:%s' % Globals.bug_name)
+	#WebsocketManager.send_message_ws('setADN:%s' % Globals.bug_adn)
+	#WebsocketManager.request_turn()
 	E.goto_room('WaitingRoom')
 	#E.goto_room('BugCard')
 
