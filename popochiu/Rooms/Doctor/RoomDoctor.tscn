@@ -202,7 +202,6 @@ texture = ExtResource( 24 )
 position = Vector2( 0, 6 )
 
 [node name="WalkToHelper" parent="Props/Exit" index="1"]
-visible = true
 position = Vector2( -19, 18 )
 
 [node name="Sprite" parent="Props/Exit" index="2"]

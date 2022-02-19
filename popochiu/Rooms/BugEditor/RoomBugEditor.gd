@@ -12,8 +12,7 @@ onready var _selectors := [
 	_gi.find_node('Arms'),
 	_gi.find_node('Shoes')
 ]
-onready var _btn_idle: Button = _gi.find_node('Idle')
-onready var _btn_walk: Button = _gi.find_node('Walk')
+onready var _btn_random: Button = _gi.find_node('Random')
 onready var _btn_done: Button = _gi.find_node('Done')
 onready var _name_edit: LineEdit = _gi.find_node('NameEdit')
 
@@ -27,8 +26,7 @@ func _ready() -> void:
 	
 	for s in _selectors:
 		(s as AttributeSelector).connect('part_updated', self, '_update_adn')
-	_btn_idle.connect('pressed', C.player, 'idle', [false])
-	_btn_walk.connect('pressed', C.player, 'play_walk', [0.5])
+	_btn_random.connect('pressed', self, '_make_random')
 	_btn_done.connect('pressed', self, '_start')
 	_name_edit.connect('focus_entered', self, '_check_placeholder')
 	_name_edit.connect('text_changed', self, '_check_bug_name')
@@ -96,3 +94,15 @@ func _update_adn(node: AttributeSelector = null) -> void:
 		var idx := (s as AttributeSelector).get_part_idx()
 		adn += str(idx) if idx > -1 else 'x'
 	Globals.set_appearance(adn)
+
+
+func _make_random() -> void:
+	randomize()
+	Globals.set_appearance(
+		str(randi() % Globals.HEADS.size()) +\
+		str(randi() % Globals.BODIES.size()) +\
+		str(randi() % Globals.LEGS.size()) +\
+		str(randi() % Globals.EYES.size()) +\
+		str(randi() % Globals.ARMS.size()) +\
+		str(randi() % Globals.SHOES.size())
+	)

@@ -33,7 +33,7 @@ func _ready() -> void:
 	shadow.texture = shadow_texture
 	
 	if not Engine.editor_hint and has_none:
-		_parts.push_front(_none_texture)
+		_parts[0] = _none_texture
 	
 	_update_part()
 	_check_buttons()
@@ -44,7 +44,7 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func get_part_idx() -> int:
-	return current_part if not has_none else current_part - 1
+	return current_part
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

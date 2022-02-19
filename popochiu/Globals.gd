@@ -31,18 +31,21 @@ const LEGS := [
 	preload('res://popochiu/Characters/Bug/parts/legs_ant.png'),
 ]
 const EYES := [
+	'x',
 	preload('res://popochiu/Characters/Bug/parts/eyes_square.png'),
 	preload('res://popochiu/Characters/Bug/parts/eyes_oval.png'),
 	preload('res://popochiu/Characters/Bug/parts/eyes_circle.png'),
 	preload('res://popochiu/Characters/Bug/parts/eyes_sunglasses.png'),
 ]
 const ARMS := [
+	'x',
 	preload('res://popochiu/Characters/Bug/parts/arms_strong.png'),
 	preload('res://popochiu/Characters/Bug/parts/arms_pointy.png'),
 	preload('res://popochiu/Characters/Bug/parts/arms_thin.png'),
 	preload('res://popochiu/Characters/Bug/parts/arms_sexy.png'),
 ]
 const SHOES := [
+	'x',
 	preload('res://popochiu/Characters/Bug/parts/shoes_converse.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_boots.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
