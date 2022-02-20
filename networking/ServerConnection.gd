@@ -57,6 +57,7 @@ func _pass_arguments():
 	else:
 		load_user_data()
 		yield(_check_server_connection(), 'completed')
+		if status == CONNECTION_STATUS.ERROR: return
 		if user_id != 0:
 			var recovered = yield(recover_user_session(), 'completed')
 			if recovered:
@@ -74,8 +75,7 @@ func _pass_arguments():
 
 func _check_server_connection():
 	var result = yield(_get_request(''), 'completed')	# ping
-	set_status(CONNECTION_STATUS.CONNECTING)
-	if result.message == 'bug':
+	if result and result.has('message') and result.message == 'bug':
 		set_status(CONNECTION_STATUS.CONNECTED)
 	else:
 		set_status(CONNECTION_STATUS.ERROR)
