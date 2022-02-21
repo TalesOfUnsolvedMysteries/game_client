@@ -247,15 +247,15 @@ script_templates_search_path="res://addons/Popochiu/Engine/Templates"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg", "res://addons/lospec_palette_list/plugin.cfg", "res://addons/quentincaffeino/console/plugin.cfg" )
-
-[gui]
-
-theme/custom_font="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres"
+enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg", "res://addons/quentincaffeino/console/plugin.cfg" )
 
 [global]
 
 mono=true
+
+[gui]
+
+theme/custom_font="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres"
 
 [importer_defaults]
 

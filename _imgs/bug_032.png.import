@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nft_new_floors-180.png-7134299bab8d5936d85f4bdeb4b072d3.stex"
+path="res://.import/bug_032.png-c4be02ff7f4c5946eb0e9f2c84a396c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_imgs/nft_new_floors-180.png"
-dest_files=[ "res://.import/nft_new_floors-180.png-7134299bab8d5936d85f4bdeb4b072d3.stex" ]
+source_file="res://_imgs/bug_032.png"
+dest_files=[ "res://.import/bug_032.png-c4be02ff7f4c5946eb0e9f2c84a396c4.stex" ]
 
 [params]
 

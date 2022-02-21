@@ -300,11 +300,11 @@ func set_cookie(_cookie):
 
 func _process_response (response):
 	var result = response[0]
+	if result != 0: return {}
 	var response_code = response[1]
 	var headers = response[2]
 	var body = response[3]
 	var json = JSON.parse(body.get_string_from_utf8())
-	print('response code %s' % response_code)
 	print(json)
 	for header in headers:
 		if header.begins_with('Set-Cookie'):

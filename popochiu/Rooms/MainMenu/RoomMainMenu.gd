@@ -13,7 +13,8 @@ onready var _completion_percent: Label = find_node('CompletionPercent')
 onready var _narration: RichTextLabel = find_node('Narration')
 onready var _btn_twitch: Button = find_node('BtnTwitch')
 onready var _in_line_players: Label = find_node('InLinePlayers')
-
+onready var _memories_container: MarginContainer = find_node('Memories')
+onready var _memory_container: MarginContainer = find_node('MemoryContainer')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -32,3 +33,6 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 # TODO: Poner aquí los métodos privados
+func _show_memory():
+	_memories_container.hide()
+	_memory_container.show()

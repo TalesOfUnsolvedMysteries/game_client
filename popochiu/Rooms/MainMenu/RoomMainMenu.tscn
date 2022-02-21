@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://popochiu/Rooms/MainMenu/RoomMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/MainMenu/sprites/twitch_logo.png" type="Texture" id=2]
@@ -21,6 +21,19 @@
 [ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn_right_collection-pressed.png" type="Texture" id=19]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=20]
 [ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=21]
+[ext_resource path="res://_imgs/bug_085.png" type="Texture" id=22]
+[ext_resource path="res://_imgs/bug_129.png" type="Texture" id=23]
+[ext_resource path="res://_imgs/bug_051.png" type="Texture" id=24]
+[ext_resource path="res://_imgs/bug_032.png" type="Texture" id=25]
+[ext_resource path="res://_imgs/bug_014.png" type="Texture" id=26]
+[ext_resource path="res://_imgs/bug_090.png" type="Texture" id=27]
+[ext_resource path="res://_imgs/polaroid.png" type="Texture" id=28]
+[ext_resource path="res://_imgs/bug_043.png" type="Texture" id=29]
+[ext_resource path="res://_imgs/bug_006.png" type="Texture" id=30]
+[ext_resource path="res://_imgs/bug_073.png" type="Texture" id=31]
+[ext_resource path="res://_imgs/bug_011.png" type="Texture" id=32]
+[ext_resource path="res://_imgs/bug_078.png" type="Texture" id=33]
+[ext_resource path="res://_imgs/bug_119.png" type="Texture" id=34]
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -81,6 +94,16 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 14
+extra_spacing_top = 2
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 10
+use_mipmaps = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.129412, 0.0862745, 0.25098, 1 )
@@ -228,6 +251,7 @@ custom_styles/separator = SubResource( 7 )
 margin_top = 24.0
 margin_right = 150.0
 margin_bottom = 86.0
+custom_constants/separation = 6
 
 [node name="AvatarContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer"]
 margin_right = 27.0
@@ -255,13 +279,13 @@ custom_styles/normal = SubResource( 9 )
 text = "edit"
 
 [node name="InfoContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer"]
-margin_left = 31.0
+margin_left = 33.0
 margin_right = 150.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 
 [node name="Adn" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
-margin_right = 119.0
+margin_right = 117.0
 margin_bottom = 10.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -274,20 +298,20 @@ fit_content_height = true
 
 [node name="Name" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
 margin_top = 14.0
-margin_right = 119.0
+margin_right = 117.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "adn: [color=#FFE737]pancha[/color]"
-text = "adn: pancha"
+bbcode_text = "name: [color=#FFE737]pancha[/color]"
+text = "name: pancha"
 fit_content_height = true
 
 [node name="TurnsToPlay" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
 margin_top = 28.0
-margin_right = 119.0
+margin_right = 117.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -300,15 +324,15 @@ fit_content_height = true
 
 [node name="FamousQuote" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
 margin_top = 42.0
-margin_right = 119.0
+margin_right = 117.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "famous quote: [color=#FFE737]Adiós mundo cruel![/color]"
-text = "famous quote: Adiós mundo cruel!"
+bbcode_text = "famous quote: [color=#FFE737]Goodbye Cruel World!![/color]"
+text = "famous quote: Goodbye Cruel World!!"
 fit_content_height = true
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
@@ -787,25 +811,800 @@ texture_pressed = ExtResource( 19 )
 expand = true
 stretch_mode = 3
 
-[node name="GameLog" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs"]
+[node name="GameLog" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
 margin_top = 23.0
 margin_right = -2.0
+custom_constants/margin_top = 7
+
+[node name="Memories" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog"]
+margin_top = 7.0
+margin_right = 154.0
+margin_bottom = 137.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories"]
+margin_right = 154.0
+margin_bottom = 130.0
+size_flags_vertical = 3
+
+[node name="MemoriesContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer"]
+margin_left = 7.0
+margin_right = 147.0
+margin_bottom = 104.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 4
+
+[node name="Memory" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 28 )
+expand = true
+stretch_mode = 5
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 30 )
+expand = true
+stretch_mode = 6
 __meta__ = {
-"_tab_name": "game log"
+"_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog"]
-margin_right = 40.0
-margin_bottom = 12.0
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory"]
+margin_left = 7.0
+margin_top = 22.0
+margin_right = 24.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#102"
+align = 1
+valign = 3
+
+[node name="Memory2" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory2"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture_normal = ExtResource( 28 )
+expand = true
+stretch_mode = 5
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory2/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 32 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory2"]
+margin_left = 7.0
+margin_top = 22.0
+margin_right = 24.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#101"
+align = 1
+valign = 3
+
+[node name="Memory3" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory3"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory3/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 26 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory3"]
+margin_left = 7.0
+margin_top = 22.0
+margin_right = 24.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#100"
+align = 1
+valign = 3
+
+[node name="Memory4" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 108.0
+margin_right = 140.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory4"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory4/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 25 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory4"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#99"
+align = 1
+valign = 3
+
+[node name="Memory5" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_top = 36.0
+margin_right = 32.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory5"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory5/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 29 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory5"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#98"
+align = 1
+valign = 3
+
+[node name="Memory6" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 68.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory6"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory6/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 24 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory6"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#97"
+align = 1
+valign = 3
+
+[node name="Memory7" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 72.0
+margin_top = 36.0
+margin_right = 104.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory7"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory7/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 31 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory7"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#96"
+align = 1
+valign = 3
+
+[node name="Memory8" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 108.0
+margin_top = 36.0
+margin_right = 140.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory8"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory8/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 33 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory8"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#95"
+align = 1
+valign = 3
+
+[node name="Memory9" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_top = 72.0
+margin_right = 32.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory9"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory9/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory9"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#94"
+align = 1
+valign = 3
+
+[node name="Memory10" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 36.0
+margin_top = 72.0
+margin_right = 68.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory10"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory10/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 27 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory10"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#93"
+align = 1
+valign = 3
+
+[node name="Memory11" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 72.0
+margin_top = 72.0
+margin_right = 104.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory11"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory11/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 34 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory11"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#92"
+align = 1
+valign = 3
+
+[node name="Memory12" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer"]
+margin_left = 108.0
+margin_top = 72.0
+margin_right = 140.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 32, 32 )
+custom_constants/separation = 0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory12"]
+margin_right = 32.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 22, 22 )
+texture = ExtResource( 28 )
+expand = true
+stretch_mode = 6
+
+[node name="Character" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory12/Image"]
+margin_left = 10.0
+margin_top = 2.0
+margin_right = 21.0
+margin_bottom = 13.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 23 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory12"]
+margin_left = 9.0
+margin_top = 22.0
+margin_right = 22.0
+margin_bottom = 25.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 13 )
+text = "#91"
+align = 1
+valign = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer"]
+margin_top = 108.0
+margin_right = 154.0
+margin_bottom = 130.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BtnLeft" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/HBoxContainer"]
+margin_left = 53.0
+margin_top = 5.0
+margin_right = 65.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/HBoxContainer"]
+margin_left = 69.0
+margin_top = 6.0
+margin_right = 85.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "9/9"
+
+[node name="BtnRight" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/HBoxContainer"]
+margin_left = 89.0
+margin_top = 5.0
+margin_right = 101.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 4
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+expand = true
+stretch_mode = 3
+
+[node name="MemoryContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog"]
+visible = false
+margin_top = 7.0
+margin_right = 154.0
+margin_bottom = 137.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_constants/margin_right = 3
+custom_constants/margin_top = 16
+custom_constants/margin_left = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer"]
+margin_left = 7.0
+margin_top = 16.0
+margin_right = 151.0
+margin_bottom = 22.0
+size_flags_vertical = 0
+custom_constants/margin_right = -11
+custom_constants/margin_top = -20
+custom_constants/margin_left = -4
+custom_constants/margin_bottom = 8
+
+[node name="Character" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/MarginContainer"]
+margin_left = -4.0
+margin_top = -20.0
+margin_right = 155.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 0, 18 )
+custom_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/MarginContainer/Character"]
+margin_right = 25.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "game log"
-align = 1
-valign = 1
+size_flags_stretch_ratio = 0.19
+texture = ExtResource( 32 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/MarginContainer/Character"]
+margin_left = 25.0
+margin_right = 159.0
+margin_bottom = 18.0
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 18 )
+bbcode_enabled = true
+bbcode_text = "[color=#F68F37]mapedorr[/color] turn #101"
+meta_underlined = false
+text = "mapedorr turn #101"
+scroll_active = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer"]
+margin_left = 7.0
+margin_top = 16.0
+margin_right = 151.0
+margin_bottom = 130.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="Action1" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_right = 144.0
+margin_bottom = 9.0
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:01[/color] - [color=#A675FE]enter[/color] [color=#58D332]Lobby[/color]"
+text = "00:00:01 - enter Lobby"
+fit_content_height = true
+
+[node name="Action2" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:12[/color] - [color=#A675FE]use[/color] [color=#58D332]PC[/color]"
+text = "00:00:12 - use PC"
+fit_content_height = true
+
+[node name="Action3" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 144.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:14[/color] - [color=#A675FE]open[/color] [color=#58D332]Elevator program[/color]"
+text = "00:00:14 - open Elevator program"
+fit_content_height = true
+
+[node name="Action4" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 144.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:29[/color] - [color=#A675FE]exit[/color] [color=#58D332]PC[/color]"
+text = "00:00:29 - exit PC"
+fit_content_height = true
+
+[node name="Action5" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 144.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:36[/color] - [color=#A675FE]enter[/color] [color=#58D332]second floor[/color]"
+text = "00:00:36 - enter second floor"
+fit_content_height = true
+
+[node name="Action6" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 45.0
+margin_right = 144.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:53[/color] - [color=#A675FE]use[/color] [color=#ff82ce]202 Key[/color] [color=#A675FE]on[/color] [color=#58D332]202 door [/color]"
+text = "00:00:53 - use 202 Key on 202 door "
+fit_content_height = true
+
+[node name="Action7" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 144.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:54[/color] - [color=#A675FE]unlock[/color] [color=#58D332]202 door[/color]"
+text = "00:00:54 - unlock 202 door"
+fit_content_height = true
+
+[node name="Action8" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 63.0
+margin_right = 144.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:54[/color] - [color=#A675FE]earn[/color] [color=#58D332]100 points[/color]"
+text = "00:00:54 - earn 100 points"
+fit_content_height = true
+
+[node name="Action9" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 144.0
+margin_bottom = 81.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:00:55[/color] - [color=#A675FE]enter[/color] [color=#58D332]room 202[/color]"
+text = "00:00:55 - enter room 202"
+fit_content_height = true
+
+[node name="Action10" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 81.0
+margin_right = 144.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/normal_font = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[color=#Fff0]00:01:01[/color] - [color=#A675FE]look at[/color] [color=#58D332]archive[/color]"
+text = "00:01:01 - look at archive"
+fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 144.0
+margin_bottom = 114.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BtnLeft" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer/HBoxContainer"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 57.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+expand = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer/HBoxContainer"]
+margin_left = 61.0
+margin_top = 7.0
+margin_right = 82.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "1/12"
+
+[node name="BtnRight" type="TextureButton" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/MemoryContainer/VBoxContainer/HBoxContainer"]
+margin_left = 86.0
+margin_top = 6.0
+margin_right = 98.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 4
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+expand = true
+stretch_mode = 3
 
 [node name="BannerContainer" type="PanelContainer" parent="CanvasLayer/PanelContainer/MainContainer"]
 margin_top = 160.0
@@ -897,3 +1696,5 @@ text = "45 players in line"
 align = 2
 valign = 1
 autowrap = true
+
+[connection signal="button_down" from="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer/MemoriesContainer/Memory2/Image" to="." method="_show_memory"]
