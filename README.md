@@ -1,2 +1,3 @@
-# The bug adventure show
-A graphic adventure for the blockchain. A multi-game-jam-entry for the Game Off, AdvXJam 2021, Theta Hackathon Q3 2021 and GoGodotJam 2021.
+# Tales of Unsolved Mysteries
+A graphic adventure for the blockchain. 
+
