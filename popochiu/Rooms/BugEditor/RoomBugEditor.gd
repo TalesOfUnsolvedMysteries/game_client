@@ -45,13 +45,12 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	C.player.position = Vector2(0, 0)
 	Globals.set_appearance('000xxx')
+	G.hide_interface()
 
 
 func on_room_transition_finished() -> void:
-	G.done()
-	G.hide_interface()
+	pass
 
 
 func on_room_exited() -> void:

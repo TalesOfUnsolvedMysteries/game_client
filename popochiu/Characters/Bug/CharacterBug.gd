@@ -162,4 +162,6 @@ func load_appearance(adn: String):
 			5:
 				if adn[idx] == 'x': set_shoes(null)
 				else: set_shoes(Globals.SHOES[int(adn[idx])])
-
+	
+	if E.current_room.script_name == 'BugEditor':
+		ready_to_play()

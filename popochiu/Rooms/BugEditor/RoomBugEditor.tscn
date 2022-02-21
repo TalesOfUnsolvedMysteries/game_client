@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugEditor/RoomBugEditor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://popochiu/Rooms/BugEditor/AttributeSelector/AttributeSelector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=4]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=21]
 [ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=22]
@@ -50,6 +51,7 @@ limit_bottom = 0.0
 modulate = Color( 0.65098, 0.458824, 0.996078, 1 )
 description = "Bg"
 clickable = false
+baseline = -90
 cursor = 10
 script_name = "Bg"
 texture = ExtResource( 22 )
@@ -65,6 +67,9 @@ texture = ExtResource( 22 )
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
 
 [node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 4 )]
+position = Vector2( 0, 17 )
 
 [node name="GraphicInterface" type="CanvasLayer" parent="."]
 
@@ -84,9 +89,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GraphicInterface/Control/CenterContainer"]
 margin_left = 39.0
-margin_top = 14.0
+margin_top = 5.0
 margin_right = 281.0
-margin_bottom = 166.0
+margin_bottom = 174.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GraphicInterface/Control/CenterContainer/VBoxContainer"]
 margin_right = 242.0
@@ -179,7 +184,7 @@ has_none = true
 margin_left = 73.0
 margin_top = 120.0
 margin_right = 169.0
-margin_bottom = 152.0
+margin_bottom = 169.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
@@ -221,7 +226,6 @@ disabled = true
 text = "done"
 
 [node name="Random" type="Button" parent="GraphicInterface/Control/CenterContainer/VBoxContainer/NameAndAnims"]
-visible = false
 margin_top = 36.0
 margin_right = 96.0
 margin_bottom = 49.0
