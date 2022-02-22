@@ -37,9 +37,7 @@ func _load_info():
 	var user_obj = ServerConnection.user_obj
 	if user_obj.has('adn') and user_obj.adn:
 		_adn.bbcode_text = 'adn: [color=#FFE737]%s[/color]' % user_obj.adn
-		var old_y = _character.position.y
-		_character.load_appearance(user_obj.adn)
-		_character.position.y = old_y
+		Globals.set_appearance(user_obj.adn)
 		_character.show()
 	
 	if user_obj.has('bugName') and user_obj.bugName:
