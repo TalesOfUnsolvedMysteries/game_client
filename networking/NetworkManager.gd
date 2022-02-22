@@ -171,6 +171,7 @@ func _player_disconnected(player_id):
 # client
 func _connected_ok():
 	_connected = true
+	set_ready_to_pilot(true)
 	print('connection successful')
 
 

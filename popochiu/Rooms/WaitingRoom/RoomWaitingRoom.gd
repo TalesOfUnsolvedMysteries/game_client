@@ -2,7 +2,9 @@ tool
 extends PopochiuRoom
 
 var _messages := [
-	'Welcome to [color=#E03C28]The bug adventure show[/color]',
+	'Welcome to [color=#E03C28]Tales of Unsolved Mysteries[/color]',
+	'Chapter 1',
+	'[color=#E03C28]The Abandoned Tower[/color]',
 	'Left click to interact.',
 	'Right click to look.',
 	'Find the way to the penthouse',
@@ -23,7 +25,7 @@ onready var _turn: Label = _screen_yours.find_node('Number')
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	ServerConnection.connect('turn_assigned', self, '_on_turn_assigned')
-	NetworkManager.connect('pilot_engaged', self, '_start_countdown')
+	#NetworkManager.connect('pilot_engaged', self, '_start_countdown')
 	if ServerConnection.turn > 0:
 		_turn.text = '%d' % ServerConnection.turn
 	else:
@@ -61,19 +63,20 @@ func on_room_transition_finished() -> void:
 func _next_message() -> void:
 	_screen.show_message(_messages[_current])
 	
-	yield(get_tree().create_timer(6.0), 'timeout')
+	yield(get_tree().create_timer(4.5), 'timeout')
 	
 	_current = wrapi(_current + 1, 0, _messages.size())
 	if _messages_loop: _next_message()
 
 
 func _enter_cohost() -> void:
+	C.get_character('CoHost').face_left(false)
 	yield(E.run([
 		C.character_walk_to('CoHost', get_point('CoHostEntry')),
 		'..',
 		C.player_walk_to(get_point('BugEntry'))
 	]), 'completed')
-	C.player.get_node('Sprite').set_flip_h(false)
+	C.player.face_right(false)
 	yield(D.show_dialog('Welcome'), 'completed')
 	yield(D.show_dialog('Motivation'), 'completed')
 	yield(D.show_dialog('Expectations'), 'completed')
@@ -85,10 +88,7 @@ func _enter_cohost() -> void:
 		'CoHost: I wish you luck!',
 	]), 'completed')
 	
-	if OS.has_feature('web'):
-		_dev_start()
-	else:
-		NetworkManager.set_ready_to_pilot(true)
+	_dev_start()
 
 
 func _on_turn_assigned(turn_value):
@@ -113,5 +113,5 @@ func _start_countdown():
 
 
 func _dev_start() -> void:
-	yield(_start_countdown(), 'completed')
-	E.goto_room('Lobby')
+	#yield(_start_countdown(), 'completed')
+	E.goto_room('MainMenu')

@@ -1,11 +1,19 @@
 extends Node
-const SERVER = 'http://127.0.0.1:3000/'
+const SERVER_IP = '127.0.0.1'
+const SERVER = 'http://%s:3000/' % SERVER_IP
+
+const contract_id = 'tbas.neuromancer.testnet'
 
 var secret_key = 'XZA'
 
 var user_file = "user://user.save"
 var user_id = 0 setget set_user_id
 var turn = 0
+
+var user_obj = {}
+
+var wallet_connection
+
 onready var password = Utils.generate_word(16)
 var cookie = ''
 var is_server = false
@@ -16,10 +24,12 @@ var _is_connecting_to_server = false
 signal connection_updated
 signal userID_assigned
 signal turn_assigned
+signal user_loaded
 
 enum CONNECTION_STATUS {
 	OFFLINE,
 	RECOVERING_CREDENTIALS,
+	CREDENTIALS_RECOVERED,
 	CONNECTING,
 	ESTABLISHED,
 	HANDSHAKING,
@@ -34,6 +44,7 @@ func _ready():
 	randomize()
 	yield(_pass_arguments(), 'completed')
 	_check_status()
+	_near_setup()
 
 func _pass_arguments():
 	var arguments = {}
@@ -42,8 +53,7 @@ func _pass_arguments():
 		if argument.find("=") > -1:
 			var key_value = argument.split("=")
 			arguments[key_value[0].lstrip("--")] = key_value[1]
-	print('arguments>> ')
-	print(arguments)
+
 	if arguments.has('secret_key'):
 		secret_key = arguments.get('secret_key')
 		print('secret key: %s' % secret_key)
@@ -70,8 +80,8 @@ func _pass_arguments():
 				set_status(CONNECTION_STATUS.REJECTED)
 				print('user recovery fails')
 				set_user_id(0)
-				var user = yield(request_user_session(), 'completed')
-				print(user)
+				#var user = yield(request_user_session(), 'completed')
+				#print(user)
 
 func _check_server_connection():
 	var result = yield(_get_request(''), 'completed')	# ping
@@ -217,10 +227,11 @@ func notify_pilot_ready ():
 
 # PLAYER requests
 func get_user ():
-	var result = yield(_get_request('user'), 'completed')
-	set_user_id(result.userID)
-	set_turn(result.turn)
-	return result
+	user_obj = yield(_get_request('user'), 'completed')
+	set_user_id(user_obj.userID)
+	set_turn(user_obj.turn)
+	emit_signal('user_loaded')
+	return user_obj
 
 func request_user_session ():
 	yield(get_tree(), "idle_frame")
@@ -234,10 +245,11 @@ func request_user_session ():
 
 func recover_user_session ():
 	yield(get_tree(), "idle_frame")
-	print(user_id)
+	set_status(CONNECTION_STATUS.RECOVERING_CREDENTIALS)
 	var result = yield(_post_request('user/recover', {"userID": user_id, "secret": password}), 'completed')
 	print('user recovered? ', result.recovered)
 	if result.recovered:
+		set_status(CONNECTION_STATUS.CREDENTIALS_RECOVERED)
 		var user = yield(get_user(), 'completed')
 		print(user)
 		set_user_id(user.userID)
@@ -247,6 +259,7 @@ func recover_user_session ():
 		return user
 	else:
 		set_status(CONNECTION_STATUS.REJECTED)
+		
 		print('user recovery fails')
 		set_user_id(0)
 		var user = yield(request_user_session(), 'completed')
@@ -288,7 +301,7 @@ func can_connect ():
 		_is_connecting_to_server = true
 		print(result.secretKey)
 		secret_key = result.secretKey
-		NetworkManager.request_join('127.0.0.1')
+		NetworkManager.request_join(SERVER_IP)
 	return result
 		# if can connect should try to connect to the server if not connected already
 
@@ -326,7 +339,7 @@ func _get_request(path):
 		error = http_request.request(url)
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
-	print('yield for the http request')
+
 	var response = yield(http_request, 'request_completed')
 	remove_child(http_request)
 	return _process_response(response)
@@ -338,13 +351,10 @@ func _post_request(path, params):
 	add_child(http_request)
 	var url = '%s%s' % [SERVER, path]
 	print(url)
-	print(JSON.print(params))
-	print(cookie)
 	var error = http_request.request(url, ["Content-Type: application/json", cookie], false, HTTPClient.METHOD_POST, JSON.print(params))
 	if error != OK:
 		print(error)
 		push_error("An error occurred in the HTTP request.")
-	print(error)
 	var response = yield(http_request, 'request_completed')
 	remove_child(http_request)
 	return _process_response(response)
@@ -370,8 +380,62 @@ func _check_status():
 	else:
 		if turn > 0 and !_is_connecting_to_server:
 			var response = yield(can_connect(), 'completed')
-			print(response)
-		
+			if E.current_room.script_name == 'MainMenu':
+				yield(get_user(), 'completed')
 	yield(get_tree().create_timer(5), 'timeout')
 	call_deferred('_check_status')
+
+func _near_setup():
+	# test NEAR connection
+	var config = {
+		"network_id": "testnet",
+		"node_url": "https://rpc.testnet.near.org",
+		"wallet_url": "https://wallet.testnet.near.org",
+	}
+	Near.start_connection(config)
+	wallet_connection = WalletConnection.new(Near.near_connection)
+
+	if wallet_connection.is_signed_in():
+		emit_signal('user_loaded')
+
+
+func connect_near():
+	if !wallet_connection: return
+	print('connect near')
+	wallet_connection.sign_in(contract_id)
+	print('connecting')
+	yield(wallet_connection, "user_signed_in")
+	print('connected')
+	print(wallet_connection.account_id)
+	emit_signal('user_loaded')
+
+func get_line():
+	if !wallet_connection: return
+	var result = Near.call_view_method(contract_id, "getLine")
+	if result is GDScriptFunctionState:
+		result = yield(result, "completed")
+	if result.has("error"):
+		print(result)
+		pass # Error handling here
+	else:
+		var data = result.data
+		print(data)
+		return data
+	return []
+
+
+func near_turns_to_play():
+	yield(get_tree(), "idle_frame")
+	if !wallet_connection: return 0
+	var result = Near.call_view_method(contract_id, 'turnsToPlay', {"userId": user_id})
+	if result is GDScriptFunctionState:
+		result = yield(result, "completed")
+	if result.has("error"):
+		print(result)
+		pass # Error handling here
+	else:
+		var data = result.data
+		print(data)
+		return data
+	return 0
 

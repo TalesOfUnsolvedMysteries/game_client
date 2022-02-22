@@ -53,14 +53,14 @@ cursor = 10
 script_name = "Screen"
 texture = ExtResource( 11 )
 
-[node name="CollisionPolygon2D" parent="Props/Screen" index="0"]
-polygon = PoolVector2Array( -70, -45, 71, -48, 73, 45, -72, 47 )
-
-[node name="WalkToHelper" parent="Props/Screen" index="2"]
+[node name="WalkToHelper" parent="Props/Screen" index="1"]
 position = Vector2( -2, 72 )
 
-[node name="Sprite" parent="Props/Screen" index="3"]
+[node name="Sprite" parent="Props/Screen" index="2"]
 texture = ExtResource( 11 )
+
+[node name="CollisionPolygon2D" parent="Props/Screen" index="3"]
+polygon = PoolVector2Array( -70, -45, 71, -48, 73, 45, -72, 47 )
 
 [node name="TextContainer" type="PanelContainer" parent="Props/Screen"]
 margin_left = -66.0
@@ -105,17 +105,17 @@ cursor = 10
 script_name = "Light"
 texture = ExtResource( 7 )
 
-[node name="CollisionPolygon2D" parent="Props/Light" index="0"]
-polygon = PoolVector2Array( -17, -10, -17, -31, -3, -32, 17, -28, 17, -13, 4, -6, 6, 20, 15, 21, 16, 26, 13, 30, 5, 31, -2, 30, -6, 26, -4, 22, 2, 20, 0, -7 )
-
-[node name="BaselineHelper" parent="Props/Light" index="1"]
+[node name="BaselineHelper" parent="Props/Light" index="0"]
 position = Vector2( 0, 26 )
 
-[node name="WalkToHelper" parent="Props/Light" index="2"]
+[node name="WalkToHelper" parent="Props/Light" index="1"]
 position = Vector2( -12, 31 )
 
-[node name="Sprite" parent="Props/Light" index="3"]
+[node name="Sprite" parent="Props/Light" index="2"]
 texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" parent="Props/Light" index="3"]
+polygon = PoolVector2Array( -17, -10, -17, -31, -3, -32, 17, -28, 17, -13, 4, -6, 6, 20, 15, 21, 16, 26, 13, 30, 5, 31, -2, 30, -6, 26, -4, 22, 2, 20, 0, -7 )
 
 [node name="Plant1" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -88, 34 )
@@ -143,11 +143,11 @@ cursor = 10
 script_name = "ScreenYours"
 texture = ExtResource( 15 )
 
-[node name="CollisionPolygon2D" parent="Props/ScreenYours" index="0"]
-polygon = PoolVector2Array( -25, -15, 25, -15, 26, 15, -26, 13 )
-
-[node name="Sprite" parent="Props/ScreenYours" index="3"]
+[node name="Sprite" parent="Props/ScreenYours" index="2"]
 texture = ExtResource( 15 )
+
+[node name="CollisionPolygon2D" parent="Props/ScreenYours" index="3"]
+polygon = PoolVector2Array( -25, -15, 25, -15, 26, 15, -26, 13 )
 
 [node name="Title" type="Label" parent="Props/ScreenYours"]
 margin_left = -16.0
@@ -185,11 +185,11 @@ cursor = 10
 script_name = "ScreenCurrent"
 texture = ExtResource( 19 )
 
-[node name="CollisionPolygon2D" parent="Props/ScreenCurrent" index="0"]
-polygon = PoolVector2Array( -29, -15, 29, -13, 28, 14, -29, 12 )
-
-[node name="Sprite" parent="Props/ScreenCurrent" index="3"]
+[node name="Sprite" parent="Props/ScreenCurrent" index="2"]
 texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/ScreenCurrent" index="3"]
+polygon = PoolVector2Array( -29, -15, 29, -13, 28, 14, -29, 12 )
 
 [node name="Title" type="Label" parent="Props/ScreenCurrent"]
 margin_left = -24.0

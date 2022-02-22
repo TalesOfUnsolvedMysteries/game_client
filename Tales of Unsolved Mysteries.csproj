@@ -3,7 +3,7 @@
     <TargetFramework>net472</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RootNamespace>Thebugadventureshow</RootNamespace>
+    <RootNamespace>UnsolvedMysteries</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Rebex.Elliptic.Ed25519" Version="1.2.1" />

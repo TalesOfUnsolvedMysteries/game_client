@@ -37,11 +37,6 @@
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
-[sub_resource type="StyleBoxLine" id=7]
-color = Color( 0.129412, 0.0862745, 0.25098, 1 )
-grow_begin = 0.0
-grow_end = 0.0
-
 [sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 4.0
 content_margin_right = 4.0
@@ -69,6 +64,11 @@ anti_aliasing = false
 anti_aliasing_size = 0.01
 
 [sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 0.129412, 0.0862745, 0.25098, 1 )
+grow_begin = 0.0
+grow_end = 0.0
 
 [sub_resource type="StyleBoxFlat" id=10]
 content_margin_left = 12.0
@@ -182,9 +182,12 @@ texture = ExtResource( 21 )
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
 
 [node name="Characters" type="Node2D" parent="."]
+position = Vector2( 0, -17 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 20 )]
+visible = false
 position = Vector2( -142, -20 )
+input_pickable = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -224,22 +227,40 @@ margin_bottom = 12.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/NearIdContainer"]
-margin_left = 24.0
-margin_right = 69.0
+margin_left = 52.0
+margin_right = 97.0
 margin_bottom = 12.0
 custom_colors/font_color = Color( 0.886275, 0.788235, 1, 1 )
 text = "near id"
 uppercase = true
 
 [node name="NearId" type="Label" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/NearIdContainer"]
-margin_left = 73.0
+visible = false
+margin_left = 50.0
 margin_top = 3.0
-margin_right = 125.0
+margin_right = 102.0
 margin_bottom = 12.0
 size_flags_vertical = 8
 custom_colors/font_color = Color( 1, 0.905882, 0.215686, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "agar3s.near"
+
+[node name="BtnConnect" type="Button" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/NearIdContainer"]
+visible = false
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 149.0
+margin_bottom = 12.0
+size_flags_horizontal = 0
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 9 )
+text = "connect"
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer"]
 margin_top = 16.0
@@ -819,6 +840,10 @@ margin_left = 2.0
 margin_top = 23.0
 margin_right = -2.0
 custom_constants/margin_top = 7
+__meta__ = {
+"_tab_disabled": true,
+"_tab_name": "game log"
+}
 
 [node name="Memories" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog"]
 margin_top = 7.0

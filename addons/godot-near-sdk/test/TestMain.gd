@@ -16,6 +16,7 @@ var config = {
 }
 
 var wallet_connection
+var contract_id = 'tbas.neuromancer.testnet'
 
 func _ready():
 	Near.start_connection(config)
@@ -41,7 +42,7 @@ func _on_tx_hash_received(tx_hash: String) -> void:
 	label.set_text("Transaction hash: " + tx_hash)
 
 func _on_Button_pressed():
-	var result = Near.call_view_method("dev-1629177227636-26182141504774", "helloWorld")
+	var result = Near.call_view_method(contract_id, "helloWorld")
 	if result is GDScriptFunctionState:
 		result = yield(result, "completed")
 	if result.has("error"):
@@ -56,7 +57,7 @@ func _on_ClearButton_pressed():
 	label.set_text("")
 
 func _on_InvalidMethodButton_pressed():
-	var result = Near.call_view_method("dev-1629177227636-26182141504774", "blank")
+	var result = Near.call_view_method(contract_id, "blank")
 	if result is GDScriptFunctionState:
 		result = yield(result, "completed")
 	if result.has("error"):
@@ -68,7 +69,7 @@ func _on_InvalidMethodButton_pressed():
 		label.set_text(result.data)
 
 func _on_InvalidAccountButton_pressed():
-	var result = Near.call_view_method("blank.dev-1629177227636-26182141504774", "blank")
+	var result = Near.call_view_method(contract_id, "blank")
 	if result is GDScriptFunctionState:
 		result = yield(result, "completed")
 	if result.has("error"):
@@ -83,10 +84,10 @@ func _on_LoginButton_pressed():
 		wallet_connection.sign_out()
 	else:
 		# Test contract has helloWorld(), read(key: string), write(key: string, value: string)
-		wallet_connection.sign_in("dev-1629177227636-26182141504774")
+		wallet_connection.sign_in(contract_id)
 
 func _on_ReadMessageButton_pressed():
-	var result = Near.call_view_method("dev-1629177227636-26182141504774", \
+	var result = Near.call_view_method(contract_id, \
 		"read", {"key": "message"})
 	if result is GDScriptFunctionState:
 		result = yield(result, "completed")
@@ -106,7 +107,7 @@ func _on_ChangeMessageButton_pressed():
 	
 	var attached_deposit = donation_slider.value
 	
-	var result = wallet_connection.call_change_method("dev-1629177227636-26182141504774", \
+	var result = wallet_connection.call_change_method(contract_id, \
 		"write", {"key": "message", "value": input_text}, \
 		Near.DEFAULT_FUNCTION_CALL_GAS, attached_deposit)
 	

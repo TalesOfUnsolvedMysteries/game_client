@@ -206,9 +206,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The bug adventure show"
-config/description="A graphic adventure for the blockchain. A multi-game-jam-entry for the Game Off, AdvXJam 2021, Theta Hackathon Q3 2021 and GoGodotJam 2021."
-run/main_scene="res://popochiu/Rooms/Lobby/RoomLobby.tscn"
+config/name="Tales of Unsolved Mysteries"
+config/description="A graphic adventure for the blockchain. "
+run/main_scene="res://popochiu/Rooms/Main/RoomMain.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -236,8 +236,9 @@ gdscript/warnings/enable=false
 
 window/size/width=320
 window/size/height=180
-window/size/test_width=1280
-window/size/test_height=720
+window/size/always_on_top=true
+window/size/test_width=640
+window/size/test_height=360
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
