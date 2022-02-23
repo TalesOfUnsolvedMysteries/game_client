@@ -283,18 +283,17 @@ func request_turn ():
 		return result.turn
 	return 0
 
-func set_bug_adn (adn):
-	var result = yield(_post_request('user/bug/adn', {"adn": adn}), 'completed')
-	print('expected to set bug\'s adn')
-
-func set_bug_name (name):
-	var result = yield(_post_request('user/bug/name', {"name": name}), 'completed')
-	print('expected to set bug\'s name')
-
 func set_bug (adn, name):
 	var result = yield(_post_request('user/bug', {"name": name, "adn": adn}), 'completed')
 	print('expected to set bug\'s name and adn')
-	
+
+func set_near_credentials (account_id):
+	var result = yield(_post_request('user/near-credentials', {"accountId": account_id, "secret": password}), 'completed')
+	print('valid?')
+	if result.assigned:
+		print('yeah it is valid')
+	else:
+		print('no it is not')
 
 func set_bug_intro (intro):
 	var result = yield(_post_request('user/bug/intro', {"intro": intro}), 'completed')
@@ -412,9 +411,10 @@ func connect_near():
 	wallet_connection.sign_in(contract_id)
 	print('connecting')
 	yield(wallet_connection, "user_signed_in")
-	print('connected')
 	print(wallet_connection.account_id)
+	yield(set_near_credentials(wallet_connection.account_id), 'completed')
 	emit_signal('user_loaded')
+
 
 func get_line():
 	if !wallet_connection: return
