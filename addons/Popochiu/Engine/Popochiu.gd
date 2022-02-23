@@ -305,6 +305,32 @@ func add_history(data: Dictionary) -> void:
 	history.push_front(data)
 
 
+func runnable(
+	node: Node, method: String, params := [], yield_signal := ''
+) -> void:
+	yield()
+	
+	if cutscene_skipped:
+		# TODO: Si esto sucede, hay que hacer algo para asegurar que los eventos
+		#		dentro de la función omitida se disparen. P. ej. ¿Qué pasa si
+		#		se trata de una animación y durante su ejecución se llaman
+		#		métodos que cambian cosas en una escena? o ¿qué pasa si una función
+		#		tiene una serie de efectos?
+		yield(get_tree(), 'idle_frame')
+		return
+	
+	var f := funcref(node, method)
+	var c = f.call_funcv(params)
+	
+	if yield_signal:
+		if yield_signal == 'completed':
+			yield(c, 'completed')
+		else:
+			yield(node, yield_signal)
+	else:
+		yield(get_tree(), 'idle_frame')
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _eval_string(text: String) -> void:
 	match text:

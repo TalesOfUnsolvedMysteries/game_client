@@ -109,7 +109,7 @@ remote func take_control():
 		print('exception, user unauthorized')
 		pilot_peer_id = -1
 		return
-	print('this player has the control!')
+	print('this player has the control!', Globals.bug_adn)
 	E.goto_room('Lobby')
 	emit_signal('control_taken')
 	rpc_id(1, 'pilot_engage', Globals.bug_name, Globals.bug_adn)
@@ -124,7 +124,7 @@ remote func pilot_engage(bug_name, bug_adn):
 	pilotOn = true
 	if C.player._was_created:
 		Globals.set_appearance(bug_adn)
-		C.player.ready_to_play()
+#		C.player.ready_to_play()
 	else:
 		Globals.bug_adn = bug_adn
 	Globals.bug_name = bug_name
