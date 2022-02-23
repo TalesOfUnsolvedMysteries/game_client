@@ -76,8 +76,9 @@ func _check_bug_name(new_text: String) -> void:
 
 func _start() -> void:
 	Globals.bug_name = _name_edit.text
-	ServerConnection.set_bug_name(Globals.bug_name)
-	ServerConnection.set_bug_adn(Globals.bug_adn)
+	ServerConnection.set_bug(Globals.bug_adn, Globals.bug_name)
+	#ServerConnection.set_bug_name(Globals.bug_name)
+	#ServerConnection.set_bug_adn(Globals.bug_adn)
 	#WebsocketManager.send_message_ws('setBugName:%s' % Globals.bug_name)
 	#WebsocketManager.send_message_ws('setADN:%s' % Globals.bug_adn)
 	#WebsocketManager.request_turn()

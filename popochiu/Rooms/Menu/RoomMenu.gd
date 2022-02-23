@@ -66,7 +66,7 @@ func _on_join():
 		_status.text = 'continue...'
 		E.goto_room('MainMenu')
 		return
-	_status.text = 'joining to the show'
+	_status.text = 'registering new user on Blockchain'
 	yield(ServerConnection.request_user_session(), 'completed')
 	E.goto_room('BugEditor')
 

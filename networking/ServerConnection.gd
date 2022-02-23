@@ -226,11 +226,14 @@ func notify_pilot_ready ():
 
 
 # PLAYER requests
-func get_user ():
-	user_obj = yield(_get_request('user'), 'completed')
+func set_user(user_obj):
 	set_user_id(user_obj.userID)
 	set_turn(user_obj.turn)
 	emit_signal('user_loaded')
+
+func get_user ():
+	user_obj = yield(_get_request('user'), 'completed')
+	set_user(user_obj)
 	return user_obj
 
 func request_user_session ():
@@ -287,6 +290,11 @@ func set_bug_name (name):
 	var result = yield(_post_request('user/bug/name', {"name": name}), 'completed')
 	print('expected to set bug\'s name')
 
+func set_bug (adn, name):
+	var result = yield(_post_request('user/bug', {"name": name, "adn": adn}), 'completed')
+	print('expected to set bug\'s name and adn')
+	
+
 func set_bug_intro (intro):
 	var result = yield(_post_request('user/bug/intro', {"intro": intro}), 'completed')
 	print('expected to set bug\'s intro')
@@ -295,15 +303,14 @@ func set_bug_last (last):
 	var result = yield(_post_request('user/bug/last', {"last": last}), 'completed')
 	print('expected to set bug\'s last')
 
-func can_connect ():
-	var result = yield(_get_request('user/can-connect'), 'completed')
+
+func sync_state ():
+	var result = yield(_get_request('user/sync-state'), 'completed')
+	set_user(result.user)
 	if result.canConnect:
 		_is_connecting_to_server = true
-		print(result.secretKey)
 		secret_key = result.secretKey
 		NetworkManager.request_join(SERVER_IP)
-	return result
-		# if can connect should try to connect to the server if not connected already
 
 # COMMON functions
 func set_cookie(_cookie):
@@ -377,12 +384,11 @@ func set_turn(_turn):
 func _check_status():
 	if is_server:
 		yield(get_server_status(), 'completed')
+		yield(get_tree().create_timer(1), 'timeout')
 	else:
-		if turn > 0 and !_is_connecting_to_server:
-			var response = yield(can_connect(), 'completed')
-			if E.current_room.script_name == 'MainMenu':
-				yield(get_user(), 'completed')
-	yield(get_tree().create_timer(5), 'timeout')
+		if E.current_room.script_name == 'MainMenu' and !_is_connecting_to_server:
+			yield(sync_state(), 'completed')
+		yield(get_tree().create_timer(5), 'timeout')
 	call_deferred('_check_status')
 
 func _near_setup():
