@@ -57,9 +57,17 @@ func _close() -> void:
 	)
 	$Tween.start()
 	
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_close')
+
 	yield($Tween, 'tween_all_completed')
 	
 	hide()
+
+
+remote func _net_close():
+	if NetworkManager.isServerWithPilot():
+		_close()
 
 
 func _goto_floor(go_to: String) -> void:
