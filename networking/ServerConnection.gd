@@ -2,8 +2,8 @@ extends Node
 const SERVER_IP = '127.0.0.1'
 const SERVER = 'http://%s:3000/' % SERVER_IP
 
-#const contract_id = 'tbas.neuromancer.testnet'
-const contract_id = 'dev-1643248303417-39450742687599'
+const contract_id = 'tbas.neuromancer.testnet'
+#const contract_id = 'dev-1643248303417-39450742687599'
 
 var secret_key = 'XZA'
 
