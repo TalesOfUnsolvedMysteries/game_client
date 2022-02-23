@@ -67,7 +67,8 @@ sync var state := {
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power
 var elevator_used := false
-sync var puzzle_state := {} # Mapeados por ID
+# Mapeados por ID
+sync var puzzle_state := {} setget _set_puzzle_state
 
 var _battery_charging_elapsed := 0
 
@@ -100,6 +101,7 @@ func set_state(key, value):
 func sync_state():
 	if NetworkManager.server:
 		rset_id(NetworkManager.pilot_peer_id, 'state', state)
+		rset_id(NetworkManager.pilot_peer_id, 'puzzle_state', puzzle_state)
 
 
 func save_state ():
@@ -107,6 +109,7 @@ func save_state ():
 	var file = File.new()
 	file.open(server_file, File.WRITE)
 	file.store_var(state, true)
+	file.store_var(puzzle_state, true)
 	file.close()
 
 
@@ -116,6 +119,7 @@ func load_state ():
 	if file.file_exists(server_file):
 		file.open(server_file, File.READ)
 		state = file.get_var(true)
+		puzzle_state = file.get_var(true)
 		file.close()
 
 
@@ -171,3 +175,10 @@ func _set_battery_power(value: int) -> void:
 			# Se cargó la batería
 			set_state('EngineRoom-CHARGING_BATTERY', false)
 			set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', true)
+
+
+func _set_puzzle_state(value: Dictionary) -> void:
+	puzzle_state = value
+	
+	if NetworkManager.server:
+		save_state()
