@@ -127,6 +127,7 @@ func load_state ():
 # HEAD BODY LEGS EYES ARMS SHOES
 func set_appearance(adn: String) -> void:
 	bug_adn = adn
+	
 	if is_instance_valid(C.player):
 		C.player.load_appearance(adn)
 

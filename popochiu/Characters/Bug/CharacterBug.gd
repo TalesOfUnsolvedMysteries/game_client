@@ -10,6 +10,7 @@ onready var _head: Sprite = find_node('Head')
 onready var _eyes: Sprite = find_node('Eyes')
 onready var _legs: Sprite = find_node('Legs')
 onready var _shoes: Sprite = find_node('Shoes')
+onready var _dflts := {}
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -79,7 +80,6 @@ func set_arms(txt: Texture) -> void:
 	_update_head_and_legs_positions()
 
 
-
 func set_shoes(txt: Texture) -> void:
 	if txt:
 		_shoes.offset.y = txt.get_height() / 2 * -1
@@ -116,11 +116,19 @@ func set_part(node: AttributeSelector) -> void:
 
 func ready_to_play() -> void:
 	_update_head_and_legs_positions()
+	
+	if not _dflts:
+		_dflts = {
+			head_y = _head.position.y,
+			body_y = _body.position.y,
+			legs_y = _legs.position.y
+		}
+	
 	# Poner el punto de ancla del personaje en la base
-	var _offset := _legs.position.y + _legs.texture.get_height()
-	_head.position.y -= _offset
-	_body.position.y -= _offset
-	_legs.position.y -= _offset
+	var _offset: float = _dflts.legs_y + _legs.texture.get_height()
+	_head.position.y = _dflts.head_y - _offset
+	_body.position.y = _dflts.body_y -_offset
+	_legs.position.y = _dflts.legs_y -_offset
 	
 	$DialogPos.position.y = _head.position.y - _head.texture.get_height()
 	
@@ -145,6 +153,7 @@ func _update_head_and_legs_positions() -> void:
 
 func load_appearance(adn: String):
 	_body.position.y = 0
+	
 	for idx in adn.length():
 		match idx:
 			0:
@@ -163,5 +172,6 @@ func load_appearance(adn: String):
 				if adn[idx] == 'x': set_shoes(null)
 				else: set_shoes(Globals.SHOES[int(adn[idx])])
 	
+	ready_to_play()
 	#if E.current_room.script_name == 'BugEditor':
 	#	ready_to_play()

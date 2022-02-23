@@ -4,7 +4,7 @@ extends PopochiuRoom
 var _messages := [
 	'Welcome to [color=#E03C28]Tales of Unsolved Mysteries[/color]',
 	'Chapter 1',
-	'[color=#E03C28]The Abandoned Tower[/color]',
+	'[color=#E03C28]The Empty Tower[/color]',
 	'Left click to interact.',
 	'Right click to look.',
 	'Find the way to the penthouse',
@@ -24,6 +24,8 @@ onready var _turn: Label = _screen_yours.find_node('Number')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	$MessagesTimer.connect('timeout', self, '_prepare_next_message')
+	
 	ServerConnection.connect('turn_assigned', self, '_on_turn_assigned')
 	#NetworkManager.connect('pilot_engaged', self, '_start_countdown')
 	if ServerConnection.turn > 0:
@@ -36,6 +38,8 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
+	$MessagesTimer.stop()
+	
 	if OS.has_feature('editor'):
 		Console.remove_command('start')
 
@@ -63,19 +67,29 @@ func on_room_transition_finished() -> void:
 func _next_message() -> void:
 	_screen.show_message(_messages[_current])
 	
-	yield(get_tree().create_timer(4.5), 'timeout')
-	
+	$MessagesTimer.start()
+
+
+func _prepare_next_message() -> void:
 	_current = wrapi(_current + 1, 0, _messages.size())
-	if _messages_loop: _next_message()
+	if _messages_loop and is_inside_tree(): _next_message()
 
 
 func _enter_cohost() -> void:
 	C.get_character('CoHost').face_left(false)
-	yield(E.run([
+	
+	yield(E.run_cutscene([
 		C.character_walk_to('CoHost', get_point('CoHostEntry')),
 		'..',
-		C.player_walk_to(get_point('BugEntry'))
+		C.player_walk_to(get_point('BugEntry')),
+#		C.player.face_right(),
+#		E.runnable(D, 'show_dialog', ['Welcome'], 'completed'),
+#		E.runnable(D, 'show_dialog', ['Motivation'], 'completed'),
+#		E.runnable(D, 'show_dialog', ['Expectations'], 'completed'),
+#		E.runnable(D, 'show_dialog', ['Parents'], 'completed'),
+#		E.runnable(D, 'show_dialog', ['Farewell'], 'completed'),
 	]), 'completed')
+	
 	C.player.face_right(false)
 	yield(D.show_dialog('Welcome'), 'completed')
 	yield(D.show_dialog('Motivation'), 'completed')
@@ -113,5 +127,8 @@ func _start_countdown():
 
 
 func _dev_start() -> void:
-	#yield(_start_countdown(), 'completed')
-	E.goto_room('MainMenu')
+	if ServerConnection.status == ServerConnection.CONNECTION_STATUS.OFFLINE\
+	or ServerConnection.status == ServerConnection.CONNECTION_STATUS.ERROR:
+		E.goto_room('Lobby')
+	else:
+		E.goto_room('MainMenu')

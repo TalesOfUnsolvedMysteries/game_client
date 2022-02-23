@@ -185,9 +185,7 @@ texture = ExtResource( 21 )
 position = Vector2( 0, -17 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 20 )]
-visible = false
-position = Vector2( -142, -20 )
-input_pickable = false
+position = Vector2( -142, -4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

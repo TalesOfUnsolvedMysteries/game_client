@@ -250,6 +250,10 @@ position = Vector2( -228, 55 )
 [node name="CharacterCoHost" parent="Characters" instance=ExtResource( 2 )]
 position = Vector2( 195, 73 )
 
+[node name="MessagesTimer" type="Timer" parent="."]
+wait_time = 4.5
+one_shot = true
+
 [editable path="Props/Screen"]
 [editable path="Props/Light"]
 [editable path="Props/ScreenYours"]
