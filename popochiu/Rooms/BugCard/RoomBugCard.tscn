@@ -1,11 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugCard/RoomBugCard.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=5]
 [ext_resource path="res://popochiu/Rooms/WaitingRoom/sprites/bg.png" type="Texture" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/Rooms/BugCard/sprites/polaroid.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=2]
+use_mipmaps = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+use_mipmaps = true
+font_data = ExtResource( 2 )
 
 [node name="RoomBugCard" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,6 +35,7 @@ limit_bottom = 0.0
 [node name="Props" type="Node2D" parent="."]
 
 [node name="Bg" parent="Props" instance=ExtResource( 3 )]
+visible = false
 modulate = Color( 0.117647, 0.117647, 0.117647, 1 )
 description = "Bg"
 clickable = false
@@ -27,16 +44,15 @@ script_name = "Bg"
 texture = ExtResource( 4 )
 
 [node name="SideA" parent="Props" instance=ExtResource( 3 )]
-modulate = Color( 0.588235, 1, 0.482353, 1 )
-position = Vector2( -81, 0 )
-scale = Vector2( 0.5, 0.88 )
+position = Vector2( -80, 0 )
 description = "SideA"
 clickable = false
 cursor = 10
 script_name = "SideA"
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 
 [node name="SideB" parent="Props" instance=ExtResource( 3 )]
+visible = false
 modulate = Color( 1, 0.494118, 0.494118, 1 )
 position = Vector2( 81, 0 )
 scale = Vector2( 0.5, 0.88 )
@@ -58,6 +74,8 @@ texture = ExtResource( 4 )
 
 [node name="Characters" type="Node2D" parent="."]
 
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 9 )]
+
 [node name="Interface" type="CanvasLayer" parent="."]
 
 [node name="Main" type="Control" parent="Interface"]
@@ -69,48 +87,32 @@ __meta__ = {
 
 [node name="SideA" type="Control" parent="Interface/Main"]
 anchor_bottom = 1.0
-margin_top = 10.0
 margin_right = 160.0
-margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="Interface/Main/SideA"]
-margin_top = 98.0
+[node name="Polaroid" type="TextureRect" parent="Interface/Main/SideA"]
+visible = false
 margin_right = 160.0
-margin_bottom = 111.0
-size_flags_horizontal = 6
-size_flags_vertical = 6
-custom_fonts/font = ExtResource( 5 )
-text = "Panchita"
-align = 1
-valign = 1
-autowrap = true
+margin_bottom = 180.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ribbon" type="ColorRect" parent="Interface/Main/SideA"]
-margin_left = -37.0
-margin_top = 27.0
-margin_right = 53.0
-margin_bottom = 79.0
+[node name="Number" type="Label" parent="Interface/Main/SideA"]
+margin_left = 7.0
+margin_top = 53.0
+margin_right = 67.0
+margin_bottom = 69.0
 rect_rotation = -45.0
-color = Color( 0.117647, 0.117647, 0.117647, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Number" type="Label" parent="Interface/Main/SideA/Ribbon"]
-margin_left = 10.0
-margin_top = 33.0
-margin_right = 70.0
-margin_bottom = 49.0
-rect_scale = Vector2( 1.2, 1.2 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
-custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.309804, 0.0823529, 0.027451, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "#45600"
 align = 1
 valign = 1
@@ -119,26 +121,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon2" type="TextureRect" parent="Interface/Main/SideA"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 67.0
-rect_scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 7 )
+[node name="Name" type="Label" parent="Interface/Main/SideA"]
+margin_left = 11.0
+margin_top = 113.0
+margin_right = 149.0
+margin_bottom = 126.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.203922, 0.203922, 0.203922, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Panchita"
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Intro" type="Label" parent="Interface/Main/SideA"]
 margin_left = 10.0
-margin_top = 120.0
-margin_right = 290.0
-margin_bottom = 165.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_top = 127.0
+margin_right = 150.0
+margin_bottom = 166.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
-custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.482353, 0.482353, 0.482353, 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Acabo de ver a esa mosca frotarse las manos durante veinte minutos."
 align = 1
 valign = 1
@@ -173,6 +181,7 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="Interface/Main/SideB"]
+visible = false
 margin_left = 7.0
 margin_top = 3.0
 margin_right = 71.0
