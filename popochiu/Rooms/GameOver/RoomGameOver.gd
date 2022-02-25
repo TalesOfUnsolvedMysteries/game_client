@@ -1,31 +1,21 @@
 tool
 extends PopochiuRoom
 
-onready var _interface = $Interface
-onready var _bug_name = _interface.find_node('Name')
+onready var _btn_replay: Button = find_node('BtnPlayAgain')
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
+func _ready() -> void:
+	_btn_replay.connect('pressed', E, 'goto_room', ['MainMenu'])
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
 	G.hide_interface()
-	
-	C.player.position = Vector2(-80, 6)
-	C.player.scale = Vector2(1.5, 1.5)
-	C.player.get_node('Sprite').set_flip_h(false)
-	
-	_bug_name.text = Globals.bug_name if Globals.bug_name else 'Panchita'
-	# Utils.take_screenshot()
 
 
 func on_room_transition_finished() -> void:
 	pass
-
-
-func on_room_exited() -> void:
-	.on_room_exited()
-	C.player.scale = Vector2(1.0, 1.0)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

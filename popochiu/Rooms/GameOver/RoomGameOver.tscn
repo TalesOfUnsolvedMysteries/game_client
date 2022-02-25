@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://popochiu/Rooms/GameOver/RoomGameOver.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/GameOver/Props/Bg/bg.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnPressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnNormal.tres" type="StyleBox" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="RoomGameOver" type="Node2D"]
+script = ExtResource( 1 )
+script_name = "GameOver"
+has_player = false
+hide_gi = true
+limit_left = 0.0
+limit_right = 0.0
+limit_top = 0.0
+limit_bottom = 0.0
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Bg"
+clickable = false
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 4 )
+
+[node name="Hotspots" type="Node2D" parent="."]
+
+[node name="Regions" type="Node2D" parent="."]
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="WalkableAreas" type="Node2D" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="GraphicInterface" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GraphicInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GraphicInterface/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -92.0
+margin_top = -38.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="GraphicInterface/Control/VBoxContainer"]
+margin_right = 88.0
+margin_bottom = 12.0
+text = "game over"
+align = 1
+
+[node name="BtnPlayAgain" type="Button" parent="GraphicInterface/Control/VBoxContainer"]
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 34.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = ExtResource( 6 )
+text = "play again"

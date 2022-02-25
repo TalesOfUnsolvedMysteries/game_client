@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://popochiu/Rooms/BugCard/RoomBugCard.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=4]
-[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=5]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline10.tres" type="DynamicFont" id=5]
 [ext_resource path="res://popochiu/Rooms/WaitingRoom/sprites/bg.png" type="Texture" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://popochiu/Rooms/BugCard/sprites/polaroid.png" type="Texture" id=8]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=9]
+[ext_resource path="res://popochiu/Rooms/BugCard/sprites/back.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono10.tres" type="DynamicFont" id=11]
 
 [sub_resource type="DynamicFont" id=2]
 use_mipmaps = true
@@ -52,15 +54,12 @@ script_name = "SideA"
 texture = ExtResource( 8 )
 
 [node name="SideB" parent="Props" instance=ExtResource( 3 )]
-visible = false
-modulate = Color( 1, 0.494118, 0.494118, 1 )
-position = Vector2( 81, 0 )
-scale = Vector2( 0.5, 0.88 )
+position = Vector2( 80, 0 )
 description = "SideA"
 clickable = false
 cursor = 10
 script_name = "SideA"
-texture = ExtResource( 4 )
+texture = ExtResource( 10 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -92,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Polaroid" type="TextureRect" parent="Interface/Main/SideA"]
+[node name="RefPolaroid" type="TextureRect" parent="Interface/Main/SideA"]
 visible = false
 margin_right = 160.0
 margin_bottom = 180.0
@@ -158,22 +157,26 @@ __meta__ = {
 [node name="SideB" type="Control" parent="Interface/Main"]
 anchor_bottom = 1.0
 margin_left = 160.0
-margin_top = 10.0
 margin_right = 320.0
-margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RefBack" type="TextureRect" parent="Interface/Main/SideB"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 10 )
 
 [node name="DeadScreenshot" type="TextureRect" parent="Interface/Main/SideB"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = -65.0
-margin_right = 256.0
-margin_bottom = 115.0
+margin_left = -60.0
+margin_top = -70.0
+margin_right = 260.0
+margin_bottom = 110.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -192,20 +195,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Intro2" type="Label" parent="Interface/Main/SideB"]
+[node name="CauseTitle" type="Label" parent="Interface/Main/SideB"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -68.0
-margin_top = 13.0
-margin_right = 212.0
-margin_bottom = 37.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -63.0
+margin_top = 4.0
+margin_right = 69.0
+margin_bottom = 13.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "Causa de muerte: electrocucion"
+text = "Cause of death:"
 align = 1
 valign = 1
 autowrap = true
@@ -213,33 +216,55 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Intro3" type="Label" parent="Interface/Main/SideB"]
-margin_left = 17.0
-margin_top = 132.0
-margin_right = 277.0
-margin_bottom = 161.0
-rect_scale = Vector2( 0.5, 0.5 )
+[node name="CauseOfDeath" type="Label" parent="Interface/Main/SideB"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.0
+margin_top = 14.0
+margin_right = 69.0
+margin_bottom = 23.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
-custom_fonts/font = ExtResource( 5 )
-text = "Me mori de la manera mas marica!
-"
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "natural"
+align = 1
+valign = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Intro4" type="Label" parent="Interface/Main/SideB"]
-margin_left = 15.0
-margin_top = 121.0
-margin_right = 165.0
-margin_bottom = 139.0
-rect_scale = Vector2( 0.5, 0.5 )
+[node name="LastWordsTitle" type="Label" parent="Interface/Main/SideB"]
+margin_left = 18.0
+margin_top = 119.0
+margin_right = 149.0
+margin_bottom = 128.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+custom_colors/font_color = Color( 0.843137, 0.843137, 0.843137, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "Ultimas palabras:"
+text = "Last words:"
+align = 1
 valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LastWords" type="Label" parent="Interface/Main/SideB"]
+margin_left = 17.0
+margin_top = 129.0
+margin_right = 149.0
+margin_bottom = 162.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "f**ck you man gonorreas!"
+align = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

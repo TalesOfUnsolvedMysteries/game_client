@@ -17,4 +17,3 @@ func _process(delta):
 		if seconds < 10:
 			_text = '%s0' % _text
 		self.text = '%s%d' % [_text, seconds]
-		

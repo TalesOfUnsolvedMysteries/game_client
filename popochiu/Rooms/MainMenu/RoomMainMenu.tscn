@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://popochiu/Rooms/MainMenu/RoomMainMenu.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/MainMenu/sprites/twitch_logo.png" type="Texture" id=2]
@@ -34,8 +34,8 @@
 [ext_resource path="res://_imgs/bug_011.png" type="Texture" id=32]
 [ext_resource path="res://_imgs/bug_078.png" type="Texture" id=33]
 [ext_resource path="res://_imgs/bug_119.png" type="Texture" id=34]
-[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn-normal.png" type="Texture" id=35]
-[ext_resource path="res://popochiu/Rooms/MainMenu/sprites/btn-pressed.png" type="Texture" id=36]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnPressed.tres" type="StyleBox" id=35]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnNormal.tres" type="StyleBox" id=36]
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -71,24 +71,6 @@ anti_aliasing_size = 0.01
 color = Color( 0.129412, 0.0862745, 0.25098, 1 )
 grow_begin = 0.0
 grow_end = 0.0
-
-[sub_resource type="StyleBoxTexture" id=21]
-texture = ExtResource( 35 )
-region_rect = Rect2( 0, 0, 20, 20 )
-margin_left = 2.0
-margin_right = 4.0
-margin_top = 2.0
-margin_bottom = 4.0
-modulate_color = Color( 0.12549, 0.709804, 0.384314, 1 )
-
-[sub_resource type="StyleBoxTexture" id=22]
-texture = ExtResource( 36 )
-region_rect = Rect2( 0, 0, 20, 20 )
-margin_left = 4.0
-margin_right = 2.0
-margin_top = 4.0
-margin_bottom = 2.0
-modulate_color = Color( 0.12549, 0.709804, 0.384314, 1 )
 
 [sub_resource type="StyleBoxFlat" id=10]
 content_margin_left = 12.0
@@ -304,7 +286,7 @@ margin_bottom = 86.0
 custom_constants/separation = 6
 
 [node name="AvatarContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer"]
-margin_right = 27.0
+margin_right = 25.0
 margin_bottom = 62.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/AvatarContainer"]
@@ -314,28 +296,28 @@ margin_bottom = 45.0
 texture = ExtResource( 5 )
 
 [node name="BtnEdit" type="Button" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/AvatarContainer"]
-margin_top = 51.0
-margin_right = 27.0
+margin_top = 47.0
+margin_right = 25.0
 margin_bottom = 62.0
 size_flags_horizontal = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.1
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 22 )
+custom_styles/hover = ExtResource( 36 )
+custom_styles/pressed = ExtResource( 35 )
 custom_styles/focus = SubResource( 14 )
-custom_styles/normal = SubResource( 21 )
+custom_styles/normal = ExtResource( 36 )
 text = "edit"
 
 [node name="InfoContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer"]
-margin_left = 33.0
+margin_left = 31.0
 margin_right = 150.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 
 [node name="Adn" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
-margin_right = 117.0
+margin_right = 119.0
 margin_bottom = 10.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -348,7 +330,7 @@ fit_content_height = true
 
 [node name="Name" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
 margin_top = 14.0
-margin_right = 117.0
+margin_right = 119.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -361,7 +343,7 @@ fit_content_height = true
 
 [node name="TurnsToPlay" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
 margin_top = 28.0
-margin_right = 117.0
+margin_right = 119.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -374,7 +356,7 @@ fit_content_height = true
 
 [node name="FamousQuote" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/MarginContainer/PlayerDataContainer/PlayerInfoContainer/InfoContainer"]
 margin_top = 42.0
-margin_right = 117.0
+margin_right = 119.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -879,11 +861,11 @@ __meta__ = {
 [node name="Memories" type="MarginContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog"]
 margin_top = 7.0
 margin_right = 154.0
-margin_bottom = 137.0
+margin_bottom = 145.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories"]
 margin_right = 154.0
-margin_bottom = 130.0
+margin_bottom = 138.0
 size_flags_vertical = 3
 
 [node name="MemoriesContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MainContainer/InfoContainer/GameDataTabs/GameLog/Memories/VBoxContainer"]
@@ -1447,7 +1429,7 @@ stretch_mode = 3
 visible = false
 margin_top = 7.0
 margin_right = 154.0
-margin_bottom = 137.0
+margin_bottom = 145.0
 size_flags_horizontal = 7
 size_flags_vertical = 3
 custom_constants/margin_right = 3
@@ -1501,7 +1483,7 @@ scroll_active = false
 margin_left = 7.0
 margin_top = 16.0
 margin_right = 151.0
-margin_bottom = 130.0
+margin_bottom = 138.0
 size_flags_vertical = 3
 custom_constants/separation = 0
 

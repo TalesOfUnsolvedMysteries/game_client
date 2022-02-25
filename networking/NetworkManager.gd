@@ -140,7 +140,7 @@ remote func remove_control():
 	#WebsocketManager.turn = 0
 	is_ready_to_pilot = false
 	I.reset()
-	E.goto_room('Menu')
+	E.goto_room('GameOver')
 
 
 func request_join(server_ip):
