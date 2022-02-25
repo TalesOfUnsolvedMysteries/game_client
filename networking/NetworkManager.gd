@@ -2,6 +2,7 @@ extends Node
 
 const SERVER_PORT = 7333
 const MAX_PLAYERS = 255
+#const TIME_TO_PLAY = 20
 const TIME_TO_PLAY = 3*60
 
 var server = false

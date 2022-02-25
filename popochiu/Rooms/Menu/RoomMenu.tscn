@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Menu/RoomMenu.gd" type="Script" id=1]
 [ext_resource path="res://_imgs/full_logo.png" type="Texture" id=2]
@@ -6,9 +6,14 @@
 [ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=5]
 [ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnNormal.tres" type="StyleBox" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnPressed.tres" type="StyleBox" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/GenericBtnDisabled.tres" type="StyleBox" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
@@ -98,9 +103,14 @@ margin_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-custom_colors/font_color_disabled = Color( 0.713726, 0.568627, 0.568627, 1 )
+custom_colors/font_color_disabled = Color( 0.843137, 0.843137, 0.843137, 1 )
 custom_colors/font_color = Color( 1, 0.819608, 0, 1 )
 custom_fonts/font = SubResource( 1 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = ExtResource( 9 )
+custom_styles/normal = ExtResource( 7 )
 text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false

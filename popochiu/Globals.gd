@@ -51,14 +51,14 @@ const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_gogo.png'),
 ]
-const BATTERY_CHARGING_TIME := 1 * 60
+const BATTERY_CHARGING_TIME := 30 * 60
 
 var main_mx_play = false
 var bug_name := ''
 var bug_adn := ''
 sync var state := {
 #	'Lobby-PC_POWERED': true,
-	'EngineRoom-ELEVATOR_WORKING': true,
+#	'EngineRoom-ELEVATOR_WORKING': true,
 #	'SecondFloor-201_UNLOCKED': true,
 #	'SecondFloor-202_UNLOCKED': true,
 #	'ThirdFloor-301_UNLOCKED': true,
