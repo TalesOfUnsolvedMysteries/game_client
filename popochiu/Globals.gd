@@ -56,6 +56,7 @@ const BATTERY_CHARGING_TIME := 30 * 60
 var main_mx_play = false
 var bug_name := ''
 var bug_adn := ''
+var turn := 0
 sync var state := {
 #	'Lobby-PC_POWERED': true,
 #	'EngineRoom-ELEVATOR_WORKING': true,

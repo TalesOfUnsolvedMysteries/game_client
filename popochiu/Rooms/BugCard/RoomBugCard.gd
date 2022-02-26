@@ -3,6 +3,7 @@ extends PopochiuRoom
 
 onready var _interface = $Interface
 onready var _bug_name = _interface.find_node('Name')
+onready var _bug_turn = _interface.find_node('Turn')
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
 
@@ -20,6 +21,7 @@ func on_room_entered() -> void:
 	C.player.scale = Vector2(1.5, 1.5)
 	
 	_bug_name.text = Globals.bug_name if Globals.bug_name else 'Panchita'
+	_bug_turn.text = '#%d' % Globals.turn
 	# Utils.take_screenshot()
 
 

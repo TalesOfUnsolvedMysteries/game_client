@@ -42,6 +42,7 @@ func _load_info():
 	
 	if user_obj.has('bugName') and user_obj.bugName:
 		_name.bbcode_text = 'name: [color=#FFE737]%s[/color]' % user_obj.bugName
+		Globals.bug_name = user_obj.bugName
 
 	
 	var wc = ServerConnection.wallet_connection

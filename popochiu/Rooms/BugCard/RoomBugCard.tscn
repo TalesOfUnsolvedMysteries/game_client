@@ -102,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Number" type="Label" parent="Interface/Main/SideA"]
+[node name="Turn" type="Label" parent="Interface/Main/SideA"]
 margin_left = 7.0
 margin_top = 53.0
 margin_right = 67.0
@@ -146,7 +146,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_colors/font_color = Color( 0.482353, 0.482353, 0.482353, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "Acabo de ver a esa mosca frotarse las manos durante veinte minutos."
+text = "Goodbye Cruel World!!"
 align = 1
 valign = 1
 autowrap = true
@@ -263,7 +263,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 custom_fonts/font = ExtResource( 11 )
-text = "f**ck you man gonorreas!"
+text = "f**ck you men gonorreas!"
 align = 1
 autowrap = true
 __meta__ = {

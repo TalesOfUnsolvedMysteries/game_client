@@ -113,10 +113,10 @@ remote func take_control():
 	print('this player has the control!', Globals.bug_adn)
 	E.goto_room('Lobby')
 	emit_signal('control_taken')
-	rpc_id(1, 'pilot_engage', Globals.bug_name, Globals.bug_adn)
+	rpc_id(1, 'pilot_engage', Globals.bug_name, Globals.bug_adn, Globals.turn)
 
 
-remote func pilot_engage(bug_name, bug_adn):
+remote func pilot_engage(bug_name, bug_adn, turn):
 	if !server: return
 	var peer_id = get_tree().get_rpc_sender_id()
 	if peer_id != pilot_peer_id:
@@ -130,6 +130,7 @@ remote func pilot_engage(bug_name, bug_adn):
 		Globals.bug_adn = bug_adn
 	Globals.bug_name = bug_name
 	print('set bug appearence ', bug_adn)
+	print(bug_name, ' is on the show!')
 	I.reset()
 
 

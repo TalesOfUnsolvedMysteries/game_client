@@ -3,7 +3,7 @@ const SERVER_IP = '127.0.0.1'
 const SERVER = 'http://%s:3000/' % SERVER_IP
 
 const contract_id = 'tbas.neuromancer.testnet'
-#const contract_id = 'dev-1643248303417-39450742687599'
+#const contract_id = 'dev-1645567112557-65255793133999'
 
 var secret_key = 'XZA'
 
@@ -143,19 +143,12 @@ func player_connected(player_id):
 var game_state = 0
 func get_server_status ():
 	var result = yield(_get_request('server/status'), 'completed')
-	print(result)
-	if result.has('currentPlayer'):
-		print('current player', result.currentPlayer)
 	if result.has('secretConnectionKey'):
 		secret_key = result.secretConnectionKey
-		print('current secret', result.secretConnectionKey)
 	if result.has('gameState'):
-		print('current game state', result.gameState)
 		var updated = game_state != int(result.gameState)
-		print('is updated? ', updated)
 		if updated:
 			game_state = result.gameState
-			print('assing pilot, ', game_state == 4)
 			if game_state == 4:	# assignin pilot?
 				print('assigning pilot')
 				NetworkManager.start_sync_pilot(int(result.currentPlayer))
@@ -337,8 +330,6 @@ func _get_request(path):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	var url = '%s%s' % [SERVER, path]
-	print('HTTP GET request: %s' % path)
-	print(url)
 	var error = 0
 	if cookie:
 		error = http_request.request(url, [cookie], false, HTTPClient.METHOD_GET)
@@ -354,10 +345,8 @@ func _get_request(path):
 
 func _post_request(path, params):
 	var http_request = HTTPRequest.new()
-	print('HTTP POST request: %s' % path)
 	add_child(http_request)
 	var url = '%s%s' % [SERVER, path]
-	print(url)
 	var error = http_request.request(url, ["Content-Type: application/json", cookie], false, HTTPClient.METHOD_POST, JSON.print(params))
 	if error != OK:
 		print(error)
@@ -379,6 +368,7 @@ func set_user_id(_user_id):
 func set_turn(_turn):
 	if int(_turn) == turn: return
 	turn = int(_turn)
+	Globals.turn = turn
 	emit_signal('turn_assigned', turn)
 
 func _check_status():
