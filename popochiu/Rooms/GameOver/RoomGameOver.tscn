@@ -77,3 +77,30 @@ custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/normal = ExtResource( 6 )
 text = "play again"
+
+[node name="NearContainer" type="VBoxContainer" parent="GraphicInterface/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = -38.0
+margin_right = 152.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConnectWallet" type="Label" parent="GraphicInterface/Control/NearContainer"]
+margin_right = 146.0
+margin_bottom = 12.0
+text = "Near"
+align = 1
+
+[node name="BtnConnect" type="Button" parent="GraphicInterface/Control/NearContainer"]
+margin_top = 16.0
+margin_right = 146.0
+margin_bottom = 34.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = ExtResource( 6 )
+text = "Claim your memory NFT"

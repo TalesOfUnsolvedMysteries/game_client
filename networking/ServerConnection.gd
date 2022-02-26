@@ -26,6 +26,7 @@ signal connection_updated
 signal userID_assigned
 signal turn_assigned
 signal user_loaded
+signal join_to_server_requested
 
 enum CONNECTION_STATUS {
 	OFFLINE,
@@ -300,10 +301,11 @@ func set_bug_last (last):
 func sync_state ():
 	var result = yield(_get_request('user/sync-state'), 'completed')
 	set_user(result.user)
-	if result.canConnect:
+	if result.canConnect and !_is_connecting_to_server:
 		_is_connecting_to_server = true
 		secret_key = result.secretKey
 		NetworkManager.request_join(SERVER_IP)
+		emit_signal('join_to_server_requested')
 
 # COMMON functions
 func set_cookie(_cookie):
@@ -403,6 +405,19 @@ func connect_near():
 	yield(wallet_connection, "user_signed_in")
 	print(wallet_connection.account_id)
 	yield(set_near_credentials(wallet_connection.account_id), 'completed')
+	print('call nft_register')
+	var result = wallet_connection.call_change_method(contract_id, 'nft_register', {"receiver_id": wallet_connection.account_id})
+	if result is GDScriptFunctionState:
+		result = yield(result, "completed")
+	if result.has("error"):
+		print('error')
+	elif result.has("warning"):
+		print('user key with low balance?')
+	elif result.has("message"):
+		print('transaction with deposit made?')
+	else:
+		print('transaction without deposit made?')
+	print(result)
 	emit_signal('user_loaded')
 
 

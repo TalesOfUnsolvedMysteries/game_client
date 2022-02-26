@@ -31,7 +31,11 @@ func _ready() -> void:
 	ServerConnection.connect('user_loaded', self, '_load_info')
 	ServerConnection.get_user()
 	
+	ServerConnection.connect('join_to_server_requested', self, '_on_join_requested')
+	
 	_btn_connect.connect('button_down', self, '_on_connect_near')
+	
+	
 
 func _load_info():
 	var user_obj = ServerConnection.user_obj
@@ -68,6 +72,8 @@ func _load_info():
 func on_room_entered() -> void:
 	G.done()
 	G.hide_interface()
+	_btn_connect.disabled = false
+	_btn_edit.disabled = false
 	yield(ServerConnection.request_turn(), 'completed')
 
 func on_room_transition_finished() -> void:
@@ -93,4 +99,7 @@ func _on_connect_near():
 	_btn_connect.disabled = true
 	yield(ServerConnection.connect_near(), 'completed')
 	
+func _on_join_requested():
+	_btn_connect.disabled = true
+	_btn_edit.disabled = true
 
