@@ -16,7 +16,6 @@ onready var label: Label = find_node('Label')
 func _ready() -> void:
 	hide()
 	
-	connect('pressed', self, '_close')
 	G.connect('nft_won', self, '_open')
 	
 	$NFT.set_process(false)
@@ -51,9 +50,18 @@ func _open(nft_data: Dictionary) -> void:
 	
 	$NFT.set_process(true)
 	$NFT.set_process_input(true)
+	
+	if NetworkManager.isServerWithPilot():
+		yield(ServerConnection.reward_game_token(nft_data.id), 'completed')
+	if NetworkManager.isPilot():
+		yield(get_tree().create_timer(5), 'timeout')
+	
+	connect('pressed', self, '_close')
 
 
 func _close() -> void:
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_close')
 	$AnimationPlayer.play('Close')
 	$NFT.set_process(false)
 	$NFT.set_process_input(false)
@@ -62,3 +70,8 @@ func _close() -> void:
 	
 	G.emit_signal('nft_shown')
 	hide()
+
+
+remote func _net_close():
+	if NetworkManager.isServerWithPilot():
+		_close()

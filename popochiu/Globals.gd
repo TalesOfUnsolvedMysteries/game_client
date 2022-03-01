@@ -55,11 +55,13 @@ const BATTERY_CHARGING_TIME := 30 * 60
 const NFTs := {
 	ENGINE_ROOM = {
 		label = 'Engine keeper',
-		img = 'nft_engine_room'
+		img = 'nft_engine_room',
+		id = '0001'
 	},
 	NEW_FLOORS = {
 		label = 'New floors +',
-		img = 'nft_new_floors'
+		img = 'nft_new_floors',
+		id = '0002'
 	},
 }
 

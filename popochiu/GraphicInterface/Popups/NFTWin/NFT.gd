@@ -1,7 +1,7 @@
 extends TextureRect
 
 var mouse_on_card = false
-var mouse_position_for_skew = Vector2(0, 0)
+sync var mouse_position_for_skew = Vector2(0, 0)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -25,8 +25,9 @@ func _input(event):
 		var actual_rect = get_parent().get_rect()
 		if actual_rect.has_point(get_parent().get_local_mouse_position()):
 			mouse_on_card = true
-
-			mouse_position_for_skew = get_parent().get_local_mouse_position()
+			if NetworkManager.isPilot():
+				mouse_position_for_skew = get_parent().get_local_mouse_position()
+				rset_unreliable('mouse_position_for_skew', mouse_position_for_skew)
 		else:
 			# if on previous motion mouse was on card and on this frame mouse is moved out - reset flag
 			if mouse_on_card:
