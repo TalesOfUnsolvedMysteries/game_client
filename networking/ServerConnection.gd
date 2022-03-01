@@ -207,12 +207,12 @@ func notify_game_over (godot_peer_id, cause_of_death):
 	var result = yield(_post_request('server/player/game-over', {"godotPeerID": godot_peer_id, "causeOfDeath": cause_of_death}), 'completed')
 	print('game over: expected to be notified')
 
-func reward_points (godot_peer_id, points):
-	var result = yield(_post_request('server/player/score', {"godotPeerID": godot_peer_id, "score": points}), 'completed')
+func reward_points (points):
+	var result = yield(_post_request('server/player/score', {"godotPeerID": NetworkManager.pilot_peer_id, "score": points}), 'completed')
 	print('reward points: expected to be notified')
 
-func reward_game_token (godot_peer_id, reward_id):
-	var result = yield(_post_request('server/player/reward', {"godotPeerID": godot_peer_id, "rewardID": reward_id}), 'completed')
+func reward_game_token (reward_id):
+	var result = yield(_post_request('server/player/reward', {"godotPeerID": NetworkManager.pilot_peer_id, "rewardID": reward_id}), 'completed')
 	print('reward game token: expected to be notified')
 
 func notify_pilot_ready ():
