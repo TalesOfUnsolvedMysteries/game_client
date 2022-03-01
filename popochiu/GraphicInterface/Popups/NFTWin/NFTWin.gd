@@ -18,6 +18,9 @@ func _ready() -> void:
 	
 	connect('pressed', self, '_close')
 	G.connect('nft_won', self, '_open')
+	
+	$NFT.set_process(false)
+	$NFT.set_process_input(false)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -44,12 +47,16 @@ func _open(nft_data: Dictionary) -> void:
 	
 	$AnimationPlayer.play('Open')
 	
-#	yield($AnimationPlayer, 'animation_finished')
-#	$AnimationPlayer.play('Glow')
+	yield($AnimationPlayer, 'animation_finished')
+	
+	$NFT.set_process(true)
+	$NFT.set_process_input(true)
 
 
 func _close() -> void:
 	$AnimationPlayer.play('Close')
+	$NFT.set_process(false)
+	$NFT.set_process_input(false)
 	
 	yield($AnimationPlayer, 'animation_finished')
 	
