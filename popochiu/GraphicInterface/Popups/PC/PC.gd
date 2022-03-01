@@ -1,4 +1,7 @@
 extends PanelContainer
+# La computadora que se encuentra en el Lobby del edificio y que da acceso a
+# las aplicaciones de registro, progreso y programación de comportamiento del
+# ascensor.
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 var _opened_app: Control = null

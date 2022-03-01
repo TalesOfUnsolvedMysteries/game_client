@@ -52,6 +52,16 @@ const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_gogo.png'),
 ]
 const BATTERY_CHARGING_TIME := 30 * 60
+const NFTs := {
+	ENGINE_ROOM = {
+		label = 'Engine keeper',
+		img = 'nft_engine_room'
+	},
+	NEW_FLOORS = {
+		label = 'New floors +',
+		img = 'nft_new_floors'
+	},
+}
 
 var main_mx_play = false
 var bug_name := ''
@@ -89,6 +99,11 @@ func _ready() -> void:
 	Console.add_command('add_item', self, '_dev_add_item')\
 		.set_description('Adds an item to the inventory')\
 		.add_argument('script_name', TYPE_STRING)\
+		.register()
+	
+	Console.add_command('win_nft', self, '_dev_win_nft')\
+		.set_description('Makes the player win a NFT')\
+		.add_argument('key', TYPE_STRING)\
 		.register()
 
 
@@ -160,6 +175,13 @@ func _dev_charge_battery() -> void:
 
 func _dev_add_item(script_name: String) -> void:
 	I.add_item(script_name, false)
+
+
+func _dev_win_nft(id := '') -> void:
+	if NFTs.has(id):
+		G.emit_signal('nft_won', NFTs[id])
+	else:
+		G.emit_signal('nft_won', Utils.get_random_array_element(NFTs.values()))
 
 
 func _set_battery_power(value: int) -> void:

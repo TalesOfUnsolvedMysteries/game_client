@@ -1,4 +1,6 @@
 extends PanelContainer
+# Muestra documentos paginados al estilo de Resident Evil 2 y Resident Evil 3.
+# ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 var _current_page := 0 setget _set_current_page
 var _current_document := {}

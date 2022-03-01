@@ -15,6 +15,8 @@ signal inventory_shown
 signal history_opened
 signal documents_requested(data) # Un diccionario con la información por página
 signal elevator_panel_requested
+signal nft_won(nft)
+signal nft_shown
 
 var blocked := false
 var waiting_click := false

@@ -1,0 +1,380 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://popochiu/Rooms/BugEditor/Props/Bg/bg.png" type="Texture" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/NFTWin/NFTWin.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/NFTWin/nfts/nft_engine_room.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/NFTWin/sprites/frame.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/NFTWin/sprites/effect_2.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Close"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("NFT:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"points": PoolRealArray( 97, -0.25, 0, 0.25, 0, 97, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("NFT:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 27, -0.25, 0, 0.25, 0, -146, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Frame:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 212, -0.25, 0, 0.25, 0, 338, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Frame:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"points": PoolRealArray( 6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:self_modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.847059 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shinning:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Glow"
+loop = true
+
+[sub_resource type="Animation" id=4]
+resource_name = "Open"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("NFT:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"points": PoolRealArray( 97, -0.25, 0, 0.25, 0, 97, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 0.6 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("NFT:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 198, -0.25, 0, 0.25, 0, 27, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 0.6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Frame:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 338, -0.25, 0, 0.25, 0, 212, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.5, 0.8 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Frame:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"points": PoolRealArray( 6, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.5, 0.8 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:self_modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0, 0, 0, 0.847059 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shinning:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "open_sfx"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("NFT:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"points": PoolRealArray( 97, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("NFT:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 198, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Frame:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 338, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Frame:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/keys = {
+"points": PoolRealArray( 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Shinning:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0.184028, 0.746528 )
+colors = PoolColorArray( 0.356863, 0.658824, 1, 1, 1, 0.509804, 0.807843, 1 )
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform float width = 64;
+uniform float height = 64;
+uniform vec2 mouse_position = vec2(0, 0);
+
+void fragment() {
+	vec2 uv = UV;
+
+	// map skew to [-0.5, 0.5]
+	float skew_x = mouse_position.x / width;
+	float skew_y = mouse_position.y / height;
+	
+	// map to [-0.5, 0.5]
+	uv.x = (uv.x - 0.5);
+	uv.y = (uv.y - 0.5);
+	
+	// ratio - how far are currnet point from mouse position
+	float sx = 1.0 - (uv.x * skew_x);
+	float sy = 1.0 - (uv.y * skew_y);
+	
+	// calculate z (depth) depending on ratio
+	float z = 1.0 + (sx * sy) / 2.0;
+	// correct perspective for given point
+	uv.x = uv.x / z;
+	uv.y = uv.y / z;
+	
+	// scale a bit down a reset mapping from [-0.5, 0.5] to [0, 1]
+	uv.x = uv.x / 0.45 + 0.5;
+	uv.y = uv.y / 0.45 + 0.5;
+	COLOR = texture(TEXTURE, uv);
+	
+	// if uv outside texture - then use transparent color
+	if (uv.x < 0.0 || uv.x > 1.0) {
+		COLOR.a = 0.0;
+	} else if (uv.y < 0.0 || uv.y > 1.0) {
+		COLOR.a = 0.0;
+	} else {
+		// brightness
+		float brightness = 1.0 - mouse_position.y / (height / 2.0) * 0.2;
+		COLOR.rgb = texture(TEXTURE, uv, 1.0).rgb * brightness;
+		
+		COLOR.a = texture(TEXTURE, uv, 1.0).a;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/width = 64.0
+shader_param/height = 64.0
+shader_param/mouse_position = Vector2( 0, 0 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 108, 45 )
+margin_left = 14.0
+margin_right = 4.0
+margin_top = 10.0
+margin_bottom = 12.0
+
+[node name="NFTWin" type="TextureButton"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 3 )
+anims/Glow = SubResource( 7 )
+anims/Open = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Shinning" type="CPUParticles2D" parent="."]
+material = SubResource( 10 )
+position = Vector2( 156, 95 )
+scale = Vector2( 0.8, 0.8 )
+emitting = false
+fract_delta = false
+texture = ExtResource( 5 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 64.0
+angular_velocity_random = 1.0
+angle = 360.0
+color = Color( 1, 0.905882, 0.215686, 1 )
+color_ramp = SubResource( 11 )
+
+[node name="NFT" type="TextureRect" parent="."]
+material = SubResource( 9 )
+margin_left = 97.0
+margin_top = 198.0
+margin_right = 223.0
+margin_bottom = 324.0
+rect_min_size = Vector2( 126, 126 )
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Shadow" type="TextureRect" parent="NFT"]
+self_modulate = Color( 0, 0, 0, 1 )
+show_behind_parent = true
+use_parent_material = true
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 130.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 126, 126 )
+rect_pivot_offset = Vector2( 63, 63 )
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Frame" type="PanelContainer" parent="."]
+margin_left = 338.0
+margin_top = 6.0
+margin_right = 446.001
+margin_bottom = 51.0
+rect_min_size = Vector2( 108, 45 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Frame"]
+margin_left = 14.0
+margin_top = 10.0
+margin_right = 104.001
+margin_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "New floors"
+align = 1
+valign = 1
+autowrap = true
