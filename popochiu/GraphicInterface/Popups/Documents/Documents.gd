@@ -19,9 +19,9 @@ func _ready() -> void:
 	hide()
 	
 	# Conectarse a señales de los hijos
-	_btn_left.connect('pressed', self, '_prev_page')
-	_btn_right.connect('pressed', self, '_next_page')
-	_btn_exit.connect('pressed', self, '_close')
+	_btn_left.connect('pressed', Utils, 'invoke', [self, '_prev_page'])
+	_btn_right.connect('pressed', Utils, 'invoke', [self, '_next_page'])
+	_btn_exit.connect('pressed', Utils, 'invoke', [self, '_close'])
 	
 	# Conectarse a señales de los singletones
 	G.connect('documents_requested', self, 'show_documents')

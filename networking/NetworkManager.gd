@@ -27,7 +27,9 @@ func _ready():
 	get_tree().connect('connected_to_server', self, '_connected_ok')
 	get_tree().connect('connection_failed', self, '_connected_fail')
 	get_tree().connect('server_disconnected', self, '_server_disconnected')
+	
 	G.connect('continue_clicked', self, '_on_continue_clicked')
+	
 	if OS.has_feature('editor'):
 		Console\
 			.add_command('ready', self, 'set_ready_to_pilot')\
@@ -35,6 +37,9 @@ func _ready():
 		Console\
 			.add_command('goto', E, 'goto_room')\
 			.add_argument('room', TYPE_STRING).register()
+		Console\
+			.add_command('ko', self, '_dev_game_over')\
+			.register()
 
 func init_server():
 	print('initializating server')
@@ -221,3 +226,11 @@ remote func _net_on_continue_clicked():
 	if isServerWithPilot():
 		G.emit_signal('continue_clicked')
 
+
+func _dev_game_over() -> void:
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_game_over', pilot_peer_id, 'timeout')
+
+
+remote func _net_game_over(_peer_id: int, death_cause: String) -> void:
+	game_over(_peer_id, death_cause)

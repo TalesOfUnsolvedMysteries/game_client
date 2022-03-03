@@ -69,6 +69,7 @@ func pascal2snake(string:String)->String:
 	return result.join('')
 # ❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰❰
 
+
 # take screenshot
 func take_screenshot(_name):
 	get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
@@ -96,3 +97,17 @@ func generate_word(length):
 	for i in range(length):
 		word += chars[randi()% n_char]
 	return word
+
+# Serves as, an interface?, for calling methods in the server (master) without
+# having to create specific functions in each Node that wants to do so >>>>>>>>>
+func invoke(node: Node, method: String) -> void:
+	node.call(method)
+	
+	if NetworkManager.isPilot():
+		rpc_id(1, '_net_invoke', node.get_path(), method)
+
+
+remote func _net_invoke(node_path: NodePath, method: String) -> void:
+	if NetworkManager.isServerWithPilot():
+		get_node(node_path).call(method)
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
