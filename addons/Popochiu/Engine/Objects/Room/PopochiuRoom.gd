@@ -74,23 +74,12 @@ func _unhandled_input(event):
 	if not has_player or E.is_frozen: return
 	if not event.is_action_pressed('popochiu-interact'):
 		if event.is_action_released('popochiu-look'):
-			if I.active: 
-				I.set_active_item()
-				if NetworkManager.isPilot():
-					rpc_id(1, '_net_remove_active_item')
+			if I.active:
+				Utils.invoke(I, 'set_active_item')
 		return
 
-	C.player.walk(get_local_mouse_position(), false)
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_player_move', get_local_mouse_position())
+	Utils.invoke(C.player, 'walk', [get_local_mouse_position(), false])
 
-remote func _net_remove_active_item():
-	if NetworkManager.isServerWithPilot():
-		I.set_active_item()
-
-remote func _net_player_move(position):
-	if NetworkManager.isServerWithPilot():
-		C.player.walk(position, false)
 
 func _get_property_list():
 	var properties = []

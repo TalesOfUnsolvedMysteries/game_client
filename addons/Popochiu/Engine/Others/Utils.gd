@@ -111,6 +111,8 @@ func invoke(node: Node, method: String, args := [], ignore := false) -> void:
 		for arg in args:
 			if arg is Node:
 				_args.append(arg.get_path())
+			elif arg is Resource:
+				_args.append(arg.resource_path)
 			else:
 				_args.append(arg)
 		
@@ -126,6 +128,8 @@ remote func _net_invoke(node_path: NodePath, method: String, args := []) -> void
 		for arg in args:
 			if arg is NodePath:
 				_args.append(get_node(arg))
+			elif typeof(arg) == TYPE_STRING and '.tres' in arg:
+				_args.append(load(arg))
 			else:
 				_args.append(arg)
 		

@@ -13,7 +13,7 @@ func on_interact() -> void:
 
 # Lo que pasará cuando se haga clic derecho en el icono del inventario
 func on_look() -> void:
-	pass
+	E.run(['Player: Is the key for the Engine room'])
 
 
 # Lo que pasará cuando se use otro InventoryItem del inventario sobre este

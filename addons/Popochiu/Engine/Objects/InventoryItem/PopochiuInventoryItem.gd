@@ -50,36 +50,17 @@ func _toggle_description(display: bool) -> void:
 
 
 func _on_action_pressed(event: InputEvent) -> void: 
-	var mouse_event := event as InputEventMouseButton 
-	var _is_pilot = NetworkManager.has_method('isPilot') and NetworkManager.isPilot()
+	var mouse_event := event as InputEventMouseButton
+	
 	if mouse_event:
 		if mouse_event.is_action_pressed('popochiu-interact'):
 			print('popochiu inv item interact')  # CHECK
 			if I.active:
-				on_item_used(I.active)
-				if _is_pilot:
-					rpc_id(1, '_net_on_item_used')
+				Utils.invoke(self, 'on_item_used', [I.active])
 			else:
-				on_interact()
-				if _is_pilot:
-					rpc_id(1, '_net_on_interact')
+				Utils.invoke(self, 'on_interact')
 		elif mouse_event.is_action_pressed('popochiu-look'):
-			print('popochiu inv item look')
-			on_look()
-			if _is_pilot:
-				rpc_id(1, '_net_on_look')
-
-remote func _net_on_item_used():
-	if NetworkManager.isServerWithPilot():
-		self.on_item_used(I.active)
-
-remote func _net_on_interact():
-	if NetworkManager.isServerWithPilot():
-		self.on_interact()
-
-remote func _net_on_look():
-	if NetworkManager.isServerWithPilot():
-		self.on_look()
+			Utils.invoke(self, 'on_look')
 
 
 func _get_description() -> String:

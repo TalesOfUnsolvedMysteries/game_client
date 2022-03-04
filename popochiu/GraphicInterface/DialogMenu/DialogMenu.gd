@@ -94,36 +94,14 @@ func remove_options() -> void:
 		current_options.clear()
 
 		for btn in _options.get_children():
-#			(btn as Button).call_deferred('queue_free')
 			_options.remove_child(btn as Button)
-#		hide()
 	
 	yield(get_tree(), 'idle_frame')
 
 	_panel.rect_size.y = 0
 	_options.rect_size.y = 0
-#
-#
-#func update_options(updates_cfg := {}) -> void:
-#	if not updates_cfg.empty():
-#		var idx := 0
-#		for btn in get_children():
-#			btn = (btn as Button)
-#			var id := String(btn.get_index())
-#			if updates_cfg.has(id):
-#				if not updates_cfg[id]:
-#					current_options[idx].show = false
-#					btn.hide()
-#				else:
-#					current_options[idx].show = true
-#					btn.show()
-#			if btn.is_in_group('FocusGroup'):
-#				btn.remove_from_group('FocusGroup')
-#				btn.remove_from_group('DialogMenu')
-#				guiBrain.gui_collect_focusgroup()
-#			idx+= 1
-#
-#
+
+
 func show_options() -> void:
 	show()
 	emit_signal('shown')
@@ -133,13 +111,5 @@ func _on_option_clicked(opt: DialogOption) -> void:
 	hide()
 	opt.used = true
 	D.emit_signal('option_selected', opt)
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_on_option_clicked', opt.id)
-
-remote func _net_on_option_clicked(id):
-	if NetworkManager.isServerWithPilot():
-		hide()
-		for opt in current_options:
-			if opt.id == id:
-				opt.used = true
-				D.emit_signal('option_selected', opt)
+	
+	Utils.invoke(self, '_on_option_clicked', [opt], true)

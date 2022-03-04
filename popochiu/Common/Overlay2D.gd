@@ -33,15 +33,11 @@ func appear() -> void:
 func disappear() -> void:
 	E.is_frozen = false
 	$Area2D.input_pickable = false
+	
 	hide()
 	_disappeared()
-	print('to dissapear')
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_disappear')
-
-remote func _net_disappear():
-	if NetworkManager.isServerWithPilot():
-		disappear()
+	
+	Utils.invoke(self, 'disappear', [], true)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

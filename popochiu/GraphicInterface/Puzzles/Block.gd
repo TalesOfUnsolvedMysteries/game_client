@@ -92,14 +92,16 @@ func _process(delta):
 	
 	if move_x: position.x = _target_position.x
 	if move_y: position.y = _target_position.y
-	position.x = clamp(position.x, boundaries_x[0], boundaries_x[1])
-	position.y = clamp(position.y, boundaries_y[0], boundaries_y[1])
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_update_position', position)
+	
+	Utils.invoke(
+		self,
+		'set_position',
+		[Vector2(
+			clamp(position.x, boundaries_x[0], boundaries_x[1]),
+			clamp(position.y, boundaries_y[0], boundaries_y[1])
+		)]
+	)
 
-remote func _net_update_position(_position):
-	if NetworkManager.isServerWithPilot():
-		position = _position
 
 func set_size(_size):
 	size = _size
@@ -109,6 +111,7 @@ func set_size(_size):
 	$CollisionShape2D.shape.extents.y = size.y * 10
 	$CollisionShape2D.position.x = (size.x - 1) * 10
 	$CollisionShape2D.position.y = (size.y - 1) * 10
+
 
 func set_target_tile(_target):
 	target_tile = _target
