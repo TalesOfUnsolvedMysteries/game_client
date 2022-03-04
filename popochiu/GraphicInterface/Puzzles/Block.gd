@@ -51,20 +51,17 @@ func _unhandled_input(event):
 			get_tree().set_input_as_handled()
 		# stops dragging
 		if !_drag && dragged:
-			on_dropped()
+			Utils.invoke(self, 'on_dropped')
 			get_tree().set_input_as_handled()
+
 
 func on_picked():
 	_drag_point = position - get_global_mouse_position()
 	dragged = true
 	$CollisionShape2D.modulate = Color.blue
-	emit_signal('drag_started', self)
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_on_picked')
+	
+	Utils.invoke(self, 'emit_signal', ['drag_started', self])
 
-remote func _net_on_picked():
-	if NetworkManager.isServerWithPilot():
-		emit_signal('drag_started', self)
 
 func on_dropped():
 	move_x = false
@@ -84,12 +81,6 @@ func on_dropped():
 	elif _matched:
 		_matched = false
 		emit_signal('target_exited')
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_on_dropped')
-
-remote func _net_on_dropped():
-	if NetworkManager.isServerWithPilot():
-		on_dropped()
 
 var _target_position
 func _process(delta):

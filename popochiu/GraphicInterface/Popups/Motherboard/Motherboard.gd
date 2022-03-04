@@ -76,9 +76,7 @@ func _check_close(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
-			_close_motherboard()
-			if NetworkManager.isPilot():
-				rpc_id(1, '_net_close_motherboard')
+			Utils.invoke(self, '_close_motherboard')
 
 
 func _close_motherboard():
@@ -86,11 +84,6 @@ func _close_motherboard():
 	G.show_info()
 	hide()
 	emit_signal('closed')
-
-
-remote func _net_close_motherboard():
-	if NetworkManager.isServerWithPilot():
-		_close_motherboard()
 
 
 # Hace que inicie el ingreso de códigos en secuencia para resetear la motherboard.

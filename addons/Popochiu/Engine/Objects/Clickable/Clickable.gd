@@ -45,16 +45,12 @@ func _unhandled_input(event):
 	var mouse_event: = event as InputEventMouseButton
 	var _is_pilot = NetworkManager.has_method('isPilot') and NetworkManager.isPilot()
 	if mouse_event and mouse_event.pressed:
-		E.clicked = self
+#		E.clicked = self
 		if event.is_action_pressed('popochiu-interact'):
-			self._interact()
-			if _is_pilot:
-				rpc_id(1, '_net_interact')
+			Utils.invoke(self, '_interact')
 			get_tree().set_input_as_handled()
 		elif event.is_action_pressed('popochiu-look'):
-			self._look()
-			if _is_pilot:
-				rpc_id(1, '_net_look')
+			Utils.invoke(self, '_look')
 
 
 func _process(delta):
@@ -139,13 +135,9 @@ func _toggle_description(display: bool) -> void:
 		G.show_info()
 
 
-remote func _net_interact():
-	if NetworkManager.isServerWithPilot():
-		E.clicked = self
-		self._interact()
-
-
 func _interact():
+	E.clicked = self
+	
 	if I.active:
 		on_item_used(I.active)
 	else:
@@ -155,13 +147,9 @@ func _interact():
 		on_interact()
 
 
-remote func _net_look():
-	if NetworkManager.isServerWithPilot():
-		E.clicked = self
-		self._look()
-
-
 func _look():
+	E.clicked = self
+	
 	if I.active: return
 	E.add_history({
 		action = 'Looked at: %s' % description

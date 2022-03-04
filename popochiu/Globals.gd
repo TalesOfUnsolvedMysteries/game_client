@@ -180,15 +180,7 @@ func _dev_charge_battery() -> void:
 
 
 func _dev_add_item(script_name: String) -> void:
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_dev_add_item', script_name)
-	
-	I.add_item(script_name, false)
-
-
-remote func _net_dev_add_item(script_name: String) -> void:
-	if NetworkManager.isServerWithPilot():
-		I.add_item(script_name, false)
+	Utils.invoke(I, 'add_item', [script_name, false])
 
 
 func _dev_win_nft(id := '') -> void:

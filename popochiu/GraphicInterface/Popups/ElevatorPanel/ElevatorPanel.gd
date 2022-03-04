@@ -19,7 +19,7 @@ func _ready() -> void:
 	G.connect('elevator_panel_requested', self, '_open')
 	
 	# Conectarse a señales de los hijos
-	$Overlay.connect('pressed', self, '_close')
+	$Overlay.connect('pressed', Utils, 'invoke', [self, '_close'])
 	for b in _buttons.get_children():
 		b.connect('floor_selected', self, '_goto_floor')
 
@@ -56,18 +56,10 @@ func _close() -> void:
 		0.3, Tween.TRANS_BACK, Tween.EASE_IN
 	)
 	$Tween.start()
-	
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_close')
 
 	yield($Tween, 'tween_all_completed')
 	
 	hide()
-
-
-remote func _net_close():
-	if NetworkManager.isServerWithPilot():
-		_close()
 
 
 func _goto_floor(go_to: String) -> void:

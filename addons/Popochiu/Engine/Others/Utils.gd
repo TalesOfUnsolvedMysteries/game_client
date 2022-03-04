@@ -100,14 +100,34 @@ func generate_word(length):
 
 # Serves as, an interface?, for calling methods in the server (master) without
 # having to create specific functions in each Node that wants to do so >>>>>>>>>
-func invoke(node: Node, method: String) -> void:
-	node.call(method)
+func invoke(node: Node, method: String, args := [], ignore := false) -> void:
+	if not ignore:
+		node.callv(method, args)
 	
 	if NetworkManager.isPilot():
-		rpc_id(1, '_net_invoke', node.get_path(), method)
+		# Check if any of the args is a Node
+		var _args := []
+		
+		for arg in args:
+			if arg is Node:
+				_args.append(arg.get_path())
+			else:
+				_args.append(arg)
+		
+		rpc_id(1, '_net_invoke', node.get_path(), method, _args)
 
 
-remote func _net_invoke(node_path: NodePath, method: String) -> void:
+remote func _net_invoke(node_path: NodePath, method: String, args := []) -> void:
 	if NetworkManager.isServerWithPilot():
-		get_node(node_path).call(method)
+		# Check if any of the args is a NodePath so the Node can be sent to the
+		# target method
+		var _args := []
+		
+		for arg in args:
+			if arg is NodePath:
+				_args.append(get_node(arg))
+			else:
+				_args.append(arg)
+		
+		get_node(node_path).callv(method, _args)
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

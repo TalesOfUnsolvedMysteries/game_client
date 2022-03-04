@@ -24,10 +24,7 @@ func appear() -> void:
 
 
 func disappear() -> void:
-	_close_lock()
-	
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_close_lock')
+	Utils.invoke(self, '_close_lock')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -37,15 +34,11 @@ func _check_close(e: InputEvent) -> void:
 		and mouse_event.pressed:
 			disappear()
 
+
 func _close_lock():
 	Cursor.set_cursor()
 	G.show_info()
 	hide()
-
-
-remote func _net_close_lock():
-	if NetworkManager.isServerWithPilot():
-		_close_lock()
 
 
 func _check_combination(number: Label) -> void:

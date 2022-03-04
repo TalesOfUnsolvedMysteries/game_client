@@ -30,15 +30,7 @@ func _check_close(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
-			print('es aca') # CHECK
-			hide()
-			if NetworkManager.isPilot():
-				rpc_id(1, '_net_hide')
-
-
-remote func _net_hide():
-	if NetworkManager.isServerWithPilot():
-		hide()
+			Utils.invoke(self, 'hide')
 
 
 func _on_meta_clicked(meta) -> void:

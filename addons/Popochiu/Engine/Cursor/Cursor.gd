@@ -50,12 +50,8 @@ func set_cursor(type := Type.IDLE) -> void:
 	if Type.values().has(type):
 		anim_name = Type.keys()[type]
 	$AnimatedSprite.play(anim_name.to_lower())
-	if NetworkManager.isPilot():
-		rpc_id(1, '_net_set_cursor', type)
-
-remote func _net_set_cursor(type):
-	if NetworkManager.isServerWithPilot():
-		set_cursor(type)
+	
+	Utils.invoke(self, 'set_cursor', [type], true)
 
 
 func set_item_cursor(texture: Texture) -> void:
