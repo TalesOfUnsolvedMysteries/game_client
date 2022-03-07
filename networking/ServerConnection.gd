@@ -150,7 +150,7 @@ func get_server_status ():
 		var updated = game_state != int(result.gameState)
 		if updated:
 			game_state = result.gameState
-			if game_state == 4:	# assignin pilot?
+			if game_state == 4:		# assignin pilot?
 				print('assigning pilot')
 				NetworkManager.start_sync_pilot(int(result.currentPlayer))
 			if game_state == 5:
@@ -331,6 +331,8 @@ func _process_response (response):
 func _get_request(path):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
+
+	if SERVER.begins_with('http://127.0.0.1'): http_request.timeout = 2
 	var url = '%s%s' % [SERVER, path]
 	var error = 0
 	if cookie:
@@ -348,6 +350,8 @@ func _get_request(path):
 func _post_request(path, params):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
+
+	if SERVER.begins_with('http://127.0.0.1'): http_request.timeout = 2
 	var url = '%s%s' % [SERVER, path]
 	var error = http_request.request(url, ["Content-Type: application/json", cookie], false, HTTPClient.METHOD_POST, JSON.print(params))
 	if error != OK:

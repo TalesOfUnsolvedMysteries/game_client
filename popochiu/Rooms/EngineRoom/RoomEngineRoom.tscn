@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=17]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Hotspots/HotspotEngineInstructions.gd" type="Script" id=18]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/engine_instructions.png" type="Texture" id=19]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/FuseBoxSecret.gd" type="Script" id=20]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -34, 6 )
@@ -84,6 +85,11 @@ hframes = 3
 
 [node name="CollisionPolygon2D" parent="Props/FuseBox" index="3"]
 polygon = PoolVector2Array( -8, 2, 14, 1, 15, 20, -6, 22 )
+
+[node name="Secret" type="Node" parent="Props/FuseBox"]
+script = ExtResource( 20 )
+_secret_key = "FUSE_BOX_COMB"
+_secret = "000"
 
 [node name="BatteryCharger" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 56, -9 )

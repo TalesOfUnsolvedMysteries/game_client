@@ -40,6 +40,8 @@ func _ready():
 		Console\
 			.add_command('ko', self, '_dev_game_over')\
 			.register()
+		Console\
+			.add_command('pilot', self, '_dev_pilot').register()
 
 func init_server():
 	print('initializating server')
@@ -63,7 +65,7 @@ remote func prepare_pilot():
 		yield(self, 'ready_to_pilot')
 	# notify to display a countdown from 5 to 0
 	emit_signal('pilot_engaged')
-	yield(get_tree().create_timer(6), 'timeout')
+	#yield(get_tree().create_timer(6), 'timeout')
 	rpc_id(1, 'pilot_ready')
 
 remote func pilot_ready():
@@ -234,3 +236,9 @@ func _dev_game_over() -> void:
 
 remote func _net_game_over(_peer_id: int, death_cause: String) -> void:
 	game_over(_peer_id, death_cause)
+
+func _dev_pilot():
+	request_join(ServerConnection.SERVER_IP)
+	yield(get_tree(), 'connected_to_server')
+	yield(get_tree().create_timer(0.1), 'timeout')
+	prepare_pilot()

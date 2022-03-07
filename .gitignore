@@ -9,6 +9,7 @@ export_presets.cfg
 data_*/
 .vs/
 
+.secrets
 0.png
 0.png.import
 0A.png

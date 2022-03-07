@@ -150,6 +150,11 @@ _global_script_classes=[ {
 "path": "res://addons/Popochiu/Engine/Objects/Region/Region.gd"
 }, {
 "base": "Node",
+"class": "Secret",
+"language": "GDScript",
+"path": "res://secrets/Secret.gd"
+}, {
+"base": "Node",
 "class": "Sort",
 "language": "GDScript",
 "path": "res://addons/lospec_palette_list/classes/sort.gd"
@@ -198,6 +203,7 @@ _global_script_class_icons={
 "Prop": "res://addons/Popochiu/icons/prop.png",
 "PuzzleBlock": "",
 "Region": "res://addons/Popochiu/icons/region.png",
+"Secret": "",
 "Sort": "",
 "Toolbar": "",
 "ToolbarButton": "",
@@ -228,6 +234,7 @@ Near="*res://addons/godot-near-sdk/Near.tscn"
 CryptoProxy="*res://addons/godot-near-sdk/utils/CryptoProxy.gd"
 ServerConnection="*res://networking/ServerConnection.gd"
 NetworkManager="*res://networking/NetworkManager.gd"
+SecretsKeeper="*res://secrets/SecretsKeeper.gd"
 
 [debug]
 
@@ -254,6 +261,7 @@ enabled=PoolStringArray( "res://addons/Popochiu/plugin.cfg", "res://addons/quent
 [global]
 
 mono=true
+template=false
 
 [gui]
 

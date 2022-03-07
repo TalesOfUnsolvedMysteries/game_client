@@ -70,6 +70,9 @@ var bug_name := ''
 var bug_adn := ''
 var turn := 0
 sync var state := {
+	'Lobby-ENGINE_ROOM_UNLOCKED': false,
+	'Lobby-PC_POWERED': false,
+	'FirstFloor-102_UNLOCKED': false,
 #	'Lobby-PC_POWERED': true,
 #	'EngineRoom-ELEVATOR_WORKING': true,
 #	'SecondFloor-201_UNLOCKED': true,
@@ -111,8 +114,9 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func set_state(key, value):
-	state[key] = value
 	if NetworkManager.server:
+		state[key] = value
+		sync_state()
 		save_state()
 
 
