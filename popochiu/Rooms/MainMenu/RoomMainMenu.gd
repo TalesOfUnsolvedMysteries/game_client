@@ -57,7 +57,7 @@ func _load_info():
 	else:
 		_btn_connect.show()
 	#_score.text = '%d' % int(user_obj.score)
-	var _turns = yield(ServerConnection.near_turns_to_play(), 'completed')
+	var _turns = yield(ServerConnection.near_connection.turns_to_play(), 'completed')
 	if int(_turns) > 1000000:
 		_turns_to_play.bbcode_text = 'requesting turn...'
 	else:

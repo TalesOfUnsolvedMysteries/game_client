@@ -1,9 +1,4 @@
 extends Node
-const SERVER_IP = '127.0.0.1'
-const SERVER = 'http://%s:3000/' % SERVER_IP
-
-const contract_id = 'tbas.neuromancer.testnet'
-#const contract_id = 'dev-1645567112557-65255793133999'
 
 var secret_key = 'XZA'
 
@@ -13,7 +8,6 @@ var turn = 0
 
 var user_obj = {}
 
-var wallet_connection
 
 onready var password = Utils.generate_word(16)
 var cookie = ''
@@ -21,6 +15,9 @@ var is_server = false
 var server_request = false
 
 var _is_connecting_to_server = false
+
+var http_request_handler = load('res://networking/HttpRequestHandler.gd')
+var near_connection = load('res://networking/NearConnection.gd')
 
 signal connection_updated
 signal userID_assigned
@@ -46,7 +43,9 @@ func _ready():
 	randomize()
 	yield(_pass_arguments(), 'completed')
 	_check_status()
-	_near_setup()
+	near_connection.connect('credentials_loaded', self, 'set_near_credentials')
+	near_connection.connect('user_loaded', self, 'emit_signal', ['user_loaded'])
+	near_connection._near_setup()
 
 func _pass_arguments():
 	var arguments = {}
@@ -64,9 +63,11 @@ func _pass_arguments():
 	if server_request:
 		print('init register server')
 		yield(_check_server_connection(), 'completed')
-		NetworkManager.init_server()
+		yield(NetworkManager.init_server(), 'completed')
+		yield(register_server(), 'completed')
 		print('end register server')
 	else:
+		http_request_handler.connect('set_cookie', self, 'save_user')
 		load_user_data()
 		yield(_check_server_connection(), 'completed')
 		if status == CONNECTION_STATUS.ERROR: return
@@ -86,7 +87,7 @@ func _pass_arguments():
 				#print(user)
 
 func _check_server_connection():
-	var result = yield(_get_request(''), 'completed')	# ping
+	var result = yield(http_request_handler._get_request(self, ''), 'completed')	# ping
 	if result and result.has('message') and result.message == 'bug':
 		set_status(CONNECTION_STATUS.CONNECTED)
 	else:
@@ -143,7 +144,7 @@ func player_connected(player_id):
 # SERVER requests
 var game_state = 0
 func get_server_status ():
-	var result = yield(_get_request('server/status'), 'completed')
+	var result = yield(http_request_handler._get_request(self, 'server/status'), 'completed')
 	if result.has('secretConnectionKey'):
 		secret_key = result.secretConnectionKey
 	if result.has('gameState'):
@@ -167,7 +168,7 @@ func get_server_status ():
 
 func register_server ():
 	print('rs: going to register the server')
-	var result = yield(_post_request('server/register', {"secret": secret_key}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/register', {"secret": secret_key}), 'completed')
 	print('rs: end transaction')
 	print(result)
 	if result.has('connected') and result.connected:
@@ -178,7 +179,7 @@ func register_server ():
 	return result
 
 func save_card (filename):
-	var result = yield(_post_request('server/card', {"filename": filename}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/card', {"filename": filename}), 'completed')
 	print('expected card to be saved')
 	return result
 
@@ -188,7 +189,7 @@ func notify_player_connected (secret, godot_peer_id):
 		"secret": secret,
 		"godotPeerID": godot_peer_id,
 	}
-	var result = yield(_post_request('server/player/connected', params), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/connected', params), 'completed')
 	print('expected to be notified')
 
 func notify_player_connection_fails (godot_peer_id):
@@ -196,27 +197,27 @@ func notify_player_connection_fails (godot_peer_id):
 		"success": false,
 		"godotPeerID": godot_peer_id,
 	}
-	var result = yield(_post_request('server/player/connected', params), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/connected', params), 'completed')
 	print('player connected: expected to be notified')
 
 func notify_player_disconnected (godot_peer_id):
-	var result = yield(_post_request('server/player/disconnected', {"godotPeerID": godot_peer_id}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/disconnected', {"godotPeerID": godot_peer_id}), 'completed')
 	print('player disconnected: expected to be notified')
 
 func notify_game_over (godot_peer_id, cause_of_death):
-	var result = yield(_post_request('server/player/game-over', {"godotPeerID": godot_peer_id, "causeOfDeath": cause_of_death}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/game-over', {"godotPeerID": godot_peer_id, "causeOfDeath": cause_of_death}), 'completed')
 	print('game over: expected to be notified')
 
 func reward_points (points):
-	var result = yield(_post_request('server/player/score', {"godotPeerID": NetworkManager.pilot_peer_id, "score": points}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/score', {"godotPeerID": NetworkManager.pilot_peer_id, "score": points}), 'completed')
 	print('reward points: expected to be notified')
 
 func reward_game_token (reward_id):
-	var result = yield(_post_request('server/player/reward', {"godotPeerID": NetworkManager.pilot_peer_id, "rewardID": reward_id}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/reward', {"godotPeerID": NetworkManager.pilot_peer_id, "rewardID": reward_id}), 'completed')
 	print('reward game token: expected to be notified')
 
 func notify_pilot_ready ():
-	var result = yield(_post_request('server/player/ready', {}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'server/player/ready', {}), 'completed')
 	print('pilot ready: expected to be notified')
 
 
@@ -227,7 +228,7 @@ func set_user(user_obj):
 	emit_signal('user_loaded')
 
 func get_user ():
-	user_obj = yield(_get_request('user'), 'completed')
+	user_obj = yield(http_request_handler._get_request(self, 'user'), 'completed')
 	set_user(user_obj)
 	return user_obj
 
@@ -235,7 +236,7 @@ func request_user_session ():
 	yield(get_tree(), "idle_frame")
 	if user_id != 0:
 		return false
-	var result = yield(_post_request('user/request', {"secret": password}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'user/request', {"secret": password}), 'completed')
 	print('user id allocated %s' % result.userID)
 	set_user_id(result.userID)
 	save_user()
@@ -244,7 +245,7 @@ func request_user_session ():
 func recover_user_session ():
 	yield(get_tree(), "idle_frame")
 	set_status(CONNECTION_STATUS.RECOVERING_CREDENTIALS)
-	var result = yield(_post_request('user/recover', {"userID": user_id, "secret": password}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'user/recover', {"userID": user_id, "secret": password}), 'completed')
 	print('user recovered? ', result.recovered)
 	if result.recovered:
 		set_status(CONNECTION_STATUS.CREDENTIALS_RECOVERED)
@@ -268,7 +269,7 @@ func request_turn ():
 	yield(get_tree(), "idle_frame")
 	if user_id == 0: return 0	# request a user first
 	if turn != 0: return 0	# user with a turn already
-	var result = yield(_post_request('user/request-turn', {}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'user/request-turn', {}), 'completed')
 	if result.has('turn'):
 		print('turn for this user', result.turn)
 		turn = result.turn
@@ -278,88 +279,34 @@ func request_turn ():
 	return 0
 
 func set_bug (adn, name):
-	var result = yield(_post_request('user/bug', {"name": name, "adn": adn}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'user/bug', {"name": name, "adn": adn}), 'completed')
 	print('expected to set bug\'s name and adn')
 
 func set_near_credentials (account_id):
-	var result = yield(_post_request('user/near-credentials', {"accountId": account_id, "secret": password}), 'completed')
-	print('valid?')
+	var result = yield(http_request_handler._post_request(self, 'user/near-credentials', {"accountId": account_id, "secret": password}), 'completed')
+
 	if result.assigned:
 		print('yeah it is valid')
 	else:
 		print('no it is not')
 
 func set_bug_intro (intro):
-	var result = yield(_post_request('user/bug/intro', {"intro": intro}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'user/bug/intro', {"intro": intro}), 'completed')
 	print('expected to set bug\'s intro')
 
 func set_bug_last (last):
-	var result = yield(_post_request('user/bug/last', {"last": last}), 'completed')
+	var result = yield(http_request_handler._post_request(self, 'user/bug/last', {"last": last}), 'completed')
 	print('expected to set bug\'s last')
 
 
 func sync_state ():
-	var result = yield(_get_request('user/sync-state'), 'completed')
+	var result = yield(http_request_handler._get_request(self, 'user/sync-state'), 'completed')
 	set_user(result.user)
 	if result.canConnect and !_is_connecting_to_server:
 		_is_connecting_to_server = true
 		secret_key = result.secretKey
-		NetworkManager.request_join(SERVER_IP)
+		NetworkManager.request_join(Globals.SERVER_IP)
 		emit_signal('join_to_server_requested')
-
-# COMMON functions
-func set_cookie(_cookie):
-	cookie = _cookie
-	if !is_server && !server_request:
-		save_user()
-
-func _process_response (response):
-	var result = response[0]
-	if result != 0: return {}
-	var response_code = response[1]
-	var headers = response[2]
-	var body = response[3]
-	var json = JSON.parse(body.get_string_from_utf8())
-	print(json)
-	for header in headers:
-		if header.begins_with('Set-Cookie'):
-			set_cookie(header.replace('Set-Cookie', 'Cookie'))
-
-	return json.get_result()
-
-
-func _get_request(path):
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
-
-	if SERVER.begins_with('http://127.0.0.1'): http_request.timeout = 2
-	var url = '%s%s' % [SERVER, path]
-	var error = 0
-	if cookie:
-		error = http_request.request(url, [cookie], false, HTTPClient.METHOD_GET)
-	else:
-		error = http_request.request(url)
-	if error != OK:
-		push_error("An error occurred in the HTTP request.")
-
-	var response = yield(http_request, 'request_completed')
-	remove_child(http_request)
-	return _process_response(response)
-
-
-func _post_request(path, params):
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
-
-	if SERVER.begins_with('http://127.0.0.1'): http_request.timeout = 2
-	var url = '%s%s' % [SERVER, path]
-	var error = http_request.request(url, ["Content-Type: application/json", cookie], false, HTTPClient.METHOD_POST, JSON.print(params))
-	if error != OK:
-		print(error)
-		push_error("An error occurred in the HTTP request.")
-	var response = yield(http_request, 'request_completed')
-	remove_child(http_request)
-	return _process_response(response)
 
 
 func set_status(_new_status):
@@ -386,72 +333,3 @@ func _check_status():
 			yield(sync_state(), 'completed')
 		yield(get_tree().create_timer(5), 'timeout')
 	call_deferred('_check_status')
-
-func _near_setup():
-	# test NEAR connection
-	var config = {
-		"network_id": "testnet",
-		"node_url": "https://rpc.testnet.near.org",
-		"wallet_url": "https://wallet.testnet.near.org",
-	}
-	Near.start_connection(config)
-	wallet_connection = WalletConnection.new(Near.near_connection)
-
-	if wallet_connection.is_signed_in():
-		emit_signal('user_loaded')
-
-
-func connect_near():
-	if !wallet_connection: return
-	print('connect near')
-	wallet_connection.sign_in(contract_id)
-	print('connecting')
-	yield(wallet_connection, "user_signed_in")
-	print(wallet_connection.account_id)
-	yield(set_near_credentials(wallet_connection.account_id), 'completed')
-	print('call nft_register')
-	var result = wallet_connection.call_change_method(contract_id, 'nft_register', {"receiver_id": wallet_connection.account_id})
-	if result is GDScriptFunctionState:
-		result = yield(result, "completed")
-	if result.has("error"):
-		print('error')
-	elif result.has("warning"):
-		print('user key with low balance?')
-	elif result.has("message"):
-		print('transaction with deposit made?')
-	else:
-		print('transaction without deposit made?')
-	print(result)
-	emit_signal('user_loaded')
-
-
-func get_line():
-	if !wallet_connection: return
-	var result = Near.call_view_method(contract_id, "getLine")
-	if result is GDScriptFunctionState:
-		result = yield(result, "completed")
-	if result.has("error"):
-		print(result)
-		pass # Error handling here
-	else:
-		var data = result.data
-		print(data)
-		return data
-	return []
-
-
-func near_turns_to_play():
-	yield(get_tree(), "idle_frame")
-	if !wallet_connection: return 0
-	var result = Near.call_view_method(contract_id, 'turnsToPlay', {"userId": user_id})
-	if result is GDScriptFunctionState:
-		result = yield(result, "completed")
-	if result.has("error"):
-		print(result)
-		pass # Error handling here
-	else:
-		var data = result.data
-		print(data)
-		return data
-	return 0
-

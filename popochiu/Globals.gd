@@ -4,6 +4,9 @@ extends Node
 # con el estado del juego.
 # ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
+const SERVER_IP = '127.0.0.1'
+const SERVER = 'http://%s:3000/' % SERVER_IP
+
 signal battery_charge_updated
 
 enum Bodies {

@@ -52,8 +52,6 @@ func init_server():
 	print('server started with peer: ', get_tree().get_network_unique_id())
 	server = true
 	Globals.load_state()
-	
-	yield(ServerConnection.register_server(), 'completed')
 	#WebsocketManager.register_game_server()
 	emit_signal('server_started')
 
