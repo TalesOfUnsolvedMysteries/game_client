@@ -232,7 +232,7 @@ Globals="*res://popochiu/Globals.gd"
 Console="*res://addons/quentincaffeino/console/src/Console.tscn"
 Near="*res://addons/godot-near-sdk/Near.tscn"
 CryptoProxy="*res://addons/godot-near-sdk/utils/CryptoProxy.gd"
-ServerConnection="*res://networking/ServerConnection.gd"
+ServerConnection="*res://networking/ServerConnection.tscn"
 NetworkManager="*res://networking/NetworkManager.gd"
 SecretsKeeper="*res://secrets/SecretsKeeper.gd"
 

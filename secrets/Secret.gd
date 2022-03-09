@@ -16,14 +16,15 @@ func _ready():
 
 # interface
 func solve(answer):
-	if !NetworkManager.server: return
+	if !NetworkManager.server and !Globals.is_single_test(): return
 	var solved = false
 	var _answer = _encode(answer)
 	if _validate_state() and _answer == _secret:
 		solved = true
 		_update_state()
 		# set current global state for this
-	rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)
+	if !Globals.is_single_test():
+		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)
 	emit_signal('solved', solved)
 
 # should check server global state to validate if this action could be performed

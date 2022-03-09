@@ -1,7 +1,6 @@
 tool
 extends Prop
 
-const COMBINATION := '682'
 onready var secret: Secret = find_node('Secret')
 
 func _ready() -> void:
@@ -38,10 +37,8 @@ func on_item_used(item: InventoryItem) -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func check_combination(comb: String) -> void:
-	print('check comb ', comb)
 	secret.solve(comb)
 	var correct = yield(secret, 'solved')
-	print('was correct? ', correct)
 	if correct:
 		$Sprite.frame = 1
 		A.play({cue_name = 'sfx_lock_open', is_in_queue = false})

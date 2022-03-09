@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 var cookie = ''
 signal cookie_set
 
@@ -22,10 +22,10 @@ func _process_response (response):
 	return json.get_result()
 
 
-func _get_request(parent_node: Node, path):
+func _get_request(path):
 	var http_request = HTTPRequest.new()
 
-	parent_node.add_child(http_request)
+	add_child(http_request)
 
 	if Globals.SERVER.begins_with('http://127.0.0.1'): http_request.timeout = 2
 	var url = '%s%s' % [Globals.SERVER, path]
@@ -38,13 +38,13 @@ func _get_request(parent_node: Node, path):
 		push_error("An error occurred in the HTTP request.")
 
 	var response = yield(http_request, 'request_completed')
-	parent_node.remove_child(http_request)
+	remove_child(http_request)
 	return _process_response(response)
 
 
-func _post_request(parent_node: Node, path, params):
+func _post_request(path, params):
 	var http_request = HTTPRequest.new()
-	parent_node.add_child(http_request)
+	add_child(http_request)
 
 	if Globals.SERVER.begins_with('http://127.0.0.1'): http_request.timeout = 2
 	var url = '%s%s' % [Globals.SERVER, path]
@@ -53,6 +53,6 @@ func _post_request(parent_node: Node, path, params):
 		print(error)
 		push_error("An error occurred in the HTTP request.")
 	var response = yield(http_request, 'request_completed')
-	parent_node.remove_child(http_request)
+	remove_child(http_request)
 	return _process_response(response)
 

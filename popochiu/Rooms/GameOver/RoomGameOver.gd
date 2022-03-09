@@ -40,6 +40,6 @@ func _check_near_container():
 func _on_connect_near():
 	_btn_connect.disabled = true
 	_btn_replay.disabled = true
-	yield(ServerConnection.near_connection.connect(), 'completed')
+	yield(ServerConnection.near_connector.connect_blockchain(), 'completed')
 	_btn_replay.disabled = false
 	_check_near_container()

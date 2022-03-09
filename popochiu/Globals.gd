@@ -7,6 +7,15 @@ extends Node
 const SERVER_IP = '127.0.0.1'
 const SERVER = 'http://%s:3000/' % SERVER_IP
 
+enum TestMode {
+	SINGLE,			# single player
+	SERVER_PILOT,	# connected to game server
+	NODE_SERVER,	# connected to http game server
+	BLOCKCHAIN		# connection includes blockchain
+}
+
+export var test_mode = TestMode.SINGLE
+
 signal battery_charge_updated
 
 enum Bodies {
@@ -73,10 +82,10 @@ var bug_name := ''
 var bug_adn := ''
 var turn := 0
 sync var state := {
-	'Lobby-PC_POWERED': true,
-	'Lobby-ELEVATOR_CARD_IN_PC': true,
+	'Lobby-PC_POWERED': false,
+	'Lobby-ELEVATOR_CARD_IN_PC': false,
 #	'Lobby-ENGINE_ROOM_UNLOCKED': true,
-	'EngineRoom-ELEVATOR_WORKING': true,
+	'EngineRoom-ELEVATOR_WORKING': false,
 #	'FirstFloor-102_UNLOCKED': true,
 #	'SecondFloor-201_UNLOCKED': true,
 #	'SecondFloor-202_UNLOCKED': true,
@@ -117,6 +126,9 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func set_state(key, value):
+	if test_mode == TestMode.SINGLE:
+		state[key] = value
+
 	if NetworkManager.server:
 		state[key] = value
 		sync_state()
@@ -215,3 +227,9 @@ func _set_puzzle_state(value: Dictionary) -> void:
 	
 	if NetworkManager.server:
 		save_state()
+
+
+# test modes validations
+
+func is_single_test ():
+	return test_mode == TestMode.SINGLE

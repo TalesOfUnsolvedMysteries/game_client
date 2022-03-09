@@ -48,7 +48,6 @@ func _unhandled_input(event):
 	if E.is_frozen: return
 	
 	var mouse_event: = event as InputEventMouseButton
-	var _is_pilot = NetworkManager.has_method('isPilot') and NetworkManager.isPilot()
 	if mouse_event and mouse_event.pressed:
 #		E.clicked = self
 		if event.is_action_pressed('popochiu-interact'):
