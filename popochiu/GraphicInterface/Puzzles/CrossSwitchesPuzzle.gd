@@ -26,13 +26,28 @@ func on_button_toggled(value, index):
 
 func toggle_light(value, index):
 	var light = $Lights.get_child(index)
-	light.color = Color('3f3f3f') if !value else Color('fff')
-	light.get_node('Label').set('custom_colors/font_color', Color('575757') if !value else Color('f2e204'))
+	var color := Color('415d66') if value else Color('bdffca')
+	
+	if index == 0: # the basement
+		light.get_node('Label').set(
+			'custom_colors/font_outline_modulate',
+			Color('bdffca') if value else Color('415d66')
+		)
+	
+	light.get_node('Label').set(
+		'custom_colors/font_color',
+		Color('415d66') if value else Color('bdffca')
+	)
+	
+	(light.texture as AtlasTexture).region.position.x = 32 if value else 0
 
 func unlock_buttons():
 	$Buttons/ButtonD.disabled = false
 	$Buttons/ButtonE.disabled = false
 	$Buttons/ButtonF.disabled = false
+	$FloorLinks/LinksD.modulate = Color.white
+	$FloorLinks/LinksE.modulate = Color.white
+	$FloorLinks/LinksF.modulate = Color.white
 
 func generate_target_number():
 	print('---')

@@ -1,192 +1,588 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Puzzles/CrossSwitchesPuzzle.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnPressed.tres" type="StyleBox" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnDisabled.tres" type="StyleBox" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_light.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=7]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_building.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_container.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_link.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_basement_light.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_hover.png" type="Texture" id=13]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_disabled.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_normal.png" type="Texture" id=15]
 
-[node name="Puzzle" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -160.0
-margin_top = -90.0
-margin_right = -160.0
-margin_bottom = -90.0
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 201, 124 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 32, 12 )
+
+[sub_resource type="DynamicFont" id=5]
+outline_size = 1
+use_mipmaps = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 12 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 12 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 12 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 12 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 12, 15 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 5.0
+margin_bottom = 2.0
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="Puzzle" type="Panel"]
+margin_right = 201.0
+margin_bottom = 124.0
 mouse_filter = 2
+custom_styles/panel = SubResource( 6 )
 script = ExtResource( 2 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 190.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "elevator panel"
+align = 1
+
+[node name="BtnClose" type="TextureButton" parent="."]
+margin_left = 190.0
+margin_top = 4.0
+margin_right = 198.0
+margin_bottom = 11.0
+texture_normal = ExtResource( 15 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+
+[node name="Building" type="TextureRect" parent="."]
+margin_left = 4.0
+margin_top = 18.0
+margin_right = 82.0
+margin_bottom = 118.0
+texture = ExtResource( 9 )
+
+[node name="Lights" type="Control" parent="."]
+margin_left = 21.0
+margin_top = 26.0
+margin_right = 54.0
+margin_bottom = 109.0
+
+[node name="Light5" type="TextureRect" parent="Lights"]
+margin_left = 1.0
+margin_top = 71.0
+margin_right = 33.0
+margin_bottom = 83.0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Label" type="Label" parent="Lights/Light5"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 129.0
-margin_top = 117.0
-margin_right = -64.0
-margin_bottom = -39.0
+margin_left = 1.0
+margin_top = -2.0
+margin_right = -1.0
+margin_bottom = -2.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_outline_modulate = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "b"
+align = 1
+valign = 3
+
+[node name="Light4" type="TextureRect" parent="Lights"]
+margin_left = 1.0
+margin_top = 42.0
+margin_right = 33.0
+margin_bottom = 55.0
+texture = SubResource( 7 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Light4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = -2.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "1st"
+align = 1
+valign = 3
+
+[node name="Light3" type="TextureRect" parent="Lights"]
+margin_left = 1.0
+margin_top = 28.0
+margin_right = 33.0
+margin_bottom = 41.0
+texture = SubResource( 8 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Light3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = -2.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "2nd"
+align = 1
+valign = 3
+
+[node name="Light2" type="TextureRect" parent="Lights"]
+margin_left = 1.0
+margin_top = 14.0
+margin_right = 33.0
+margin_bottom = 27.0
+texture = SubResource( 9 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Light2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = -2.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "3rd"
+align = 1
+valign = 3
+
+[node name="Light1" type="TextureRect" parent="Lights"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 33.0
+margin_bottom = 13.0
+texture = SubResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Light1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -2.0
+margin_right = -1.0
+margin_bottom = -2.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "p"
+align = 1
+valign = 3
+
+[node name="Buttons" type="Control" parent="."]
+margin_left = 92.0
+margin_top = 19.0
+margin_right = 199.0
+margin_bottom = 36.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="ButtonA" type="Button" parent="Buttons"]
-margin_right = 22.0
-margin_bottom = 20.0
+margin_right = 17.0
+margin_bottom = 17.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 toggle_mode = true
-pressed = true
 text = "A"
 
 [node name="ButtonB" type="Button" parent="Buttons"]
-margin_left = 25.0
-margin_right = 47.0
-margin_bottom = 20.0
+margin_left = 18.0
+margin_right = 35.0
+margin_bottom = 17.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 toggle_mode = true
-pressed = true
 text = "B"
 
 [node name="ButtonC" type="Button" parent="Buttons"]
-margin_left = 50.0
-margin_right = 72.0
-margin_bottom = 20.0
+margin_left = 36.0
+margin_right = 53.0
+margin_bottom = 17.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 toggle_mode = true
-pressed = true
 text = "C"
 
 [node name="ButtonD" type="Button" parent="Buttons"]
-margin_left = 75.0
-margin_right = 97.0
-margin_bottom = 20.0
+margin_left = 54.0
+margin_right = 71.0
+margin_bottom = 17.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 disabled = true
 toggle_mode = true
 text = "D"
 
 [node name="ButtonE" type="Button" parent="Buttons"]
-margin_left = 100.0
-margin_right = 122.0
-margin_bottom = 20.0
+margin_left = 72.0
+margin_right = 89.0
+margin_bottom = 17.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 disabled = true
 toggle_mode = true
 text = "E"
 
 [node name="ButtonF" type="Button" parent="Buttons"]
-margin_left = 125.0
-margin_right = 147.0
-margin_bottom = 20.0
+margin_left = 90.0
+margin_right = 107.0
+margin_bottom = 17.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 disabled = true
 toggle_mode = true
 text = "F"
 
-[node name="Lights" type="Control" parent="."]
-margin_left = 77.0
-margin_top = 26.0
-margin_right = 116.0
-margin_bottom = 137.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="FloorLinks" type="Control" parent="."]
+margin_left = 92.0
+margin_top = 36.0
+margin_right = 199.0
+margin_bottom = 52.0
 
-[node name="Light5" type="ColorRect" parent="Lights"]
-margin_top = 88.0
-margin_right = 40.0
-margin_bottom = 106.0
-color = Color( 0.247059, 0.247059, 0.247059, 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="LinksA" type="PanelContainer" parent="FloorLinks"]
+margin_left = 1.0
+margin_right = 16.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
 
-[node name="Label" type="Label" parent="Lights/Light5"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
-custom_fonts/font = ExtResource( 1 )
-text = "1st"
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksA"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 27.0
+
+[node name="Label" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "1"
 align = 1
 valign = 1
 
-[node name="Light4" type="ColorRect" parent="Lights"]
-margin_top = 66.0
-margin_right = 40.0
-margin_bottom = 84.0
-color = Color( 0.247059, 0.247059, 0.247059, 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Lights/Light4"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
-custom_fonts/font = ExtResource( 1 )
-text = "2nd"
+[node name="Label2" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "3"
 align = 1
 valign = 1
 
-[node name="Light3" type="ColorRect" parent="Lights"]
-margin_top = 44.0
-margin_right = 40.0
-margin_bottom = 62.0
-color = Color( 0.247059, 0.247059, 0.247059, 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="LinksB" type="PanelContainer" parent="FloorLinks"]
+margin_left = 19.0
+margin_right = 34.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
 
-[node name="Label" type="Label" parent="Lights/Light3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
-custom_fonts/font = ExtResource( 1 )
-text = "3rd"
-align = 1
-valign = 1
-
-[node name="Light2" type="ColorRect" parent="Lights"]
-margin_top = 22.0
-margin_right = 40.0
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksB"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
 margin_bottom = 40.0
-color = Color( 0.247059, 0.247059, 0.247059, 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="Lights/Light2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
-custom_fonts/font = ExtResource( 1 )
-text = "4th"
+[node name="Label" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "b"
 align = 1
 valign = 1
 
-[node name="Light" type="ColorRect" parent="Lights"]
-margin_right = 40.0
-margin_bottom = 18.0
-color = Color( 0.247059, 0.247059, 0.247059, 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="Label2" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "1"
+align = 1
+valign = 1
 
-[node name="Label" type="Label" parent="Lights/Light"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 0.341176, 0.341176, 0.341176, 1 )
-custom_fonts/font = ExtResource( 1 )
-text = "P"
+[node name="Label3" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="LinksC" type="PanelContainer" parent="FloorLinks"]
+margin_left = 37.0
+margin_right = 52.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksC"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 27.0
+
+[node name="Label" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="LinksD" type="PanelContainer" parent="FloorLinks"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 55.0
+margin_right = 70.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksD"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "b"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "p"
+align = 1
+valign = 1
+
+[node name="LinksE" type="PanelContainer" parent="FloorLinks"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 73.0
+margin_right = 88.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksE"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 53.0
+
+[node name="Label" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "b"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "p"
+align = 1
+valign = 1
+
+[node name="LinksF" type="PanelContainer" parent="FloorLinks"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 91.0
+margin_right = 106.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 10 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksF"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 27.0
+
+[node name="Label" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "b"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "3"
 align = 1
 valign = 1
 
 [node name="Unlock" type="Button" parent="."]
-margin_left = 210.0
-margin_top = 143.0
-margin_right = 266.0
-margin_bottom = 163.0
-text = "Unlock"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = 151.0
+margin_top = 101.0
+margin_right = 199.0
+margin_bottom = 118.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "unlock"
 
 [node name="Success" type="Label" parent="."]
 visible = false

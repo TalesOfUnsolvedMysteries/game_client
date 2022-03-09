@@ -70,11 +70,11 @@ var bug_name := ''
 var bug_adn := ''
 var turn := 0
 sync var state := {
-	'Lobby-ENGINE_ROOM_UNLOCKED': false,
-	'Lobby-PC_POWERED': false,
-	'FirstFloor-102_UNLOCKED': false,
-#	'Lobby-PC_POWERED': true,
-#	'EngineRoom-ELEVATOR_WORKING': true,
+	'Lobby-PC_POWERED': true,
+	'Lobby-ELEVATOR_CARD_IN_PC': true,
+#	'Lobby-ENGINE_ROOM_UNLOCKED': true,
+	'EngineRoom-ELEVATOR_WORKING': true,
+#	'FirstFloor-102_UNLOCKED': true,
 #	'SecondFloor-201_UNLOCKED': true,
 #	'SecondFloor-202_UNLOCKED': true,
 #	'ThirdFloor-301_UNLOCKED': true,

@@ -14,11 +14,16 @@ export var script_name := ''
 export var always_on_top := false
 
 var walk_point: Vector2 setget ,_get_walk_point
+var room: Node2D = null
 
 onready var _description_code := description
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
+func _enter_tree() -> void:
+	add_to_group('Clickable')
+
+
 func _ready():
 	connect('visibility_changed', self, '_toggle_input')
 

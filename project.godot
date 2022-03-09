@@ -214,7 +214,7 @@ _global_script_class_icons={
 
 config/name="Tales of Unsolved Mysteries"
 config/description="A graphic adventure for the blockchain. "
-run/main_scene="res://popochiu/Rooms/Main/RoomMain.tscn"
+run/main_scene="res://popochiu/Rooms/Lobby/RoomLobby.tscn"
 config/icon="res://icon.png"
 config/windows_native_icon="res://token_icon.ico"
 
@@ -335,7 +335,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

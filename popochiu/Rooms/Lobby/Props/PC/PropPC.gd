@@ -5,26 +5,27 @@ extends Prop
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	yield(E.run([C.walk_to_clicked()]), 'completed')
+	room.use_pc()
 	
-	if Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
-		yield(E.run([
-			"Player: Should I remove the elevator program card from the computer."
-		]), 'completed')
-		
-		var answer: DialogOption = yield(
-			E.show_inline_dialog(['Yes', 'No']), 'completed'
-		)
-		if answer.id == 'Opt1':
-			E.run([
-				I.add_item('ElevatorCard'),
-				'Player: I have the elevator program card...',
-				'...',
-				'Player: Again.'
-			])
-		else:
-			E.run(['Player: No... maybe I want to do some changes to the program.'])
-	else:
-		E.current_room.use_pc()
+#	if Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
+#		yield(E.run([
+#			"Player: Should I remove the elevator program card from the computer."
+#		]), 'completed')
+#
+#		var answer: DialogOption = yield(
+#			E.show_inline_dialog(['Yes', 'No']), 'completed'
+#		)
+#		if answer.id == 'Opt1':
+#			E.run([
+#				I.add_item('ElevatorCard'),
+#				'Player: I have the elevator program card...',
+#				'...',
+#				'Player: Again.'
+#			])
+#		else:
+#			E.run(['Player: No... maybe I want to do some changes to the program.'])
+#	else:
+#		E.current_room.use_pc()
 
 
 func on_look() -> void:

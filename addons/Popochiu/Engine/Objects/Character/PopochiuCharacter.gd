@@ -17,7 +17,6 @@ export var texture: Texture setget _set_texture
 export var vo_name := ''
 export var follow_player := false
 
-var room := ''
 var last_room := ''
 var anim_suffix := ''
 var is_moving := false
@@ -199,13 +198,19 @@ func _translate() -> void:
 	if Engine.editor_hint or not is_inside_tree(): return
 	description = E.get_text(_description_code)
 
-var ye = false
+var ye := false
+
 func _step():
+	if not is_instance_valid(room): return
+	
 	ye = not ye
+	
 	var sfx_steps = 'sfx_footstepbase'
-	if self.room == 'EngineRoom':
+	
+	if room.script_name == 'EngineRoom':
 		sfx_steps = 'sfx_footstepmetal'
-	elif self.room == 'Penthouse':
+	elif room.script_name == 'Penthouse':
 		sfx_steps = 'sfx_footstepgrass'
+	
 	if ye:
 		A.play({cue_name = sfx_steps,is_in_queue = false})
