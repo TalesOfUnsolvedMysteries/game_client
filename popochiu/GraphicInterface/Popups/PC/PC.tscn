@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
 [ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator.png" type="Texture" id=11]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_popup.png" type="Texture" id=12]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_register.png" type="Texture" id=13]
-[ext_resource path="res://popochiu/GraphicInterface/Puzzles/ElevatorPuzzle.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/AppRegister.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/AppElevator.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -21,8 +22,7 @@
 size = 12
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.254902, 0.364706, 0.4, 1 )
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -83,6 +83,7 @@ margin_right = 56.0
 margin_bottom = 32.0
 mouse_filter = 0
 script = ExtResource( 7 )
+app = ExtResource( 14 )
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/DesktopContainer/Apps/Register"]
 margin_left = 22.0
@@ -111,6 +112,7 @@ margin_right = 56.0
 margin_bottom = 68.0
 mouse_filter = 0
 script = ExtResource( 6 )
+app = ExtResource( 15 )
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/DesktopContainer/Apps/Elevator"]
 margin_left = 21.0
@@ -186,19 +188,17 @@ __meta__ = {
 [node name="AppScreen" type="MarginContainer" parent="PanelContainer"]
 margin_right = 223.0
 margin_bottom = 155.0
-custom_constants/margin_right = 11
+custom_constants/margin_right = 10
 custom_constants/margin_top = 6
-custom_constants/margin_left = 8
+custom_constants/margin_left = 10
 custom_constants/margin_bottom = 22
 
 [node name="AppContainer" type="PanelContainer" parent="PanelContainer/AppScreen"]
-margin_left = 8.0
+margin_left = 10.0
 margin_top = 6.0
-margin_right = 212.0
+margin_right = 213.0
 margin_bottom = 133.0
 custom_styles/panel = SubResource( 7 )
-
-[node name="Puzzle" parent="PanelContainer/AppScreen/AppContainer" instance=ExtResource( 14 )]
 
 [node name="PopupsContainer" type="CenterContainer" parent="PanelContainer"]
 margin_right = 223.0

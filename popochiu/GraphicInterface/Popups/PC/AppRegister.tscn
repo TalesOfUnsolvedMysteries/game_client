@@ -1,0 +1,392 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSAppWindow.tres" type="StyleBox" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_normal.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_disabled.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_hover.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/AppRegister.gd" type="Script" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="AppRegister" type="Panel"]
+margin_right = 201.0
+margin_bottom = 124.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 190.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "register"
+align = 1
+
+[node name="BtnClose" type="TextureButton" parent="."]
+margin_left = 190.0
+margin_top = 4.0
+margin_right = 198.0
+margin_bottom = 11.0
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 3 )
+
+[node name="GridContainer" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 14.0
+margin_right = 199.0
+margin_bottom = 122.0
+
+[node name="Head" type="HBoxContainer" parent="GridContainer"]
+margin_right = 197.0
+margin_bottom = 9.0
+
+[node name="Name" type="Label" parent="GridContainer/Head"]
+margin_right = 54.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "name"
+align = 1
+
+[node name="Room" type="Label" parent="GridContainer/Head"]
+margin_left = 58.0
+margin_right = 80.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "room"
+align = 1
+
+[node name="Arcane" type="Label" parent="GridContainer/Head"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "arcane"
+align = 1
+
+[node name="Death" type="Label" parent="GridContainer/Head"]
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "death"
+align = 1
+
+[node name="Body" type="VBoxContainer" parent="GridContainer"]
+margin_top = 13.0
+margin_right = 197.0
+margin_bottom = 112.0
+
+[node name="Row101" type="HBoxContainer" parent="GridContainer/Body"]
+margin_right = 197.0
+margin_bottom = 12.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/Row101"]
+margin_top = 1.0
+margin_right = 54.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/Row101"]
+margin_left = 58.0
+margin_top = 1.0
+margin_right = 80.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "101"
+
+[node name="Arcane" type="OptionButton" parent="GridContainer/Body/Row101"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+clip_text = true
+selected = 0
+
+[node name="Death" type="Label" parent="GridContainer/Body/Row101"]
+margin_left = 142.0
+margin_top = 1.0
+margin_right = 197.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"
+
+[node name="Row102" type="HBoxContainer" parent="GridContainer/Body"]
+margin_top = 16.0
+margin_right = 197.0
+margin_bottom = 34.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/Row102"]
+margin_top = 4.0
+margin_right = 54.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/Row102"]
+margin_left = 58.0
+margin_top = 4.0
+margin_right = 80.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "102"
+
+[node name="Arcane" type="OptionButton" parent="GridContainer/Body/Row102"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+clip_text = true
+
+[node name="Death" type="Label" parent="GridContainer/Body/Row102"]
+margin_left = 142.0
+margin_top = 4.0
+margin_right = 197.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"
+
+[node name="Row201" type="HBoxContainer" parent="GridContainer/Body"]
+margin_top = 38.0
+margin_right = 197.0
+margin_bottom = 47.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/Row201"]
+margin_right = 54.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/Row201"]
+margin_left = 58.0
+margin_right = 80.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "201"
+
+[node name="Arcane" type="Label" parent="GridContainer/Body/Row201"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "the parca"
+
+[node name="Death" type="Label" parent="GridContainer/Body/Row201"]
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"
+
+[node name="Row202" type="HBoxContainer" parent="GridContainer/Body"]
+margin_top = 51.0
+margin_right = 197.0
+margin_bottom = 60.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/Row202"]
+margin_right = 54.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/Row202"]
+margin_left = 58.0
+margin_right = 80.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "202"
+
+[node name="Arcane" type="Label" parent="GridContainer/Body/Row202"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "the parca"
+
+[node name="Death" type="Label" parent="GridContainer/Body/Row202"]
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"
+
+[node name="Row301" type="HBoxContainer" parent="GridContainer/Body"]
+margin_top = 64.0
+margin_right = 197.0
+margin_bottom = 73.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/Row301"]
+margin_right = 54.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/Row301"]
+margin_left = 58.0
+margin_right = 80.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "301"
+
+[node name="Arcane" type="Label" parent="GridContainer/Body/Row301"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "the parca"
+
+[node name="Death" type="Label" parent="GridContainer/Body/Row301"]
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"
+
+[node name="Row302" type="HBoxContainer" parent="GridContainer/Body"]
+margin_top = 77.0
+margin_right = 197.0
+margin_bottom = 86.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/Row302"]
+margin_right = 54.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/Row302"]
+margin_left = 58.0
+margin_right = 80.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "302"
+
+[node name="Arcane" type="Label" parent="GridContainer/Body/Row302"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "the parca"
+
+[node name="Death" type="Label" parent="GridContainer/Body/Row302"]
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"
+
+[node name="RowPenthouse" type="HBoxContainer" parent="GridContainer/Body"]
+margin_top = 90.0
+margin_right = 197.0
+margin_bottom = 99.0
+
+[node name="Name" type="Label" parent="GridContainer/Body/RowPenthouse"]
+margin_right = 54.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "???"
+
+[node name="Room" type="Label" parent="GridContainer/Body/RowPenthouse"]
+margin_left = 58.0
+margin_right = 80.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "P"
+
+[node name="Arcane" type="Label" parent="GridContainer/Body/RowPenthouse"]
+margin_left = 84.0
+margin_right = 138.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "the parca"
+
+[node name="Death" type="Label" parent="GridContainer/Body/RowPenthouse"]
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "suicide"

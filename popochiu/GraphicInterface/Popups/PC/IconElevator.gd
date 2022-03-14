@@ -4,8 +4,7 @@ extends 'res://popochiu/GraphicInterface/Popups/PC/Icon.gd'
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func open_app() -> void:
 	if Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
-		# TODO: Abrir la aplicación para modificar el comportamiento del ascensor.
-		pass
+		.open_app()
 	else:
 		# TODO: Mostrar un mensaje de error en el SO indicando que se necesita
 		#		la tarjeta del elevador para poder usar la aplicación.

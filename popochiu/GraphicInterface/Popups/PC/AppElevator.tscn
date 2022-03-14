@@ -1,24 +1,20 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=1]
-[ext_resource path="res://popochiu/GraphicInterface/Puzzles/CrossSwitchesPuzzle.gd" type="Script" id=2]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnPressed.tres" type="StyleBox" id=3]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnNormal.tres" type="StyleBox" id=4]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnDisabled.tres" type="StyleBox" id=5]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnPressed.tres" type="StyleBox" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnNormal.tres" type="StyleBox" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnDisabled.tres" type="StyleBox" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSAppWindow.tres" type="StyleBox" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_light.png" type="Texture" id=6]
-[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=7]
-[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_building.png" type="Texture" id=9]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_container.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_normal.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_building.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_disabled.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_hover.png" type="Texture" id=10]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_link.png" type="Texture" id=11]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_basement_light.png" type="Texture" id=12]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_hover.png" type="Texture" id=13]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_disabled.png" type="Texture" id=14]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_normal.png" type="Texture" id=15]
-
-[sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 10 )
-region_rect = Rect2( 0, 0, 201, 124 )
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=13]
+[ext_resource path="res://popochiu/GraphicInterface/Puzzles/CrossSwitchesPuzzle.gd" type="Script" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=15]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 12 )
@@ -27,7 +23,7 @@ region = Rect2( 0, 0, 32, 12 )
 [sub_resource type="DynamicFont" id=5]
 outline_size = 1
 use_mipmaps = true
-font_data = ExtResource( 8 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 6 )
@@ -58,12 +54,12 @@ axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
-[node name="Puzzle" type="Panel"]
+[node name="AppElevator" type="Panel"]
 margin_right = 201.0
 margin_bottom = 124.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 6 )
-script = ExtResource( 2 )
+custom_styles/panel = ExtResource( 5 )
+script = ExtResource( 14 )
 
 [node name="Title" type="Label" parent="."]
 margin_left = 1.0
@@ -79,16 +75,16 @@ margin_left = 190.0
 margin_top = 4.0
 margin_right = 198.0
 margin_bottom = 11.0
-texture_normal = ExtResource( 15 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 9 )
 
 [node name="Building" type="TextureRect" parent="."]
 margin_left = 4.0
 margin_top = 18.0
 margin_right = 82.0
 margin_bottom = 118.0
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="Lights" type="Control" parent="."]
 margin_left = 21.0
@@ -236,11 +232,11 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 toggle_mode = true
 text = "A"
 
@@ -253,11 +249,11 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 toggle_mode = true
 text = "B"
 
@@ -270,11 +266,11 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 toggle_mode = true
 text = "C"
 
@@ -287,11 +283,11 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 disabled = true
 toggle_mode = true
 text = "D"
@@ -305,11 +301,11 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 disabled = true
 toggle_mode = true
 text = "E"
@@ -323,11 +319,11 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 disabled = true
 toggle_mode = true
 text = "F"
@@ -354,7 +350,7 @@ margin_bottom = 27.0
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "1"
 align = 1
 valign = 1
@@ -364,7 +360,7 @@ margin_top = 13.0
 margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "3"
 align = 1
 valign = 1
@@ -385,7 +381,7 @@ margin_bottom = 40.0
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "b"
 align = 1
 valign = 1
@@ -395,7 +391,7 @@ margin_top = 13.0
 margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "1"
 align = 1
 valign = 1
@@ -405,7 +401,7 @@ margin_top = 26.0
 margin_right = 11.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "2"
 align = 1
 valign = 1
@@ -426,7 +422,7 @@ margin_bottom = 27.0
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "2"
 align = 1
 valign = 1
@@ -436,7 +432,7 @@ margin_top = 13.0
 margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "3"
 align = 1
 valign = 1
@@ -458,7 +454,7 @@ margin_bottom = 40.0
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "b"
 align = 1
 valign = 1
@@ -468,7 +464,7 @@ margin_top = 13.0
 margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "2"
 align = 1
 valign = 1
@@ -478,7 +474,7 @@ margin_top = 26.0
 margin_right = 11.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "p"
 align = 1
 valign = 1
@@ -500,7 +496,7 @@ margin_bottom = 53.0
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "b"
 align = 1
 valign = 1
@@ -510,7 +506,7 @@ margin_top = 13.0
 margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "2"
 align = 1
 valign = 1
@@ -520,7 +516,7 @@ margin_top = 26.0
 margin_right = 11.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "3"
 align = 1
 valign = 1
@@ -530,7 +526,7 @@ margin_top = 39.0
 margin_right = 11.0
 margin_bottom = 48.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "p"
 align = 1
 valign = 1
@@ -552,7 +548,7 @@ margin_bottom = 27.0
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "b"
 align = 1
 valign = 1
@@ -562,7 +558,7 @@ margin_top = 13.0
 margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 15 )
 text = "3"
 align = 1
 valign = 1
@@ -577,18 +573,18 @@ custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
 custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 2 )
-custom_styles/disabled = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 text = "unlock"
 
 [node name="Success" type="Label" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 13 )
 text = "Success"
 align = 1
 valign = 1

@@ -8,6 +8,9 @@ var _opened_app: Control = null
 
 onready var _thanks: RichTextLabel = find_node('Thanks')
 onready var _os_popup: PanelContainer = find_node('OSPopup')
+onready var _apps: GridContainer = find_node('Apps')
+onready var _app_screen: MarginContainer = find_node('AppScreen')
+onready var _app_container: PanelContainer = find_node('AppContainer')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -17,6 +20,10 @@ func _ready() -> void:
 	connect('mouse_exited', Cursor, 'set_cursor')
 	_thanks.connect('meta_clicked', self, '_on_meta_clicked')
 	_os_popup.connect('closed', self, '_notify_popup_close')
+	for i in _apps.get_children():
+		i.connect('app_opened', self, '_load_app')
+	
+	_app_screen.hide()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -40,3 +47,16 @@ func _on_meta_clicked(meta) -> void:
 func _notify_popup_close() -> void:
 	if is_instance_valid(_opened_app):
 		_opened_app.on_popup_closed()
+
+
+func _load_app(app: Panel) -> void:
+	_app_container.add_child(app)
+	(app.get_node('BtnClose') as TextureButton).connect(
+		'pressed', self, '_close_app'
+	)
+	_app_screen.show()
+
+
+func _close_app() -> void:
+	_app_container.get_child(0).queue_free()
+	_app_screen.hide()
