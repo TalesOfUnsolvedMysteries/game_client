@@ -1,0 +1,64 @@
+[gd_resource type="Theme" load_steps=13 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_register_option_arrow.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_register_radio_unchecked.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_register_radio_checked.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.254902, 0.364706, 0.4, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.741176, 1, 0.792157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+draw_center = false
+border_width_top = 8
+border_color = Color( 0.741176, 1, 0.792157, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.254902, 0.364706, 0.4, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.741176, 1, 0.792157, 1 )
+
+[resource]
+HScrollBar/styles/grabber = SubResource( 1 )
+HScrollBar/styles/grabber_highlight = SubResource( 1 )
+HScrollBar/styles/grabber_pressed = SubResource( 1 )
+HScrollBar/styles/scroll = SubResource( 2 )
+OptionButton/colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+OptionButton/colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+OptionButton/colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+OptionButton/colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+OptionButton/colors/font_color_pressed = Color( 0.741176, 1, 0.792157, 1 )
+OptionButton/fonts/font = ExtResource( 1 )
+OptionButton/icons/arrow = ExtResource( 2 )
+OptionButton/styles/focus = SubResource( 3 )
+OptionButton/styles/hover = SubResource( 4 )
+OptionButton/styles/normal = SubResource( 5 )
+OptionButton/styles/pressed = SubResource( 6 )
+PopupMenu/colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+PopupMenu/colors/font_color_disabled = Color( 0.254902, 0.364706, 0.4, 0.501961 )
+PopupMenu/colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.254902, 0.364706, 0.4, 1 )
+PopupMenu/constants/vseparation = 8
+PopupMenu/fonts/font = ExtResource( 1 )
+PopupMenu/icons/radio_checked = ExtResource( 4 )
+PopupMenu/icons/radio_unchecked = ExtResource( 3 )
+PopupMenu/styles/hover = SubResource( 7 )
+PopupMenu/styles/panel = SubResource( 8 )

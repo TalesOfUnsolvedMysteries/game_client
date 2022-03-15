@@ -76,30 +76,6 @@ const NFTs := {
 		id = '0002'
 	},
 }
-const ARCANES := [
-	'The Magician',
-	'The High Priestess',
-	'The Empress',
-	'The Emperor',
-	'The Hierophant',
-	'The Lovers',
-	'The Chariot',
-	'Strength',
-	'The Hermit',
-	'Wheel of Fortune',
-	'Justice',
-	'The Hanged Man',
-	'Death',
-	'Temperance',
-	'The Devil',
-	'The Tower',
-	'The Star',
-	'The Moon',
-	'The Sun',
-	'Judgement',
-	'The World',
-	'The Fool',
-]
 
 var main_mx_play = false
 var bug_name := ''
