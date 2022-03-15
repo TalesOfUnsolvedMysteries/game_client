@@ -3,7 +3,7 @@
 [ext_resource path="res://addons/Popochiu/Engine/Objects/InventoryItem/PopochiuInventoryItemData.gd" type="Script" id=1]
 
 [resource]
-resource_name = "Key102"
+resource_name = "MasterKey"
 script = ExtResource( 1 )
-script_name = "Key102"
-scene = "res://popochiu/InventoryItems/Key102/InventoryKey102.tscn"
+script_name = "MasterKey"
+scene = "res://popochiu/InventoryItems/MasterKey/InventoryMasterKey.tscn"

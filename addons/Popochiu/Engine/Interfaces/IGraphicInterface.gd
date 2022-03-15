@@ -17,6 +17,7 @@ signal documents_requested(data) # Un diccionario con la información por págin
 signal elevator_panel_requested
 signal nft_won(nft)
 signal nft_shown
+signal master_key_opened
 
 var blocked := false
 var waiting_click := false
@@ -82,3 +83,9 @@ func show_history() -> void:
 # Recibe un Dictionary con la información a mostrar por página.
 func show_documents(data: Dictionary) -> void:
 	emit_signal('documents_requested', data)
+
+
+func show_master_key() -> void:
+	emit_signal('master_key_opened')
+
+

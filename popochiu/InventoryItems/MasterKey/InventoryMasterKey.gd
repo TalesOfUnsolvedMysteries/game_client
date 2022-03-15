@@ -13,7 +13,7 @@ func on_interact() -> void:
 
 # Lo que pasará cuando se haga clic derecho en el icono del inventario
 func on_look() -> void:
-	E.run(['Player: Is the key for door 102'])
+	G.show_master_key()
 
 
 # Lo que pasará cuando se use otro InventoryItem del inventario sobre este

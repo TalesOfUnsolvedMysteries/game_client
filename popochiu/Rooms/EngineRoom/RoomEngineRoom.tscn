@@ -76,11 +76,7 @@ cursor = 1
 script_name = "FuseBox"
 texture = ExtResource( 8 )
 
-[node name="BaselineHelper" parent="Props/FuseBox" index="0"]
-visible = true
-
 [node name="WalkToHelper" parent="Props/FuseBox" index="1"]
-visible = true
 position = Vector2( 7, 58 )
 
 [node name="Sprite" parent="Props/FuseBox" index="2"]

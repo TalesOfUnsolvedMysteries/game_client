@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://popochiu/Rooms/FirstFloor/RoomFirstFloor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/FirstFloor/Hotspots/HotspotElevator.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://popochiu/Rooms/FirstFloor/Hotspots/HotspotDoor101.gd" type="Script" id=8]
 [ext_resource path="res://popochiu/Rooms/FirstFloor/Hotspots/HotspotDoor102.gd" type="Script" id=9]
 [ext_resource path="res://popochiu/Rooms/FirstFloor/Hotspots/HotspotLobby.gd" type="Script" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/DoorSecret.gd" type="Script" id=11]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -189, 61, -156, 42, 151, 42, 173, 51, 187, 65, 187, 86, -190, 85 )
@@ -105,6 +106,12 @@ visible = false
 [node name="WalkToHelper" parent="Hotspots/Door102" index="2"]
 visible = false
 position = Vector2( 2, 30 )
+
+[node name="Secret" type="Node" parent="Hotspots/Door102"]
+script = ExtResource( 11 )
+_secret_key = "DOOR_102_LOCK"
+_secret = "0102"
+DOOR_TO_UNLOCK = "FirstFloor-102_UNLOCKED"
 
 [node name="Lobby" parent="Hotspots" instance=ExtResource( 7 )]
 position = Vector2( 38, 10 )

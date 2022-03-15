@@ -86,11 +86,12 @@ sync var state := {
 	'Lobby-ELEVATOR_CARD_IN_PC': true,
 #	'Lobby-ENGINE_ROOM_UNLOCKED': true,
 	'EngineRoom-ELEVATOR_WORKING': false,
-#	'FirstFloor-102_UNLOCKED': true,
-#	'SecondFloor-201_UNLOCKED': true,
-#	'SecondFloor-202_UNLOCKED': true,
-#	'ThirdFloor-301_UNLOCKED': true,
-#	'ThirdFloor-302_UNLOCKED': true,
+	'MasterKey-CONFIG': '0203',
+	'FirstFloor-102_UNLOCKED': false,
+	'SecondFloor-201_UNLOCKED': false,
+	'SecondFloor-202_UNLOCKED': false,
+	'ThirdFloor-301_UNLOCKED': false,
+	'ThirdFloor-302_UNLOCKED': false,
 }
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power

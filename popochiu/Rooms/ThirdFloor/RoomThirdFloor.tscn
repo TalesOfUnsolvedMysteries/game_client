@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://popochiu/Rooms/ThirdFloor/RoomThirdFloor.gd" type="Script" id=1]
-[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/DoorSecret.gd" type="Script" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/ThirdFloor/Props/Bg/bg.png" type="Texture" id=4]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=5]
@@ -25,11 +25,7 @@ limit_bottom = 0.0
 
 [node name="Props" type="Node2D" parent="."]
 
-[node name="Bg" type="Area2D" parent="Props" instance=ExtResource( 3 )]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
 description = "Bg"
 clickable = false
 cursor = 10
@@ -77,6 +73,7 @@ polygon = PoolVector2Array( -26, -27, -29, 28, 28, 28, 25, -27, -3, -37 )
 visible = false
 
 [node name="WalkToHelper" parent="Hotspots/Elevator" index="2"]
+visible = false
 position = Vector2( -1, 33 )
 
 [node name="Door301" parent="Hotspots" instance=ExtResource( 5 )]
@@ -92,24 +89,16 @@ polygon = PoolVector2Array( -10, -38, -28, 2, -22, 26, 24, 25, 17, -35 )
 
 [node name="BaselineHelper" parent="Hotspots/Door301" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/Door301" index="2"]
+visible = false
 position = Vector2( -10, 33 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="ColorRect" parent="Hotspots/Door301/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Secret" type="Node" parent="Hotspots/Door301"]
+script = ExtResource( 2 )
+_secret_key = "DOOR_301_LOCK"
+_secret = "0301"
+DOOR_TO_UNLOCK = "ThirdFloor-301_UNLOCKED"
 
 [node name="Door302" parent="Hotspots" instance=ExtResource( 5 )]
 position = Vector2( 97, 11 )
@@ -124,24 +113,16 @@ polygon = PoolVector2Array( -20, -14, -23, 26, 22, 26, 18, -14, 12, -24, 2, -32,
 
 [node name="BaselineHelper" parent="Hotspots/Door302" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/Door302" index="2"]
+visible = false
 position = Vector2( -8, 34 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="ColorRect" parent="Hotspots/Door302/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Secret" type="Node" parent="Hotspots/Door302"]
+script = ExtResource( 2 )
+_secret_key = "DOOR_302_LOCK"
+_secret = "0302"
+DOOR_TO_UNLOCK = "ThirdFloor-302_UNLOCKED"
 
 [node name="Regions" type="Node2D" parent="."]
 

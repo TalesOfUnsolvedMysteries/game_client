@@ -1,6 +1,7 @@
 tool
 extends Hotspot
 
+onready var secret: Secret = find_node('Secret')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -25,4 +26,4 @@ func on_look() -> void:
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	secret.on_inventory_item_used(item)
