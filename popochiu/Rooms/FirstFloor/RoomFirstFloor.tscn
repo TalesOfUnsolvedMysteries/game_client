@@ -112,6 +112,7 @@ script = ExtResource( 11 )
 _secret_key = "DOOR_102_LOCK"
 _secret = "0102"
 DOOR_TO_UNLOCK = "FirstFloor-102_UNLOCKED"
+NFT_TO_CLAIM = "UNLOCK_ROOM_102"
 
 [node name="Lobby" parent="Hotspots" instance=ExtResource( 7 )]
 position = Vector2( 38, 10 )

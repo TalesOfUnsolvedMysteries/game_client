@@ -7,9 +7,7 @@ export var _secret = '' # setup with default value
 signal solved
 
 func _ready():
-	print('loading secret: ', _secret_key)
 	var secret = SecretsKeeper.get(_secret_key)
-	print('secret: ', secret)
 	if secret != '':
 		_secret = secret
 		print('secret loaded: ', _secret)
@@ -26,6 +24,7 @@ func solve(answer):
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)
 	emit_signal('solved', solved)
+	return solved
 
 # should check server global state to validate if this action could be performed
 func _validate_state():

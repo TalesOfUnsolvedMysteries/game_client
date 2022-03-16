@@ -75,6 +75,31 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0002'
 	},
+	UNLOCK_ROOM_102 = {
+		label = 'Unlock Room 102',
+		img = 'nft_new_floors',
+		id = '0003'
+	},
+	UNLOCK_ROOM_201 = {
+		label = 'Unlock Room 201',
+		img = 'nft_new_floors',
+		id = '0004'
+	},
+	UNLOCK_ROOM_202 = {
+		label = 'Unlock Room 202',
+		img = 'nft_new_floors',
+		id = '0005'
+	},
+	UNLOCK_ROOM_301 = {
+		label = 'Unlock Room 301',
+		img = 'nft_new_floors',
+		id = '0006'
+	},
+	UNLOCK_ROOM_302 = {
+		label = 'Unlock Room 302',
+		img = 'nft_new_floors',
+		id = '0007'
+	}
 }
 
 var main_mx_play = false

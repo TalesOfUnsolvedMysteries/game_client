@@ -15,15 +15,16 @@ func _validate_state():
 func _update_state():
 	Globals.set_state(DOOR_TO_UNLOCK, true)
 	# unlock DOOR NFT
+	G.emit_signal('nft_won', Globals.NFTs[NFT_TO_CLAIM])
 
 # transform current answer into a plain text format compatible with the secret
 func _encode(answer):
 	return answer
 
 func on_inventory_item_used(item: InventoryItem) -> void:
-	E.run([
+	yield(E.run([
 		C.walk_to_clicked()
-	])
+	]), 'completed')
 	if item.script_name == 'MasterKey':
 		print('trying this combination: ', Globals.state['MasterKey-CONFIG'])
 		self.solve(Globals.state['MasterKey-CONFIG'])
@@ -42,6 +43,7 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 		])
 		return
 
+	yield(G, 'nft_shown')
 	E.run([
 		# TODO: Poner sonido de desbloqueo de puerta
 		'Player: Great! Now the Door is open',
