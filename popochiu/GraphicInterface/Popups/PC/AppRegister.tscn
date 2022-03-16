@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSAppWindow.tres" type="StyleBox" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_normal.png" type="Texture" id=2]
@@ -6,11 +6,32 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_app_close_hover.png" type="Texture" id=4]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/AppRegister.gd" type="Script" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_btn_edit.png" type="Texture" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSTheme.tres" type="Theme" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-16.tres" type="DynamicFont" id=9]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+use_mipmaps = true
+extra_spacing_bottom = -4
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+draw_center = false
+border_width_bottom = 1
+border_color = Color( 0.443137, 0.65098, 0.631373, 1 )
 
 [node name="AppRegister" type="Panel"]
 margin_right = 201.0
 margin_bottom = 124.0
+theme = ExtResource( 8 )
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 5 )
 
@@ -20,6 +41,7 @@ margin_top = -1.0
 margin_right = 190.0
 margin_bottom = 11.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 9 )
 text = "register"
 align = 1
 
@@ -33,6 +55,7 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 3 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
 margin_left = 2.0
 margin_top = 14.0
 margin_right = 199.0
@@ -392,3 +415,262 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "suicide"
+
+[node name="Info" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 13.0
+margin_right = 199.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 0.752941 )
+custom_fonts/font = SubResource( 3 )
+text = "complete the information about the building's inhabitants and win prizes!"
+align = 1
+autowrap = true
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 2.0
+margin_top = 33.0
+margin_right = 199.0
+margin_bottom = 122.0
+
+[node name="101" type="PanelContainer" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/101"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 191.0
+margin_bottom = 75.0
+custom_constants/separation = 8
+
+[node name="NameRow" type="VBoxContainer" parent="TabContainer/101/VBoxContainer"]
+margin_right = 187.0
+margin_bottom = 19.0
+custom_constants/separation = 0
+
+[node name="Title" type="Label" parent="TabContainer/101/VBoxContainer/NameRow"]
+margin_right = 21.0
+margin_bottom = 10.0
+size_flags_horizontal = 0
+custom_colors/font_color = Color( 0.443137, 0.65098, 0.631373, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "name"
+
+[node name="DataContainer" type="HBoxContainer" parent="TabContainer/101/VBoxContainer/NameRow"]
+margin_top = 10.0
+margin_right = 187.0
+margin_bottom = 19.0
+
+[node name="Name" type="Label" parent="TabContainer/101/VBoxContainer/NameRow/DataContainer"]
+margin_right = 174.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+text = "ernesto pérez"
+
+[node name="BtnEditName" type="TextureButton" parent="TabContainer/101/VBoxContainer/NameRow/DataContainer"]
+margin_left = 178.0
+margin_right = 187.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 7 )
+
+[node name="ArcaneRow" type="VBoxContainer" parent="TabContainer/101/VBoxContainer"]
+margin_top = 27.0
+margin_right = 187.0
+margin_bottom = 46.0
+custom_constants/separation = 0
+
+[node name="Title" type="Label" parent="TabContainer/101/VBoxContainer/ArcaneRow"]
+margin_right = 30.0
+margin_bottom = 10.0
+size_flags_horizontal = 0
+custom_colors/font_color = Color( 0.443137, 0.65098, 0.631373, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "arcane"
+
+[node name="DataContainer" type="HBoxContainer" parent="TabContainer/101/VBoxContainer/ArcaneRow"]
+margin_top = 10.0
+margin_right = 187.0
+margin_bottom = 19.0
+
+[node name="Arcane" type="Label" parent="TabContainer/101/VBoxContainer/ArcaneRow/DataContainer"]
+margin_right = 174.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+text = "the high priestess"
+
+[node name="BtnEditArcane" type="TextureButton" parent="TabContainer/101/VBoxContainer/ArcaneRow/DataContainer"]
+margin_left = 178.0
+margin_right = 187.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 7 )
+
+[node name="DeathRow" type="VBoxContainer" parent="TabContainer/101/VBoxContainer"]
+margin_top = 54.0
+margin_right = 187.0
+margin_bottom = 73.0
+custom_constants/separation = 0
+
+[node name="Title" type="Label" parent="TabContainer/101/VBoxContainer/DeathRow"]
+margin_right = 68.0
+margin_bottom = 10.0
+size_flags_horizontal = 0
+custom_colors/font_color = Color( 0.443137, 0.65098, 0.631373, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "cause of death"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/101/VBoxContainer/DeathRow"]
+margin_top = 10.0
+margin_right = 187.0
+margin_bottom = 19.0
+
+[node name="Death" type="Label" parent="TabContainer/101/VBoxContainer/DeathRow/HBoxContainer"]
+margin_right = 174.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+text = "suicide with a knife"
+
+[node name="BtnEditDeath" type="TextureButton" parent="TabContainer/101/VBoxContainer/DeathRow/HBoxContainer"]
+margin_left = 178.0
+margin_right = 187.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 7 )
+
+[node name="102" type="PanelContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/102"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 191.0
+margin_bottom = 94.0
+
+[node name="NameRow" type="HBoxContainer" parent="TabContainer/102/VBoxContainer"]
+margin_right = 187.0
+margin_bottom = 9.0
+
+[node name="Label" type="Label" parent="TabContainer/102/VBoxContainer/NameRow"]
+margin_right = 24.0
+margin_bottom = 9.0
+text = "name:"
+
+[node name="Label2" type="Label" parent="TabContainer/102/VBoxContainer/NameRow"]
+margin_left = 28.0
+margin_right = 174.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+text = "ernesto pérez"
+
+[node name="Button" type="TextureButton" parent="TabContainer/102/VBoxContainer/NameRow"]
+margin_left = 178.0
+margin_right = 187.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 7 )
+
+[node name="ArcaneRow" type="HBoxContainer" parent="TabContainer/102/VBoxContainer"]
+margin_top = 13.0
+margin_right = 187.0
+margin_bottom = 22.0
+
+[node name="Label" type="Label" parent="TabContainer/102/VBoxContainer/ArcaneRow"]
+margin_right = 33.0
+margin_bottom = 9.0
+text = "arcane:"
+
+[node name="Label2" type="Label" parent="TabContainer/102/VBoxContainer/ArcaneRow"]
+margin_left = 37.0
+margin_right = 174.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+text = "the world"
+
+[node name="Button" type="TextureButton" parent="TabContainer/102/VBoxContainer/ArcaneRow"]
+margin_left = 178.0
+margin_right = 187.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 7 )
+
+[node name="DeathRow" type="HBoxContainer" parent="TabContainer/102/VBoxContainer"]
+margin_top = 26.0
+margin_right = 187.0
+margin_bottom = 35.0
+
+[node name="Label" type="Label" parent="TabContainer/102/VBoxContainer/DeathRow"]
+margin_right = 28.0
+margin_bottom = 9.0
+text = "death:"
+
+[node name="Label2" type="Label" parent="TabContainer/102/VBoxContainer/DeathRow"]
+margin_left = 32.0
+margin_right = 174.0
+margin_bottom = 9.0
+size_flags_horizontal = 3
+text = "extrangulation"
+
+[node name="Button" type="TextureButton" parent="TabContainer/102/VBoxContainer/DeathRow"]
+margin_left = 178.0
+margin_right = 187.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 7 )
+
+[node name="201" type="PanelContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="202" type="PanelContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="301" type="PanelContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="302" type="PanelContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="P" type="PanelContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 11.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_styles/panel = SubResource( 1 )
