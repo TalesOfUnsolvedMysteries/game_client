@@ -7,6 +7,7 @@ extends PanelContainer
 var _opened_app: Control = null
 
 onready var _thanks: RichTextLabel = find_node('Thanks')
+onready var _overlay: MarginContainer = find_node('Overlay')
 onready var _os_popup: PanelContainer = find_node('OSPopup')
 onready var _apps: GridContainer = find_node('Apps')
 onready var _app_screen: MarginContainer = find_node('AppScreen')
@@ -24,11 +25,13 @@ func _ready() -> void:
 		i.connect('app_opened', self, '_load_app')
 	
 	_app_screen.hide()
+	_overlay.hide()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func show_popup(type: String, message: String, origin: Control) -> void:
 	_opened_app = origin
+	_overlay.show()
 	_os_popup.show_popup(type, message)
 
 
@@ -45,6 +48,8 @@ func _on_meta_clicked(meta) -> void:
 
 
 func _notify_popup_close() -> void:
+	_overlay.hide()
+	
 	if is_instance_valid(_opened_app):
 		_opened_app.on_popup_closed()
 

@@ -108,7 +108,7 @@ var bug_adn := ''
 var turn := 0
 sync var state := {
 	'Lobby-PC_POWERED': true,
-	'Lobby-ELEVATOR_CARD_IN_PC': true,
+#	'Lobby-ELEVATOR_CARD_IN_PC': true,
 #	'Lobby-ENGINE_ROOM_UNLOCKED': true,
 	'EngineRoom-ELEVATOR_WORKING': false,
 	'MasterKey-CONFIG': '0203',

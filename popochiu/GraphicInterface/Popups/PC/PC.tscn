@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
 [ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=2]
@@ -11,10 +11,14 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_icon_warning.png" type="Texture" id=9]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_progress.png" type="Texture" id=10]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator.png" type="Texture" id=11]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_popup.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSButtonNormal.tres" type="StyleBox" id=12]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_register.png" type="Texture" id=13]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/AppRegister.tscn" type="PackedScene" id=14]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/AppElevator.tscn" type="PackedScene" id=15]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSButtonHover.tres" type="StyleBox" id=16]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSPopup.tres" type="StyleBox" id=17]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSButtonDisabled.tres" type="StyleBox" id=18]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_overlay.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -26,20 +30,6 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 12 )
-region_rect = Rect2( 0, 0, 128, 54 )
-margin_left = 4.0
-margin_right = 4.0
-margin_top = 12.0
-margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id=6]
-content_margin_left = 14.0
-content_margin_right = 14.0
-content_margin_bottom = 2.0
-bg_color = Color( 0.254902, 0.364706, 0.4, 1 )
-
 [node name="PC" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,10 +37,10 @@ custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 5 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = 48.0
-margin_top = 12.0
-margin_right = 271.0
-margin_bottom = 167.0
+margin_left = 47.0
+margin_top = 11.0
+margin_right = 273.0
+margin_bottom = 168.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_styles/panel = SubResource( 2 )
@@ -60,13 +50,13 @@ __meta__ = {
 
 [node name="Screen" type="TextureRect" parent="PanelContainer"]
 margin_right = 223.0
-margin_bottom = 155.0
+margin_bottom = 157.0
 size_flags_horizontal = 0
 texture = ExtResource( 8 )
 
 [node name="DesktopContainer" type="MarginContainer" parent="PanelContainer"]
 margin_right = 76.0
-margin_bottom = 155.0
+margin_bottom = 157.0
 size_flags_horizontal = 0
 custom_constants/margin_right = 4
 custom_constants/margin_top = 26
@@ -76,7 +66,7 @@ custom_constants/margin_left = 16
 margin_left = 16.0
 margin_top = 26.0
 margin_right = 72.0
-margin_bottom = 155.0
+margin_bottom = 157.0
 
 [node name="Register" type="VBoxContainer" parent="PanelContainer/DesktopContainer/Apps"]
 margin_right = 56.0
@@ -163,8 +153,8 @@ text = "progress"
 align = 1
 
 [node name="DateContainer" type="MarginContainer" parent="PanelContainer"]
-margin_left = 123.0
-margin_right = 223.0
+margin_left = 126.0
+margin_right = 226.0
 margin_bottom = 17.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -186,8 +176,8 @@ __meta__ = {
 }
 
 [node name="AppScreen" type="MarginContainer" parent="PanelContainer"]
-margin_right = 223.0
-margin_bottom = 155.0
+margin_right = 226.0
+margin_bottom = 157.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 6
 custom_constants/margin_left = 10
@@ -196,22 +186,38 @@ custom_constants/margin_bottom = 22
 [node name="AppContainer" type="PanelContainer" parent="PanelContainer/AppScreen"]
 margin_left = 10.0
 margin_top = 6.0
-margin_right = 213.0
-margin_bottom = 133.0
+margin_right = 216.0
+margin_bottom = 135.0
 custom_styles/panel = SubResource( 7 )
 
+[node name="Overlay" type="MarginContainer" parent="PanelContainer"]
+margin_right = 226.0
+margin_bottom = 157.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 4
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 22
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/Overlay"]
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 216.0
+margin_bottom = 135.0
+mouse_filter = 2
+texture = ExtResource( 19 )
+
 [node name="PopupsContainer" type="CenterContainer" parent="PanelContainer"]
-margin_right = 223.0
-margin_bottom = 155.0
+margin_right = 226.0
+margin_bottom = 157.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="Thanks" type="RichTextLabel" parent="PanelContainer/PopupsContainer"]
 visible = false
-margin_left = 9.0
-margin_top = 32.0
-margin_right = 213.0
-margin_bottom = 123.0
+margin_left = 11.0
+margin_top = 33.0
+margin_right = 215.0
+margin_bottom = 124.0
 rect_min_size = Vector2( 204, 0 )
 custom_colors/default_color = Color( 0.254902, 0.364706, 0.4, 1 )
 custom_fonts/normal_font = ExtResource( 3 )
@@ -237,11 +243,10 @@ __meta__ = {
 }
 
 [node name="OSPopup" type="PanelContainer" parent="PanelContainer/PopupsContainer"]
-visible = false
-margin_left = 47.0
-margin_top = 50.0
-margin_right = 175.0
-margin_bottom = 104.0
+margin_left = 49.0
+margin_top = 51.0
+margin_right = 177.0
+margin_bottom = 105.0
 rect_min_size = Vector2( 128, 54 )
 custom_styles/panel = SubResource( 4 )
 script = ExtResource( 4 )
@@ -250,7 +255,7 @@ icon_warning = ExtResource( 9 )
 [node name="FrameContainer" type="PanelContainer" parent="PanelContainer/PopupsContainer/OSPopup"]
 margin_right = 128.0
 margin_bottom = 54.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = ExtResource( 17 )
 
 [node name="ContentContainer" type="VBoxContainer" parent="PanelContainer/PopupsContainer/OSPopup/FrameContainer"]
 margin_left = 4.0
@@ -293,12 +298,17 @@ margin_bottom = 40.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.254902, 0.364706, 0.4, 1 )
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
 custom_fonts/font = ExtResource( 3 )
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 6 )
+custom_styles/hover = ExtResource( 16 )
+custom_styles/pressed = ExtResource( 16 )
+custom_styles/focus = ExtResource( 16 )
+custom_styles/disabled = ExtResource( 18 )
+custom_styles/normal = ExtResource( 12 )
 text = "ok"
 
 [node name="TitleContainer" type="MarginContainer" parent="PanelContainer/PopupsContainer/OSPopup"]
