@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://popochiu/InventoryItems/door_key.png" type="Texture" id=1]
+[ext_resource path="res://popochiu/InventoryItems/MasterKey/master_key.png" type="Texture" id=1]
 [ext_resource path="res://popochiu/InventoryItems/MasterKey/InventoryMasterKey.gd" type="Script" id=2]
 
 [node name="InventoryMasterKey" type="Control"]

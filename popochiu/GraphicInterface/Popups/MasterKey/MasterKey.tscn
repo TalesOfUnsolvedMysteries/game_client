@@ -1,8 +1,53 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/Bitting.gd" type="Script" id=2]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/MasterKey.gd" type="Script" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_part_c.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_part_d.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_part_a.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_part_b.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_head.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 42, 42 )
+modulate_color = Color( 1, 0.905882, 0.215686, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 42, 42 )
+modulate_color = Color( 1, 0.905882, 0.215686, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 42, 42 )
+modulate_color = Color( 1, 0.905882, 0.215686, 1 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 42, 42 )
+modulate_color = Color( 1, 0.905882, 0.215686, 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 42, 42 )
 
 [node name="MasterKey" type="PanelContainer"]
 anchor_left = 0.5
@@ -16,8 +61,7 @@ margin_bottom = 90.0
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -25,38 +69,67 @@ margin_right = 320.0
 margin_bottom = 180.0
 mouse_filter = 2
 
-[node name="Bg" type="TextureRect" parent="CenterContainer"]
-margin_left = 160.0
-margin_top = 90.0
-margin_right = 160.0
-margin_bottom = 90.0
+[node name="Bg" type="HBoxContainer" parent="CenterContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 288.0
+margin_bottom = 148.0
+custom_constants/separation = 0
+
+[node name="Head" type="TextureRect" parent="CenterContainer/Bg"]
+margin_right = 88.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 0, 116 )
+texture = ExtResource( 8 )
 
 [node name="BittingA" type="Button" parent="CenterContainer/Bg"]
-margin_left = -85.0
-margin_right = -45.0
-margin_bottom = 40.0
-text = "0"
+margin_left = 88.0
+margin_top = 37.0
+margin_right = 130.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 42, 42 )
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 5 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BittingB" type="Button" parent="CenterContainer/Bg"]
-margin_left = -43.0
-margin_right = -3.0
-margin_bottom = 40.0
-text = "0"
+margin_left = 130.0
+margin_top = 37.0
+margin_right = 172.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 42, 42 )
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 2 )
 script = ExtResource( 2 )
 
 [node name="BittingC" type="Button" parent="CenterContainer/Bg"]
-margin_right = 40.0
-margin_bottom = 40.0
-text = "0"
+margin_left = 172.0
+margin_top = 37.0
+margin_right = 214.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 42, 42 )
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 3 )
 script = ExtResource( 2 )
 
 [node name="BittingD" type="Button" parent="CenterContainer/Bg"]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-text = "0"
+margin_left = 214.0
+margin_top = 37.0
+margin_right = 256.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 42, 42 )
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 4 )
 script = ExtResource( 2 )
