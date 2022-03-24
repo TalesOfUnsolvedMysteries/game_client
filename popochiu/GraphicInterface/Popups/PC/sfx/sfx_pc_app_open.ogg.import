@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_pc_app_open.ogg-26d811d128c0334b2ea8342d0b7aa623.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/PC/sfx/sfx_pc_app_open.ogg"
+dest_files=[ "res://.import/sfx_pc_app_open.ogg-26d811d128c0334b2ea8342d0b7aa623.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

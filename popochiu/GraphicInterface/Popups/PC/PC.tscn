@@ -262,15 +262,15 @@ custom_styles/panel = ExtResource( 17 )
 
 [node name="ContentContainer" type="VBoxContainer" parent="PanelContainer/PopupsContainer/OSPopup/FrameContainer"]
 margin_left = 4.0
-margin_top = 12.0
+margin_top = 13.2878
 margin_right = 124.0
 margin_bottom = 52.0
 alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/PopupsContainer/OSPopup/FrameContainer/ContentContainer"]
-margin_top = 10.0
+margin_top = 8.0
 margin_right = 120.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 size_flags_horizontal = 5
 alignment = 1
 
@@ -295,9 +295,9 @@ autowrap = true
 
 [node name="BtnClose" type="Button" parent="PanelContainer/PopupsContainer/OSPopup/FrameContainer/ContentContainer"]
 margin_left = 78.0
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 120.0
-margin_bottom = 40.0
+margin_bottom = 38.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0

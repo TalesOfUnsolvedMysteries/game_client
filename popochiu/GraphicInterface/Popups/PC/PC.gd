@@ -32,6 +32,7 @@ func _ready() -> void:
 func show_popup(type: String, message: String, origin: Control) -> void:
 	_opened_app = origin
 	_overlay.show()
+	A.play({cue_name = 'sfx_pc_error',is_in_queue = false})
 	_os_popup.show_popup(type, message)
 
 
@@ -60,9 +61,11 @@ func _load_app(app: Panel) -> void:
 	(app.get_node('BtnClose') as TextureButton).connect(
 		'pressed', Utils, 'invoke', [self, '_close_app']
 	)
+	A.play({cue_name = 'sfx_pc_app_open',is_in_queue = false})
 	_app_screen.show()
 
 
 func _close_app() -> void:
 	_app_container.get_child(0).queue_free()
+	A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
 	_app_screen.hide()

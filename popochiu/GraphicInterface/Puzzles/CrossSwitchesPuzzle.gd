@@ -46,6 +46,8 @@ func _load_switch_table():
 
 func on_button_toggled(value, index):
 	Utils.invoke(secret, 'toggle_switch', [value, index], !Globals.is_single_test())
+	var sfx_audio = 'sfx_pc_app_toggle_on' if value else 'sfx_pc_app_toggle_off'
+	A.play({cue_name = sfx_audio, is_in_queue = false})
 
 func _turn_lights_on(pressed):
 	for i in range(0, 5):

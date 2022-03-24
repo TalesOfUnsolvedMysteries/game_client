@@ -16,10 +16,6 @@ var floor_code = {
 func _toggled(button_pressed: bool) -> void:
 	# check if the floor is enabled
 	var enabled = bool(Globals.state['ELEVATOR_ENABLED'] & floor_code[go_to])
-	if button_pressed and !enabled:
-		set_pressed_no_signal(false)
-		return
-
 	if button_pressed:
 		yield(E.run([
 			A.play({
@@ -29,5 +25,7 @@ func _toggled(button_pressed: bool) -> void:
 			}),
 			E.wait(0.1)
 		]), 'completed')
-		
+		if !enabled:
+			set_pressed_no_signal(false)
+			return
 		emit_signal('floor_selected', go_to)
