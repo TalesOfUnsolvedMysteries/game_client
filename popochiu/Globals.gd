@@ -99,7 +99,17 @@ const NFTs := {
 		label = 'Unlock Room 302',
 		img = 'nft_new_floors',
 		id = '0007'
-	}
+	},
+	ELEVATOR_TECHIE_1 = {
+		label = 'Fix elevator program v1',
+		img = 'nft_new_floors',
+		id = '0008'
+	},
+	ELEVATOR_TECHIE_2 = {
+		label = 'Fix elevator program v2',
+		img = 'nft_new_floors',
+		id = '0009'
+	},
 }
 
 var main_mx_play = false

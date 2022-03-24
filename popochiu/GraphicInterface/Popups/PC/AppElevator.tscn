@@ -204,6 +204,7 @@ align = 1
 valign = 3
 
 [node name="Light1" type="TextureRect" parent="Lights"]
+modulate = Color( 1, 1, 1, 0.152941 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 33.0
@@ -212,7 +213,8 @@ texture = SubResource( 3 )
 expand = true
 stretch_mode = 2
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Lights/Light1"]
@@ -754,9 +756,11 @@ script = ExtResource( 16 )
 _secret_key = "ELEVATOR_1_SWITCHES"
 _secret = "0,0,0,0,0,0"
 target = 15
+NFT_REWARD = "ELEVATOR_TECHIE_1"
 
 [node name="Secret2" type="Node" parent="."]
 script = ExtResource( 16 )
 _secret_key = "ELEVATOR_2_SWITCHES"
 _secret = "0,0,0,0,0,0"
 target = 31
+NFT_REWARD = "ELEVATOR_TECHIE_2"

@@ -14,6 +14,8 @@ func _ready():
 		floor_links.get_node('LinksF').show()
 		self.unlock_buttons()
 		secret = find_node('Secret2')
+		var light1 = find_node('Light1')
+		light1.modulate = Color('ffffff')
 
 	app_title.text = 'elevator panel v%d.0' % Globals.state['PC_ELEVATOR_APP_VERSION']
 	$Save.connect('button_down', self, '_on_save_pressed')
@@ -25,7 +27,6 @@ func _ready():
 		button.connect('toggled', self, 'on_button_toggled', [i])
 		if !button.disabled and button.pressed: on_button_toggled(true, i)
 		i += 1
-
 	
 	secret.connect('switch_pressed', self, '_turn_lights_on')
 
@@ -94,14 +95,12 @@ func _save_config():
 	
 func _check(solved):
 	if solved:
-		print('cool!')
 		OS.show_popup('w', 'elevator fixed!', self)
-		# if target matches then program displays a success
+		for button in $Buttons.get_children(): button.disabled = true
 	else:
 		OS.show_popup('e', 'wrong configuration!', self)
 		$Save.disabled = false
 		_reset()
-		# if target is not matched then program displays an error
 	
 
 func on_popup_closed() -> void:
