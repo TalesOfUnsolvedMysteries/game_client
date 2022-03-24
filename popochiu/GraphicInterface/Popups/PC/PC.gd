@@ -56,8 +56,9 @@ func _notify_popup_close() -> void:
 
 func _load_app(app: Panel) -> void:
 	_app_container.add_child(app)
+	app.OS = self
 	(app.get_node('BtnClose') as TextureButton).connect(
-		'pressed', self, '_close_app'
+		'pressed', Utils, 'invoke', [self, '_close_app']
 	)
 	_app_screen.show()
 

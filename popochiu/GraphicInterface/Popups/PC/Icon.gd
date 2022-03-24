@@ -23,4 +23,5 @@ func _check_open_app(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
-			open_app()
+			Utils.invoke(self, 'open_app')
+			#open_app()

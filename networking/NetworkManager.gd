@@ -236,7 +236,7 @@ remote func _net_game_over(_peer_id: int, death_cause: String) -> void:
 	game_over(_peer_id, death_cause)
 
 func _dev_pilot():
-	request_join(ServerConnection.SERVER_IP)
+	request_join(Globals.SERVER_IP)
 	yield(get_tree(), 'connected_to_server')
 	yield(get_tree().create_timer(0.1), 'timeout')
 	prepare_pilot()

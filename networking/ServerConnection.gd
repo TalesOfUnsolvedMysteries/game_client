@@ -63,7 +63,7 @@ func _pass_arguments():
 	if server_request:
 		print('init register server')
 		yield(_check_server_connection(), 'completed')
-		yield(NetworkManager.init_server(), 'completed')
+		NetworkManager.init_server()
 		yield(register_server(), 'completed')
 		print('end register server')
 	else:

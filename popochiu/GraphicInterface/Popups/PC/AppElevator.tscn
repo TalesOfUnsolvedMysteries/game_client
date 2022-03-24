@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnPressed.tres" type="StyleBox" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=13]
 [ext_resource path="res://popochiu/GraphicInterface/Puzzles/CrossSwitchesPuzzle.gd" type="Script" id=14]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=15]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Secret.gd" type="Script" id=16]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 12 )
@@ -55,11 +56,17 @@ axis_stretch_vertical = 2
 [sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="AppElevator" type="Panel"]
-margin_right = 201.0
-margin_bottom = 124.0
+margin_left = -100.0
+margin_top = -63.0
+margin_right = 101.0
+margin_bottom = 61.0
 mouse_filter = 2
 custom_styles/panel = ExtResource( 5 )
 script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="."]
 margin_left = 1.0
@@ -69,6 +76,9 @@ margin_bottom = 11.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 text = "elevator panel"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BtnClose" type="TextureButton" parent="."]
 margin_left = 190.0
@@ -78,6 +88,9 @@ margin_bottom = 11.0
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 10 )
 texture_disabled = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Building" type="TextureRect" parent="."]
 margin_left = 4.0
@@ -288,7 +301,6 @@ custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 3 )
-disabled = true
 toggle_mode = true
 text = "D"
 
@@ -306,7 +318,6 @@ custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 3 )
-disabled = true
 toggle_mode = true
 text = "E"
 
@@ -333,25 +344,31 @@ margin_left = 92.0
 margin_top = 36.0
 margin_right = 199.0
 margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LinksA" type="PanelContainer" parent="FloorLinks"]
 margin_left = 1.0
 margin_right = 16.0
 margin_bottom = 16.0
 custom_styles/panel = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksA"]
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 27.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksA/FloorsList"]
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "1"
+text = "p"
 align = 1
 valign = 1
 
@@ -365,6 +382,36 @@ text = "3"
 align = 1
 valign = 1
 
+[node name="Label3" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "b"
+align = 1
+valign = 1
+
 [node name="LinksB" type="PanelContainer" parent="FloorLinks"]
 margin_left = 19.0
 margin_right = 34.0
@@ -375,14 +422,14 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 40.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksB/FloorsList"]
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "b"
+text = "p"
 align = 1
 valign = 1
 
@@ -392,7 +439,7 @@ margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "1"
+text = "3"
 align = 1
 valign = 1
 
@@ -406,6 +453,26 @@ text = "2"
 align = 1
 valign = 1
 
+[node name="Label4" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "b"
+align = 1
+valign = 1
+
 [node name="LinksC" type="PanelContainer" parent="FloorLinks"]
 margin_left = 37.0
 margin_right = 52.0
@@ -416,14 +483,14 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 27.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksC/FloorsList"]
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "2"
+text = "p"
 align = 1
 valign = 1
 
@@ -437,25 +504,57 @@ text = "3"
 align = 1
 valign = 1
 
+[node name="Label3" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "b"
+align = 1
+valign = 1
+
 [node name="LinksD" type="PanelContainer" parent="FloorLinks"]
-modulate = Color( 1, 1, 1, 0.501961 )
 margin_left = 55.0
 margin_right = 70.0
 margin_bottom = 16.0
 custom_styles/panel = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksD"]
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 40.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksD/FloorsList"]
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "b"
+text = "p"
 align = 1
 valign = 1
 
@@ -465,7 +564,7 @@ margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "2"
+text = "3"
 align = 1
 valign = 1
 
@@ -475,12 +574,31 @@ margin_right = 11.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "p"
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "b"
 align = 1
 valign = 1
 
 [node name="LinksE" type="PanelContainer" parent="FloorLinks"]
-modulate = Color( 1, 1, 1, 0.501961 )
 margin_left = 73.0
 margin_right = 88.0
 margin_bottom = 16.0
@@ -490,14 +608,14 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 53.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksE/FloorsList"]
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "b"
+text = "p"
 align = 1
 valign = 1
 
@@ -507,7 +625,7 @@ margin_right = 11.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "2"
+text = "3"
 align = 1
 valign = 1
 
@@ -517,7 +635,7 @@ margin_right = 11.0
 margin_bottom = 35.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "3"
+text = "2"
 align = 1
 valign = 1
 
@@ -527,12 +645,21 @@ margin_right = 11.0
 margin_bottom = 48.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "p"
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "b"
 align = 1
 valign = 1
 
 [node name="LinksF" type="PanelContainer" parent="FloorLinks"]
-modulate = Color( 1, 1, 1, 0.501961 )
 margin_left = 91.0
 margin_right = 106.0
 margin_bottom = 16.0
@@ -542,14 +669,14 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 27.0
+margin_bottom = 66.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksF/FloorsList"]
 margin_right = 11.0
 margin_bottom = 9.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
-text = "b"
+text = "p"
 align = 1
 valign = 1
 
@@ -563,7 +690,37 @@ text = "3"
 align = 1
 valign = 1
 
-[node name="Unlock" type="Button" parent="."]
+[node name="Label3" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 15 )
+text = "b"
+align = 1
+valign = 1
+
+[node name="Save" type="Button" parent="."]
 margin_left = 151.0
 margin_top = 101.0
 margin_right = 199.0
@@ -578,7 +735,10 @@ custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 3 )
-text = "unlock"
+text = "save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Success" type="Label" parent="."]
 visible = false
@@ -588,3 +748,15 @@ custom_fonts/font = ExtResource( 13 )
 text = "Success"
 align = 1
 valign = 1
+
+[node name="Secret1" type="Node" parent="."]
+script = ExtResource( 16 )
+_secret_key = "ELEVATOR_1_SWITCHES"
+_secret = "0,0,0,0,0,0"
+target = 15
+
+[node name="Secret2" type="Node" parent="."]
+script = ExtResource( 16 )
+_secret_key = "ELEVATOR_2_SWITCHES"
+_secret = "0,0,0,0,0,0"
+target = 31

@@ -64,6 +64,9 @@ toggle_mode = true
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Btn3rdFloor" type="TextureButton" parent="Panel/Buttons"]
 margin_left = 44.0

@@ -1,28 +1,61 @@
 extends Control
 
-export var _switches = [10, 7, 12, 21, 29, 9]
-export var generated = false
-var pressed = 0
-export var target_number = 31
+var secret: Secret
+onready var floor_links: Control = find_node('FloorLinks')
+onready var app_title: Label = find_node('Title')
+var OS
 
 func _ready():
 	randomize()
+	$BtnClose.connect('button_down', self, '_reset')
+	
+	secret = find_node('Secret1')
+	if Globals.state['PC_ELEVATOR_APP_VERSION'] == 2:
+		floor_links.get_node('LinksF').show()
+		self.unlock_buttons()
+		secret = find_node('Secret2')
+
+	app_title.text = 'elevator panel v%d.0' % Globals.state['PC_ELEVATOR_APP_VERSION']
+	$Save.connect('button_down', self, '_on_save_pressed')
+	$Save.disabled = false
+	secret.connect('solved', self, '_check')
+
 	var i = 0
 	for button in $Buttons.get_children():
 		button.connect('toggled', self, 'on_button_toggled', [i])
 		if !button.disabled and button.pressed: on_button_toggled(true, i)
 		i += 1
-	$Unlock.connect('button_down', self, 'unlock_buttons')
-	if generated:
-		generate_target_number()
-		$Generate.connect('button_down', self, 'generate_target_number')
+
+	
+	secret.connect('switch_pressed', self, '_turn_lights_on')
+
+	if !NetworkManager.server and !Globals.is_single_test():
+		secret.connect('switches_changed', self, '_load_switch_table')
+	else:
+		_load_switch_table()
+
+# setup for floor list labels
+func _load_switch_table():
+	var i = 0
+	for switch in secret._switches:
+		var floor_list = floor_links.get_child(i).find_node('FloorsList')
+		for j in range(0, 5):
+			floor_list.get_child(4 - j).visible = (int(switch) & int(pow(2, j))) > 0
+		i += 1
 
 func on_button_toggled(value, index):
-	pressed = pressed ^ _switches[index]
-	for i in range(0, $Lights.get_child_count()):
+	Utils.invoke(secret, 'toggle_switch', [value, index], !Globals.is_single_test())
+
+func _turn_lights_on(pressed):
+	for i in range(0, 5):
 		var val:int = int(pow(2, i))
-		toggle_light(pressed & val, i)
-	if pressed == target_number: $Success.show()
+		toggle_light(bool(pressed & val), i)
+
+
+func _reset():
+	for button in $Buttons.get_children():
+		button.pressed = false
+	_turn_lights_on(0)
 
 func toggle_light(value, index):
 	var light = $Lights.get_child(index)
@@ -49,22 +82,27 @@ func unlock_buttons():
 	$FloorLinks/LinksE.modulate = Color.white
 	$FloorLinks/LinksF.modulate = Color.white
 
-func generate_target_number():
-	print('---')
-	$Success.hide()
-	var total = 3 + randi() % 2
-	var sorted = _switches.duplicate()
-	sorted.shuffle()
-	target_number = 0
-	for i in range(0, total):
-		print (sorted[i])
-		target_number = target_number ^ sorted[i]
+func _on_save_pressed():
+	Utils.invoke(self, '_save_config')
+
+func _save_config():
+	$Save.disabled = true
+	# displays a popup? saying validating config
+	# delay the validation a little more
+	print('check config...')
+	secret.solve(null)
 	
-	var text:String = ''
-	var numbers = [9,8,7,6,5,4,3,2,1,0]
-	for i in range(0, $Lights.get_child_count()):
-		var val:int = int(pow(2, i))
-		if (target_number & val): text = '%d%s' % [numbers[i], text]
-	$TargetCode.text = text
+func _check(solved):
+	if solved:
+		print('cool!')
+		OS.show_popup('w', 'elevator fixed!', self)
+		# if target matches then program displays a success
+	else:
+		OS.show_popup('e', 'wrong configuration!', self)
+		$Save.disabled = false
+		_reset()
+		# if target is not matched then program displays an error
+	
 
-
+func on_popup_closed() -> void:
+	E.run(['Player: Wow!'])

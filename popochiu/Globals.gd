@@ -108,9 +108,11 @@ var bug_adn := ''
 var turn := 0
 sync var state := {
 	'Lobby-PC_POWERED': true,
-#	'Lobby-ELEVATOR_CARD_IN_PC': true,
+	'Lobby-ELEVATOR_CARD_IN_PC': true,
+	'PC_ELEVATOR_APP_VERSION': 1,
+	'ELEVATOR_ENABLED': 0,
 #	'Lobby-ENGINE_ROOM_UNLOCKED': true,
-	'EngineRoom-ELEVATOR_WORKING': false,
+	'EngineRoom-ELEVATOR_WORKING': true,
 	'MasterKey-CONFIG': '0203',
 	'FirstFloor-102_UNLOCKED': false,
 	'SecondFloor-201_UNLOCKED': false,

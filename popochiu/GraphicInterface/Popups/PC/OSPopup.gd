@@ -15,7 +15,7 @@ onready var _close: Button = find_node('BtnClose')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	_close.connect('pressed', self, '_close')
+	_close.connect('pressed', Utils, 'invoke', [self, '_close'])
 	_close.connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	_close.connect('mouse_exited', Cursor, 'set_cursor')
 	
