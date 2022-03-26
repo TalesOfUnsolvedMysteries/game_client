@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/MasterKey/PropMasterKey.gd" type="Script" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_frame.png" type="Texture" id=31]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_solved.png" type="Texture" id=32]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bubble.png" type="Texture" id=33]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/JanitorNotes.tscn" type="PackedScene" id=34]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
@@ -67,9 +68,11 @@ script_name = "Bed"
 texture = ExtResource( 8 )
 
 [node name="BaselineHelper" parent="Props/Bed" index="0"]
+visible = true
 position = Vector2( 0, 17 )
 
 [node name="WalkToHelper" parent="Props/Bed" index="1"]
+visible = true
 position = Vector2( 12, 30 )
 
 [node name="Sprite" parent="Props/Bed" index="2"]
@@ -252,6 +255,11 @@ show_labels = false
 [node name="Solved" type="Sprite" parent="Overlay2D"]
 position = Vector2( 0, 2.5 )
 texture = ExtResource( 32 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="JanitorNotes" parent="CanvasLayer" instance=ExtResource( 34 )]
+visible = false
 
 [editable path="Props/Bed"]
 [editable path="Props/Photos"]

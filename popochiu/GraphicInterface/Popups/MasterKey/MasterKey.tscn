@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/Bitting.gd" type="Script" id=2]
@@ -8,6 +8,17 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_part_a.png" type="Texture" id=6]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_part_b.png" type="Texture" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/sprites/key_head.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxLine" id=12]
+content_margin_left = 0.0
+content_margin_right = 2.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+color = Color( 0.309804, 0.0823529, 0.027451, 1 )
+grow_begin = 16.0
+grow_end = 16.0
+thickness = 2
+vertical = true
 
 [sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 6 )
@@ -70,9 +81,9 @@ margin_bottom = 180.0
 mouse_filter = 2
 
 [node name="Bg" type="HBoxContainer" parent="CenterContainer"]
-margin_left = 32.0
+margin_left = 28.0
 margin_top = 32.0
-margin_right = 288.0
+margin_right = 292.0
 margin_bottom = 148.0
 custom_constants/separation = 0
 
@@ -82,10 +93,20 @@ margin_bottom = 116.0
 rect_min_size = Vector2( 0, 116 )
 texture = ExtResource( 8 )
 
-[node name="BittingA" type="Button" parent="CenterContainer/Bg"]
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/Bg"]
 margin_left = 88.0
+margin_top = 56.0
+margin_right = 90.0
+margin_bottom = 59.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_constants/separation = 2
+custom_styles/separator = SubResource( 12 )
+
+[node name="BittingA" type="Button" parent="CenterContainer/Bg"]
+margin_left = 90.0
 margin_top = 37.0
-margin_right = 130.0
+margin_right = 132.0
 margin_bottom = 79.0
 rect_min_size = Vector2( 42, 42 )
 size_flags_vertical = 4
@@ -95,10 +116,20 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 5 )
 script = ExtResource( 2 )
 
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/Bg"]
+margin_left = 132.0
+margin_top = 56.0
+margin_right = 134.0
+margin_bottom = 59.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_constants/separation = 2
+custom_styles/separator = SubResource( 12 )
+
 [node name="BittingB" type="Button" parent="CenterContainer/Bg"]
-margin_left = 130.0
+margin_left = 134.0
 margin_top = 37.0
-margin_right = 172.0
+margin_right = 176.0
 margin_bottom = 79.0
 rect_min_size = Vector2( 42, 42 )
 size_flags_vertical = 4
@@ -108,10 +139,20 @@ custom_styles/focus = SubResource( 9 )
 custom_styles/normal = SubResource( 2 )
 script = ExtResource( 2 )
 
+[node name="VSeparator3" type="VSeparator" parent="CenterContainer/Bg"]
+margin_left = 176.0
+margin_top = 56.0
+margin_right = 178.0
+margin_bottom = 59.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_constants/separation = 2
+custom_styles/separator = SubResource( 12 )
+
 [node name="BittingC" type="Button" parent="CenterContainer/Bg"]
-margin_left = 172.0
+margin_left = 178.0
 margin_top = 37.0
-margin_right = 214.0
+margin_right = 220.0
 margin_bottom = 79.0
 rect_min_size = Vector2( 42, 42 )
 size_flags_vertical = 4
@@ -121,10 +162,20 @@ custom_styles/focus = SubResource( 9 )
 custom_styles/normal = SubResource( 3 )
 script = ExtResource( 2 )
 
+[node name="VSeparator4" type="VSeparator" parent="CenterContainer/Bg"]
+margin_left = 220.0
+margin_top = 56.0
+margin_right = 222.0
+margin_bottom = 59.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+custom_constants/separation = 2
+custom_styles/separator = SubResource( 12 )
+
 [node name="BittingD" type="Button" parent="CenterContainer/Bg"]
-margin_left = 214.0
+margin_left = 222.0
 margin_top = 37.0
-margin_right = 256.0
+margin_right = 264.0
 margin_bottom = 79.0
 rect_min_size = Vector2( 42, 42 )
 size_flags_vertical = 4

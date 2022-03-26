@@ -1,0 +1,495 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/sheet.png" type="Texture" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/part_a.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/part_b.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/key_head.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/part_d.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/part_c.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/mark_201.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/mark_202.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/mark_301.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/mark_302.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/sprites/mark_102.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/JanitorNotes.gd" type="Script" id=13]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 14, 14 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 14, 14 )
+
+[node name="JanitorNotes" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 12 )
+script = ExtResource( 13 )
+
+[node name="Sheet" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -123.0
+margin_top = -78.5
+margin_right = 123.0
+margin_bottom = 78.5
+mouse_filter = 2
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="KeysDrawings" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 37.0
+margin_top = 12.0
+margin_right = -37.0
+margin_bottom = -11.0
+mouse_filter = 1
+
+[node name="102" type="HBoxContainer" parent="KeysDrawings"]
+anchor_left = 0.25813
+anchor_top = 0.248408
+anchor_right = 0.25813
+anchor_bottom = 0.248408
+margin_left = -42.5
+margin_top = -19.0
+margin_right = 42.5
+margin_bottom = 19.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="KeyHead" type="TextureRect" parent="KeysDrawings/102"]
+margin_right = 29.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 38 )
+texture = ExtResource( 4 )
+
+[node name="PartA" type="TextureRect" parent="KeysDrawings/102"]
+margin_left = 29.0
+margin_top = 12.0
+margin_right = 43.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 1 )
+stretch_mode = 4
+
+[node name="PartB" type="TextureRect" parent="KeysDrawings/102"]
+margin_left = 43.0
+margin_top = 12.0
+margin_right = 57.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 2 )
+stretch_mode = 4
+
+[node name="PartC" type="TextureRect" parent="KeysDrawings/102"]
+margin_left = 57.0
+margin_top = 12.0
+margin_right = 71.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 3 )
+stretch_mode = 4
+
+[node name="PartD" type="TextureRect" parent="KeysDrawings/102"]
+margin_left = 71.0
+margin_top = 12.0
+margin_right = 85.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 4 )
+stretch_mode = 4
+
+[node name="201" type="HBoxContainer" parent="KeysDrawings"]
+anchor_left = 0.306911
+anchor_top = 0.541401
+anchor_right = 0.306911
+anchor_bottom = 0.541401
+margin_left = -42.5
+margin_top = -19.0
+margin_right = 42.5
+margin_bottom = 19.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="KeyHead" type="TextureRect" parent="KeysDrawings/201"]
+margin_right = 29.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 38 )
+texture = ExtResource( 4 )
+
+[node name="PartA" type="TextureRect" parent="KeysDrawings/201"]
+margin_left = 29.0
+margin_top = 12.0
+margin_right = 43.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 5 )
+stretch_mode = 4
+
+[node name="PartB" type="TextureRect" parent="KeysDrawings/201"]
+margin_left = 43.0
+margin_top = 12.0
+margin_right = 57.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 6 )
+stretch_mode = 4
+
+[node name="PartC" type="TextureRect" parent="KeysDrawings/201"]
+margin_left = 57.0
+margin_top = 12.0
+margin_right = 71.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 7 )
+stretch_mode = 4
+
+[node name="PartD" type="TextureRect" parent="KeysDrawings/201"]
+margin_left = 71.0
+margin_top = 12.0
+margin_right = 85.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 8 )
+stretch_mode = 4
+
+[node name="202" type="HBoxContainer" parent="KeysDrawings"]
+anchor_left = 0.310976
+anchor_top = 0.834395
+anchor_right = 0.310976
+anchor_bottom = 0.834395
+margin_left = -42.5
+margin_top = -19.0
+margin_right = 42.5
+margin_bottom = 19.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="KeyHead" type="TextureRect" parent="KeysDrawings/202"]
+margin_right = 29.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 38 )
+texture = ExtResource( 4 )
+
+[node name="PartA" type="TextureRect" parent="KeysDrawings/202"]
+margin_left = 29.0
+margin_top = 12.0
+margin_right = 43.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 9 )
+stretch_mode = 4
+
+[node name="PartB" type="TextureRect" parent="KeysDrawings/202"]
+margin_left = 43.0
+margin_top = 12.0
+margin_right = 57.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 10 )
+stretch_mode = 4
+
+[node name="PartC" type="TextureRect" parent="KeysDrawings/202"]
+margin_left = 57.0
+margin_top = 12.0
+margin_right = 71.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 11 )
+stretch_mode = 4
+
+[node name="PartD" type="TextureRect" parent="KeysDrawings/202"]
+margin_left = 71.0
+margin_top = 12.0
+margin_right = 85.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 12 )
+stretch_mode = 4
+
+[node name="301" type="HBoxContainer" parent="KeysDrawings"]
+anchor_left = 0.705285
+anchor_top = 0.280255
+anchor_right = 0.705285
+anchor_bottom = 0.280255
+margin_left = -42.5
+margin_top = -19.0
+margin_right = 42.5
+margin_bottom = 19.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="KeyHead" type="TextureRect" parent="KeysDrawings/301"]
+margin_right = 29.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 38 )
+texture = ExtResource( 4 )
+
+[node name="PartA" type="TextureRect" parent="KeysDrawings/301"]
+margin_left = 29.0
+margin_top = 12.0
+margin_right = 43.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 13 )
+stretch_mode = 4
+
+[node name="PartB" type="TextureRect" parent="KeysDrawings/301"]
+margin_left = 43.0
+margin_top = 12.0
+margin_right = 57.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 14 )
+stretch_mode = 4
+
+[node name="PartC" type="TextureRect" parent="KeysDrawings/301"]
+margin_left = 57.0
+margin_top = 12.0
+margin_right = 71.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 15 )
+stretch_mode = 4
+
+[node name="PartD" type="TextureRect" parent="KeysDrawings/301"]
+margin_left = 71.0
+margin_top = 12.0
+margin_right = 85.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 16 )
+stretch_mode = 4
+
+[node name="302" type="HBoxContainer" parent="KeysDrawings"]
+anchor_left = 0.76626
+anchor_top = 0.687898
+anchor_right = 0.76626
+anchor_bottom = 0.687898
+margin_left = -42.5
+margin_top = -19.0
+margin_right = 42.5
+margin_bottom = 19.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="KeyHead" type="TextureRect" parent="KeysDrawings/302"]
+margin_right = 29.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 38 )
+texture = ExtResource( 4 )
+
+[node name="PartA" type="TextureRect" parent="KeysDrawings/302"]
+margin_left = 29.0
+margin_top = 12.0
+margin_right = 43.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 17 )
+stretch_mode = 4
+
+[node name="PartB" type="TextureRect" parent="KeysDrawings/302"]
+margin_left = 43.0
+margin_top = 12.0
+margin_right = 57.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 18 )
+stretch_mode = 4
+
+[node name="PartC" type="TextureRect" parent="KeysDrawings/302"]
+margin_left = 57.0
+margin_top = 12.0
+margin_right = 71.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 19 )
+stretch_mode = 4
+
+[node name="PartD" type="TextureRect" parent="KeysDrawings/302"]
+margin_left = 71.0
+margin_top = 12.0
+margin_right = 85.0
+margin_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 20 )
+stretch_mode = 4
+
+[node name="Marks" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 37.0
+margin_top = 12.0
+margin_right = -37.0
+margin_bottom = -11.0
+mouse_filter = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="102" type="TextureRect" parent="Marks"]
+anchor_left = 0.325203
+anchor_top = 0.0764331
+anchor_right = 0.325203
+anchor_bottom = 0.0764331
+margin_right = 27.0
+margin_bottom = 16.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="201" type="TextureRect" parent="Marks"]
+anchor_left = 0.0325203
+anchor_top = 0.394904
+anchor_right = 0.0325203
+anchor_bottom = 0.388535
+margin_right = 27.0
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="202" type="TextureRect" parent="Marks"]
+anchor_left = 0.0325203
+anchor_top = 0.675159
+anchor_right = 0.0365854
+anchor_bottom = 0.675159
+margin_right = 27.0
+margin_bottom = 16.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="301" type="TextureRect" parent="Marks"]
+anchor_left = 0.776423
+anchor_top = 0.101911
+anchor_right = 0.776423
+anchor_bottom = 0.0955414
+margin_right = 27.0
+margin_bottom = 16.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="302" type="TextureRect" parent="Marks"]
+anchor_left = 0.796748
+anchor_top = 0.509554
+anchor_right = 0.800813
+anchor_bottom = 0.509554
+margin_right = 27.0
+margin_bottom = 16.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}

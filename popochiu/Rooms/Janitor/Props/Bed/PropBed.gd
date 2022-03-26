@@ -6,8 +6,7 @@ extends Prop
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		'Player: There is nothing particular',
-		'Player: But the fabric softener smells great',
+		E.runnable(room, 'show_notes')
 	]), 'completed')
 
 

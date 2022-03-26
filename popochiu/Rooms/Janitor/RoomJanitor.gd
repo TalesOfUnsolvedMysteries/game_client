@@ -1,6 +1,8 @@
 tool
 extends PopochiuRoom
 
+onready var notes: Panel = $CanvasLayer/JanitorNotes
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -36,6 +38,10 @@ func show_jigsaw() -> void:
 	E.clicked.set_process_unhandled_input(false)
 	E.clicked = null
 	$Overlay2D.appear()
+
+
+func show_notes() -> void:
+	notes.appear()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
