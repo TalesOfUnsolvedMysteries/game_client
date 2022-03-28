@@ -10,9 +10,12 @@ func _ready() -> void:
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
 	
+	var idx := 0
 	for bitting in $CenterContainer/Bg.get_children():
 		if bitting is Button:
+			bitting.idx = idx
 			bitting.connect('changed', self, '_save_config')
+			idx += 1
 	
 	G.connect('master_key_opened', self, 'appear')
 
@@ -32,7 +35,7 @@ func disappear() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _save_config(bitting: Button) -> void:
-	print(self._key_config)
+	self._key_config[bitting.idx] = str(bitting.value)
 	Globals.set_state('MasterKey-CONFIG', self._key_config)
 
 
@@ -51,8 +54,10 @@ func _close_key():
 
 func _set_key_config(value: String) -> void:
 	_key_config = value
+	
 	for bitting in $CenterContainer/Bg.get_children():
 		if bitting is Button:
-			bitting.value = int(_key_config[bitting.get_index() - 1])
+			bitting.value = int(_key_config[bitting.idx])
+	
 	if visible:
 		G.show_info(_key_config)

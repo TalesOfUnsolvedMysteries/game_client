@@ -68,11 +68,9 @@ script_name = "Bed"
 texture = ExtResource( 8 )
 
 [node name="BaselineHelper" parent="Props/Bed" index="0"]
-visible = true
 position = Vector2( 0, 17 )
 
 [node name="WalkToHelper" parent="Props/Bed" index="1"]
-visible = true
 position = Vector2( 12, 30 )
 
 [node name="Sprite" parent="Props/Bed" index="2"]

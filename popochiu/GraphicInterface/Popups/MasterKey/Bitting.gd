@@ -3,8 +3,9 @@ extends 'res://popochiu/GraphicInterface/Popups/Common/GIClickable.gd'
 signal changed(node)
 
 sync var value := -1 setget set_value
-sync var stylebox_normal: StyleBoxTexture = null
+var stylebox_normal: StyleBoxTexture = null
 var stylebox_hover: StyleBoxTexture = null
+var idx := -1
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -18,16 +19,14 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	var val := wrapi(value + 1, 0, 4)
-	
-	set_value(val)
-	stylebox_normal.region_rect.position.x = val * 42.0
-	stylebox_hover.region_rect.position.x = val * 42.0
+	self.value = wrapi(value + 1, 0, 4)
 	
 	A.play({cue_name = 'sfx_lock_move', is_in_queue = false})
 	emit_signal('changed', self)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-func set_value(_value):
+func set_value(_value: int):
 	value = _value
+	stylebox_normal.region_rect.position.x = _value * 42.0
+	stylebox_hover.region_rect.position.x = _value * 42.0
