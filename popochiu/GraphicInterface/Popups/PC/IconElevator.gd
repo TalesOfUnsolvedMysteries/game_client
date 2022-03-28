@@ -14,7 +14,7 @@ func open_app() -> void:
 	if Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
 		if (version == 1 and elevator_state > 0) or (version == 2 and elevator_state == 31):
 			error = 1
-			owner.show_popup('w', 'elevator is already working', self)
+			owner.show_popup('w', 'elevator program is already fixed', self)
 		else:
 			.open_app()
 	else:

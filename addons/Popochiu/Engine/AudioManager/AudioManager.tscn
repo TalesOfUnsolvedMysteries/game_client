@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
@@ -35,11 +35,14 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sfx/SfxPcAppOpen.tres" type="Resource" id=33]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sfx/SfxPcAppToggleOff.tres" type="Resource" id=34]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sfx/SfxPcAppToggleOn.tres" type="Resource" id=35]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/audio/SfxElevatorCardInsertBoard.tres" type="Resource" id=36]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/audio/SfxElevatorCardInsertPc.tres" type="Resource" id=37]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/audio/SfxElevatorCardPick.tres" type="Resource" id=38]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
 mx_cues = [ ExtResource( 3 ), ExtResource( 29 ) ]
-sfx_cues = [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 31 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 2 ) ]
+sfx_cues = [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 36 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 2 ) ]
 
 [node name="Positional" type="Node" parent="."]
 

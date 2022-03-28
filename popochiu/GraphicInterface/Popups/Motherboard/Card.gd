@@ -10,7 +10,11 @@ func on_interact() -> void:
 	
 	yield(E.run([
 		"Player: I'll take the elevator program card.",
-		I.add_item('ElevatorCard')
+		I.add_item('ElevatorCard'),
+		A.play({
+			cue_name = 'sfx_elevator_card_pick',
+			is_in_queue = true
+		})
 	]), 'completed')
 	
 	hide()

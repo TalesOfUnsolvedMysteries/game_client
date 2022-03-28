@@ -99,6 +99,14 @@ func _check(solved):
 	if solved:
 		OS.show_popup('w', 'elevator fixed!', self)
 		for button in $Buttons.get_children(): button.disabled = true
+		E.run([
+			A.play({
+				cue_name = 'sfx_elevator_card_pick',
+				is_in_queue = true
+			}),
+			I.add_item('ElevatorCard'),
+		])
+		Globals.set_state('Lobby-ELEVATOR_CARD_IN_PC', false)
 	else:
 		OS.show_popup('e', 'wrong configuration!', self)
 		$Save.disabled = false
@@ -106,4 +114,5 @@ func _check(solved):
 	
 
 func on_popup_closed() -> void:
-	E.run(['Player: Wow!'])
+	if !Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
+		E.run(['Player: I can update the elevator motherboard now.'])

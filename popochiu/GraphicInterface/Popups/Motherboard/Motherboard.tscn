@@ -28,6 +28,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = ExtResource( 1 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 battery_empty = ExtResource( 4 )
 battery_full = ExtResource( 12 )
 
@@ -84,12 +87,13 @@ margin_left = 105.0
 margin_top = -11.0
 margin_right = 122.0
 margin_bottom = 71.0
-mouse_filter = 2
+mouse_filter = 0
 texture = ExtResource( 7 )
 script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+description = "Elevator Card"
 
 [node name="BatterySlot" type="TextureRect" parent="CenterContainer/Base"]
 margin_left = 13.0
