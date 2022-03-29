@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Tocata_by_Bach.ogg-b74dffdf741c18508508c24c01324473.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Tocata_by_Bach.ogg"
+dest_files=[ "res://.import/Tocata_by_Bach.ogg-b74dffdf741c18508508c24c01324473.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

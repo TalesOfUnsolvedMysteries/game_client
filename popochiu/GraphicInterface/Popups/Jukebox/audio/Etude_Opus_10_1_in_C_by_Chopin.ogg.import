@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Etude_Opus_10_1_in_C_by_Chopin.ogg-4b6f6159154267bcadff238e6c9e388c.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Etude_Opus_10_1_in_C_by_Chopin.ogg"
+dest_files=[ "res://.import/Etude_Opus_10_1_in_C_by_Chopin.ogg-4b6f6159154267bcadff238e6c9e388c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

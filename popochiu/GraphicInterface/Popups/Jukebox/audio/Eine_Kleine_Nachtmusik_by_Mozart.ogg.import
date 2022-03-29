@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Eine_Kleine_Nachtmusik_by_Mozart.ogg-e23e66dc20d9be25940d0b36ca7420a4.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Eine_Kleine_Nachtmusik_by_Mozart.ogg"
+dest_files=[ "res://.import/Eine_Kleine_Nachtmusik_by_Mozart.ogg-e23e66dc20d9be25940d0b36ca7420a4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Dance_of_The_Sugar_Plum_Fairy_by_tchaikovsky.ogg-36838f8751787d5ad09247fa9a88b13c.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Dance_of_The_Sugar_Plum_Fairy_by_tchaikovsky.ogg"
+dest_files=[ "res://.import/Dance_of_The_Sugar_Plum_Fairy_by_tchaikovsky.ogg-36838f8751787d5ad09247fa9a88b13c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Summer_by_Antonio_Vivaldi.ogg-c0b01e7fa2e2f3b132d8a9c56c2a928a.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Summer_by_Antonio_Vivaldi.ogg"
+dest_files=[ "res://.import/Summer_by_Antonio_Vivaldi.ogg-c0b01e7fa2e2f3b132d8a9c56c2a928a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

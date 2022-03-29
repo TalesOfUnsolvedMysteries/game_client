@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Hungarian_Dance_1_by_Brahms.ogg-20ebaeb4996ef22f982e665ab1e732b3.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Hungarian_Dance_1_by_Brahms.ogg"
+dest_files=[ "res://.import/Hungarian_Dance_1_by_Brahms.ogg-20ebaeb4996ef22f982e665ab1e732b3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Moonlight_Sonata_by_Beethoven.ogg-ff306c8689fc1f5dd713f7f4e5aa1660.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Moonlight_Sonata_by_Beethoven.ogg"
+dest_files=[ "res://.import/Moonlight_Sonata_by_Beethoven.ogg-ff306c8689fc1f5dd713f7f4e5aa1660.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
