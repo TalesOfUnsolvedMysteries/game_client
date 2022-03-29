@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
@@ -39,10 +39,24 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/audio/SfxElevatorCardInsertPc.tres" type="Resource" id=37]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Motherboard/audio/SfxElevatorCardPick.tres" type="Resource" id=38]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Test01.tres" type="Resource" id=39]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/BalladOpus23InGMinorByChopin.tres" type="Resource" id=40]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/DanceOfTheSugarPlumFairyByTchaikovsky.tres" type="Resource" id=41]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/EineKleineNachtmusikByMozart.tres" type="Resource" id=42]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/EtudeOpus101InCByChopin.tres" type="Resource" id=43]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/HungarianDance1ByBrahms.tres" type="Resource" id=44]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/MoonlightSonataByBeethoven.tres" type="Resource" id=45]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Rhapsody792ByBrahms.tres" type="Resource" id=46]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/SpringByAntonioVivaldi.tres" type="Resource" id=47]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/SummerByAntonioVivaldi.tres" type="Resource" id=48]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/TheHuntByBeethoven.tres" type="Resource" id=49]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/TocataByBach.tres" type="Resource" id=50]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/WaltzOpus18InEMinorByChopin.tres" type="Resource" id=51]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/WinterByAntonioVivaldi.tres" type="Resource" id=52]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/TurkishMarchByMozart.tres" type="Resource" id=53]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
-mx_cues = [ ExtResource( 3 ), ExtResource( 29 ), ExtResource( 39 ) ]
+mx_cues = [ ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 3 ), ExtResource( 29 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 39 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 53 ), ExtResource( 51 ), ExtResource( 52 ) ]
 sfx_cues = [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 36 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 2 ) ]
 
 [node name="Positional" type="Node" parent="."]

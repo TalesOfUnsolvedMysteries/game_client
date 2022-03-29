@@ -110,6 +110,11 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0009'
 	},
+	MELODY_LOVER = {
+		label = 'find the secret box in the jukebox',
+		img = 'nft_new_floors',
+		id = '0010'
+	},
 }
 
 var main_mx_play = false
@@ -130,6 +135,7 @@ sync var state := {
 	'SecondFloor-202_UNLOCKED': false,
 	'ThirdFloor-301_UNLOCKED': false,
 	'ThirdFloor-302_UNLOCKED': false,
+	'Jukebox-Secret_Box_OPENED': false
 }
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power
