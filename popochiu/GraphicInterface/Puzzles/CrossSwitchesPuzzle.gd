@@ -100,11 +100,11 @@ func _check(solved):
 		OS.show_popup('w', 'elevator fixed!', self)
 		for button in $Buttons.get_children(): button.disabled = true
 		E.run([
+			I.add_item('ElevatorCard'),
 			A.play({
 				cue_name = 'sfx_elevator_card_pick',
 				is_in_queue = true
-			}),
-			I.add_item('ElevatorCard'),
+			})
 		])
 		Globals.set_state('Lobby-ELEVATOR_CARD_IN_PC', false)
 	else:

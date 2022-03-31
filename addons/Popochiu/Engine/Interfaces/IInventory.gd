@@ -69,7 +69,7 @@ func remove_item(item_name: String, is_in_queue := true) -> void:
 		
 		set_active_item(null)
 		emit_signal('item_removed', i)
-		
+		_items_count -= 1
 		yield(self, 'item_remove_done')
 
 

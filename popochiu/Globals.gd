@@ -124,6 +124,7 @@ var turn := 0
 sync var state := {
 	'Lobby-PC_POWERED': true,
 	'Lobby-ELEVATOR_CARD_IN_PC': false,
+	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
 	'ELEVATOR_ENABLED': 0,
 	'EngineRoom-MOTHERBOARD_WITH_CARD': true,

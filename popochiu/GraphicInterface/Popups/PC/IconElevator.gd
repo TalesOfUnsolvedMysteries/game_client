@@ -4,7 +4,10 @@ onready var app_name = find_node('Name')
 var error = 0
 
 func _ready():
-	app_name.text = 'Elevator %d.0' % Globals.state.get('PC_ELEVATOR_APP_VERSION')
+	set_elevator_version(Globals.state.get('PC_ELEVATOR_APP_VERSION'))
+
+func set_elevator_version(version):
+	app_name.text = 'Elevator %d.0' % version
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func open_app() -> void:
