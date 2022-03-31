@@ -9,6 +9,7 @@ const DATA := preload('res://popochiu/Data.gd')
 var _current_field := -1
 var _selected_option: CheckBox = null
 var _info := {} # (!) Esto es nomás para hacer pruebas locales
+var OS
 
 onready var _current_tab: Control = $TabContainer.get_current_tab_control()
 onready var _current_tab_name: String = _current_tab.name setget set_current_tab

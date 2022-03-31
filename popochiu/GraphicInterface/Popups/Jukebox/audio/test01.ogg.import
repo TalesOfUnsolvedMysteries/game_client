@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/test01.ogg-bda4ad261d75ff458b32de4bf81250f8.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/test01.ogg"
+dest_files=[ "res://.import/test01.ogg-bda4ad261d75ff458b32de4bf81250f8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

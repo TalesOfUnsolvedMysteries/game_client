@@ -99,7 +99,22 @@ const NFTs := {
 		label = 'Unlock Room 302',
 		img = 'nft_new_floors',
 		id = '0007'
-	}
+	},
+	ELEVATOR_TECHIE_1 = {
+		label = 'Fix elevator program v1',
+		img = 'nft_new_floors',
+		id = '0008'
+	},
+	ELEVATOR_TECHIE_2 = {
+		label = 'Fix elevator program v2',
+		img = 'nft_new_floors',
+		id = '0009'
+	},
+	MELODY_LOVER = {
+		label = 'find the secret box in the jukebox',
+		img = 'nft_new_floors',
+		id = '0010'
+	},
 }
 
 var main_mx_play = false
@@ -108,17 +123,20 @@ var bug_adn := ''
 var turn := 0
 sync var state := {
 	'Lobby-PC_POWERED': true,
-	'Lobby-ELEVATOR_CARD_IN_PC': true,
+	'Lobby-ELEVATOR_CARD_IN_PC': false,
+	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
 	'ELEVATOR_ENABLED': 0,
+	'EngineRoom-MOTHERBOARD_WITH_CARD': true,
 #	'Lobby-ENGINE_ROOM_UNLOCKED': true,
-	'EngineRoom-ELEVATOR_WORKING': true,
+	'EngineRoom-ELEVATOR_WORKING': false,
 	'MasterKey-CONFIG': '0203',
 	'FirstFloor-102_UNLOCKED': false,
 	'SecondFloor-201_UNLOCKED': false,
 	'SecondFloor-202_UNLOCKED': false,
 	'ThirdFloor-301_UNLOCKED': false,
 	'ThirdFloor-302_UNLOCKED': false,
+	'Jukebox-Secret_Box_OPENED': false
 }
 var server_file = "user://server.save"
 var battery_power := 0 setget _set_battery_power

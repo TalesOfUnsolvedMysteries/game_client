@@ -17,3 +17,7 @@ func on_item_used(item: InventoryItem) -> void:
 		I.remove_item(item.script_name, false)
 		# TODO: Reproducir un sonido de estar poniendo algo en un slot.
 		emit_signal('card_put')
+		A.play({
+			cue_name = 'sfx_elevator_card_insert_board',
+			is_in_queue = false
+		})

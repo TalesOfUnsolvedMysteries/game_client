@@ -4,7 +4,10 @@ onready var app_name = find_node('Name')
 var error = 0
 
 func _ready():
-	app_name.text = 'Elevator %d.0' % Globals.state.get('PC_ELEVATOR_APP_VERSION')
+	set_elevator_version(Globals.state.get('PC_ELEVATOR_APP_VERSION'))
+
+func set_elevator_version(version):
+	app_name.text = 'Elevator %d.0' % version
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func open_app() -> void:
@@ -14,7 +17,7 @@ func open_app() -> void:
 	if Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
 		if (version == 1 and elevator_state > 0) or (version == 2 and elevator_state == 31):
 			error = 1
-			owner.show_popup('w', 'elevator is already working', self)
+			owner.show_popup('w', 'elevator program is already fixed', self)
 		else:
 			.open_app()
 	else:

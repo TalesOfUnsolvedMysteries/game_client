@@ -56,7 +56,6 @@ func _close() -> void:
 		0.3, Tween.TRANS_BACK, Tween.EASE_IN
 	)
 	$Tween.start()
-
 	yield($Tween, 'tween_all_completed')
 	
 	hide()
@@ -67,6 +66,14 @@ func _goto_floor(go_to: String) -> void:
 	
 	if go_to != E.current_room.script_name:
 		# TODO: Emitir una señal para que se abran las puertas del ascensor.
+		yield(E.run([
+		A.play({
+			cue_name = 'sfx_elevator_moving',
+			in_queue = true,
+			wait_audio_complete = true
+		}),
+		E.wait(0.1)
+	]), 'completed')
 		E.goto_room(go_to)
 	else:
 		E.run(["Player: I'm already in this floor..."])

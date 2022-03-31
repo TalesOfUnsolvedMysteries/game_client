@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Spring_by_Antonio_Vivaldi.ogg-8ab0c98fd25ac4328937ee2ed4ac612b.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Spring_by_Antonio_Vivaldi.ogg"
+dest_files=[ "res://.import/Spring_by_Antonio_Vivaldi.ogg-8ab0c98fd25ac4328937ee2ed4ac612b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

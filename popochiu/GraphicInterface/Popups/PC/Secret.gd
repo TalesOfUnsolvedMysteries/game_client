@@ -5,7 +5,7 @@ signal switch_pressed
 
 var pressed = 0
 export var target = 0
-
+export var NFT_REWARD = ''
 
 func _ready():
 	._ready()
@@ -26,7 +26,9 @@ func solve(_a):
 	var solved = false
 	solved = pressed == target
 
-	if solved: Globals.set_state('ELEVATOR_ENABLED', target)
+	if solved:
+		Globals.set_state('ELEVATOR_ENABLED', target)
+		G.emit_signal('nft_won', Globals.NFTs[NFT_REWARD])
 
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Winter_by_Antonio_Vivaldi.ogg-1bd92abe9e38caee51ec9dfde0da41f9.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Winter_by_Antonio_Vivaldi.ogg"
+dest_files=[ "res://.import/Winter_by_Antonio_Vivaldi.ogg-1bd92abe9e38caee51ec9dfde0da41f9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

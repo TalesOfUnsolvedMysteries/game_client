@@ -27,11 +27,20 @@ func _ready() -> void:
 	_app_screen.hide()
 	_overlay.hide()
 
+func show():
+	.show()
+	if Globals.state.get('Lobby-USB_IN_PC', false):
+		Globals.set_state('PC_ELEVATOR_APP_VERSION', 2)
+		Globals.set_state('Lobby-USB_IN_PC', false)
+		find_node('Elevator').set_elevator_version(2)
+		show_popup('w', 'elevator program updated succesfuly', self)
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func show_popup(type: String, message: String, origin: Control) -> void:
 	_opened_app = origin
 	_overlay.show()
+	A.play({cue_name = 'sfx_pc_error',is_in_queue = false})
 	_os_popup.show_popup(type, message)
 
 
@@ -40,6 +49,7 @@ func _check_close(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
+			if _app_container.get_child_count() > 0: _close_app()
 			Utils.invoke(self, 'hide')
 
 
@@ -50,7 +60,7 @@ func _on_meta_clicked(meta) -> void:
 func _notify_popup_close() -> void:
 	_overlay.hide()
 	
-	if is_instance_valid(_opened_app):
+	if is_instance_valid(_opened_app) and _opened_app.has_method('on_popup_closed'):
 		_opened_app.on_popup_closed()
 
 
@@ -60,9 +70,11 @@ func _load_app(app: Panel) -> void:
 	(app.get_node('BtnClose') as TextureButton).connect(
 		'pressed', Utils, 'invoke', [self, '_close_app']
 	)
+	A.play({cue_name = 'sfx_pc_app_open',is_in_queue = false})
 	_app_screen.show()
 
 
 func _close_app() -> void:
 	_app_container.get_child(0).queue_free()
+	A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
 	_app_screen.hide()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Waltz_Opus_18_in_E_minor_by_Chopin.ogg-0035ac8be8642ad1e3e9bb2a6f6a85e7.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/Waltz_Opus_18_in_E_minor_by_Chopin.ogg"
+dest_files=[ "res://.import/Waltz_Opus_18_in_E_minor_by_Chopin.ogg-0035ac8be8642ad1e3e9bb2a6f6a85e7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
