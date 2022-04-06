@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/Jukebox.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=2]
@@ -9,6 +9,139 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/sprites/panel.png" type="Texture" id=7]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/JukeboxTheme.tres" type="Theme" id=8]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/sprites/disc.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/sprites/jukebox.png" type="Texture" id=10]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/DiscPanel/Disc:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/DiscPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/DiscPanel/Disc:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 99, 29 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer/SongsPanel:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 38, 28 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CenterContainer/DiscPanel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "ShowDisc"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/DiscPanel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/DiscPanel/Disc:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 99, 64 ), Vector2( 99, 29 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/SongsPanel:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 38, 28 ), Vector2( 38, 180 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer/DiscPanel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Spin"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/DiscPanel/Disc:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
 
 [sub_resource type="StyleBoxTexture" id=1]
 content_margin_left = 2.0
@@ -22,6 +155,9 @@ margin_right = 1.0
 margin_top = 1.0
 margin_bottom = 2.0
 
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.376471 )
+
 [node name="Jukebox" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,25 +168,32 @@ margin_bottom = -91.0
 custom_styles/panel = ExtResource( 2 )
 script = ExtResource( 1 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/ShowDisc = SubResource( 3 )
+anims/Spin = SubResource( 4 )
+next/ShowDisc = "Spin"
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 320.0
 margin_bottom = 180.0
 mouse_filter = 2
 
 [node name="Bg" type="TextureRect" parent="CenterContainer"]
-margin_left = 160.0
-margin_top = 90.0
-margin_right = 160.0
-margin_bottom = 90.0
+margin_left = 97.0
+margin_top = 13.0
+margin_right = 223.0
+margin_bottom = 167.0
+texture = ExtResource( 10 )
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="SongsPanel" type="PanelContainer" parent="CenterContainer"]
 margin_left = 38.0
 margin_top = 28.0
 margin_right = 282.0
 margin_bottom = 152.0
 custom_styles/panel = SubResource( 1 )
 
-[node name="Container" type="ScrollContainer" parent="CenterContainer/PanelContainer"]
+[node name="Container" type="ScrollContainer" parent="CenterContainer/SongsPanel"]
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 242.0
@@ -63,9 +206,9 @@ theme = ExtResource( 8 )
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="Playlist" type="VBoxContainer" parent="CenterContainer/PanelContainer/Container"]
+[node name="Playlist" type="VBoxContainer" parent="CenterContainer/SongsPanel/Container"]
 margin_right = 231.0
-margin_bottom = 196.0
+margin_bottom = 182.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,22 +217,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Song_1" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+[node name="Song_1" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
 margin_right = 231.0
-margin_bottom = 14.0
+margin_bottom = 13.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
+toggle_mode = true
 text = "Bach - Tocata - 1708"
 clip_text = true
 script = ExtResource( 5 )
 song_file = "Tocata_by_Bach"
 
-[node name="Song_2" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 14.0
+[node name="Song_2" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 13.0
 margin_right = 231.0
-margin_bottom = 28.0
+margin_bottom = 26.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Beethoven - Moonlight Sonata - 1801"
@@ -98,11 +243,12 @@ script = ExtResource( 5 )
 song_file = "Moonlight_Sonata_by_Beethoven"
 song_index = "1"
 
-[node name="Song_3" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 28.0
+[node name="Song_3" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 26.0
 margin_right = 231.0
-margin_bottom = 42.0
+margin_bottom = 39.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Beethoven - The Hunt - 1802"
@@ -111,11 +257,12 @@ script = ExtResource( 5 )
 song_file = "The_Hunt_by_Beethoven"
 song_index = "2"
 
-[node name="Song_4" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 42.0
+[node name="Song_4" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 39.0
 margin_right = 231.0
-margin_bottom = 56.0
+margin_bottom = 52.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Brahms - Hungarian Dance - 1873"
@@ -124,11 +271,12 @@ script = ExtResource( 5 )
 song_file = "Hungarian_Dance_1_by_Brahms"
 song_index = "3"
 
-[node name="Song_5" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 56.0
+[node name="Song_5" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 52.0
 margin_right = 231.0
-margin_bottom = 70.0
+margin_bottom = 65.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Brahms - Rhapsody 79 - 1879"
@@ -137,11 +285,12 @@ script = ExtResource( 5 )
 song_file = "Rhapsody_79_2_by_Brahms"
 song_index = "4"
 
-[node name="Song_6" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 70.0
+[node name="Song_6" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 65.0
 margin_right = 231.0
-margin_bottom = 84.0
+margin_bottom = 78.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Chopin - Etude Op. 10 No 1 - 1829"
@@ -150,11 +299,12 @@ script = ExtResource( 5 )
 song_file = "Etude_Opus_10_1_in_C_by_Chopin"
 song_index = "5"
 
-[node name="Song_7" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 84.0
+[node name="Song_7" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 78.0
 margin_right = 231.0
-margin_bottom = 98.0
+margin_bottom = 91.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Chopin - Ballade No 1 in G minor - 1836"
@@ -163,11 +313,12 @@ script = ExtResource( 5 )
 song_file = "Ballad_Opus_23_in_G_minor_by_Chopin"
 song_index = "6"
 
-[node name="Song_8" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 98.0
+[node name="Song_8" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 91.0
 margin_right = 231.0
-margin_bottom = 112.0
+margin_bottom = 104.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Chopin - Waltz Op 18 in E minor - 1833 "
@@ -176,11 +327,12 @@ script = ExtResource( 5 )
 song_file = "Waltz_Opus_18_in_E_minor_by_Chopin"
 song_index = "7"
 
-[node name="Song_9" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 112.0
+[node name="Song_9" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 104.0
 margin_right = 231.0
-margin_bottom = 126.0
+margin_bottom = 117.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Mozart - Eine Kleine Nachtmusik - 1787"
@@ -189,11 +341,12 @@ script = ExtResource( 5 )
 song_file = "Eine_Kleine_Nachtmusik_by_Mozart"
 song_index = "8"
 
-[node name="Song_A" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 126.0
+[node name="Song_A" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 117.0
 margin_right = 231.0
-margin_bottom = 140.0
+margin_bottom = 130.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Mozart - Turkish March - 1783"
@@ -202,11 +355,12 @@ script = ExtResource( 5 )
 song_file = "turkish_march_by_mozart"
 song_index = "9"
 
-[node name="Song_B" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 140.0
+[node name="Song_B" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 130.0
 margin_right = 231.0
-margin_bottom = 154.0
+margin_bottom = 143.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Tchaikovsky - Dance of The Sugar Plum - 1892"
@@ -215,11 +369,12 @@ script = ExtResource( 5 )
 song_file = "Dance_of_The_Sugar_Plum_Fairy_by_tchaikovsky"
 song_index = "a"
 
-[node name="Song_C" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 154.0
+[node name="Song_C" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 143.0
 margin_right = 231.0
-margin_bottom = 168.0
+margin_bottom = 156.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Vivaldi - Winter - 1725"
@@ -228,11 +383,12 @@ script = ExtResource( 5 )
 song_file = "Winter_by_Antonio_Vivaldi"
 song_index = "b"
 
-[node name="Song_D" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 168.0
+[node name="Song_D" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 156.0
 margin_right = 231.0
-margin_bottom = 182.0
+margin_bottom = 169.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Vivaldi - Spring - 1725"
@@ -241,11 +397,12 @@ script = ExtResource( 5 )
 song_file = "Spring_by_Antonio_Vivaldi"
 song_index = "c"
 
-[node name="Song_E" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
-margin_top = 182.0
+[node name="Song_E" type="Button" parent="CenterContainer/SongsPanel/Container/Playlist"]
+margin_top = 169.0
 margin_right = 231.0
-margin_bottom = 196.0
+margin_bottom = 182.0
 mouse_default_cursor_shape = 2
+size_flags_vertical = 8
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Vivaldi - Summer - 1725"
@@ -254,12 +411,22 @@ script = ExtResource( 5 )
 song_file = "Summer_by_Antonio_Vivaldi"
 song_index = "d"
 
-[node name="Disc" type="TextureRect" parent="CenterContainer"]
+[node name="DiscPanel" type="PanelContainer" parent="CenterContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 320.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 320, 180 )
+custom_styles/panel = SubResource( 5 )
+
+[node name="Disc" type="TextureRect" parent="CenterContainer/DiscPanel"]
 margin_left = 99.0
 margin_top = 29.0
 margin_right = 220.0
 margin_bottom = 150.0
 rect_pivot_offset = Vector2( 60, 60 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource( 9 )
 
 [node name="Secret" type="Node" parent="."]

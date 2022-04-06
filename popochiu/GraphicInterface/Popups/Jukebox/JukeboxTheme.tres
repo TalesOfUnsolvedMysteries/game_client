@@ -11,15 +11,15 @@ texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 228, 13 )
 margin_left = 4.0
 margin_right = 4.0
-margin_top = 2.0
-margin_bottom = 5.0
+margin_top = 3.0
+margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 4 )
-region_rect = Rect2( 0, 2, 228, 11 )
+region_rect = Rect2( 0, 0, 228, 11 )
 margin_left = 4.0
 margin_right = 4.0
-margin_top = 3.0
+margin_top = 4.0
 margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -39,8 +39,10 @@ margin_bottom = 3.0
 
 [resource]
 default_font = ExtResource( 1 )
+Button/styles/focus = SubResource( 4 )
 Button/styles/hover = SubResource( 4 )
 Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 4 )
 VScrollBar/styles/grabber = SubResource( 1 )
 VScrollBar/styles/grabber_highlight = SubResource( 1 )
 VScrollBar/styles/grabber_pressed = SubResource( 1 )

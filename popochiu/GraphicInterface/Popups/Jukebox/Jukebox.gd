@@ -2,6 +2,8 @@ extends PanelContainer
 
 var last_played_songs = 'eee'
 onready var secret: Secret = find_node('Secret')
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	#hide()
@@ -11,6 +13,7 @@ func _ready() -> void:
 	var _songs = find_node('Playlist').get_children()
 	for song in _songs:
 		song.connect('played', self, '_on_song_played')
+		song.connect('selected', self, '_show_disc')
 	secret.connect('solved', self, '_on_solved')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -46,3 +49,7 @@ func _on_solved(solved):
 		print('secret solved!')
 		yield(E.run(['Player: something was unlocked!']), 'completed')
 		# play unlock sound
+
+
+func _show_disc() -> void:
+	$AnimationPlayer.play('ShowDisc')
