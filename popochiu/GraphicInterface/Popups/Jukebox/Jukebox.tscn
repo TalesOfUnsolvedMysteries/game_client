@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/Jukebox.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=2]
@@ -6,23 +6,21 @@
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono10.tres" type="DynamicFont" id=4]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/Song.gd" type="Script" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/Secret.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/sprites/panel.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/JukeboxTheme.tres" type="Theme" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/sprites/disc.png" type="Texture" id=9]
 
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color( 1, 0, 0, 0.0823529 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 2.0
-expand_margin_right = 2.0
-expand_margin_top = 3.0
-expand_margin_bottom = 3.0
+[sub_resource type="StyleBoxTexture" id=1]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 240, 120 )
+margin_left = 1.0
+margin_right = 1.0
+margin_top = 1.0
+margin_bottom = 2.0
 
 [node name="Jukebox" type="PanelContainer"]
 anchor_right = 1.0
@@ -33,9 +31,6 @@ margin_right = -160.0
 margin_bottom = -91.0
 custom_styles/panel = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 320.0
@@ -48,280 +43,224 @@ margin_top = 90.0
 margin_right = 160.0
 margin_bottom = 90.0
 
-[node name="Container" type="ScrollContainer" parent="CenterContainer"]
-margin_left = 40.0
-margin_top = 30.0
-margin_right = 280.0
-margin_bottom = 150.0
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+margin_left = 38.0
+margin_top = 28.0
+margin_right = 282.0
+margin_bottom = 152.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Container" type="ScrollContainer" parent="CenterContainer/PanelContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 242.0
+margin_bottom = 122.0
 rect_min_size = Vector2( 240, 120 )
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 3 )
-custom_styles/bg = SubResource( 1 )
+theme = ExtResource( 8 )
 follow_focus = true
+scroll_horizontal_enabled = false
 
-[node name="Playlist" type="VBoxContainer" parent="CenterContainer/Container"]
-margin_left = 1.0
-margin_top = 3.0
-margin_right = 227.0
-margin_bottom = 181.0
+[node name="Playlist" type="VBoxContainer" parent="CenterContainer/PanelContainer/Container"]
+margin_right = 231.0
+margin_bottom = 196.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Song_1" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_right = 226.0
-margin_bottom = 9.0
-mouse_filter = 0
+[node name="Song_1" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_right = 231.0
+margin_bottom = 14.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Bach - Tocata - 1708"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Tocata_by_Bach"
 
-[node name="Song_2" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 13.0
-margin_right = 226.0
-margin_bottom = 22.0
-mouse_filter = 0
+[node name="Song_2" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 14.0
+margin_right = 231.0
+margin_bottom = 28.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Beethoven - Moonlight Sonata - 1801"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Moonlight_Sonata_by_Beethoven"
 song_index = "1"
 
-[node name="Song_3" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 26.0
-margin_right = 226.0
-margin_bottom = 35.0
-mouse_filter = 0
+[node name="Song_3" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 28.0
+margin_right = 231.0
+margin_bottom = 42.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Beethoven - The Hunt - 1802"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "The_Hunt_by_Beethoven"
 song_index = "2"
 
-[node name="Song_4" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 39.0
-margin_right = 226.0
-margin_bottom = 48.0
-mouse_filter = 0
+[node name="Song_4" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 42.0
+margin_right = 231.0
+margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Brahms - Hungarian Dance - 1873"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Hungarian_Dance_1_by_Brahms"
 song_index = "3"
 
-[node name="Song_5" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 52.0
-margin_right = 226.0
-margin_bottom = 61.0
-mouse_filter = 0
+[node name="Song_5" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 56.0
+margin_right = 231.0
+margin_bottom = 70.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Brahms - Rhapsody 79 - 1879"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Rhapsody_79_2_by_Brahms"
 song_index = "4"
 
-[node name="Song_6" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 65.0
-margin_right = 226.0
-margin_bottom = 74.0
-mouse_filter = 0
+[node name="Song_6" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 70.0
+margin_right = 231.0
+margin_bottom = 84.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Chopin - Etude Op. 10 No 1 - 1829"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Etude_Opus_10_1_in_C_by_Chopin"
 song_index = "5"
 
-[node name="Song_7" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 78.0
-margin_right = 226.0
-margin_bottom = 87.0
-mouse_filter = 0
+[node name="Song_7" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 84.0
+margin_right = 231.0
+margin_bottom = 98.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Chopin - Ballade No 1 in G minor - 1836"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Ballad_Opus_23_in_G_minor_by_Chopin"
 song_index = "6"
 
-[node name="Song_8" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 91.0
-margin_right = 226.0
-margin_bottom = 100.0
-mouse_filter = 0
+[node name="Song_8" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 98.0
+margin_right = 231.0
+margin_bottom = 112.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Chopin - Waltz Op 18 in E minor - 1833 "
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Waltz_Opus_18_in_E_minor_by_Chopin"
 song_index = "7"
 
-[node name="Song_9" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 104.0
-margin_right = 226.0
-margin_bottom = 113.0
-mouse_filter = 0
+[node name="Song_9" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 112.0
+margin_right = 231.0
+margin_bottom = 126.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Mozart - Eine Kleine Nachtmusik - 1787"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Eine_Kleine_Nachtmusik_by_Mozart"
 song_index = "8"
 
-[node name="Song_A" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 117.0
-margin_right = 226.0
-margin_bottom = 126.0
-mouse_filter = 0
+[node name="Song_A" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 126.0
+margin_right = 231.0
+margin_bottom = 140.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Mozart - Turkish March - 1783"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "turkish_march_by_mozart"
 song_index = "9"
 
-[node name="Song_B" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 130.0
-margin_right = 226.0
-margin_bottom = 139.0
-mouse_filter = 0
+[node name="Song_B" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 140.0
+margin_right = 231.0
+margin_bottom = 154.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Tchaikovsky - Dance of The Sugar Plum - 1892"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Dance_of_The_Sugar_Plum_Fairy_by_tchaikovsky"
 song_index = "a"
 
-[node name="Song_C" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 143.0
-margin_right = 226.0
-margin_bottom = 152.0
-mouse_filter = 0
+[node name="Song_C" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 154.0
+margin_right = 231.0
+margin_bottom = 168.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Vivaldi - Winter - 1725"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Winter_by_Antonio_Vivaldi"
 song_index = "b"
 
-[node name="Song_D" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 156.0
-margin_right = 226.0
-margin_bottom = 165.0
-mouse_filter = 0
+[node name="Song_D" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 168.0
+margin_right = 231.0
+margin_bottom = 182.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Vivaldi - Spring - 1725"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Spring_by_Antonio_Vivaldi"
 song_index = "c"
 
-[node name="Song_E" type="Label" parent="CenterContainer/Container/Playlist"]
-margin_top = 169.0
-margin_right = 226.0
-margin_bottom = 178.0
-mouse_filter = 0
+[node name="Song_E" type="Button" parent="CenterContainer/PanelContainer/Container/Playlist"]
+margin_top = 182.0
+margin_right = 231.0
+margin_bottom = 196.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Vivaldi - Summer - 1725"
-align = 1
 clip_text = true
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 song_file = "Summer_by_Antonio_Vivaldi"
 song_index = "d"
+
+[node name="Disc" type="TextureRect" parent="CenterContainer"]
+margin_left = 99.0
+margin_top = 29.0
+margin_right = 220.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 60, 60 )
+texture = ExtResource( 9 )
 
 [node name="Secret" type="Node" parent="."]
 script = ExtResource( 6 )
