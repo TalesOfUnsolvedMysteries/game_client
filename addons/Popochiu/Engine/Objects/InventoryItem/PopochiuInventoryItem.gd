@@ -10,6 +10,7 @@ export var description := ''
 export var stack := false
 export var script_name := ''
 export(Cursor.Type) var cursor
+export var pickup_location := ''
 
 var amount := 1
 var in_inventory := false setget _set_in_inventory
@@ -39,8 +40,10 @@ func on_item_used(_item: InventoryItem) -> void:
 
 
 func added_to_inventory() -> void:
-	pass
+	Globals.set_state(pickup_location, false)
 
+func on_discard () -> void:
+	Globals.set_state(pickup_location, true)
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _toggle_description(display: bool) -> void:

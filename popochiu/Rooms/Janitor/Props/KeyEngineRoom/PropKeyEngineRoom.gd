@@ -3,16 +3,14 @@ extends Prop
 
 var _final_description := 'Engine room'
 
-
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
 	if Globals.state.get('Janitor-KEY_ENGINE_ROOM_LOOKED'):
 		description = _final_description
-	if Globals.state.get('Lobby-ENGINE_ROOM_UNLOCKED') \
-	or I.is_item_in_inventory(script_name):
+	if !Globals.state.get('Janitor-KEY_ENGINE_ROOM-in'):
 		$Sprite.frame = 0
 		description = _final_description
-
+	I.connect('item_discarded', self, '_on_item_discarded')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -39,6 +37,8 @@ func on_look() -> void:
 	else:
 		E.run(["Player: The engine room's key is not there"])
 
+func _on_item_discarded(item: InventoryItem):
+	if item.script_name == 'KeyEngineRoom':
+		$Sprite.frame = 1
 
-func on_item_used(item: InventoryItem) -> void:
-	pass
+

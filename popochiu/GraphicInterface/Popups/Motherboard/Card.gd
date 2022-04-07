@@ -5,8 +5,8 @@ signal removed
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	Globals.set_state('EngineRoom-MOTHERBOARD_WITH_CARD', false)
 	Globals.set_state('EngineRoom-ELEVATOR_WORKING', false)
+	Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'EngineRoom-MOTHERBOARD_WITH_CARD')
 	
 	yield(E.run([
 		"Player: I'll take the elevator program card.",

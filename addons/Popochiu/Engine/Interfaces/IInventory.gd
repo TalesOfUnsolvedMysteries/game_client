@@ -4,6 +4,7 @@ extends Node
 signal item_added(item)
 signal item_add_done(item)
 signal item_removed(item)
+signal item_discarded(item)
 signal item_remove_done(item)
 
 export var always_visible := false
@@ -72,6 +73,15 @@ func remove_item(item_name: String, is_in_queue := true) -> void:
 		_items_count -= 1
 		yield(self, 'item_remove_done')
 
+
+func discard_item(item_name: String, is_in_queue := true) -> void:
+	if is_in_queue: yield()
+	var i: InventoryItem = _get_item_instance(item_name)
+	if is_instance_valid(i):
+		i.on_discard()
+		emit_signal('item_discarded', i)
+		yield(self.remove_item(item_name, is_in_queue), 'completed')
+	
 
 func is_item_in_inventory(item_name: String) -> bool:
 	var i: InventoryItem = _get_item_instance(item_name)

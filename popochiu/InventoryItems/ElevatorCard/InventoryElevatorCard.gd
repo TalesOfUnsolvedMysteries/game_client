@@ -20,6 +20,13 @@ func on_look() -> void:
 func on_item_used(_item: InventoryItem) -> void:
 	pass
 
+func added_to_inventory() -> void:
+	var last_location = Globals.state['ELEVATOR_CARD_LAST_LOCATION']
+	Globals.set_state(last_location, false)
+
+func on_discard () -> void:
+	var last_location = Globals.state['ELEVATOR_CARD_LAST_LOCATION']
+	Globals.set_state(last_location, true)
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 # TODO: Poner aquí los métodos privados

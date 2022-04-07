@@ -123,23 +123,34 @@ var bug_adn := ''
 var turn := 0
 sync var state := {
 	'Lobby-PC_POWERED': true,
-	'Lobby-ELEVATOR_CARD_IN_PC': false,
 	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
 	'ELEVATOR_ENABLED': 0,
-	'EngineRoom-MOTHERBOARD_WITH_CARD': true,
 #	'Lobby-ENGINE_ROOM_UNLOCKED': true,
 	'EngineRoom-ELEVATOR_WORKING': false,
+	'EngineRoom-CHARGING_BATTERY': false,
 	'MasterKey-CONFIG': '0203',
 	'FirstFloor-102_UNLOCKED': false,
 	'SecondFloor-201_UNLOCKED': false,
 	'SecondFloor-202_UNLOCKED': false,
 	'ThirdFloor-301_UNLOCKED': false,
 	'ThirdFloor-302_UNLOCKED': false,
-	'Jukebox-Secret_Box_OPENED': false
+	'Jukebox-Secret_Box_OPENED': false,
+	# inventory object locations
+	'Janitor-MASTER_KEY-in': true,
+	'Janitor-KEY_ENGINE_ROOM-in': true,
+	# elevator card locations
+	'Tecnician-ELEVATOR_CARD_IN_LOCKER': true,
+	'EngineRoom-MOTHERBOARD_WITH_CARD': false,
+	'Lobby-ELEVATOR_CARD_IN_PC': false,
+	'ELEVATOR_CARD_LAST_LOCATION': 'Tecnician-ELEVATOR_CARD_IN_LOCKER',
+	# elevator battery locations
+	'EngineRoom-MOTHERBOARD_WITH_BATTERY': true,
+	'EngineRoom-CHARGE_SOCKET_WITH_BATTERY': false,
+	'BATTERY_LAST_LOCATION': 'EngineRoom-MOTHERBOARD_WITH_BATTERY'
 }
 var server_file = "user://server.save"
-var battery_power := 0 setget _set_battery_power
+var battery_power := 0.0 setget _set_battery_power
 var elevator_used := false
 # Mapeados por ID
 sync var puzzle_state := {} setget _set_puzzle_state
@@ -161,6 +172,11 @@ func _ready() -> void:
 	
 	Console.add_command('add_item', self, '_dev_add_item')\
 		.set_description('Adds an item to the inventory')\
+		.add_argument('script_name', TYPE_STRING)\
+		.register()
+	
+	Console.add_command('discard_item', self, '_dev_discard_item')\
+		.set_description('Discards an item from the inventory')\
 		.add_argument('script_name', TYPE_STRING)\
 		.register()
 	
@@ -227,12 +243,14 @@ func add_battery_power() -> void:
 	if not state.get('EngineRoom-CHARGING_BATTERY'): return
 	
 	_battery_charging_elapsed += 1
-	self.battery_power = _battery_charging_elapsed * 100 / BATTERY_CHARGING_TIME
+	self.battery_power = _battery_charging_elapsed * 100.0 / BATTERY_CHARGING_TIME
 
 
 func stop_battery_charging() -> void:
-	_battery_charging_elapsed = 0
-	self.battery_power = 0
+	#_battery_charging_elapsed = 0
+	#self.battery_power = 0
+	set_state('EngineRoom-CHARGING_BATTERY', false)
+	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -243,6 +261,8 @@ func _dev_charge_battery() -> void:
 func _dev_add_item(script_name: String) -> void:
 	Utils.invoke(I, 'add_item', [script_name, false])
 
+func _dev_discard_item(script_name: String) -> void:
+	Utils.invoke(I, 'discard_item', [script_name, false])
 
 func _dev_win_nft(id := '') -> void:
 	if NFTs.has(id):
@@ -251,7 +271,7 @@ func _dev_win_nft(id := '') -> void:
 		G.emit_signal('nft_won', Utils.get_random_array_element(NFTs.values()))
 
 
-func _set_battery_power(value: int) -> void:
+func _set_battery_power(value: float) -> void:
 	battery_power = value
 	
 	if battery_power == 0:

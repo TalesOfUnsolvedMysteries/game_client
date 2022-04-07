@@ -31,4 +31,14 @@ func open_app() -> void:
 func on_popup_closed() -> void:
 	if error == 0:
 		E.run(['Player: Looks like I need to put something in the PC in order to open this app.'])
-
+	if error == 1:
+		Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'EngineRoom-MOTHERBOARD_WITH_CARD')
+		yield(E.run([
+			"Player: I'll take the elevator program card.",
+			I.add_item('ElevatorCard'),
+			A.play({
+				cue_name = 'sfx_elevator_card_pick',
+				is_in_queue = true
+			})
+		]), 'completed')
+	

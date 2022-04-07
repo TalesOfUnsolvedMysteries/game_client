@@ -8,10 +8,10 @@ var _final_description := 'Master Key'
 func _ready():
 	if Globals.state.get('Janitor-KEY_102_LOOKED'):
 		description = _final_description
-	if Globals.state.get('FirstFloor-102_UNLOCKED')\
-	or I.is_item_in_inventory(script_name):
+	if !Globals.state.get('Janitor-MASTER_KEY-in'):
 		$Sprite.frame = 0
 		description = _final_description
+	I.connect('item_discarded', self, '_on_item_discarded')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -43,6 +43,9 @@ func on_look() -> void:
 	else:
 		E.run(["Player: The Master key is not there"])
 
+func _on_item_discarded(item: InventoryItem):
+	if item.script_name == 'MasterKey':
+		$Sprite.frame = 1
 
 func on_item_used(item: InventoryItem) -> void:
 	pass

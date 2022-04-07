@@ -6,11 +6,19 @@ extends Prop
 func _ready() -> void:
 	$ChargingProgress.value = Globals.battery_power
 	
-	if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
-		_listen_battery_charging(false)
-	elif not Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
+	
+	if !Globals.state.get('EngineRoom-CHARGE_SOCKET_WITH_BATTERY'):
 		$Sprite.frame = 0
 		$ChargingProgress.value = 0
+	else:
+		if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
+			_listen_battery_charging(false)
+		elif Globals.battery_power < 100:
+			Globals.set_state('EngineRoom-CHARGING_BATTERY', true)
+			_listen_battery_charging(false)
+			Globals.add_battery_power()
+
+	I.connect('item_discarded', self, '_on_item_discarded')
 
 
 func _exit_tree() -> void:
@@ -22,7 +30,7 @@ func _exit_tree() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	if not Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
+	if Globals.state.get('EngineRoom-MOTHERBOARD_WITH_BATTERY'):
 		if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 			E.run(["Player: I don't need that anymore."])
 		
@@ -33,6 +41,7 @@ func on_interact() -> void:
 		
 		var answer: DialogOption = yield(E.show_inline_dialog(['Yes', 'No']), 'completed')
 		if answer.id == 'Opt1':
+			Globals.set_state('BATTERY_LAST_LOCATION', 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY')
 			E.run([
 				C.walk_to_clicked(),
 				_stop_charging(),
@@ -42,6 +51,7 @@ func on_interact() -> void:
 		else:
 			E.run(['Player: Yeah. Let it charge in peace.'])
 	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+		Globals.set_state('BATTERY_LAST_LOCATION', 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY')
 		yield(E.run([
 			C.walk_to_clicked(),
 			'Player: Great. Now the battery is fully charged',
@@ -63,7 +73,7 @@ func on_look() -> void:
 	]), 'completed')
 
 
-func on_item_used(item: InventoryItem) -> void:
+func on_item_used(item) -> void:
 	if item.script_name == 'MotherboardBattery':
 		if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 			E.run([
@@ -71,6 +81,7 @@ func on_item_used(item: InventoryItem) -> void:
 				'Player: There is no point in charging it again.'
 			])
 		else:
+			Globals.set_state('EngineRoom-CHARGE_SOCKET_WITH_BATTERY', true)
 			yield(E.run([
 				C.walk_to_clicked(),
 				I.remove_item(item.script_name),
@@ -119,3 +130,9 @@ func _stop_charging() -> void:
 	A.play({cue_name = 'sfx_battery_charging_stop', is_in_queue = false})
 	
 	yield(get_tree(), 'idle_frame')
+
+func _on_item_discarded(item: InventoryItem):
+	if item.script_name == 'MotherboardBattery':
+		if Globals.state.get('BATTERY_LAST_LOCATION') == 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY':
+			$Sprite.frame = 1
+			Globals.start_battery_charging()

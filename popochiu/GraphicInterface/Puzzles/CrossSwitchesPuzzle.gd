@@ -99,6 +99,7 @@ func _check(solved):
 	if solved:
 		OS.show_popup('w', 'elevator fixed!', self)
 		for button in $Buttons.get_children(): button.disabled = true
+		Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'Lobby-ELEVATOR_CARD_IN_PC')
 		E.run([
 			I.add_item('ElevatorCard'),
 			A.play({
@@ -106,7 +107,6 @@ func _check(solved):
 				is_in_queue = true
 			})
 		])
-		Globals.set_state('Lobby-ELEVATOR_CARD_IN_PC', false)
 	else:
 		OS.show_popup('e', 'wrong configuration!', self)
 		$Save.disabled = false

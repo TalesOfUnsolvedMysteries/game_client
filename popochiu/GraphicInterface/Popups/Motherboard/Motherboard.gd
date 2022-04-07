@@ -49,11 +49,13 @@ func _ready() -> void:
 	_card_slot.connect('card_put', self, '_put_elevator_card')
 	_card.connect('removed', self, '_check_display_message')
 	_battery_slot.connect('battery_put', self, '_put_battery')
+	
+	I.connect('item_discarded', self, '_on_item_discarded')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func appear() -> void:
-	if Globals.state.get('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY'):
+	if !Globals.state.get('EngineRoom-MOTHERBOARD_WITH_BATTERY'):
 		_battery.hide()
 	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		if Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
@@ -162,12 +164,17 @@ func _put_battery() -> void:
 	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		_battery.texture = battery_full
 		
-		Globals.set_state('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY', false)
+		Globals.set_state('EngineRoom-MOTHERBOARD_WITH_BATTERY', true)
 		_wait_reset()
 	else:
 		_battery.texture = battery_empty
 	
 	_battery.show()
+
+func _on_item_discarded(item: InventoryItem):
+	if item.script_name == 'MotherboardBattery':
+		if Globals.state.get('BATTERY_LAST_LOCATION') == 'EngineRoom-MOTHERBOARD_WITH_BATTERY':
+			_battery.show()
 
 
 func _set_matches(value: int) -> void:

@@ -4,13 +4,13 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	if I.is_item_in_inventory('ElevatorCard') \
-	or Globals.state.get('EngineRoom-MOTHERBOARD_WITH_CARD'):
+	if !Globals.state.get('Tecnician-ELEVATOR_CARD_IN_LOCKER'):
 		E.run([
 			'Player: There is nothing in the lockers of interest.',
 			'Player: I already took the elevator program card.'
 		])
 	else:
+		Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'Tecnician-ELEVATOR_CARD_IN_LOCKER')
 		yield(E.run([
 			C.walk_to_clicked(),
 			"Player: Let see what I can find here.",
@@ -20,8 +20,6 @@ func on_interact() -> void:
 			I.add_item('ElevatorCard'),
 			'Player: Its label says: Elevator program.'
 		]), 'completed')
-		
-		Globals.set_state('Technician-CARD_TAKEN', true)
 
 
 func on_look() -> void:

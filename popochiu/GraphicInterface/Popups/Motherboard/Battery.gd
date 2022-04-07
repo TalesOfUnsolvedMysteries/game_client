@@ -4,7 +4,7 @@ extends 'res://popochiu/GraphicInterface/Popups/Common/GIClickable.gd'
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	if not Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
-		Globals.set_state('EngineRoom-MOTHERBOARD_WITHOUT_BATTERY', true)
+		Globals.set_state('BATTERY_LAST_LOCATION', 'EngineRoom-MOTHERBOARD_WITH_BATTERY')
 		E.run([
 			'Player: I need to find a way to charge this battery.',
 			I.add_item('MotherboardBattery'),

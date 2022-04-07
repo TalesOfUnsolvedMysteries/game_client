@@ -21,6 +21,8 @@ func on_item_used(_item: InventoryItem) -> void:
 
 
 func added_to_inventory() -> void:
+	var last_location = Globals.state['BATTERY_LAST_LOCATION']
+	Globals.set_state(last_location, false)
 	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		$Icon.texture = full
 		description = 'Motherboard battery charged'
@@ -28,6 +30,9 @@ func added_to_inventory() -> void:
 		$Icon.texture = empty
 		description = 'Motherboard battery empty'
 
+func on_discard () -> void:
+	var last_location = Globals.state['BATTERY_LAST_LOCATION']
+	Globals.set_state(last_location, true)
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func is_full() -> bool:
