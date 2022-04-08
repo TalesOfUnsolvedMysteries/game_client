@@ -23,14 +23,21 @@ func _ready():
 func _on_interact() -> void:
 	playing = true
 	emit_signal('selected')
-	yield(E.run([A.play({
+	
+	yield(E.run([
+		'...',
+		A.play({
 		'cue_name': song_file,
 		'is_in_queue': true,
 		'wait_audio_complete': true
-	})]), 'completed')
+		})
+	]), 'completed')
+	
+	modulate = regular_color
 	set_pressed_no_signal(false)
 	release_focus()
 	emit_signal('played', song_index)
+	
 	playing = false
 
 
