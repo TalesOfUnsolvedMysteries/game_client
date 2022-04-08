@@ -13,11 +13,12 @@ var vase_textures = {
 }
 
 func _ready():
-	var shelfs = Globals.state.get('Penthouse_VASELS_ON_Shelfs')
+	var shelfs = Globals.state.get('Penthouse_VASES_ON_Shelfs')
 	set_vase(shelfs[weight_index])
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
+	if Globals.state.get('Penthouse-VASE_SOLVED'): return
 	yield(E.run([
 		C.walk_to_clicked(),
 		I.add_item(current_vase)
@@ -34,6 +35,7 @@ func on_look() -> void:
 	yield(E.run([]), 'completed')
 
 func on_item_used(item: InventoryItem) -> void:
+	if Globals.state.get('Penthouse-VASE_SOLVED'): return
 	if current_vase != '': return
 	if !item.script_name.match('Vase*'):
 		print('not a valid item')
@@ -54,6 +56,9 @@ func add_discarded_vase(item: InventoryItem) -> void:
 
 func set_vase(vase_name):
 	current_vase = vase_name
-	self.texture = vase_textures[current_vase]
-	self.description = current_vase
-	$Sprite.show()
+	if current_vase == '':
+		$Sprite.hide()
+	else:
+		self.texture = vase_textures[current_vase]
+		self.description = current_vase
+		$Sprite.show()

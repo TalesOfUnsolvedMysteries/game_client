@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
@@ -22,16 +22,20 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseYellow/vase_yellow.png" type="Texture" id=20]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Shelf/body.png" type="Texture" id=21]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseGreen/vase_green.png" type="Texture" id=22]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseHole/PropVaseHole.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseRed/vase_red.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseYellow/PropVase.gd" type="Script" id=25]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseBlue/vase_blue.png" type="Texture" id=26]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Shelf/shelf.png" type="Texture" id=27]
 [ext_resource path="res://secrets/Secret.gd" type="Script" id=28]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseHole/vase_hole.png" type="Texture" id=29]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/SecretCompartiment/PropSecretCompartiment.gd" type="Script" id=30]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/SecretCompartiment/secretCompartiment.png" type="Texture" id=31]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -37, 15, 102, 9, 165, 10, 82, 19, 42, 18, 23, 4, -41, 7, 169, 32, 267, 37, 213, 74, -47, 52, 73, 36, -231, 70, -306, 37, -286, 20, -198, 12, -198, 40, -122, 36, 95, 31, 93, 23, -54, 1, -83, 9, -125, 7, -96, 15, -88, 25, -59, 25, 18, 26, 20, 20, 29, 32 )
+vertices = PoolVector2Array( -37, 15, 102, 9, 165, 10, 82, 19, 42, 18, 23, 4, -41, 7, 169, 32, 267, 37, 213, 74, -47, 52, 73, 36, -231, 70, -306, 37, -286, 20, -210, 15, -198, 40, -117, 36, 95, 31, 93, 23, -54, 1, -83, 9, -111, 6, -96, 15, -88, 25, -59, 25, 18, 26, 20, 20, 29, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 1, 0, 6 ), PoolIntArray( 7, 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14, 15, 16 ), PoolIntArray( 10, 12, 16, 17 ), PoolIntArray( 2, 7, 18, 19 ), PoolIntArray( 20, 5, 6 ), PoolIntArray( 20, 6, 21, 22 ), PoolIntArray( 22, 21, 23 ), PoolIntArray( 17, 22, 23, 24 ), PoolIntArray( 10, 17, 24, 25 ), PoolIntArray( 26, 10, 25, 0, 27 ), PoolIntArray( 2, 19, 3 ), PoolIntArray( 0, 4, 27 ), PoolIntArray( 10, 26, 28 ), PoolIntArray( 10, 28, 11 ), PoolIntArray( 7, 11, 18 ) ]
-outlines = [ PoolVector2Array( 267, 37, 169, 32, 165, 10, 102, 9, 23, 4, -54, 1, -125, 7, -122, 36, -198, 40, -198, 12, -286, 20, -306, 37, -231, 70, -47, 52, 213, 74 ), PoolVector2Array( 18, 26, 29, 32, 73, 36, 95, 31, 93, 23, 82, 19, 42, 18, 20, 20 ), PoolVector2Array( -96, 15, -88, 25, -59, 25, -37, 15, -41, 7, -83, 9 ) ]
+outlines = [ PoolVector2Array( 267, 37, 169, 32, 165, 10, 102, 9, 23, 4, -54, 1, -111, 6, -117, 36, -198, 40, -210, 15, -286, 20, -306, 37, -231, 70, -47, 52, 213, 74 ), PoolVector2Array( 18, 26, 29, 32, 73, 36, 95, 31, 93, 23, 82, 19, 42, 18, 20, 20 ), PoolVector2Array( -96, 15, -88, 25, -59, 25, -37, 15, -41, 7, -83, 9 ) ]
 
 [node name="RoomPenthouse" type="Node2D"]
 script = ExtResource( 1 )
@@ -429,6 +433,62 @@ polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 10, -6, 10, -9, 2 )
 
 [node name="Tween" type="Tween" parent="Props/Shelf4"]
 
+[node name="VaseHole" parent="Props" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -164, -22 )
+input_pickable = false
+script = ExtResource( 23 )
+description = "VaseHole"
+walk_to_point = Vector2( 0, 50 )
+cursor = 10
+script_name = "VaseHole"
+texture = ExtResource( 29 )
+
+[node name="BaselineHelper" parent="Props/VaseHole" index="0"]
+visible = true
+
+[node name="WalkToHelper" parent="Props/VaseHole" index="1"]
+visible = true
+position = Vector2( 0, 50 )
+
+[node name="Sprite" parent="Props/VaseHole" index="2"]
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 29 )
+centered = false
+offset = Vector2( -9, -9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 17, 19 )
+
+[node name="Tween" type="Tween" parent="Props/VaseHole"]
+
+[node name="Vase" type="Sprite" parent="Props/VaseHole"]
+visible = false
+position = Vector2( 0, 1 )
+texture = ExtResource( 20 )
+
+[node name="SecretCompartiment" parent="Props" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -160, 10 )
+input_pickable = false
+script = ExtResource( 30 )
+description = "SecretCompartiment"
+cursor = 10
+script_name = "SecretCompartiment"
+texture = ExtResource( 31 )
+
+[node name="Sprite" parent="Props/SecretCompartiment" index="2"]
+position = Vector2( 0, 7 )
+texture = ExtResource( 31 )
+centered = false
+offset = Vector2( -28, -29 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 57, 45 )
+
+[node name="CollisionPolygon2D" parent="Props/SecretCompartiment" index="3"]
+polygon = PoolVector2Array( -27, -17, 24, -21, 28, 20, -22, 23 )
+
+[node name="Tween" type="Tween" parent="Props/SecretCompartiment"]
+
 [node name="Hotspots" type="Node2D" parent="."]
 
 [node name="Regions" type="Node2D" parent="."]
@@ -436,7 +496,6 @@ polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 10, -6, 10, -9, 2 )
 [node name="Points" type="Node2D" parent="."]
 
 [node name="WalkableAreas" type="Node2D" parent="."]
-visible = false
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
 
@@ -450,6 +509,8 @@ position = Vector2( -188, 50 )
 
 [node name="Secret" type="Node" parent="."]
 script = ExtResource( 28 )
+_secret_key = "VASE_ORDER"
+_secret = "G_RB"
 
 [editable path="Props/Exit"]
 [editable path="Props/Paragraph"]
@@ -463,3 +524,5 @@ script = ExtResource( 28 )
 [editable path="Props/Shelf3/Vase"]
 [editable path="Props/Shelf4"]
 [editable path="Props/Shelf4/Vase"]
+[editable path="Props/VaseHole"]
+[editable path="Props/SecretCompartiment"]
