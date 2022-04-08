@@ -36,43 +36,28 @@ limit_bottom = 0.0
 description = "Bg"
 clickable = false
 baseline = -90
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Bg"
-always_on_top = false
 texture = ExtResource( 8 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Table" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -10, 18 )
 description = "Table"
 clickable = false
 baseline = 16
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Table"
-always_on_top = false
 texture = ExtResource( 9 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Lockers" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 50, -7 )
 script = ExtResource( 4 )
 description = "Lockers"
-clickable = true
 baseline = 19
 walk_to_point = Vector2( -12, 23 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Lockers"
-always_on_top = false
 texture = ExtResource( 10 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Lockers" index="0"]
 position = Vector2( 0, 19 )
@@ -90,16 +75,11 @@ polygon = PoolVector2Array( -12, -24, 3, -27, 16, -19, 14, 21, 2, 26, -11, 16 )
 position = Vector2( 3, 8 )
 script = ExtResource( 5 )
 description = "Notes"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( 11, 13 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Notes"
 always_on_top = true
 texture = ExtResource( 11 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 pages = [ "From the previous technician
 
 To make the elevator to work, its mainboard needs a battery and a memory card with the program that establishes its behavior (that is the floors it can access)
@@ -128,16 +108,11 @@ polygon = PoolVector2Array( -8, -2, 0, -6, 9, -1, 9, 1, 0, 5, -8, 0 )
 position = Vector2( -11, 13 )
 script = ExtResource( 6 )
 description = "Whisky"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( -5, 30 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Whisky"
 always_on_top = true
 texture = ExtResource( 12 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="WalkToHelper" parent="Props/Whisky" index="1"]
 position = Vector2( -5, 30 )
@@ -152,16 +127,11 @@ polygon = PoolVector2Array( -2, -3, 4, -3, 4, 4, -4, 4 )
 position = Vector2( 73, 32 )
 script = ExtResource( 7 )
 description = "To first floor"
-clickable = true
 baseline = 37
 walk_to_point = Vector2( -12, 16 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Exit"
-always_on_top = false
 texture = ExtResource( 13 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
 position = Vector2( 0, 37 )
@@ -179,16 +149,9 @@ polygon = PoolVector2Array( 13, 14, 23, 37, -11, 33 )
 position = Vector2( -16, -33 )
 script = ExtResource( 15 )
 description = "Painting"
-clickable = true
-baseline = 0
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Painting"
-always_on_top = false
 texture = ExtResource( 16 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 16 )

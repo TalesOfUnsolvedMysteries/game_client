@@ -29,15 +29,9 @@ limit_bottom = 90.0
 [node name="Bg" parent="Props" instance=ExtResource( 3 )]
 description = "Bg"
 clickable = false
-baseline = 0
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Bg"
-always_on_top = false
 texture = ExtResource( 2 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Door201" type="Label" parent="Props/Bg"]
 margin_left = -110.0
@@ -69,13 +63,9 @@ __meta__ = {
 position = Vector2( -10, 11 )
 script = ExtResource( 8 )
 description = "Elevator"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( -1, 33 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Elevator"
-always_on_top = false
 
 [node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]
 polygon = PoolVector2Array( -26, -27, -29, 28, 28, 28, 25, -27, -3, -37 )
@@ -91,13 +81,9 @@ position = Vector2( -1, 33 )
 position = Vector2( -94, 10 )
 script = ExtResource( 7 )
 description = "Door 201"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( -9, 34 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Door201"
-always_on_top = false
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door201" index="0"]
 polygon = PoolVector2Array( -23, -27, -17, 2, -24, 29, 16, 29, 23, 6, 18, -25, -3, -36 )
@@ -120,13 +106,9 @@ NFT_TO_CLAIM = "UNLOCK_ROOM_201"
 position = Vector2( 77, 12 )
 script = ExtResource( 9 )
 description = "Door 202"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( -9, 31 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Door202"
-always_on_top = false
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door202" index="0"]
 polygon = PoolVector2Array( -23, -26, -18, 26, 21, 26, 24, -32, 5, -30, -16, -33 )

@@ -147,7 +147,13 @@ sync var state := {
 	# elevator battery locations
 	'EngineRoom-MOTHERBOARD_WITH_BATTERY': true,
 	'EngineRoom-CHARGE_SOCKET_WITH_BATTERY': false,
-	'BATTERY_LAST_LOCATION': 'EngineRoom-MOTHERBOARD_WITH_BATTERY'
+	'BATTERY_LAST_LOCATION': 'EngineRoom-MOTHERBOARD_WITH_BATTERY',
+	# penthouse vasels
+	'Penthouse_VASEL_YELLOW_ON': 'Shelf1',
+	'Penthouse_VASEL_GREEN_ON': 'Shelf2',
+	'Penthouse_VASEL_RED_ON': 'Shelf3',
+	'Penthouse_VASEL_BLUE_ON': 'Shelf4',
+	'Penthouse_WEIGHTS_ON_Shelfs': [1.25, 0.815, 2.38124, 1.6]
 }
 var server_file = "user://server.save"
 var battery_power := 0.0 setget _set_battery_power
