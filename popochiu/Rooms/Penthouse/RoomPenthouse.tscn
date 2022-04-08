@@ -212,8 +212,7 @@ region_rect = Rect2( 0, 0, 19, 26 )
 region_filter_clip = true
 
 [node name="CollisionPolygon2D" parent="Props/Shelf1" index="5"]
-position = Vector2( 1, -2 )
-scale = Vector2( 1, 1.125 )
+position = Vector2( 1, 2.14577e-06 )
 
 [node name="Vase" parent="Props/Shelf1" instance=ExtResource( 3 )]
 position = Vector2( 1, -24 )
@@ -275,8 +274,7 @@ region_rect = Rect2( 0, 0, 19, 26 )
 region_filter_clip = true
 
 [node name="CollisionPolygon2D" parent="Props/Shelf2" index="5"]
-position = Vector2( 1, -2 )
-scale = Vector2( 1, 1.125 )
+position = Vector2( 1, -9.53674e-07 )
 
 [node name="Vase" parent="Props/Shelf2" instance=ExtResource( 3 )]
 position = Vector2( 1, -24 )
@@ -342,8 +340,7 @@ region_rect = Rect2( 0, 0, 19, 26 )
 region_filter_clip = true
 
 [node name="CollisionPolygon2D" parent="Props/Shelf3" index="5"]
-position = Vector2( 1, -1.5 )
-scale = Vector2( 1, 1.09375 )
+position = Vector2( 1, 0 )
 
 [node name="Vase" parent="Props/Shelf3" instance=ExtResource( 3 )]
 position = Vector2( 1, -24 )
@@ -407,8 +404,7 @@ visible = false
 texture = ExtResource( 27 )
 
 [node name="CollisionPolygon2D" parent="Props/Shelf4" index="5"]
-position = Vector2( 1, -1.5 )
-scale = Vector2( 1, 1.09375 )
+position = Vector2( 1, 1 )
 
 [node name="Vase" parent="Props/Shelf4" instance=ExtResource( 3 )]
 position = Vector2( 1, -24 )
