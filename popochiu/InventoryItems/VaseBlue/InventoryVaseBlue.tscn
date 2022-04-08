@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+description = "Blue Vase"
 script_name = "VaseBlue"
 
 [node name="Icon" type="TextureRect" parent="."]

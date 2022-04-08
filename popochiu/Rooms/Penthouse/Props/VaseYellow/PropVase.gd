@@ -1,7 +1,6 @@
 tool
 extends Prop
 
-signal vase_removed
 export var weight_index = 0
 
 export var current_vase = 'VaseYellow'
@@ -19,23 +18,33 @@ func on_interact() -> void:
 		C.walk_to_clicked(),
 		I.add_item(current_vase)
 	]), 'completed')
-	var weights = Globals.state.get('Penthouse_WEIGHTS_ON_Shelfs')
-	weights[weight_index] = 0
-	Globals.set('Penthouse_WEIGHTS_ON_Shelfs', weights)
-	emit_signal('vase_removed', current_vase)
-	current_vase = ''
-	hide()
+
+	# checks the vase was added to the inventory
+	if I.is_item_in_inventory(current_vase):
+		Globals.set_weight_on_shelf(weight_index, 0)
+		current_vase = ''
+		self.description = 'Shelf'
+		$Sprite.hide()
 
 func on_look() -> void:
 	yield(E.run([]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	print('again?', item.script_name)
-	pass
+	if current_vase != '': return
+	if !item.script_name.match('Vase*'):
+		print('not a valid item')
+		return
+	yield(E.run([
+		C.walk_to_clicked(),
+		I.remove_item(item.script_name, false)
+	]), 'completed')
+	Globals.set_weight_on_shelf(weight_index, item.weight)
+	set_vase(item.script_name)
 
 func set_vase(vase_name):
 	current_vase = vase_name
 	print('placed ', current_vase)
 	self.texture = vase_textures[current_vase]
-	show()
+	self.description = current_vase
+	$Sprite.show()

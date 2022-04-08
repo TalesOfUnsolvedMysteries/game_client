@@ -17,6 +17,7 @@ enum TestMode {
 export var test_mode = TestMode.SINGLE
 
 signal battery_charge_updated
+signal shelf_weights_updated
 
 enum Bodies {
 	BEETLE,
@@ -300,6 +301,14 @@ func _set_puzzle_state(value: Dictionary) -> void:
 	if NetworkManager.server:
 		save_state()
 
+
+# helper for vases
+func set_weight_on_shelf(index, weight):
+	var weights = Globals.state.get('Penthouse_WEIGHTS_ON_Shelfs')
+	weights[index] = weight
+	Globals.set('Penthouse_WEIGHTS_ON_Shelfs', weights)
+	yield(get_tree().create_timer(0.1), 'timeout')
+	emit_signal('shelf_weights_updated')
 
 # test modes validations
 

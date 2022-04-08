@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
@@ -18,7 +18,9 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Coffee/PropCoffee.gd" type="Script" id=16]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Coffee/coffee.png" type="Texture" id=17]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Sofa/sofa.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Shelf/base.png" type="Texture" id=19]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseYellow/vase_yellow.png" type="Texture" id=20]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Shelf/body.png" type="Texture" id=21]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseGreen/vase_green.png" type="Texture" id=22]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseRed/vase_red.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseYellow/PropVase.gd" type="Script" id=25]
@@ -175,138 +177,263 @@ texture = ExtResource( 17 )
 polygon = PoolVector2Array( -6, -1, -1, -5, 5, -1, 3, 3, -4, 3 )
 
 [node name="Shelf1" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -280, 29 )
+position = Vector2( -282, 16 )
 script = ExtResource( 12 )
 description = "Shelf A"
 baseline = 8
+walk_to_point = Vector2( 0, 20 )
 cursor = 10
 script_name = "Shelf"
 texture = ExtResource( 27 )
 balance_config = [ 2.0, -0.6, -0.5, -0.9 ]
+offset_balance = 5
+
+[node name="BaselineHelper" parent="Props/Shelf1" index="0"]
+position = Vector2( 0, 8 )
+
+[node name="WalkToHelper" parent="Props/Shelf1" index="1"]
+position = Vector2( 0, 20 )
+
+[node name="Sprite" parent="Props/Shelf1" index="2"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="ShelfBase" type="Sprite" parent="Props/Shelf1"]
+position = Vector2( -10, 5 )
+texture = ExtResource( 19 )
+centered = false
+
+[node name="ShelfBody" type="Sprite" parent="Props/Shelf1"]
+position = Vector2( -8, -18 )
+texture = ExtResource( 21 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 19, 26 )
+region_filter_clip = true
+
+[node name="CollisionPolygon2D" parent="Props/Shelf1" index="5"]
+position = Vector2( 1, -2 )
+scale = Vector2( 1, 1.125 )
+
+[node name="Vase" parent="Props/Shelf1" instance=ExtResource( 3 )]
+position = Vector2( 1, -24 )
+script = ExtResource( 25 )
+baseline = 39
+walk_to_point = Vector2( -280, 62 )
+cursor = 10
+script_name = "VaseYellow"
+texture = ExtResource( 20 )
+
+[node name="BaselineHelper" parent="Props/Shelf1/Vase" index="0"]
+position = Vector2( 0, 39 )
+
+[node name="WalkToHelper" parent="Props/Shelf1/Vase" index="1"]
+position = Vector2( -280, 62 )
+
+[node name="Sprite" parent="Props/Shelf1/Vase" index="2"]
+texture = ExtResource( 20 )
+
+[node name="CollisionPolygon2D" parent="Props/Shelf1/Vase" index="3"]
+polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 3 )
+
+[node name="Tween" type="Tween" parent="Props/Shelf1"]
 
 [node name="Shelf2" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -253, 16 )
+position = Vector2( -259, 14 )
 script = ExtResource( 12 )
+description = "Shelf"
 baseline = 8
+walk_to_point = Vector2( 0, 20 )
 cursor = 10
 script_name = "Shelf"
 texture = ExtResource( 27 )
 balance_config = [ -0.5, 3.0, -0.4, -0.4 ]
 weight_index = 1
+offset_balance = 10
+
+[node name="BaselineHelper" parent="Props/Shelf2" index="0"]
+position = Vector2( 0, 8 )
+
+[node name="WalkToHelper" parent="Props/Shelf2" index="1"]
+position = Vector2( 0, 20 )
+
+[node name="Sprite" parent="Props/Shelf2" index="2"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="ShelfBase" type="Sprite" parent="Props/Shelf2"]
+position = Vector2( -10, 5 )
+texture = ExtResource( 19 )
+centered = false
+
+[node name="ShelfBody" type="Sprite" parent="Props/Shelf2"]
+position = Vector2( -8, -18 )
+texture = ExtResource( 21 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 19, 26 )
+region_filter_clip = true
+
+[node name="CollisionPolygon2D" parent="Props/Shelf2" index="5"]
+position = Vector2( 1, -2 )
+scale = Vector2( 1, 1.125 )
+
+[node name="Vase" parent="Props/Shelf2" instance=ExtResource( 3 )]
+position = Vector2( 1, -24 )
+script = ExtResource( 25 )
+baseline = 39
+walk_to_point = Vector2( -253, 60 )
+cursor = 10
+script_name = "VaseBlue"
+texture = ExtResource( 26 )
+weight_index = 1
+current_vase = "VaseBlue"
+
+[node name="BaselineHelper" parent="Props/Shelf2/Vase" index="0"]
+visible = true
+position = Vector2( 0, 39 )
+
+[node name="WalkToHelper" parent="Props/Shelf2/Vase" index="1"]
+visible = true
+position = Vector2( -253, 60 )
+
+[node name="Sprite" parent="Props/Shelf2/Vase" index="2"]
+texture = ExtResource( 26 )
+
+[node name="CollisionPolygon2D" parent="Props/Shelf2/Vase" index="3"]
+polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 2 )
+
+[node name="Tween" type="Tween" parent="Props/Shelf2"]
 
 [node name="Shelf3" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -232, 36 )
+position = Vector2( -236, 12 )
 script = ExtResource( 12 )
+description = "Shelf"
 baseline = 8
+walk_to_point = Vector2( 0, 20 )
 cursor = 10
 script_name = "Shelf"
 texture = ExtResource( 27 )
 balance_config = [ -0.8, -1.1, 1.5, -1.2 ]
 weight_index = 2
+offset_balance = -5
+
+[node name="BaselineHelper" parent="Props/Shelf3" index="0"]
+position = Vector2( 0, 8 )
+
+[node name="WalkToHelper" parent="Props/Shelf3" index="1"]
+position = Vector2( 0, 20 )
+
+[node name="Sprite" parent="Props/Shelf3" index="2"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="ShelfBase" type="Sprite" parent="Props/Shelf3"]
+position = Vector2( -10, 5 )
+texture = ExtResource( 19 )
+centered = false
+
+[node name="ShelfBody" type="Sprite" parent="Props/Shelf3"]
+position = Vector2( -8, -18 )
+texture = ExtResource( 21 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 19, 26 )
+region_filter_clip = true
+
+[node name="CollisionPolygon2D" parent="Props/Shelf3" index="5"]
+position = Vector2( 1, -1.5 )
+scale = Vector2( 1, 1.09375 )
+
+[node name="Vase" parent="Props/Shelf3" instance=ExtResource( 3 )]
+position = Vector2( 1, -24 )
+script = ExtResource( 25 )
+baseline = 39
+walk_to_point = Vector2( -232, 58 )
+cursor = 10
+script_name = "VaseGreen"
+texture = ExtResource( 22 )
+weight_index = 2
+current_vase = "VaseGreen"
+
+[node name="BaselineHelper" parent="Props/Shelf3/Vase" index="0"]
+position = Vector2( 0, 39 )
+
+[node name="WalkToHelper" parent="Props/Shelf3/Vase" index="1"]
+position = Vector2( -232, 58 )
+
+[node name="Sprite" parent="Props/Shelf3/Vase" index="2"]
+texture = ExtResource( 22 )
+
+[node name="CollisionPolygon2D" parent="Props/Shelf3/Vase" index="3"]
+polygon = PoolVector2Array( -3, -10, 1, -10, 9, 2, 4, 10, -7, 10, -9, 2 )
+
+[node name="Tween" type="Tween" parent="Props/Shelf3"]
 
 [node name="Shelf4" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -210, 16 )
+position = Vector2( -213, 10 )
 script = ExtResource( 12 )
+description = "Shelf"
 baseline = 16
+walk_to_point = Vector2( 0, 20 )
 cursor = 10
 script_name = "Shelf"
 texture = ExtResource( 27 )
 balance_config = [ -0.7, -1.3, -0.6, 2.5 ]
 weight_index = 3
+offset_balance = -10
 
-[node name="Vase1" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -279, 5 )
+[node name="BaselineHelper" parent="Props/Shelf4" index="0"]
+position = Vector2( 0, 16 )
+
+[node name="WalkToHelper" parent="Props/Shelf4" index="1"]
+position = Vector2( 0, 20 )
+
+[node name="ShelfBase" type="Sprite" parent="Props/Shelf4"]
+position = Vector2( -10, 5 )
+texture = ExtResource( 19 )
+centered = false
+
+[node name="ShelfBody" type="Sprite" parent="Props/Shelf4"]
+position = Vector2( -8, -18 )
+texture = ExtResource( 21 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 19, 26 )
+region_filter_clip = true
+
+[node name="Sprite" parent="Props/Shelf4" index="4"]
+visible = false
+texture = ExtResource( 27 )
+
+[node name="CollisionPolygon2D" parent="Props/Shelf4" index="5"]
+position = Vector2( 1, -1.5 )
+scale = Vector2( 1, 1.09375 )
+
+[node name="Vase" parent="Props/Shelf4" instance=ExtResource( 3 )]
+position = Vector2( 1, -24 )
 script = ExtResource( 25 )
-description = "VaseYellow"
 baseline = 39
-walk_to_point = Vector2( 3, 26 )
-cursor = 10
-script_name = "VaseYellow"
-texture = ExtResource( 20 )
-
-[node name="BaselineHelper" parent="Props/Vase1" index="0"]
-position = Vector2( 0, 39 )
-
-[node name="WalkToHelper" parent="Props/Vase1" index="1"]
-position = Vector2( 3, 26 )
-
-[node name="Sprite" parent="Props/Vase1" index="2"]
-texture = ExtResource( 20 )
-
-[node name="CollisionPolygon2D" parent="Props/Vase1" index="3"]
-polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 3 )
-
-[node name="Vase2" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -252, -8 )
-script = ExtResource( 25 )
-description = "VaseGreen"
-baseline = 39
-walk_to_point = Vector2( 4, 27 )
-cursor = 10
-script_name = "VaseGreen"
-texture = ExtResource( 22 )
-weight_index = 1
-current_vase = "VaseGreen"
-
-[node name="BaselineHelper" parent="Props/Vase2" index="0"]
-position = Vector2( 0, 39 )
-
-[node name="WalkToHelper" parent="Props/Vase2" index="1"]
-position = Vector2( 4, 27 )
-
-[node name="Sprite" parent="Props/Vase2" index="2"]
-texture = ExtResource( 22 )
-
-[node name="CollisionPolygon2D" parent="Props/Vase2" index="3"]
-polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 9, -6, 9, -9, 2 )
-
-[node name="Vase3" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -231, 12 )
-script = ExtResource( 25 )
-description = "VaseRed"
-baseline = 39
-walk_to_point = Vector2( 4, 27 )
+walk_to_point = Vector2( -210, 56 )
 cursor = 10
 script_name = "VaseRed"
 texture = ExtResource( 24 )
-weight_index = 2
+weight_index = 3
 current_vase = "VaseRed"
 
-[node name="BaselineHelper" parent="Props/Vase3" index="0"]
+[node name="BaselineHelper" parent="Props/Shelf4/Vase" index="0"]
 position = Vector2( 0, 39 )
 
-[node name="WalkToHelper" parent="Props/Vase3" index="1"]
-position = Vector2( 4, 27 )
+[node name="WalkToHelper" parent="Props/Shelf4/Vase" index="1"]
+position = Vector2( -210, 56 )
 
-[node name="Sprite" parent="Props/Vase3" index="2"]
+[node name="Sprite" parent="Props/Shelf4/Vase" index="2"]
 texture = ExtResource( 24 )
 
-[node name="CollisionPolygon2D" parent="Props/Vase3" index="3"]
-polygon = PoolVector2Array( -3, -10, 1, -10, 9, 2, 4, 10, -7, 10, -9, 2 )
-
-[node name="Vase4" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -209, -8 )
-script = ExtResource( 25 )
-description = "VaseBlue"
-baseline = 39
-walk_to_point = Vector2( 4, 27 )
-cursor = 10
-script_name = "VaseBlue"
-texture = ExtResource( 26 )
-weight_index = 3
-current_vase = "VaseBlue"
-
-[node name="BaselineHelper" parent="Props/Vase4" index="0"]
-position = Vector2( 0, 39 )
-
-[node name="WalkToHelper" parent="Props/Vase4" index="1"]
-position = Vector2( 4, 27 )
-
-[node name="Sprite" parent="Props/Vase4" index="2"]
-texture = ExtResource( 26 )
-
-[node name="CollisionPolygon2D" parent="Props/Vase4" index="3"]
+[node name="CollisionPolygon2D" parent="Props/Shelf4/Vase" index="3"]
 polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 10, -6, 10, -9, 2 )
+
+[node name="Tween" type="Tween" parent="Props/Shelf4"]
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -315,6 +442,7 @@ polygon = PoolVector2Array( -3, -10, 2, -10, 9, 2, 5, 10, -6, 10, -9, 2 )
 [node name="Points" type="Node2D" parent="."]
 
 [node name="WalkableAreas" type="Node2D" parent="."]
+visible = false
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
 
@@ -324,7 +452,7 @@ navpoly = SubResource( 1 )
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 10 )]
-position = Vector2( 234, 50 )
+position = Vector2( -188, 50 )
 
 [node name="Secret" type="Node" parent="."]
 script = ExtResource( 28 )
@@ -333,7 +461,11 @@ script = ExtResource( 28 )
 [editable path="Props/Paragraph"]
 [editable path="Props/Magazine"]
 [editable path="Props/Coffee"]
-[editable path="Props/Vase1"]
-[editable path="Props/Vase2"]
-[editable path="Props/Vase3"]
-[editable path="Props/Vase4"]
+[editable path="Props/Shelf1"]
+[editable path="Props/Shelf1/Vase"]
+[editable path="Props/Shelf2"]
+[editable path="Props/Shelf2/Vase"]
+[editable path="Props/Shelf3"]
+[editable path="Props/Shelf3/Vase"]
+[editable path="Props/Shelf4"]
+[editable path="Props/Shelf4/Vase"]
