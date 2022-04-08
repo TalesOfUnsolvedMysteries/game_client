@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/metal_box.png-7eb11cc5f19d1b77efb07c45abc92803.stex"
+path="res://.import/window.png-ee2c486f6a3efde4e2cc02066031ce4f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/Policeman/Props/MetalBox/metal_box.png"
-dest_files=[ "res://.import/metal_box.png-7eb11cc5f19d1b77efb07c45abc92803.stex" ]
+source_file="res://popochiu/Rooms/Policeman/Props/Window/window.png"
+dest_files=[ "res://.import/window.png-ee2c486f6a3efde4e2cc02066031ce4f.stex" ]
 
 [params]
 

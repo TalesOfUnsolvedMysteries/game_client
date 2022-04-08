@@ -1,24 +1,28 @@
 tool
-extends PopochiuRoom
+extends Prop
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
+func _process(delta: float) -> void:
+	_format_time(OS.get_time().hour, OS.get_time().second)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
-func on_room_entered() -> void:
-	A.play({cue_name = 'sfx_door_close',is_in_queue = false})
+func on_interact() -> void:
+	yield(E.run([]), 'completed')
 
 
-func on_room_transition_finished() -> void:
+func on_look() -> void:
+	yield(E.run([]), 'completed')
+
+
+func on_item_used(item: InventoryItem) -> void:
 	pass
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
-func show_jukebox() -> void:
-	$GI/Jukebox.appear()
-
-
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-# TODO: Poner aquí los métodos privados
+func _format_time(hh: int, mm: int) -> void:
+	$H1.text = str(hh).pad_zeros(2)[0]
+	$H2.text = str(hh).pad_zeros(2)[1]
+	$M1.text = str(mm).pad_zeros(2)[0]
+	$M2.text = str(mm).pad_zeros(2)[1]

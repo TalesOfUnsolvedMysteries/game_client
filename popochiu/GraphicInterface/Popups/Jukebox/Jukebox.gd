@@ -18,8 +18,7 @@ func _ready() -> void:
 	
 	secret.connect('solved', self, '_on_solved')
 	
-	# hide()
-	appear()
+	hide()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
