@@ -12,6 +12,10 @@ var vase_textures = {
 	'VaseBlue': load('res://popochiu/Rooms/Penthouse/Props/VaseBlue/vase_blue.png')
 }
 
+func _ready():
+	var shelfs = Globals.state.get('Penthouse_VASELS_ON_Shelfs')
+	set_vase(shelfs[weight_index])
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	yield(E.run([
@@ -21,14 +25,13 @@ func on_interact() -> void:
 
 	# checks the vase was added to the inventory
 	if I.is_item_in_inventory(current_vase):
-		Globals.set_weight_on_shelf(weight_index, 0)
+		Globals.set_vase_on_shelf(weight_index, '', 0)
 		current_vase = ''
 		self.description = 'Shelf'
 		$Sprite.hide()
 
 func on_look() -> void:
 	yield(E.run([]), 'completed')
-
 
 func on_item_used(item: InventoryItem) -> void:
 	if current_vase != '': return
@@ -39,12 +42,18 @@ func on_item_used(item: InventoryItem) -> void:
 		C.walk_to_clicked(),
 		I.remove_item(item.script_name, false)
 	]), 'completed')
-	Globals.set_weight_on_shelf(weight_index, item.weight)
+	Globals.set_vase_on_shelf(weight_index, item.script_name, item.weight)
+	set_vase(item.script_name)
+
+func add_discarded_vase(item: InventoryItem) -> void:
+	yield(E.run([
+		C.walk_to_clicked(),
+	]), 'completed')
+	Globals.set_vase_on_shelf(weight_index, item.script_name, item.weight)
 	set_vase(item.script_name)
 
 func set_vase(vase_name):
 	current_vase = vase_name
-	print('placed ', current_vase)
 	self.texture = vase_textures[current_vase]
 	self.description = current_vase
 	$Sprite.show()

@@ -20,5 +20,7 @@ func on_look() -> void:
 func on_item_used(_item: InventoryItem) -> void:
 	pass
 
+func on_discard () -> void: pass
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 # TODO: Poner aquí los métodos privados
