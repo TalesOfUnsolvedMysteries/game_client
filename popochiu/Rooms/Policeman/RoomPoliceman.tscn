@@ -187,11 +187,7 @@ script_name = "Clock"
 texture = ExtResource( 18 )
 
 [node name="BaselineHelper" parent="Props/Clock" index="0"]
-visible = true
 position = Vector2( 0, 3 )
-
-[node name="WalkToHelper" parent="Props/Clock" index="1"]
-visible = true
 
 [node name="Sprite" parent="Props/Clock" index="2"]
 texture = ExtResource( 18 )
@@ -231,7 +227,7 @@ margin_right = 7.0
 margin_bottom = -1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "1"
+text = "5"
 
 [node name="M2" type="Label" parent="Props/Clock"]
 margin_left = 6.0

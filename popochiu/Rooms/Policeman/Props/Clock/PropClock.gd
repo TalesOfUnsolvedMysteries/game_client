@@ -4,7 +4,7 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _process(delta: float) -> void:
-	_format_time(OS.get_time().hour, OS.get_time().second)
+	_format_time(OS.get_time().hour, OS.get_time().minute)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
