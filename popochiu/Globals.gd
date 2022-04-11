@@ -17,6 +17,7 @@ enum TestMode {
 export var test_mode = TestMode.SINGLE
 
 signal battery_charge_updated
+signal shelf_weights_updated
 
 enum Bodies {
 	BEETLE,
@@ -115,6 +116,11 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0010'
 	},
+	VASE_LOCK = {
+		label = 'open the secret compartiment on penthouse',
+		img = 'nft_new_floors',
+		id = '0011'
+	},
 }
 
 var main_mx_play = false
@@ -147,7 +153,11 @@ sync var state := {
 	# elevator battery locations
 	'EngineRoom-MOTHERBOARD_WITH_BATTERY': true,
 	'EngineRoom-CHARGE_SOCKET_WITH_BATTERY': false,
-	'BATTERY_LAST_LOCATION': 'EngineRoom-MOTHERBOARD_WITH_BATTERY'
+	'BATTERY_LAST_LOCATION': 'EngineRoom-MOTHERBOARD_WITH_BATTERY',
+	# penthouse vases
+	'Penthouse_VASES_ON_Shelfs': ['VaseBlue', 'VaseGreen', 'VaseYellow', 'VaseRed'],
+	'Penthouse_WEIGHTS_ON_Shelfs': [1.6, 0.815, 1.25, 2.38124],
+	'Penthouse-VASE_SOLVED': false
 }
 var server_file = "user://server.save"
 var battery_power := 0.0 setget _set_battery_power
@@ -294,6 +304,20 @@ func _set_puzzle_state(value: Dictionary) -> void:
 	if NetworkManager.server:
 		save_state()
 
+
+# helper for vases
+func set_vase_on_shelf(index, vasel_name, weight):
+	var weights = state.get('Penthouse_WEIGHTS_ON_Shelfs')
+	weights[index] = weight
+	set_state('Penthouse_WEIGHTS_ON_Shelfs', weights)
+	var shelfs = state.get('Penthouse_VASES_ON_Shelfs')
+	shelfs[index] = vasel_name
+	set_state('Penthouse_VASES_ON_Shelfs', shelfs)
+	yield(get_tree().create_timer(0.1), 'timeout')
+	emit_signal('shelf_weights_updated')
+	yield(E.run([
+		E.wait(0.35)
+	]), 'completed')
 
 # test modes validations
 
