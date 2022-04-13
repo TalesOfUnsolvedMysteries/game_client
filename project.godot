@@ -244,7 +244,6 @@ gdscript/warnings/enable=false
 
 window/size/width=320
 window/size/height=180
-window/size/borderless=true
 window/size/always_on_top=true
 window/size/test_width=640
 window/size/test_height=360

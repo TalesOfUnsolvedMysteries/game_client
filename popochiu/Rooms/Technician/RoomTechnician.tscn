@@ -52,9 +52,19 @@ texture = ExtResource( 8 )
 position = Vector2( 47, -39 )
 script = ExtResource( 17 )
 description = "Window"
+baseline = -90
 cursor = 10
 script_name = "Window"
 texture = ExtResource( 24 )
+
+[node name="BaselineHelper" parent="Props/Window" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/Window" index="2"]
+texture = ExtResource( 24 )
+
+[node name="CollisionPolygon2D" parent="Props/Window" index="3"]
+polygon = PoolVector2Array( -13, -20, 14, -14, 13, 19, -14, 8 )
 
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -1, -47 )
@@ -133,6 +143,28 @@ texture = ExtResource( 23 )
 [node name="CollisionPolygon2D" parent="Props/PC" index="3"]
 polygon = PoolVector2Array( -16, -11, -7, -16, 7, -17, 16, 12, 0, 19, -5, 15, -16, 1 )
 
+[node name="Lockers" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 59, 1 )
+script = ExtResource( 4 )
+description = "Lockers"
+baseline = 19
+walk_to_point = Vector2( -12, 23 )
+cursor = 1
+script_name = "Lockers"
+texture = ExtResource( 10 )
+
+[node name="BaselineHelper" parent="Props/Lockers" index="0"]
+position = Vector2( 0, 19 )
+
+[node name="WalkToHelper" parent="Props/Lockers" index="1"]
+position = Vector2( -12, 23 )
+
+[node name="Sprite" parent="Props/Lockers" index="2"]
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/Lockers" index="3"]
+polygon = PoolVector2Array( -12, -24, 3, -27, 16, -19, 14, 21, 2, 26, -11, 16 )
+
 [node name="Table" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -10, 24 )
 description = "Table"
@@ -194,28 +226,6 @@ texture = ExtResource( 12 )
 [node name="CollisionPolygon2D" parent="Props/Whisky" index="3"]
 polygon = PoolVector2Array( -2, -3, 4, -3, 4, 4, -4, 4 )
 
-[node name="Lockers" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 59, 1 )
-script = ExtResource( 4 )
-description = "Lockers"
-baseline = 19
-walk_to_point = Vector2( -12, 23 )
-cursor = 1
-script_name = "Lockers"
-texture = ExtResource( 10 )
-
-[node name="BaselineHelper" parent="Props/Lockers" index="0"]
-position = Vector2( 0, 19 )
-
-[node name="WalkToHelper" parent="Props/Lockers" index="1"]
-position = Vector2( -12, 23 )
-
-[node name="Sprite" parent="Props/Lockers" index="2"]
-texture = ExtResource( 10 )
-
-[node name="CollisionPolygon2D" parent="Props/Lockers" index="3"]
-polygon = PoolVector2Array( -12, -24, 3, -27, 16, -19, 14, 21, 2, 26, -11, 16 )
-
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 73, 32 )
 script = ExtResource( 7 )
@@ -224,6 +234,7 @@ baseline = 37
 walk_to_point = Vector2( -12, 16 )
 cursor = 1
 script_name = "Exit"
+always_on_top = true
 texture = ExtResource( 13 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
@@ -256,11 +267,12 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 14 )]
 position = Vector2( 61, 48 )
 
+[editable path="Props/Window"]
 [editable path="Props/Painting"]
 [editable path="Props/Cabinet"]
 [editable path="Props/Gadgets"]
 [editable path="Props/PC"]
+[editable path="Props/Lockers"]
 [editable path="Props/Notes"]
 [editable path="Props/Whisky"]
-[editable path="Props/Lockers"]
 [editable path="Props/Exit"]

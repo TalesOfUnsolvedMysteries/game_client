@@ -20,6 +20,7 @@ export var use_translations := false
 export var inventory_always_visible := false
 export var inventory_limit := 0
 export var toolbar_always_visible := false
+export var items_on_start := []
 
 var in_run := false
 # Se usa para que no se pueda cambiar de escena si esta se ha cargado por completo,
@@ -71,6 +72,10 @@ func _ready() -> void:
 		).instance()
 		C.player = pc
 		C.characters.append(pc)
+	
+	# Add inventory items on start
+	for key in items_on_start:
+		I.add_item(key, false)
 	
 	set_process_input(false)
 
@@ -230,7 +235,6 @@ func room_readied(room: PopochiuRoom) -> void:
 	# Asignarse a los Clickable
 	for c in get_tree().get_nodes_in_group('Clickable'):
 		c.room = room
-		prints('--->', c.name)
 
 	room.on_room_entered()
 		

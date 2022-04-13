@@ -274,27 +274,29 @@ func _check_z_indexes(chr: PopochiuCharacter) -> void:
 	var y_pos := chr.global_position.y
 	
 	# Comparar la posición en Y del personaje con el baseline de cada Prop
+	var z_index_update := 0
 	if chr.is_moving:
-		for p in $Props.get_children():
-			if not p.visible: continue
-			if not p.always_on_top:
-				_check_baseline(p, y_pos, 2)
-			else:
-				p.z_index = 4
+		for prop in $Props.get_children():
+			if not prop.visible:
+				continue
+			if prop.always_on_top:
+				prop.z_index = 4
+			elif _is_in_front_of(prop, y_pos):
+				z_index_update += 1
+			prop.z_index = z_index_update
 	
 	# Comparar la posición en Y del personaje con el baseline de cada Personaje
-	for c in $Characters.get_children():
-		if c.get_instance_id() != chr.get_instance_id():
-			if not c.always_on_top:
-				_check_baseline(c, y_pos)
-			else:
-				c.z_index = 3
+#	for c in $Characters.get_children():
+#		if c.get_instance_id() != chr.get_instance_id():
+#			if not c.always_on_top:
+#				_check_baseline(c, y_pos)
+#			else:
+#				c.z_index = 3
 
 
-func _check_baseline(nde: Node, chr_y_pos: float, z := 1) -> void:
-	if not nde is Clickable: return
-	var baseline: float = nde.to_global(Vector2.DOWN * nde.baseline).y
-	nde.z_index = z if baseline > chr_y_pos else 0
+func _is_in_front_of(nde: Node, chr_y_pos: float) -> bool:
+	var nde_baseline: float = nde.to_global(Vector2.DOWN * nde.baseline).y
+	return nde_baseline > chr_y_pos
 
 
 func _clear_navigation_path() -> void:

@@ -30,9 +30,9 @@
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-8.tres" type="DynamicFont" id=28]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 4, -4, 104, 11, 104, 19, 76, 77, -64, 74, -94, 43, -72, 2 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6 ) ]
-outlines = [ PoolVector2Array( -72, 2, -94, 43, -64, 74, 76, 77, 104, 19, 104, 11, 4, -4 ) ]
+vertices = PoolVector2Array( 32, 36, 104, 11, 104, 19, 76, 77, 18, 50, -64, 74, 0, 51, -21, 42, -94, 43, -72, 2, -15, 29, 4, -4, 3, 25 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5, 6 ), PoolIntArray( 7, 6, 5, 8 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 10, 9, 11, 12 ), PoolIntArray( 12, 11, 1, 0 ) ]
+outlines = [ PoolVector2Array( -72, 2, -94, 43, -64, 74, 76, 77, 104, 19, 104, 11, 4, -4 ), PoolVector2Array( -21, 42, 0, 51, 18, 50, 32, 36, 3, 25, -15, 29 ) ]
 
 [node name="RoomPoliceman" type="Node2D"]
 script = ExtResource( 1 )
@@ -51,28 +51,6 @@ baseline = -90
 cursor = 10
 script_name = "Bg"
 texture = ExtResource( 9 )
-
-[node name="Exit" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -87, 43 )
-script = ExtResource( 7 )
-description = "To second floor"
-baseline = 36
-walk_to_point = Vector2( 14, 9 )
-cursor = 10
-script_name = "Exit"
-texture = ExtResource( 2 )
-
-[node name="BaselineHelper" parent="Props/Exit" index="0"]
-position = Vector2( 0, 36 )
-
-[node name="WalkToHelper" parent="Props/Exit" index="1"]
-position = Vector2( 14, 9 )
-
-[node name="Sprite" parent="Props/Exit" index="2"]
-texture = ExtResource( 2 )
-
-[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
-polygon = PoolVector2Array( -7, 13, 11, 32, -22, 30 )
 
 [node name="Window" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -52, -39 )
@@ -105,13 +83,35 @@ texture = ExtResource( 13 )
 [node name="CollisionPolygon2D" parent="Props/Painting" index="3"]
 polygon = PoolVector2Array( -14, -13, 9, -15, 13, 12, -10, 15 )
 
+[node name="Freezer" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -30, -8 )
+script = ExtResource( 11 )
+description = "Freezer"
+baseline = 12
+cursor = 1
+script_name = "Freezer"
+texture = ExtResource( 12 )
+
+[node name="BaselineHelper" parent="Props/Freezer" index="0"]
+position = Vector2( 0, 12 )
+
+[node name="Sprite" parent="Props/Freezer" index="2"]
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Freezer" index="3"]
+polygon = PoolVector2Array( -27, -13, 10, -18, 20, -10, 19, 14, -18, 18, -28, 8 )
+
 [node name="MusicBoxCabinet" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 82, 4 )
 script = ExtResource( 5 )
 description = "MusicBoxCabinet"
+baseline = 5
 cursor = 1
 script_name = "MusicBoxCabinet"
 texture = ExtResource( 6 )
+
+[node name="BaselineHelper" parent="Props/MusicBoxCabinet" index="0"]
+position = Vector2( 0, 5 )
 
 [node name="Sprite" parent="Props/MusicBoxCabinet" index="2"]
 texture = ExtResource( 6 )
@@ -123,14 +123,10 @@ polygon = PoolVector2Array( -15, -10, 7, -8, 13, -16, 15, 7, 8, 19, -18, 15 )
 position = Vector2( 82, -15 )
 script = ExtResource( 4 )
 description = "Music box"
-baseline = 16
 walk_to_point = Vector2( -10, 41 )
 cursor = 1
 script_name = "MusicBox"
 texture = ExtResource( 10 )
-
-[node name="BaselineHelper" parent="Props/MusicBox" index="0"]
-position = Vector2( 0, 16 )
 
 [node name="WalkToHelper" parent="Props/MusicBox" index="1"]
 position = Vector2( -10, 41 )
@@ -141,28 +137,29 @@ texture = ExtResource( 10 )
 [node name="CollisionPolygon2D" parent="Props/MusicBox" index="3"]
 polygon = PoolVector2Array( -8, -5, -3, -9, 6, -7, 10, 3, 5, 9, -10, 7 )
 
-[node name="Freezer" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -30, -8 )
-script = ExtResource( 11 )
-description = "Freezer"
-baseline = 11
+[node name="FilesCabinet" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -80, 8 )
+script = ExtResource( 19 )
+description = "FilesCabinet"
+baseline = 8
 cursor = 1
-script_name = "Freezer"
-texture = ExtResource( 12 )
+script_name = "FilesCabinet"
+texture = ExtResource( 20 )
 
-[node name="BaselineHelper" parent="Props/Freezer" index="0"]
-position = Vector2( 0, 11 )
+[node name="BaselineHelper" parent="Props/FilesCabinet" index="0"]
+position = Vector2( 0, 8 )
 
-[node name="Sprite" parent="Props/Freezer" index="2"]
-texture = ExtResource( 12 )
+[node name="Sprite" parent="Props/FilesCabinet" index="2"]
+texture = ExtResource( 20 )
 
-[node name="CollisionPolygon2D" parent="Props/Freezer" index="3"]
-polygon = PoolVector2Array( -27, -13, 10, -18, 20, -10, 19, 14, -18, 18, -28, 8 )
+[node name="CollisionPolygon2D" parent="Props/FilesCabinet" index="3"]
+polygon = PoolVector2Array( -19, -15, -7, -29, 6, -30, 20, 6, 8, 30, -11, 25 )
 
 [node name="Table" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 3, 27 )
 script = ExtResource( 15 )
 description = "Table"
+clickable = false
 baseline = 17
 cursor = 1
 script_name = "Table"
@@ -175,6 +172,7 @@ position = Vector2( 0, 17 )
 texture = ExtResource( 17 )
 
 [node name="CollisionPolygon2D" parent="Props/Table" index="3"]
+visible = false
 polygon = PoolVector2Array( -19, -19, 2, -24, 28, -12, 27, -8, 15, 4, -4, 4, -27, -7, -27, -10 )
 
 [node name="Clock" parent="Props" instance=ExtResource( 3 )]
@@ -202,7 +200,7 @@ margin_right = -2.0
 margin_bottom = 2.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "1"
+text = "0"
 
 [node name="H2" type="Label" parent="Props/Clock"]
 margin_left = -3.0
@@ -211,7 +209,7 @@ margin_right = 1.0
 margin_bottom = 1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "7"
+text = "6"
 
 [node name="S" type="Label" parent="Props/Clock"]
 margin_top = -3.0
@@ -227,7 +225,7 @@ margin_right = 7.0
 margin_bottom = -1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "1"
+text = "2"
 
 [node name="M2" type="Label" parent="Props/Clock"]
 margin_left = 6.0
@@ -236,25 +234,7 @@ margin_right = 10.0
 margin_bottom = -2.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "8"
-
-[node name="FilesCabinet" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -80, 8 )
-script = ExtResource( 19 )
-description = "FilesCabinet"
-baseline = 7
-cursor = 1
-script_name = "FilesCabinet"
-texture = ExtResource( 20 )
-
-[node name="BaselineHelper" parent="Props/FilesCabinet" index="0"]
-position = Vector2( 0, 7 )
-
-[node name="Sprite" parent="Props/FilesCabinet" index="2"]
-texture = ExtResource( 20 )
-
-[node name="CollisionPolygon2D" parent="Props/FilesCabinet" index="3"]
-polygon = PoolVector2Array( -19, -15, -7, -29, 6, -30, 20, 6, 8, 30, -11, 25 )
+text = "5"
 
 [node name="Notebook" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 16, 17 )
@@ -288,6 +268,29 @@ texture = ExtResource( 24 )
 [node name="CollisionPolygon2D" parent="Props/Trophy" index="3"]
 polygon = PoolVector2Array( -5, 2, -3, 1, -4, -4, -2, -9, 2, -6, 2, 0, 5, 0, 6, 4, 2, 7, -4, 7 )
 
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -87, 43 )
+script = ExtResource( 7 )
+description = "To second floor"
+baseline = 36
+walk_to_point = Vector2( 14, 9 )
+cursor = 10
+script_name = "Exit"
+always_on_top = true
+texture = ExtResource( 2 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
+position = Vector2( 0, 36 )
+
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
+position = Vector2( 14, 9 )
+
+[node name="Sprite" parent="Props/Exit" index="2"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( -7, 13, 11, 32, -22, 30 )
+
 [node name="Hotspots" type="Node2D" parent="."]
 
 [node name="Regions" type="Node2D" parent="."]
@@ -311,13 +314,13 @@ position = Vector2( -73, 52 )
 [node name="Jukebox" parent="GI" instance=ExtResource( 25 )]
 visible = false
 
-[editable path="Props/Exit"]
 [editable path="Props/Painting"]
+[editable path="Props/Freezer"]
 [editable path="Props/MusicBoxCabinet"]
 [editable path="Props/MusicBox"]
-[editable path="Props/Freezer"]
+[editable path="Props/FilesCabinet"]
 [editable path="Props/Table"]
 [editable path="Props/Clock"]
-[editable path="Props/FilesCabinet"]
 [editable path="Props/Notebook"]
 [editable path="Props/Trophy"]
+[editable path="Props/Exit"]
