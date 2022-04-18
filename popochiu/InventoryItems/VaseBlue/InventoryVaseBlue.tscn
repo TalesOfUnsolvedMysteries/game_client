@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://popochiu/InventoryItems/VaseBlue/InventoryVaseBlue.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseBlue/vase_blue.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/InventoryItems/VaseBlue/vase_blue.png" type="Texture" id=2]
 
 [node name="InventoryVaseBlue" type="Control"]
 anchor_right = 1.0
@@ -16,6 +16,6 @@ description = "Blue Vase"
 script_name = "VaseBlue"
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 14.0
+margin_bottom = 14.0
 texture = ExtResource( 2 )

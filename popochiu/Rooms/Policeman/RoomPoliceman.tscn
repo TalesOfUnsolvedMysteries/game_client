@@ -1,24 +1,38 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Policeman/RoomPoliceman.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Exit/exit.png" type="Texture" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/MusicBox/PropMusicBox.gd" type="Script" id=4]
-[ext_resource path="res://popochiu/Rooms/Policeman/Props/MetalBox/PropMetalBox.gd" type="Script" id=5]
-[ext_resource path="res://popochiu/Rooms/Policeman/Props/Keyboard/PropKeyboard.gd" type="Script" id=6]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/MusicBoxCabinet/PropMusicBoxCabinet.gd" type="Script" id=5]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/MusicBoxCabinet/music_box_cabinet.png" type="Texture" id=6]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Exit/PropExit.gd" type="Script" id=7]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Painting/PropPainting.gd" type="Script" id=8]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Bg/bg.png" type="Texture" id=9]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/MusicBox/music_box.png" type="Texture" id=10]
-[ext_resource path="res://popochiu/Rooms/Policeman/Props/Keyboard/keyboard.png" type="Texture" id=11]
-[ext_resource path="res://popochiu/Rooms/Policeman/Props/MetalBox/metal_box.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Freezer/PropFreezer.gd" type="Script" id=11]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Freezer/freezer.png" type="Texture" id=12]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Painting/painting.png" type="Texture" id=13]
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=14]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Table/PropTable.gd" type="Script" id=15]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Clock/PropClock.gd" type="Script" id=16]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Table/table.png" type="Texture" id=17]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Clock/clock.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/FilesCabinet/PropFilesCabinet.gd" type="Script" id=19]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/FilesCabinet/files_cabinet.png" type="Texture" id=20]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Notebook/PropNotebook.gd" type="Script" id=21]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Notebook/notebook.png" type="Texture" id=22]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Trophy/PropTrophy.gd" type="Script" id=23]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Trophy/trophy.png" type="Texture" id=24]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/Jukebox.tscn" type="PackedScene" id=25]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Window/PropWindow.gd" type="Script" id=26]
+[ext_resource path="res://popochiu/Rooms/Policeman/Props/Window/window.png" type="Texture" id=27]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-8.tres" type="DynamicFont" id=28]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -49, 29, -4, 22, 60, 13, 104, 11, 104, 19, 76, 77, -64, 74, -94, 43, -72, 2, -59, 17, 4, -4, -13, 10, 27, 0, 23, 12, 65, 6, 33, 15, 37, 11 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ), PoolIntArray( 0, 7, 8, 9 ), PoolIntArray( 9, 8, 10, 11 ), PoolIntArray( 10, 12, 13, 1, 11 ), PoolIntArray( 2, 14, 3 ), PoolIntArray( 15, 16, 2 ), PoolIntArray( 15, 2, 1 ), PoolIntArray( 1, 13, 15 ) ]
-outlines = [ PoolVector2Array( -72, 2, -94, 43, -64, 74, 76, 77, 104, 19, 104, 11, 65, 6, 60, 13, 37, 11, 33, 15, 23, 12, 27, 0, 4, -4 ), PoolVector2Array( -59, 17, -49, 29, -4, 22, -13, 10 ) ]
+vertices = PoolVector2Array( 32, 36, 104, 11, 104, 19, 76, 77, 18, 50, -64, 74, 0, 51, -21, 42, -94, 43, -72, 2, -15, 29, 4, -4, 3, 25 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5, 6 ), PoolIntArray( 7, 6, 5, 8 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 10, 9, 11, 12 ), PoolIntArray( 12, 11, 1, 0 ) ]
+outlines = [ PoolVector2Array( -72, 2, -94, 43, -64, 74, 76, 77, 104, 19, 104, 11, 4, -4 ), PoolVector2Array( -21, 42, 0, 51, 18, 50, 32, 36, 3, 25, -15, 29 ) ]
 
 [node name="RoomPoliceman" type="Node2D"]
 script = ExtResource( 1 )
@@ -38,101 +52,22 @@ cursor = 10
 script_name = "Bg"
 texture = ExtResource( 9 )
 
-[node name="MusicBox" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 35, -7 )
-script = ExtResource( 4 )
-description = "Music box"
-baseline = 16
-walk_to_point = Vector2( -9, 23 )
-cursor = 10
-script_name = "MusicBox"
-texture = ExtResource( 10 )
-
-[node name="BaselineHelper" parent="Props/MusicBox" index="0"]
-position = Vector2( 0, 16 )
-
-[node name="WalkToHelper" parent="Props/MusicBox" index="1"]
-position = Vector2( -9, 23 )
-
-[node name="Sprite" parent="Props/MusicBox" index="2"]
-texture = ExtResource( 10 )
-
-[node name="CollisionPolygon2D" parent="Props/MusicBox" index="3"]
-polygon = PoolVector2Array( -7, -16, -2, -21, 9, -19, 9, -12, 5, -6, -7, -8 )
-
-[node name="MetalBox" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 55, 4 )
-script = ExtResource( 5 )
-description = "MetalBox"
-baseline = 1
-walk_to_point = Vector2( -4, 12 )
-cursor = 10
-script_name = "MetalBox"
-texture = ExtResource( 12 )
-
-[node name="BaselineHelper" parent="Props/MetalBox" index="0"]
-position = Vector2( 0, 1 )
-
-[node name="WalkToHelper" parent="Props/MetalBox" index="1"]
-position = Vector2( -4, 12 )
-
-[node name="Sprite" parent="Props/MetalBox" index="2"]
-texture = ExtResource( 12 )
-
-[node name="CollisionPolygon2D" parent="Props/MetalBox" index="3"]
-polygon = PoolVector2Array( -3, -7, 9, -6, 9, 1, 5, 7, -10, 6, -8, -5 )
-
-[node name="Keyboard" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -33, 9 )
-script = ExtResource( 6 )
-description = "Keyboard"
-baseline = 13
-walk_to_point = Vector2( 12, 20 )
-cursor = 10
-script_name = "Keyboard"
-texture = ExtResource( 11 )
-
-[node name="BaselineHelper" parent="Props/Keyboard" index="0"]
-position = Vector2( 0, 13 )
-
-[node name="WalkToHelper" parent="Props/Keyboard" index="1"]
-position = Vector2( 12, 20 )
-
-[node name="Sprite" parent="Props/Keyboard" index="2"]
-texture = ExtResource( 11 )
-
-[node name="CollisionPolygon2D" parent="Props/Keyboard" index="3"]
-polygon = PoolVector2Array( -25, -13, 12, -20, 18, -19, 28, -8, 25, 13, -13, 19, -23, 10 )
-
-[node name="Exit" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -87, 43 )
-script = ExtResource( 7 )
-description = "To second floor"
-baseline = 36
-walk_to_point = Vector2( 14, 9 )
-cursor = 10
-script_name = "Exit"
-texture = ExtResource( 2 )
-
-[node name="BaselineHelper" parent="Props/Exit" index="0"]
-position = Vector2( 0, 36 )
-
-[node name="WalkToHelper" parent="Props/Exit" index="1"]
-position = Vector2( 14, 9 )
-
-[node name="Sprite" parent="Props/Exit" index="2"]
-texture = ExtResource( 2 )
-
-[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
-polygon = PoolVector2Array( -7, 13, 11, 32, -22, 30 )
+[node name="Window" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -52, -39 )
+script = ExtResource( 26 )
+description = "Window"
+baseline = -90
+cursor = 1
+script_name = "Window"
+texture = ExtResource( 27 )
 
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -53, -36 )
+position = Vector2( -14, -41 )
 script = ExtResource( 8 )
 description = "Painting"
 baseline = -90
 walk_to_point = Vector2( 4, 42 )
-cursor = 10
+cursor = 1
 script_name = "Painting"
 texture = ExtResource( 13 )
 
@@ -147,6 +82,214 @@ texture = ExtResource( 13 )
 
 [node name="CollisionPolygon2D" parent="Props/Painting" index="3"]
 polygon = PoolVector2Array( -14, -13, 9, -15, 13, 12, -10, 15 )
+
+[node name="Freezer" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -30, -8 )
+script = ExtResource( 11 )
+description = "Freezer"
+baseline = 12
+cursor = 1
+script_name = "Freezer"
+texture = ExtResource( 12 )
+
+[node name="BaselineHelper" parent="Props/Freezer" index="0"]
+position = Vector2( 0, 12 )
+
+[node name="Sprite" parent="Props/Freezer" index="2"]
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Freezer" index="3"]
+polygon = PoolVector2Array( -27, -13, 10, -18, 20, -10, 19, 14, -18, 18, -28, 8 )
+
+[node name="MusicBoxCabinet" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 82, 4 )
+script = ExtResource( 5 )
+description = "MusicBoxCabinet"
+baseline = 5
+cursor = 1
+script_name = "MusicBoxCabinet"
+texture = ExtResource( 6 )
+
+[node name="BaselineHelper" parent="Props/MusicBoxCabinet" index="0"]
+position = Vector2( 0, 5 )
+
+[node name="Sprite" parent="Props/MusicBoxCabinet" index="2"]
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" parent="Props/MusicBoxCabinet" index="3"]
+polygon = PoolVector2Array( -15, -10, 7, -8, 13, -16, 15, 7, 8, 19, -18, 15 )
+
+[node name="MusicBox" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 82, -15 )
+script = ExtResource( 4 )
+description = "Music box"
+walk_to_point = Vector2( -10, 41 )
+cursor = 1
+script_name = "MusicBox"
+texture = ExtResource( 10 )
+
+[node name="WalkToHelper" parent="Props/MusicBox" index="1"]
+position = Vector2( -10, 41 )
+
+[node name="Sprite" parent="Props/MusicBox" index="2"]
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/MusicBox" index="3"]
+polygon = PoolVector2Array( -8, -5, -3, -9, 6, -7, 10, 3, 5, 9, -10, 7 )
+
+[node name="FilesCabinet" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -80, 8 )
+script = ExtResource( 19 )
+description = "FilesCabinet"
+baseline = 8
+cursor = 1
+script_name = "FilesCabinet"
+texture = ExtResource( 20 )
+
+[node name="BaselineHelper" parent="Props/FilesCabinet" index="0"]
+position = Vector2( 0, 8 )
+
+[node name="Sprite" parent="Props/FilesCabinet" index="2"]
+texture = ExtResource( 20 )
+
+[node name="CollisionPolygon2D" parent="Props/FilesCabinet" index="3"]
+polygon = PoolVector2Array( -19, -15, -7, -29, 6, -30, 20, 6, 8, 30, -11, 25 )
+
+[node name="Table" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 3, 27 )
+script = ExtResource( 15 )
+description = "Table"
+clickable = false
+baseline = 17
+cursor = 1
+script_name = "Table"
+texture = ExtResource( 17 )
+
+[node name="BaselineHelper" parent="Props/Table" index="0"]
+position = Vector2( 0, 17 )
+
+[node name="Sprite" parent="Props/Table" index="2"]
+texture = ExtResource( 17 )
+
+[node name="CollisionPolygon2D" parent="Props/Table" index="3"]
+visible = false
+polygon = PoolVector2Array( -19, -19, 2, -24, 28, -12, 27, -8, 15, 4, -4, 4, -27, -7, -27, -10 )
+
+[node name="Clock" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -1, 10 )
+script = ExtResource( 16 )
+description = "Clock"
+baseline = 3
+cursor = 1
+script_name = "Clock"
+texture = ExtResource( 18 )
+
+[node name="BaselineHelper" parent="Props/Clock" index="0"]
+position = Vector2( 0, 3 )
+
+[node name="Sprite" parent="Props/Clock" index="2"]
+texture = ExtResource( 18 )
+
+[node name="CollisionPolygon2D" parent="Props/Clock" index="3"]
+polygon = PoolVector2Array( -11, -2, 6, -7, 11, -3, 11, 2, -6, 7, -11, 3 )
+
+[node name="H1" type="Label" parent="Props/Clock"]
+margin_left = -6.0
+margin_top = -1.0
+margin_right = -2.0
+margin_bottom = 2.0
+custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
+custom_fonts/font = ExtResource( 28 )
+text = "0"
+
+[node name="H2" type="Label" parent="Props/Clock"]
+margin_left = -3.0
+margin_top = -2.0
+margin_right = 1.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
+custom_fonts/font = ExtResource( 28 )
+text = "6"
+
+[node name="S" type="Label" parent="Props/Clock"]
+margin_top = -3.0
+margin_right = 2.0
+custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
+custom_fonts/font = ExtResource( 28 )
+text = ":"
+
+[node name="M1" type="Label" parent="Props/Clock"]
+margin_left = 3.0
+margin_top = -4.0
+margin_right = 7.0
+margin_bottom = -1.0
+custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
+custom_fonts/font = ExtResource( 28 )
+text = "2"
+
+[node name="M2" type="Label" parent="Props/Clock"]
+margin_left = 6.0
+margin_top = -5.0
+margin_right = 10.0
+margin_bottom = -2.0
+custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
+custom_fonts/font = ExtResource( 28 )
+text = "5"
+
+[node name="Notebook" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 16, 17 )
+script = ExtResource( 21 )
+description = "Notebook"
+cursor = 1
+script_name = "Notebook"
+texture = ExtResource( 22 )
+
+[node name="Sprite" parent="Props/Notebook" index="2"]
+texture = ExtResource( 22 )
+
+[node name="CollisionPolygon2D" parent="Props/Notebook" index="3"]
+polygon = PoolVector2Array( -8, -2, -1, -5, 7, -1, 8, 1, 1, 4, -8, 0 )
+
+[node name="Trophy" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -86, -21 )
+script = ExtResource( 23 )
+description = "Trophy"
+baseline = -90
+cursor = 1
+script_name = "Trophy"
+texture = ExtResource( 24 )
+
+[node name="BaselineHelper" parent="Props/Trophy" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/Trophy" index="2"]
+texture = ExtResource( 24 )
+
+[node name="CollisionPolygon2D" parent="Props/Trophy" index="3"]
+polygon = PoolVector2Array( -5, 2, -3, 1, -4, -4, -2, -9, 2, -6, 2, 0, 5, 0, 6, 4, 2, 7, -4, 7 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -87, 43 )
+script = ExtResource( 7 )
+description = "To second floor"
+baseline = 36
+walk_to_point = Vector2( 14, 9 )
+cursor = 10
+script_name = "Exit"
+always_on_top = true
+texture = ExtResource( 2 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
+position = Vector2( 0, 36 )
+
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
+position = Vector2( 14, 9 )
+
+[node name="Sprite" parent="Props/Exit" index="2"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( -7, 13, 11, 32, -22, 30 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -166,8 +309,18 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 14 )]
 position = Vector2( -73, 52 )
 
-[editable path="Props/MusicBox"]
-[editable path="Props/MetalBox"]
-[editable path="Props/Keyboard"]
-[editable path="Props/Exit"]
+[node name="GI" type="CanvasLayer" parent="."]
+
+[node name="Jukebox" parent="GI" instance=ExtResource( 25 )]
+visible = false
+
 [editable path="Props/Painting"]
+[editable path="Props/Freezer"]
+[editable path="Props/MusicBoxCabinet"]
+[editable path="Props/MusicBox"]
+[editable path="Props/FilesCabinet"]
+[editable path="Props/Table"]
+[editable path="Props/Clock"]
+[editable path="Props/Notebook"]
+[editable path="Props/Trophy"]
+[editable path="Props/Exit"]

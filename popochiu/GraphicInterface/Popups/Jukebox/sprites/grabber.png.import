@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/keyboard.png-841cdcfbdc9b0aa3987ac5b0720e321d.stex"
+path="res://.import/grabber.png-c10b68d5ba37fabc695b6a4633e920fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/Policeman/Props/Keyboard/keyboard.png"
-dest_files=[ "res://.import/keyboard.png-841cdcfbdc9b0aa3987ac5b0720e321d.stex" ]
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/sprites/grabber.png"
+dest_files=[ "res://.import/grabber.png-c10b68d5ba37fabc695b6a4633e920fe.stex" ]
 
 [params]
 

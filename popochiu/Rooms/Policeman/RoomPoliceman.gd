@@ -15,5 +15,10 @@ func on_room_transition_finished() -> void:
 	pass
 
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func show_jukebox() -> void:
+	$GI/Jukebox.appear()
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 # TODO: Poner aquí los métodos privados
