@@ -35,7 +35,12 @@ func on_reveal() -> void:
 	$Sprite.region_rect.size.y = 0
 	self.show()
 	yield(get_tree().create_timer(0.5), 'timeout')
-	$Tween.interpolate_property($Sprite, 'region_rect:size:y', 0, 19, 1.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.5)
+	$Tween.interpolate_property(
+		$Sprite, 'region_rect:size:y',
+		0, 19,
+		1.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT,
+		0.5
+	)
 	$Tween.start()
 	yield(E.run([
 		E.wait(1.7),
@@ -44,7 +49,11 @@ func on_reveal() -> void:
 
 func on_hide() -> void:
 	if !visible: return
-	$Tween.interpolate_property($Sprite, 'region_rect:size:y', 19, 0, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(
+		$Sprite, 'region_rect:size:y',
+		19, 0,
+		0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT
+	)
 	$Tween.start()
 	yield($Tween, 'tween_completed')
 	self.hide()
