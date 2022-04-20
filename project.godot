@@ -220,6 +220,12 @@ config/windows_native_icon="res://token_icon.ico"
 
 [autoload]
 
+Console="*res://addons/quentincaffeino/console/src/Console.tscn"
+Near="*res://addons/godot-near-sdk/Near.tscn"
+CryptoProxy="*res://addons/godot-near-sdk/utils/CryptoProxy.gd"
+ServerConnection="*res://networking/ServerConnection.tscn"
+NetworkManager="*res://networking/NetworkManager.gd"
+SecretsKeeper="*res://secrets/SecretsKeeper.gd"
 Utils="*res://addons/Popochiu/Engine/Others/Utils.gd"
 Cursor="*res://addons/Popochiu/Engine/Cursor/Cursor.tscn"
 E="*res://addons/Popochiu/Engine/Popochiu.tscn"
@@ -229,12 +235,6 @@ D="*res://addons/Popochiu/Engine/Interfaces/IDialog.gd"
 G="*res://addons/Popochiu/Engine/Interfaces/IGraphicInterface.gd"
 A="*res://addons/Popochiu/Engine/AudioManager/AudioManager.tscn"
 Globals="*res://popochiu/Globals.gd"
-Console="*res://addons/quentincaffeino/console/src/Console.tscn"
-Near="*res://addons/godot-near-sdk/Near.tscn"
-CryptoProxy="*res://addons/godot-near-sdk/utils/CryptoProxy.gd"
-ServerConnection="*res://networking/ServerConnection.tscn"
-NetworkManager="*res://networking/NetworkManager.gd"
-SecretsKeeper="*res://secrets/SecretsKeeper.gd"
 
 [debug]
 
@@ -293,21 +293,6 @@ texture={
 
 [input]
 
-popochiu-interact={
-"deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
- ]
-}
-popochiu-look={
-"deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
- ]
-}
-popochiu-skip={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
 quentincaffeino_console_toggle={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -326,6 +311,21 @@ quentincaffeino_console_history_up={
 quentincaffeino_console_history_down={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+popochiu-interact={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+popochiu-look={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+popochiu-skip={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

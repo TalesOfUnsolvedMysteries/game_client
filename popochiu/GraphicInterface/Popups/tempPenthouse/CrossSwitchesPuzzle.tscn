@@ -1,0 +1,1102 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/tempPenthouse/CrossSwitchesPuzzle.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/tempPenthouse/SwitchesSecret.gd" type="Script" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_link.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 12, 15 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 5.0
+margin_bottom = 2.0
+axis_stretch_vertical = 2
+
+[node name="Puzzle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -90.0
+margin_right = -160.0
+margin_bottom = -90.0
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.129412, 0.12549, 0.611765, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 135.0
+margin_top = 13.0
+margin_right = -10.0
+margin_bottom = -68.0
+
+[node name="ButtonA" type="Button" parent="Buttons"]
+margin_right = 22.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "A"
+
+[node name="ButtonB" type="Button" parent="Buttons"]
+margin_left = 25.0
+margin_right = 47.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "B"
+
+[node name="ButtonC" type="Button" parent="Buttons"]
+margin_left = 50.0
+margin_right = 72.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "C"
+
+[node name="ButtonD" type="Button" parent="Buttons"]
+margin_left = 75.0
+margin_right = 97.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "D"
+
+[node name="ButtonE" type="Button" parent="Buttons"]
+margin_left = 100.0
+margin_right = 122.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "E"
+
+[node name="ButtonF" type="Button" parent="Buttons"]
+margin_left = 125.0
+margin_right = 147.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "F"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonG" type="Button" parent="Buttons"]
+margin_left = 150.0
+margin_right = 172.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "G"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lights" type="Control" parent="."]
+margin_left = 33.0
+margin_top = 70.0
+margin_right = 97.0
+margin_bottom = 134.0
+mouse_filter = 2
+
+[node name="Light" type="ColorRect" parent="Lights"]
+margin_left = 40.0
+margin_top = 36.0
+margin_right = 60.0
+margin_bottom = 54.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="Light2" type="ColorRect" parent="Lights"]
+margin_left = 20.0
+margin_top = 36.0
+margin_right = 40.0
+margin_bottom = 54.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Light3" type="ColorRect" parent="Lights"]
+margin_top = 36.0
+margin_right = 20.0
+margin_bottom = 54.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Light4" type="ColorRect" parent="Lights"]
+margin_left = 40.0
+margin_top = 18.0
+margin_right = 60.0
+margin_bottom = 36.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Light5" type="ColorRect" parent="Lights"]
+margin_left = 20.0
+margin_top = 18.0
+margin_right = 40.0
+margin_bottom = 36.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Light6" type="ColorRect" parent="Lights"]
+margin_top = 18.0
+margin_right = 20.0
+margin_bottom = 36.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "4"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light7" type="ColorRect" parent="Lights"]
+margin_left = 40.0
+margin_right = 60.0
+margin_bottom = 18.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Light8" type="ColorRect" parent="Lights"]
+margin_left = 20.0
+margin_right = 40.0
+margin_bottom = 18.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light8"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light8"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Light9" type="ColorRect" parent="Lights"]
+margin_right = 20.0
+margin_bottom = 18.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="back" type="ColorRect" parent="Lights/Light9"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+color = Color( 0.698039, 1, 0.792157, 0.301961 )
+
+[node name="Label" type="Label" parent="Lights/Light9"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="FloorLinks" type="Control" parent="."]
+margin_left = 139.0
+margin_top = 35.0
+margin_right = 306.0
+margin_bottom = 51.0
+
+[node name="LinksA" type="PanelContainer" parent="FloorLinks"]
+margin_left = 1.0
+margin_right = 16.0
+margin_bottom = 16.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksA"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 53.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+visible = false
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+visible = false
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+visible = false
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+visible = false
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksA/FloorsList"]
+visible = false
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="LinksB" type="PanelContainer" parent="FloorLinks"]
+margin_left = 24.0
+margin_right = 39.0
+margin_bottom = 17.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksB"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 53.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+visible = false
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+visible = false
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+visible = false
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+visible = false
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksB/FloorsList"]
+visible = false
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="LinksC" type="PanelContainer" parent="FloorLinks"]
+margin_left = 49.0
+margin_right = 64.0
+margin_bottom = 14.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksC"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 118.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksC/FloorsList"]
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="LinksD" type="PanelContainer" parent="FloorLinks"]
+margin_left = 74.0
+margin_right = 89.0
+margin_bottom = 13.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksD"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 118.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksD/FloorsList"]
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="LinksE" type="PanelContainer" parent="FloorLinks"]
+margin_left = 98.0
+margin_right = 113.0
+margin_bottom = 13.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksE"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 118.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksE/FloorsList"]
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="LinksF" type="PanelContainer" parent="FloorLinks"]
+margin_left = 124.0
+margin_right = 139.0
+margin_bottom = 11.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksF"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 118.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksF/FloorsList"]
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="LinksG" type="PanelContainer" parent="FloorLinks"]
+margin_left = 149.0
+margin_right = 164.0
+margin_bottom = 14.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksG"]
+margin_left = 2.0
+margin_top = 5.0
+margin_right = 13.0
+margin_bottom = 118.0
+
+[node name="Label2" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_right = 11.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 13.0
+margin_right = 11.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 26.0
+margin_right = 11.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 39.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 52.0
+margin_right = 11.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 65.0
+margin_right = 11.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 78.0
+margin_right = 11.0
+margin_bottom = 87.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 91.0
+margin_right = 11.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="FloorLinks/LinksG/FloorsList"]
+margin_top = 104.0
+margin_right = 11.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="Unlock" type="Button" parent="."]
+visible = false
+margin_left = 210.0
+margin_top = 143.0
+margin_right = 266.0
+margin_bottom = 163.0
+text = "Unlock"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Success" type="Label" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Success"
+align = 1
+valign = 1
+
+[node name="Secret" type="Node" parent="."]
+script = ExtResource( 3 )
+_secret_key = "PENTHOUSE_SWITCHES"
+_secret = "0,0,0,0,0,0,0"
+target = 123

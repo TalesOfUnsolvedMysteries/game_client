@@ -12,11 +12,6 @@ margin_right = -160.0
 margin_bottom = -90.0
 mouse_filter = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-_switches = [ 630, 395, 105, 929, 244, 74, 788 ]
-generated = true
 
 [node name="Buttons" type="Control" parent="."]
 anchor_right = 1.0

@@ -53,30 +53,19 @@ limit_bottom = 0.0
 [node name="Bg" parent="Props" instance=ExtResource( 3 )]
 description = "Bg"
 clickable = false
-baseline = 0
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Bg"
-always_on_top = false
 texture = ExtResource( 4 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Bed" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 49, 14 )
 script = ExtResource( 6 )
 description = "Bed"
-clickable = true
 baseline = 17
 walk_to_point = Vector2( 12, 30 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Bed"
-always_on_top = false
 texture = ExtResource( 8 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Bed" index="0"]
 position = Vector2( 0, 17 )
@@ -95,43 +84,28 @@ position = Vector2( -71, 15 )
 description = "Table"
 clickable = false
 baseline = 10
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Table"
-always_on_top = false
 texture = ExtResource( 9 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Chair" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -39, 7 )
 description = "Chair"
 clickable = false
 baseline = 17
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Chair"
-always_on_top = false
 texture = ExtResource( 10 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Photos" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -82, -12 )
 script = ExtResource( 11 )
 description = "Photos"
-clickable = true
 baseline = -90
 walk_to_point = Vector2( 27, 47 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Photos"
-always_on_top = false
 texture = ExtResource( 12 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Photos" index="0"]
 position = Vector2( 0, -90 )
@@ -149,16 +123,10 @@ polygon = PoolVector2Array( -16, -10, 7, -16, 16, -12, 17, -2, -6, 15, -17, 15 )
 position = Vector2( -32, -39 )
 script = ExtResource( 13 )
 description = "Painting"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( -2, 50 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Painting"
-always_on_top = false
 texture = ExtResource( 14 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="WalkToHelper" parent="Props/Painting" index="1"]
 position = Vector2( -2, 50 )
@@ -173,16 +141,12 @@ polygon = PoolVector2Array( -14, -16, 12, -17, 14, 16, -13, 15 )
 position = Vector2( -68, 45 )
 script = ExtResource( 5 )
 description = "Exit"
-clickable = true
 baseline = 36
 walk_to_point = Vector2( 5, 10 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Exit"
 always_on_top = true
 texture = ExtResource( 7 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Exit" index="0"]
 position = Vector2( 0, 36 )
@@ -212,16 +176,9 @@ polygon = PoolVector2Array( -3, -7, 3, -7, 2, 6, -1, 6 )
 position = Vector2( 15, -48 )
 script = ExtResource( 2 )
 description = "Master Key"
-clickable = true
-baseline = 0
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "MasterKey"
-always_on_top = false
 texture = ExtResource( 17 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="Sprite" parent="Props/MasterKey" index="2"]
 texture = ExtResource( 17 )
@@ -235,16 +192,11 @@ polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
 position = Vector2( -71, 4 )
 script = ExtResource( 18 )
 description = "Jigsaw"
-clickable = true
 baseline = 18
 walk_to_point = Vector2( 18, 31 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Jigsaw"
-always_on_top = false
 texture = ExtResource( 19 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Jigsaw" index="0"]
 position = Vector2( 0, 18 )
