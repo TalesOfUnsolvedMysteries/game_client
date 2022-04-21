@@ -157,7 +157,9 @@ sync var state := {
 	# penthouse vases
 	'Penthouse_VASES_ON_Shelfs': ['VaseBlue', 'VaseGreen', 'VaseYellow', 'VaseRed'],
 	'Penthouse_WEIGHTS_ON_Shelfs': [1.6, 0.815, 1.25, 2.38124],
-	'Penthouse-VASE_SOLVED': false
+	'Penthouse-VASE_SOLVED': true,
+	'Penthouse-COMPARTIMENT_OPENED': false,
+	'Penthouse-FORTUNETELLER_NOTES': false,
 }
 var server_file = "user://server.save"
 var battery_power := 0.0 setget _set_battery_power

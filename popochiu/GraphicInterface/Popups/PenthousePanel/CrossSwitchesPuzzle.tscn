@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=1]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/tempPenthouse/CrossSwitchesPuzzle.gd" type="Script" id=2]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/tempPenthouse/SwitchesSecret.gd" type="Script" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/CrossSwitchesPuzzle.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/SwitchesSecret.gd" type="Script" id=3]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=4]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_link.png" type="Texture" id=5]
 
