@@ -52,11 +52,10 @@ func _reset():
 
 
 func toggle_light(value, index):
-	print('toggle light on index: ', index, '  ', value)
 	var light = $Lights.get_child(index)
-	var color := Color('415d66') if !value else Color('bdffca')
+	var color := Color('005280') if !value else Color('25e2cd')
 	if value and !light.get_node('back').visible:
-		color = Color('f34242')
+		color = Color('0a98ac')
 	
 	light.get_node('Label').set(
 		'custom_colors/font_color',

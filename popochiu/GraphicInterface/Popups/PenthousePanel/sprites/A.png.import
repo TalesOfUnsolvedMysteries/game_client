@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/A.png-d054698baf7fedc41127b37c46e73e91.stex"
+path="res://.import/a.png-6e384d46281aa13b079c2b221e45e11f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/A.png"
-dest_files=[ "res://.import/A.png-d054698baf7fedc41127b37c46e73e91.stex" ]
+source_file="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/a.png"
+dest_files=[ "res://.import/a.png-6e384d46281aa13b079c2b221e45e11f.stex" ]
 
 [params]
 
