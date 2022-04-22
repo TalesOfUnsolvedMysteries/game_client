@@ -14,6 +14,7 @@ signal inventory_show_requested(time)
 signal inventory_shown
 signal history_opened
 signal documents_requested(data) # Un diccionario con la información por página
+signal documents_closed(data)
 signal elevator_panel_requested
 signal nft_won(nft)
 signal nft_shown

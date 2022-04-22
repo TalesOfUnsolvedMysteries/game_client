@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
@@ -33,6 +33,12 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/SecretCompartiment/secret_compartiment.png" type="Texture" id=31]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/VaseHole/vase_in_hole.png" type="Texture" id=32]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/SecretCompartiment/compartiment.png" type="Texture" id=33]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/fortune_teller_notes.png" type="Texture" id=34]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/PenthousePanel.tscn" type="PackedScene" id=35]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/MoveBlockPuzzle.tscn" type="PackedScene" id=36]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/bg_first_puzzle.png" type="Texture" id=37]
+[ext_resource path="res://popochiu/Common/Overlay2D.tscn" type="PackedScene" id=38]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/MoveBlockOverlay.gd" type="Script" id=39]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -37, 15, 102, 9, 165, 10, 82, 19, 42, 18, 23, 4, -41, 7, 169, 32, 267, 37, 213, 74, -47, 52, 73, 36, -231, 70, -306, 37, -289, 20, -201, 16, -199, 40, -117, 36, 95, 31, 93, 23, -54, 1, -83, 9, -111, 6, -96, 15, -88, 25, -59, 25, 18, 26, 20, 20, 29, 32 )
@@ -44,8 +50,8 @@ script = ExtResource( 1 )
 script_name = "Penthouse"
 limit_left = -320.0
 limit_right = 320.0
-limit_top = -90.0
-limit_bottom = 90.0
+limit_top = 0.0
+limit_bottom = 0.0
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -345,11 +351,9 @@ balance_config = [ 2.0, -0.6, -0.5, -0.9 ]
 offset_balance = 5
 
 [node name="BaselineHelper" parent="Props/Shelf1" index="0"]
-visible = true
 position = Vector2( 0, 8 )
 
 [node name="WalkToHelper" parent="Props/Shelf1" index="1"]
-visible = true
 position = Vector2( 0, 20 )
 
 [node name="Sprite" parent="Props/Shelf1" index="2"]
@@ -428,15 +432,15 @@ position = Vector2( -0.5, 1 )
 texture = ExtResource( 32 )
 
 [node name="SecretCompartiment" parent="Props" instance=ExtResource( 3 )]
-visible = false
 position = Vector2( -159, 18 )
-input_pickable = false
 script = ExtResource( 30 )
-description = "SecretCompartiment"
+description = "Panel"
 baseline = -90
-cursor = 10
+cursor = 1
 script_name = "SecretCompartiment"
 texture = ExtResource( 31 )
+pages = [ "Escribo esta carta..." ]
+background = ExtResource( 34 )
 
 [node name="BaselineHelper" parent="Props/SecretCompartiment" index="0"]
 position = Vector2( 0, -90 )
@@ -449,8 +453,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 55, 44 )
 
 [node name="CollisionPolygon2D" parent="Props/SecretCompartiment" index="3"]
-visible = false
-polygon = PoolVector2Array( -27, -17, 24, -21, 28, 20, -22, 23 )
+polygon = PoolVector2Array( -28, -25, 23, -29, 27, 12, -24, 15 )
 
 [node name="Tween" type="Tween" parent="Props/SecretCompartiment"]
 
@@ -519,6 +522,27 @@ position = Vector2( -188, 50 )
 script = ExtResource( 28 )
 _secret_key = "VASE_ORDER"
 _secret = "G_RB"
+
+[node name="GraphicInterface" type="CanvasLayer" parent="."]
+
+[node name="PenthousePanel" parent="GraphicInterface" instance=ExtResource( 35 )]
+visible = false
+mouse_filter = 2
+
+[node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
+visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+script = ExtResource( 39 )
+
+[node name="Camera2D" type="Camera2D" parent="MoveBlockOverlay"]
+
+[node name="Bg" type="Sprite" parent="MoveBlockOverlay"]
+position = Vector2( 0, 4 )
+texture = ExtResource( 37 )
+
+[node name="Puzzle" parent="MoveBlockOverlay" instance=ExtResource( 36 )]
+visible = false
 
 [editable path="Props/Paragraph"]
 [editable path="Props/Magazine"]

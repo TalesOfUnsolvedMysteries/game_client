@@ -34,6 +34,7 @@ func show_documents(data: Dictionary) -> void:
 	_total_pages = data.pages.size() - 1
 	self._current_page = 0
 	_type.texture = data.bg
+	_pages_counter.visible = _total_pages > 0
 	
 	show()
 
@@ -62,10 +63,13 @@ func _set_current_page(value: int) -> void:
 	
 	if _current_page == 0:
 		_btn_left.disabled = true
-	elif _current_page == _total_pages:
+	
+	if _current_page == _total_pages:
 		_btn_right.hide()
 		_btn_exit.show()
 
 
 func _close() -> void:
+	G.emit_signal('documents_closed', _current_document)
 	hide()
+	_current_document = {}
