@@ -313,10 +313,11 @@ func set_vase_on_shelf(index, vasel_name, weight):
 	var shelfs = state.get('Penthouse_VASES_ON_Shelfs')
 	shelfs[index] = vasel_name
 	set_state('Penthouse_VASES_ON_Shelfs', shelfs)
+	A.play({cue_name = 'sfx_shelf_vase_move', is_in_queue = false })
 	yield(get_tree().create_timer(0.1), 'timeout')
 	emit_signal('shelf_weights_updated')
 	yield(E.run([
-		E.wait(0.35)
+		E.wait(0.45)
 	]), 'completed')
 
 # test modes validations

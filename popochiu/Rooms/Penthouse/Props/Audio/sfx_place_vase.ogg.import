@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_place_vase.ogg-0fe8e2e30bac766b99ea0bcde0f56d9b.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/Penthouse/Props/Audio/sfx_place_vase.ogg"
+dest_files=[ "res://.import/sfx_place_vase.ogg-0fe8e2e30bac766b99ea0bcde0f56d9b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

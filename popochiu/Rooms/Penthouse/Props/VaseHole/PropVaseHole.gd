@@ -38,12 +38,14 @@ func on_reveal() -> void:
 	$Tween.interpolate_property(
 		$Sprite, 'region_rect:size:y',
 		0, 19,
-		1.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT,
+		1.1, Tween.TRANS_CUBIC, Tween.EASE_IN,
 		0.5
 	)
 	$Tween.start()
 	yield(E.run([
-		E.wait(1.7),
+		E.wait(0.5),
+		A.play({cue_name = 'sfx_remove_vase'}),
+		E.wait(1.3),
 		'Player: a secret compartiment has been revealed!',
 	]), 'completed')
 

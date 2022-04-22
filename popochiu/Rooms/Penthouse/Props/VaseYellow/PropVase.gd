@@ -21,11 +21,19 @@ func on_interact() -> void:
 	if Globals.state.get('Penthouse-VASE_SOLVED'): return
 	yield(E.run([
 		C.walk_to_clicked(),
+		E.wait(0.1),
 		I.add_item(current_vase)
 	]), 'completed')
 
 	# checks the vase was added to the inventory
 	if I.is_item_in_inventory(current_vase):
+		yield(E.run([
+			A.play({
+				cue_name = 'sfx_pick_vase',
+				is_in_queue = true
+			}),
+			E.wait(0.1)
+		]), 'completed')
 		Globals.set_vase_on_shelf(weight_index, '', 0)
 		current_vase = ''
 		self.description = 'Shelf'
@@ -42,7 +50,13 @@ func on_item_used(item: InventoryItem) -> void:
 		return
 	yield(E.run([
 		C.walk_to_clicked(),
-		I.remove_item(item.script_name, false)
+		E.wait(0.1),
+		I.remove_item(item.script_name, false),
+		A.play({
+			cue_name = 'sfx_place_vase',
+			is_in_queue = true
+		}),
+		E.wait(0.1)
 	]), 'completed')
 	Globals.set_vase_on_shelf(weight_index, item.script_name, item.weight)
 	set_vase(item.script_name)

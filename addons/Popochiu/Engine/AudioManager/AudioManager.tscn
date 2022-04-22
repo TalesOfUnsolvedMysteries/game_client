@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/AudioManager/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/PC/SfxTurnOn.tres" type="Resource" id=2]
@@ -53,11 +53,17 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/WaltzOpus18InEMinorByChopin.tres" type="Resource" id=51]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/WinterByAntonioVivaldi.tres" type="Resource" id=52]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/audio/TurkishMarchByMozart.tres" type="Resource" id=53]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Audio/SfxPickVase.tres" type="Resource" id=54]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Audio/SfxPlaceVase.tres" type="Resource" id=55]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Audio/SfxRemoveVase.tres" type="Resource" id=56]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Audio/SfxSecretDoorOpen1.tres" type="Resource" id=57]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Audio/SfxSecretDoorOpen2.tres" type="Resource" id=58]
+[ext_resource path="res://popochiu/Rooms/Penthouse/Props/Audio/SfxShelfVaseMove.tres" type="Resource" id=59]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource( 1 )
 mx_cues = [ ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 3 ), ExtResource( 29 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 39 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 53 ), ExtResource( 51 ), ExtResource( 52 ) ]
-sfx_cues = [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 36 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 2 ) ]
+sfx_cues = [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 28 ), ExtResource( 28 ), ExtResource( 36 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 21 ), ExtResource( 30 ), ExtResource( 19 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 56 ), ExtResource( 56 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 57 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 2 ) ]
 
 [node name="Positional" type="Node" parent="."]
 

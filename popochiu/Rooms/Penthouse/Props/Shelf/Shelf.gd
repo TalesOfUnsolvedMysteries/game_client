@@ -33,8 +33,8 @@ func evaluate():
 	rounded_balance = clamp(rounded_balance, -40, 20 - offset_balance) + offset_balance
 	$CollisionPolygon2D.polygon[0].y = -10 + rounded_balance
 	$CollisionPolygon2D.polygon[1].y = -10 + rounded_balance
-	$Tween.interpolate_property($ShelfBody, "position:y", $ShelfBody.position.y, -20 + rounded_balance, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.interpolate_property($ShelfBody, "region_rect:size:y", $ShelfBody.region_rect.size.y, 28 - rounded_balance, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.interpolate_property($Vase, "position:y", $Vase.position.y, -26 + rounded_balance, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property($ShelfBody, "position:y", $ShelfBody.position.y, -20 + rounded_balance, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property($ShelfBody, "region_rect:size:y", $ShelfBody.region_rect.size.y, 28 - rounded_balance, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property($Vase, "position:y", $Vase.position.y, -26 + rounded_balance, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	

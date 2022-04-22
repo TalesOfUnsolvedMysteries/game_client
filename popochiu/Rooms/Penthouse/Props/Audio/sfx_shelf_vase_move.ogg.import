@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_shelf_vase_move.ogg-c331b7418d0c52926254b978f2b77097.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/Penthouse/Props/Audio/sfx_shelf_vase_move.ogg"
+dest_files=[ "res://.import/sfx_shelf_vase_move.ogg-c331b7418d0c52926254b978f2b77097.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

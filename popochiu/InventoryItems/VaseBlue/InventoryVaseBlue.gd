@@ -9,6 +9,7 @@ var weight = 1.6
 # Cuando se le hace clic en el inventario
 func on_interact() -> void:
 	.on_interact()
+	A.play({cue_name = 'sfx_pick_vase', is_in_queue = true })
 
 
 # Lo que pasará cuando se haga clic derecho en el icono del inventario
