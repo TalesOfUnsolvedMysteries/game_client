@@ -36,7 +36,7 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/fortune_teller_notes.png" type="Texture" id=34]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/PenthousePanel.tscn" type="PackedScene" id=35]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/MoveBlockPuzzle.tscn" type="PackedScene" id=36]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/bg.png" type="Texture" id=37]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/bg_first_puzzle.png" type="Texture" id=37]
 [ext_resource path="res://popochiu/Common/Overlay2D.tscn" type="PackedScene" id=38]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/MoveBlockOverlay.gd" type="Script" id=39]
 
@@ -50,8 +50,8 @@ script = ExtResource( 1 )
 script_name = "Penthouse"
 limit_left = -320.0
 limit_right = 320.0
-limit_top = -90.0
-limit_bottom = 90.0
+limit_top = 0.0
+limit_bottom = 0.0
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -351,11 +351,9 @@ balance_config = [ 2.0, -0.6, -0.5, -0.9 ]
 offset_balance = 5
 
 [node name="BaselineHelper" parent="Props/Shelf1" index="0"]
-visible = true
 position = Vector2( 0, 8 )
 
 [node name="WalkToHelper" parent="Props/Shelf1" index="1"]
-visible = true
 position = Vector2( 0, 20 )
 
 [node name="Sprite" parent="Props/Shelf1" index="2"]
@@ -533,11 +531,14 @@ mouse_filter = 2
 
 [node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
 visible = false
+self_modulate = Color( 0, 0, 0, 1 )
+z_index = 10
 script = ExtResource( 39 )
 
 [node name="Camera2D" type="Camera2D" parent="MoveBlockOverlay"]
 
 [node name="Bg" type="Sprite" parent="MoveBlockOverlay"]
+position = Vector2( 0, 4 )
 texture = ExtResource( 37 )
 
 [node name="Puzzle" parent="MoveBlockOverlay" instance=ExtResource( 36 )]

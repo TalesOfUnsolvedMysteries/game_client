@@ -44,8 +44,6 @@ func on_interact() -> void:
 		yield(E.run([
 			C.walk_to_clicked(),
 			'Player: What is this for?',
-			'...',
-			'Player: Oh!',
 		]), 'completed')
 		
 		room.show_panel()

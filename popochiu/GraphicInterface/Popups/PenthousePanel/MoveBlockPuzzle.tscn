@@ -24,19 +24,25 @@ blocks_textures = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ]
 [node name="Frame" type="Sprite" parent="."]
 texture = ExtResource( 7 )
 
-[node name="Blocks" type="Node" parent="."]
+[node name="Blocks" type="Node2D" parent="."]
 
 [node name="Block00" parent="Blocks" instance=ExtResource( 1 )]
+z_index = 2
 
 [node name="Block01" parent="Blocks" instance=ExtResource( 1 )]
+z_index = 2
 
 [node name="Block02" parent="Blocks" instance=ExtResource( 1 )]
+z_index = 2
 
 [node name="Block03" parent="Blocks" instance=ExtResource( 1 )]
+z_index = 2
 
 [node name="Block04" parent="Blocks" instance=ExtResource( 1 )]
+z_index = 2
 
 [node name="Block05" parent="Blocks" instance=ExtResource( 1 )]
+z_index = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

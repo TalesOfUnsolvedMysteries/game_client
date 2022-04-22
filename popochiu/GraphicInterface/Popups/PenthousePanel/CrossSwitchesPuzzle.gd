@@ -71,14 +71,14 @@ func toggle_light(value, index):
 func _check(solved):
 	if solved:
 		for button in $Buttons.get_children(): button.disabled = true
-		Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'Lobby-ELEVATOR_CARD_IN_PC')
-		E.run([
-			I.add_item('ElevatorCard'),
-			A.play({
-				cue_name = 'sfx_elevator_card_pick',
-				is_in_queue = true
-			})
-		])
+#		Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'Lobby-ELEVATOR_CARD_IN_PC')
+#		E.run([
+#			I.add_item('ElevatorCard'),
+#			A.play({
+#				cue_name = 'sfx_elevator_card_pick',
+#				is_in_queue = true
+#			})
+#		])
 	else:
 		OS.show_popup('e', 'wrong configuration!', self)
 		$Save.disabled = false
