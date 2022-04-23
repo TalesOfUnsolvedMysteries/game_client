@@ -76,7 +76,7 @@ position = Vector2( -133, 14 )
 script = ExtResource( 8 )
 description = "Room 101"
 walk_to_point = Vector2( -1, 31 )
-cursor = 1
+cursor = 6
 script_name = "Door101"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door101" index="0"]
@@ -94,7 +94,7 @@ position = Vector2( 127, 14 )
 script = ExtResource( 9 )
 description = "Room 102"
 walk_to_point = Vector2( 2, 30 )
-cursor = 1
+cursor = 6
 script_name = "Door102"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door102" index="0"]
@@ -118,7 +118,7 @@ NFT_TO_CLAIM = "UNLOCK_ROOM_102"
 position = Vector2( 38, 10 )
 script = ExtResource( 10 )
 description = "To the lobby"
-cursor = 1
+cursor = 2
 script_name = "Lobby"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Lobby" index="0"]
@@ -135,7 +135,7 @@ position = Vector2( -38, 10 )
 script = ExtResource( 2 )
 description = "Elevator"
 walk_to_point = Vector2( -2, 35 )
-cursor = 1
+cursor = 9
 script_name = "Elevator"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]

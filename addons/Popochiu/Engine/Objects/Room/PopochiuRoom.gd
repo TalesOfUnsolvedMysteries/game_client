@@ -21,6 +21,7 @@ var characters_cfg := [] # Array of Dictionary
 
 var _path := []
 var _moving_character: PopochiuCharacter = null
+var _baselines_order := []
 
 onready var _nav_path: Navigation2D = $WalkableAreas.get_child(0)
 
@@ -42,6 +43,12 @@ func _enter_tree() -> void:
 
 func _ready():
 	set_process_unhandled_input(false)
+	
+	# Guardar referencias de los Props ordenadas en base a su baseline
+	for p in $Props.get_children():
+		_baselines_order.append([p, p.baseline + p.position.y])
+	_baselines_order.sort_custom(self, '_sort_by_baseline')
+	prints(_baselines_order)
 	
 	if not Engine.editor_hint:
 		if limit_left != 0.0:
@@ -276,11 +283,14 @@ func _check_z_indexes(chr: PopochiuCharacter) -> void:
 	# Comparar la posición en Y del personaje con el baseline de cada Prop
 	var z_index_update := 0
 	if chr.is_moving:
-		for prop in $Props.get_children():
+#		for prop in $Props.get_children():
+		for pair in _baselines_order:
+			var prop: Prop = pair[0]
 			if not prop.visible:
 				continue
 			if prop.always_on_top:
 				prop.z_index = 4
+				continue
 			elif _is_in_front_of(prop, y_pos):
 				z_index_update += 1
 			prop.z_index = z_index_update
@@ -304,3 +314,9 @@ func _clear_navigation_path() -> void:
 	_moving_character.idle(false)
 	C.emit_signal('character_move_ended', _moving_character)
 	_moving_character = null
+
+
+func _sort_by_baseline(a: Array, b: Array) -> bool:
+	if a[1] < b[1]:
+		return true
+	return false

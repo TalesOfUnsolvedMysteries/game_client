@@ -132,7 +132,7 @@ sync var state := {
 	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
 	'ELEVATOR_ENABLED': 0,
-#	'Lobby-ENGINE_ROOM_UNLOCKED': true,
+	'Lobby-ENGINE_ROOM_UNLOCKED': false,
 	'EngineRoom-ELEVATOR_WORKING': false,
 	'EngineRoom-CHARGING_BATTERY': false,
 	'MasterKey-CONFIG': '0203',

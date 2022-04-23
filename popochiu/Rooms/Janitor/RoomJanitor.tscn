@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/MasterKey/PropMasterKey.gd" type="Script" id=2]
@@ -34,11 +34,15 @@
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_solved.png" type="Texture" id=32]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bubble.png" type="Texture" id=33]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/JanitorNotes.tscn" type="PackedScene" id=34]
+[ext_resource path="res://popochiu/Common/Overlay2DBlocker.tscn" type="PackedScene" id=35]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 6, 7, 8, 9, 10 ), PoolIntArray( 0, 6, 10, 11 ), PoolIntArray( 10, 12, 13, 14 ), PoolIntArray( 14, 15, 11 ), PoolIntArray( 11, 1, 0 ), PoolIntArray( 10, 14, 11 ) ]
 outlines = [ PoolVector2Array( -90, 55, 7, 77, 99, 51, 83, 38, 14, 39, 7, 21, 62, 16, 60, 10, -51, 4, -62, 13, -24, 21, -38, 32, -56, 27, -71, 40, -92, 30, -99, 33 ) ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 51.3931
 
 [node name="RoomJanitor" type="Node2D"]
 script = ExtResource( 1 )
@@ -163,6 +167,13 @@ polygon = PoolVector2Array( 20, 24, -11, 37, -15, 18 )
 [node name="KeyEngineRoom" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 4, -39 )
 script = ExtResource( 16 )
+cursor = 1
+
+[node name="BaselineHelper" parent="Props/KeyEngineRoom" index="0"]
+visible = true
+
+[node name="WalkToHelper" parent="Props/KeyEngineRoom" index="1"]
+visible = true
 
 [node name="Sprite" parent="Props/KeyEngineRoom" index="2"]
 texture = ExtResource( 17 )
@@ -235,6 +246,16 @@ script = ExtResource( 22 )
 [node name="Bubble" type="Sprite" parent="Overlay2D"]
 position = Vector2( -7, 2.5 )
 texture = ExtResource( 33 )
+
+[node name="Overlay2DBlocker" parent="Overlay2D/Bubble" instance=ExtResource( 35 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Overlay2D/Bubble/Overlay2DBlocker"]
+position = Vector2( 7, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Overlay2D/Bubble/Overlay2DBlocker"]
+position = Vector2( 7, 0 )
+polygon = PoolVector2Array( -64, 0.5, -51, -6.5, -50, 10.5 )
 
 [node name="Frame" type="Sprite" parent="Overlay2D"]
 position = Vector2( 0, 2.5 )
