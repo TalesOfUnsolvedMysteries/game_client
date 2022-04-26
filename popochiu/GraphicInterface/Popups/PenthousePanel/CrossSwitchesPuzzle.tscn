@@ -1,26 +1,53 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMonoOutline16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/CrossSwitchesPuzzle.gd" type="Script" id=2]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/SwitchesSecret.gd" type="Script" id=3]
-[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=4]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/os_elevator_floor_link.png" type="Texture" id=5]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnPressed.tres" type="StyleBox" id=6]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnNormal.tres" type="StyleBox" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/SwitchButton.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnDisabled.tres" type="StyleBox" id=8]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSTheme.tres" type="Theme" id=9]
 [ext_resource path="res://popochiu/Common/Resources/DynamicFonts/AweMono16.tres" type="DynamicFont" id=10]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/styles/StyleBoxFlatBasic.tres" type="StyleBox" id=12]
+
+[sub_resource type="StyleBoxFlat" id=5]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.184314, 0.282353, 0.509804, 1 )
+shadow_color = Color( 0.145098, 0.886275, 0.803922, 1 )
+shadow_offset = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 0.0
+content_margin_top = 0.0
+bg_color = Color( 0, 0.321569, 0.501961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.145098, 0.886275, 0.803922, 1 )
+border_blend = true
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 12, 15 )
-margin_left = 2.0
-margin_right = 2.0
-margin_top = 5.0
-margin_bottom = 2.0
-axis_stretch_vertical = 2
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0.321569, 0.501961, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0.321569, 0.501961, 1 )
+shadow_color = Color( 0, 0, 0, 0.368627 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
 
 [node name="Puzzle" type="Control"]
 anchor_right = 1.0
@@ -32,853 +59,1120 @@ script = ExtResource( 2 )
 [node name="Buttons" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 4.0
-margin_right = -129.0
-margin_bottom = -77.0
+margin_left = 1.0
+margin_top = 5.0
+margin_right = -212.0
+margin_bottom = -114.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="ButtonA" type="Button" parent="Buttons"]
-margin_right = 22.0
-margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_top = 2.0
+margin_right = 24.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "A"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonA"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Label2" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Buttons/ButtonA/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "9"
+align = 1
+valign = 1
 
 [node name="ButtonB" type="Button" parent="Buttons"]
-margin_left = 25.0
-margin_right = 47.0
-margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_left = 27.0
+margin_right = 51.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "B"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonB"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Label2" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Buttons/ButtonB/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "9"
+align = 1
+valign = 1
 
 [node name="ButtonC" type="Button" parent="Buttons"]
-margin_left = 50.0
-margin_right = 72.0
-margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_left = 54.0
+margin_top = -2.0
+margin_right = 78.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "C"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonC"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Label2" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Buttons/ButtonC/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "9"
+align = 1
+valign = 1
 
 [node name="ButtonD" type="Button" parent="Buttons"]
-margin_left = 75.0
-margin_right = 97.0
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_left = 81.0
+margin_top = -4.0
+margin_right = 105.0
 margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "D"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonD"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Label2" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Buttons/ButtonD/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "9"
+align = 1
+valign = 1
 
 [node name="ButtonE" type="Button" parent="Buttons"]
-margin_left = 100.0
-margin_right = 122.0
-margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_left = 13.0
+margin_top = 29.0
+margin_right = 37.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "E"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonE"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Label2" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Buttons/ButtonE/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "9"
+align = 1
+valign = 1
 
 [node name="ButtonF" type="Button" parent="Buttons"]
-margin_left = 125.0
-margin_right = 147.0
-margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_left = 41.0
+margin_top = 27.0
+margin_right = 65.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "F"
+script = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
+
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonF"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Label2" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "6"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "7"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "8"
+align = 1
+valign = 1
+
+[node name="Label10" type="Label" parent="Buttons/ButtonF/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
+text = "9"
+align = 1
+valign = 1
 
 [node name="ButtonG" type="Button" parent="Buttons"]
-margin_left = 150.0
-margin_right = 172.0
-margin_bottom = 20.0
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 6 )
+modulate = Color( 0.184314, 0.282353, 0.509804, 1 )
+margin_left = 69.0
+margin_top = 25.0
+margin_right = 93.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
+custom_styles/normal = SubResource( 7 )
 toggle_mode = true
-text = "G"
+script = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
-[node name="FloorLinks" type="Control" parent="."]
-margin_left = 20.0
-margin_top = 24.0
-margin_right = 187.0
-margin_bottom = 40.0
+[node name="FloorsList" type="GridContainer" parent="Buttons/ButtonG"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
 
-[node name="LinksA" type="PanelContainer" parent="FloorLinks"]
-margin_right = 15.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksA"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label2" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "1"
 align = 1
 valign = 1
 
-[node name="Label3" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label3" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "2"
 align = 1
 valign = 1
 
-[node name="Label4" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label4" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "3"
 align = 1
 valign = 1
 
-[node name="Label5" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label5" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "4"
 align = 1
 valign = 1
 
-[node name="Label6" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label6" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "5"
 align = 1
 valign = 1
 
-[node name="Label7" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-visible = false
-margin_top = 65.0
-margin_right = 11.0
-margin_bottom = 74.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label7" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 24.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "6"
 align = 1
 valign = 1
 
-[node name="Label8" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-visible = false
-margin_top = 78.0
-margin_right = 11.0
-margin_bottom = 87.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label8" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "7"
 align = 1
 valign = 1
 
-[node name="Label9" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-visible = false
-margin_top = 91.0
-margin_right = 11.0
-margin_bottom = 100.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label9" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "8"
 align = 1
 valign = 1
 
-[node name="Label10" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-visible = false
-margin_top = 104.0
-margin_right = 11.0
-margin_bottom = 113.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "9"
-align = 1
-valign = 1
-
-[node name="LinksB" type="PanelContainer" parent="FloorLinks"]
-margin_left = 25.0
-margin_right = 40.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksB"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "2"
-align = 1
-valign = 1
-
-[node name="Label4" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "3"
-align = 1
-valign = 1
-
-[node name="Label5" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "4"
-align = 1
-valign = 1
-
-[node name="Label6" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "5"
-align = 1
-valign = 1
-
-[node name="Label7" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-visible = false
-margin_top = 65.0
-margin_right = 11.0
-margin_bottom = 74.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "6"
-align = 1
-valign = 1
-
-[node name="Label8" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-visible = false
-margin_top = 78.0
-margin_right = 11.0
-margin_bottom = 87.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "7"
-align = 1
-valign = 1
-
-[node name="Label9" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-visible = false
-margin_top = 91.0
-margin_right = 11.0
-margin_bottom = 100.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "8"
-align = 1
-valign = 1
-
-[node name="Label10" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-visible = false
-margin_top = 104.0
-margin_right = 11.0
-margin_bottom = 113.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "9"
-align = 1
-valign = 1
-
-[node name="LinksC" type="PanelContainer" parent="FloorLinks"]
-margin_left = 50.0
-margin_right = 65.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksC"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "2"
-align = 1
-valign = 1
-
-[node name="Label4" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "3"
-align = 1
-valign = 1
-
-[node name="Label5" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "4"
-align = 1
-valign = 1
-
-[node name="Label6" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-visible = false
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "5"
-align = 1
-valign = 1
-
-[node name="Label7" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-visible = false
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "6"
-align = 1
-valign = 1
-
-[node name="Label8" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-visible = false
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "7"
-align = 1
-valign = 1
-
-[node name="Label9" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-visible = false
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "8"
-align = 1
-valign = 1
-
-[node name="Label10" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-visible = false
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "9"
-align = 1
-valign = 1
-
-[node name="LinksD" type="PanelContainer" parent="FloorLinks"]
-margin_left = 75.0
-margin_right = 90.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksD"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "2"
-align = 1
-valign = 1
-
-[node name="Label4" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "3"
-align = 1
-valign = 1
-
-[node name="Label5" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "4"
-align = 1
-valign = 1
-
-[node name="Label6" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "5"
-align = 1
-valign = 1
-
-[node name="Label7" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "6"
-align = 1
-valign = 1
-
-[node name="Label8" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "7"
-align = 1
-valign = 1
-
-[node name="Label9" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "8"
-align = 1
-valign = 1
-
-[node name="Label10" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "9"
-align = 1
-valign = 1
-
-[node name="LinksE" type="PanelContainer" parent="FloorLinks"]
-margin_left = 100.0
-margin_right = 115.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksE"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "2"
-align = 1
-valign = 1
-
-[node name="Label4" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "3"
-align = 1
-valign = 1
-
-[node name="Label5" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "4"
-align = 1
-valign = 1
-
-[node name="Label6" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "5"
-align = 1
-valign = 1
-
-[node name="Label7" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "6"
-align = 1
-valign = 1
-
-[node name="Label8" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "7"
-align = 1
-valign = 1
-
-[node name="Label9" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "8"
-align = 1
-valign = 1
-
-[node name="Label10" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "9"
-align = 1
-valign = 1
-
-[node name="LinksF" type="PanelContainer" parent="FloorLinks"]
-margin_left = 125.0
-margin_right = 140.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksF"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "2"
-align = 1
-valign = 1
-
-[node name="Label4" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "3"
-align = 1
-valign = 1
-
-[node name="Label5" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "4"
-align = 1
-valign = 1
-
-[node name="Label6" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "5"
-align = 1
-valign = 1
-
-[node name="Label7" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "6"
-align = 1
-valign = 1
-
-[node name="Label8" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-visible = false
-margin_top = 65.0
-margin_right = 11.0
-margin_bottom = 74.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "7"
-align = 1
-valign = 1
-
-[node name="Label9" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "8"
-align = 1
-valign = 1
-
-[node name="Label10" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-visible = false
-margin_top = 65.0
-margin_right = 11.0
-margin_bottom = 74.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "9"
-align = 1
-valign = 1
-
-[node name="LinksG" type="PanelContainer" parent="FloorLinks"]
-margin_left = 150.0
-margin_right = 165.0
-margin_bottom = 55.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="FloorsList" type="VBoxContainer" parent="FloorLinks/LinksG"]
-margin_left = 2.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 53.0
-
-[node name="Label2" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-margin_right = 11.0
-margin_bottom = 9.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-margin_top = 13.0
-margin_right = 11.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "2"
-align = 1
-valign = 1
-
-[node name="Label4" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-margin_top = 26.0
-margin_right = 11.0
-margin_bottom = 35.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "3"
-align = 1
-valign = 1
-
-[node name="Label5" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-margin_top = 39.0
-margin_right = 11.0
-margin_bottom = 48.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "4"
-align = 1
-valign = 1
-
-[node name="Label6" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-visible = false
-margin_top = 52.0
-margin_right = 11.0
-margin_bottom = 61.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "5"
-align = 1
-valign = 1
-
-[node name="Label7" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-visible = false
-margin_top = 65.0
-margin_right = 11.0
-margin_bottom = 74.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "6"
-align = 1
-valign = 1
-
-[node name="Label8" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-visible = false
-margin_top = 78.0
-margin_right = 11.0
-margin_bottom = 87.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "7"
-align = 1
-valign = 1
-
-[node name="Label9" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-visible = false
-margin_top = 91.0
-margin_right = 11.0
-margin_bottom = 100.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
-text = "8"
-align = 1
-valign = 1
-
-[node name="Label10" type="Label" parent="FloorLinks/LinksG/FloorsList"]
-visible = false
-margin_top = 104.0
-margin_right = 11.0
-margin_bottom = 113.0
-custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
-custom_fonts/font = ExtResource( 4 )
+[node name="Label10" type="Label" parent="Buttons/ButtonG/FloorsList"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 8, 8 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_colors/font_color = Color( 0.0392157, 0.596078, 0.67451, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 12 )
 text = "9"
 align = 1
 valign = 1
 
 [node name="Lights" type="Control" parent="."]
-margin_left = 75.0
-margin_top = 87.0
-margin_right = 135.0
-margin_bottom = 141.0
+margin_left = 23.0
+margin_top = 67.0
+margin_right = 83.0
+margin_bottom = 121.0
 mouse_filter = 2
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Light" type="ColorRect" parent="Lights"]
 margin_left = 40.0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/bg_first_puzzle.png" type="Texture" id=2]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/sprites/bulb.png" type="Texture" id=3]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/CrossSwitchesPuzzle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/PenthousePanel.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -14,33 +15,43 @@ atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 6, 6 )
 
 [node name="PenthousePanel" type="Panel"]
+margin_right = 320.0
+margin_bottom = 180.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="Group" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = ExtResource( 1 )
+mouse_filter = 2
 
-[node name="Bg" type="TextureRect" parent="."]
+[node name="Bg" type="TextureRect" parent="Group"]
 margin_left = 86.0
 margin_top = 10.0
 margin_right = 230.0
 margin_bottom = 175.0
+mouse_filter = 0
 texture = ExtResource( 2 )
 
-[node name="Bulb1" type="TextureRect" parent="."]
+[node name="Bulb1" type="TextureRect" parent="Group"]
 margin_left = 111.0
 margin_top = 161.0
 margin_right = 117.0
 margin_bottom = 167.0
 texture = SubResource( 1 )
 
-[node name="Bulb2" type="TextureRect" parent="."]
+[node name="Bulb2" type="TextureRect" parent="Group"]
 margin_left = 123.0
 margin_top = 161.0
 margin_right = 129.0
 margin_bottom = 167.0
 texture = SubResource( 2 )
 
-[node name="Puzzle" parent="." instance=ExtResource( 4 )]
-margin_left = 62.0
-margin_top = 5.0
-margin_right = -66.0
+[node name="Puzzle" parent="Group" instance=ExtResource( 4 )]
+margin_left = 102.0
+margin_top = 25.0
+margin_right = -95.0
 margin_bottom = -26.0
+mouse_filter = 0
+
+[node name="Tween" type="Tween" parent="."]

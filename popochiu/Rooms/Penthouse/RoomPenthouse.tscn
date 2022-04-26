@@ -434,7 +434,7 @@ texture = ExtResource( 32 )
 [node name="SecretCompartiment" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -159, 18 )
 script = ExtResource( 30 )
-description = "Panel"
+description = "Carcass and trophy"
 baseline = -90
 cursor = 1
 script_name = "SecretCompartiment"
@@ -506,6 +506,9 @@ polygon = PoolVector2Array( 13, 18, 39, 45, -22, 45 )
 
 [node name="Points" type="Node2D" parent="."]
 
+[node name="compartimentPoint" type="Position2D" parent="Points"]
+position = Vector2( -188, 39 )
+
 [node name="WalkableAreas" type="Node2D" parent="."]
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
@@ -527,22 +530,30 @@ _secret = "G_RB"
 
 [node name="PenthousePanel" parent="GraphicInterface" instance=ExtResource( 35 )]
 visible = false
-mouse_filter = 2
+margin_left = 1.0
+margin_top = -2.0
+margin_right = 321.0
+margin_bottom = 178.0
 
 [node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
 visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 z_index = 10
+offset = Vector2( 27, 0 )
 script = ExtResource( 39 )
 
 [node name="Camera2D" type="Camera2D" parent="MoveBlockOverlay"]
+limit_left = -320
+limit_right = 320
 
 [node name="Bg" type="Sprite" parent="MoveBlockOverlay"]
-position = Vector2( 0, 4 )
+position = Vector2( 27, 0 )
 texture = ExtResource( 37 )
 
 [node name="Puzzle" parent="MoveBlockOverlay" instance=ExtResource( 36 )]
-visible = false
+position = Vector2( 27, -4 )
+
+[node name="Tween" type="Tween" parent="MoveBlockOverlay"]
 
 [editable path="Props/Paragraph"]
 [editable path="Props/Magazine"]

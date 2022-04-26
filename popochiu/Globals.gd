@@ -121,6 +121,11 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0011'
 	},
+	DETECTIVE = {
+		label = 'solve the two steps puzzle on the secret penthouse\'s compartiment',
+		img = 'nft_new_floors',
+		id = '0012'
+	},
 }
 
 var main_mx_play = false

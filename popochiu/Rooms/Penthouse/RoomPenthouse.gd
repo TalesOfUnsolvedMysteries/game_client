@@ -6,7 +6,7 @@ onready var secret = find_node('Secret')
 onready var secret_hole = find_node('VaseHole')
 onready var secret_compartiment = find_node('SecretCompartiment')
 onready var second_panel: Panel = $GraphicInterface/PenthousePanel
-
+var first_panel_solved = false
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
@@ -16,6 +16,7 @@ func _ready():
 	Globals.connect('shelf_weights_updated', self, '_on_weight_updated')
 	secret_hole.connect('vase_puzzle_solved', self, '_on_vase_puzzle_solved')
 	$MoveBlockOverlay.connect('solved', self, '_show_second_panel')
+	G.connect('nft_shown', self, '_on_second_panel_solved')
 
 	if Globals.state.get('Penthouse-VASE_SOLVED')\
 	or Globals.state.get('Penthouse-COMPARTIMENT_OPENED'):
@@ -48,8 +49,10 @@ func on_room_transition_finished() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func show_panel() -> void:
-	$MoveBlockOverlay.appear()
-#	_show_second_panel()
+	if !first_panel_solved:
+		$MoveBlockOverlay.appear()
+	else:
+		second_panel.appear()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -82,8 +85,25 @@ func _on_vase_puzzle_solved():
 
 
 func _show_second_panel() -> void:
-	second_panel.show()
+	first_panel_solved = true
+	A.play({cue_name = 'sfx_motherboard_success', is_in_queue = false})
+	yield($MoveBlockOverlay.on_solved(), 'completed')
+	$MoveBlockOverlay.disappear()
+	second_panel.appear(false)
 
 
 func _dev_open_hole() -> void:
 	_on_solved(true)
+
+func _on_second_panel_solved() -> void:
+	if Globals.state.get('Penthouse-COMPARTIMENT_OPENED'):
+		second_panel.disappear()
+		yield(E.run([E.wait(0.4)]), 'completed')
+		secret_compartiment._show_interior()
+
+# execute this function on 
+func reset_two_puzzle():
+	first_panel_solved = false
+	$MoveBlockOverlay.reset_puzzle()
+	second_panel.reset_puzzle()
+
