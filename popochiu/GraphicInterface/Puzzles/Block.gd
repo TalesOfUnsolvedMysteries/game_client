@@ -41,7 +41,7 @@ func set_tile_position(_tile_position):
 
 
 func _unhandled_input(event):
-	var mouse_event: = event as InputEventMouseButton 
+	var mouse_event: = event as InputEventMouseButton
 	if locked: return
 	if mouse_event:
 		var _drag = hover and mouse_event.pressed

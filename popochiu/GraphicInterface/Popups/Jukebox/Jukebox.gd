@@ -1,6 +1,7 @@
 extends PanelContainer
 
 var last_played_songs = 'eee'
+
 onready var secret: Secret = find_node('Secret')
 
 
@@ -72,8 +73,10 @@ func _on_solved(solved):
 				'animation_finished'
 			),
 			# TODO: play unlock sound
-#			'Player: something was unlocked!'
+			'Player: Something was unlocked!'
 		]), 'completed')
+		
+		
 
 
 func _show_disc() -> void:

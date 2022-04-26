@@ -22,9 +22,9 @@
 [ext_resource path="res://popochiu/Rooms/EngineRoom/FuseBoxSecret.gd" type="Script" id=20]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -34, 6 )
+vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -44, 8 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 6 ), PoolIntArray( 3, 7, 0 ), PoolIntArray( 6, 3, 2 ), PoolIntArray( 5, 8, 6 ) ]
-outlines = [ PoolVector2Array( -91, 9, -107, 54, 25, 73, 130, 51, 89, 16, 43, 17, 45, 27, -34, 29, -34, 6 ) ]
+outlines = [ PoolVector2Array( -91, 9, -107, 54, 25, 73, 130, 51, 89, 16, 43, 17, 45, 27, -34, 29, -44, 8 ) ]
 
 [node name="RoomEngineRoom" type="Node2D"]
 script = ExtResource( 1 )
@@ -40,32 +40,44 @@ limit_bottom = 0.0
 description = "Bg"
 clickable = false
 baseline = -90
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 10
 script_name = "Bg"
-always_on_top = false
 texture = ExtResource( 5 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
+
+[node name="Exit" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -123, 12 )
+script = ExtResource( 11 )
+description = "To the lobby"
+baseline = 7
+walk_to_point = Vector2( 31, 18 )
+cursor = 9
+script_name = "Exit"
+texture = ExtResource( 12 )
+
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
+position = Vector2( 0, 7 )
+
+[node name="WalkToHelper" parent="Props/Exit" index="1"]
+position = Vector2( 31, 18 )
+
+[node name="Sprite" parent="Props/Exit" index="2"]
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
+polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
 
 [node name="Engine" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -3, -3 )
 script = ExtResource( 4 )
 description = "Engine"
-clickable = true
-baseline = 22
+baseline = 6
 walk_to_point = Vector2( -1, 36 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "Engine"
-always_on_top = false
 texture = ExtResource( 6 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/Engine" index="0"]
-position = Vector2( 0, 22 )
+position = Vector2( 0, 6 )
 
 [node name="WalkToHelper" parent="Props/Engine" index="1"]
 position = Vector2( -1, 36 )
@@ -81,16 +93,10 @@ polygon = PoolVector2Array( -24, -28, 35, -30, 42, 27, -27, 28 )
 position = Vector2( -77, -46 )
 script = ExtResource( 7 )
 description = "Switch box"
-clickable = true
-baseline = 0
 walk_to_point = Vector2( 7, 58 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "FuseBox"
-always_on_top = false
 texture = ExtResource( 8 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="WalkToHelper" parent="Props/FuseBox" index="1"]
 position = Vector2( 7, 58 )
@@ -111,16 +117,11 @@ _secret = "000"
 position = Vector2( 56, -9 )
 script = ExtResource( 9 )
 description = "Battery charger"
-clickable = true
 baseline = -23
 walk_to_point = Vector2( 5, 30 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "BatteryCharger"
-always_on_top = false
 texture = ExtResource( 10 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
 
 [node name="BaselineHelper" parent="Props/BatteryCharger" index="0"]
 position = Vector2( 0, -23 )
@@ -143,33 +144,6 @@ margin_bottom = -6.0
 texture_over = ExtResource( 15 )
 texture_progress = ExtResource( 16 )
 texture_progress_offset = Vector2( 1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Exit" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -123, 12 )
-script = ExtResource( 11 )
-description = "To the lobby"
-clickable = true
-baseline = 0
-walk_to_point = Vector2( 31, 18 )
-look_at_point = Vector2( 0, 0 )
-cursor = 1
-script_name = "Exit"
-always_on_top = false
-texture = ExtResource( 12 )
-parallax_depth = 1.0
-parallax_alignment = Vector2( 0, 0 )
-
-[node name="WalkToHelper" parent="Props/Exit" index="1"]
-position = Vector2( 31, 18 )
-
-[node name="Sprite" parent="Props/Exit" index="2"]
-texture = ExtResource( 12 )
-
-[node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
-polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -177,13 +151,8 @@ polygon = PoolVector2Array( 1, -35, 17, -23, 22, 7, 7, 37, -22, 13 )
 position = Vector2( 27, 10 )
 script = ExtResource( 18 )
 description = "Engine instructions"
-clickable = true
-baseline = 0
-walk_to_point = Vector2( 0, 0 )
-look_at_point = Vector2( 0, 0 )
 cursor = 1
 script_name = "EngineInstructions"
-always_on_top = false
 pages = [ "Restartin instructions
 
 1. Replace the battery with one that is fully-charged.
@@ -225,8 +194,8 @@ visible = false
 [node name="Motherboard" parent="CanvasLayer" instance=ExtResource( 14 )]
 visible = false
 
+[editable path="Props/Exit"]
 [editable path="Props/Engine"]
 [editable path="Props/FuseBox"]
 [editable path="Props/BatteryCharger"]
-[editable path="Props/Exit"]
 [editable path="Hotspots/EngineInstructions"]

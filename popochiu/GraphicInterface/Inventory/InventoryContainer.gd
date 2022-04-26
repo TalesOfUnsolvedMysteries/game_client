@@ -23,9 +23,16 @@ func _ready():
 		connect('mouse_entered', self, '_open')
 		connect('mouse_exited', self, '_close')
 	
+	$BtnDiscard.connect('pressed', self, '_discard_item')
+	$BtnDiscard.connect('mouse_entered', self, '_show_info')
+	$BtnDiscard.connect('mouse_exited', self, '_hide_info')
+	
 	# Conectarse a las señales del papá de los inventarios
 	I.connect('item_added', self, '_add_item')
 	I.connect('item_removed', self, '_remove_item')
+	
+	if I.get_child_count() == 0:
+		$BtnDiscard.disabled = true
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -90,7 +97,7 @@ func _show_item_info(description := '') -> void:
 
 
 func _change_cursor(item: InventoryItem) -> void:
-	I.set_active_item(item)
+	I.set_active_item(item, false)
 
 
 func _add_item(item: InventoryItem) -> void:
@@ -107,6 +114,8 @@ func _add_item(item: InventoryItem) -> void:
 		yield(get_tree(), 'idle_frame')
 
 	I.emit_signal('item_add_done', item)
+	
+	$BtnDiscard.disabled = false
 
 
 func _remove_item(item: InventoryItem) -> void:
@@ -117,3 +126,22 @@ func _remove_item(item: InventoryItem) -> void:
 	yield(get_tree(), 'idle_frame')
 	
 	I.emit_signal('item_remove_done', item)
+	
+	if I.get_child_count() == 0:
+		$BtnDiscard.disabled = true
+
+
+func _discard_item() -> void:
+	if I.active:
+		I.discard_item(I.active.script_name, false)
+
+
+func _show_info() -> void:
+	if I.active:
+		G.show_info('Click to discard %s' % I.active.description)
+	else:
+		G.show_info('Use this to discard inventory items')
+
+
+func _hide_info() -> void:
+	G.show_info()

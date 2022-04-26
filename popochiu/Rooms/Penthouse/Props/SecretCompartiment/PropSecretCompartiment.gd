@@ -19,7 +19,8 @@ func on_interact() -> void:
 	#		the _show_interior function.
 	if Globals.state.get('Penthouse-COMPARTIMENT_OPENED'):
 		yield(E.run([
-			C.walk_to_clicked(),
+			C.player_walk_to(room.get_point('compartimentPoint'), true),
+			C.player.face_right(),
 			'Player: Oh my...',
 			'...',
 			'Player: A dead body',
@@ -42,7 +43,8 @@ func on_interact() -> void:
 		]), 'completed')
 	else:
 		yield(E.run([
-			C.walk_to_clicked(),
+			C.player_walk_to(room.get_point('compartimentPoint'), true),
+			C.player.face_right(),
 			'Player: What is this for?',
 		]), 'completed')
 		
@@ -82,6 +84,7 @@ func _on_reveal():
 func _show_interior() -> void:
 	# TODO: Use an animation for this
 	yield(get_tree().create_timer(1.0), 'timeout')
+	A.play({cue_name = 'sfx_turn_on', is_in_queue = false})
 	$Compartiment.show()
 
 

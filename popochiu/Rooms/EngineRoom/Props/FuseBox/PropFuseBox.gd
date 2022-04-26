@@ -4,6 +4,9 @@ extends Prop
 onready var secret: Secret = find_node('Secret')
 
 func _ready() -> void:
+	if Engine.editor_hint:
+		return
+	
 	if Globals.state.get('EngineRoom-SWITCH_BOX_OPENED'):
 		$Sprite.frame = 1
 	if Globals.state.get('Lobby-PC_POWERED'):

@@ -45,4 +45,8 @@ func _check_click(_v: Node, e: InputEvent, _i: int) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 	and mouse_event.pressed:
-		disappear()
+		# Esto hace que los bloqueadores de clic puedan actuar antes de que el
+		# nodo intente ocultarse
+		yield(get_tree(), 'idle_frame')
+		if not get_tree().is_input_handled():
+			disappear()

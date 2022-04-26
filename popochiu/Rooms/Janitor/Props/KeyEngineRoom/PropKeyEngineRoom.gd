@@ -5,6 +5,9 @@ var _final_description := 'Engine room'
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
+	if Engine.editor_hint:
+		return
+	
 	if Globals.state.get('Janitor-KEY_ENGINE_ROOM_LOOKED'):
 		description = _final_description
 	if !Globals.state.get('Janitor-KEY_ENGINE_ROOM-in'):

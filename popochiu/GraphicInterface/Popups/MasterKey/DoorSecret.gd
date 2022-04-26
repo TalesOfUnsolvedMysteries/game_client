@@ -22,15 +22,24 @@ func _encode(answer):
 	return answer
 
 func on_inventory_item_used(item: InventoryItem) -> void:
+	if Globals.state.get(DOOR_TO_UNLOCK):
+		E.run([
+			'Player: That door is already opened',
+			"Player: What's the point of unlocking a door that is already unlocked",
+			I.set_active_item()
+		])
+		return
+	
 	yield(E.run([
 		C.walk_to_clicked()
 	]), 'completed')
+	
 	if item.script_name == 'MasterKey':
-		print('trying this combination: ', Globals.state['MasterKey-CONFIG'])
+#		print('trying this combination: ', Globals.state['MasterKey-CONFIG'])
 		self.solve(Globals.state['MasterKey-CONFIG'])
 	else:
 		E.run([
-		# TODO: Poner sonido de wrong
+			# TODO: Poner sonido de wrong
 			'Player: I can\'t use it here',
 		])
 		return
@@ -47,8 +56,8 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 	E.run([
 		# TODO: Poner sonido de desbloqueo de puerta
 		'Player: Great! Now the Door is open',
+		I.set_active_item()
 	])
 	
-	# validates if all the other doors are already opened
+	# TODO: validates if all the other doors are already opened
 	# if true then discard the master key from the inventory
-	

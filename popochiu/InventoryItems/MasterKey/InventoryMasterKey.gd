@@ -8,7 +8,7 @@ extends InventoryItem
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 # Cuando se le hace clic en el inventario
 func on_interact() -> void:
-	I.set_active_item(self)
+	I.set_active_item(self, false)
 
 
 # Lo que pasará cuando se haga clic derecho en el icono del inventario

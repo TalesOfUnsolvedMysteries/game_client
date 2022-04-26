@@ -121,6 +121,11 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0011'
 	},
+	DETECTIVE = {
+		label = 'solve the two steps puzzle on the secret penthouse\'s compartiment',
+		img = 'nft_new_floors',
+		id = '0012'
+	},
 }
 
 var main_mx_play = false
@@ -132,7 +137,7 @@ sync var state := {
 	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
 	'ELEVATOR_ENABLED': 0,
-#	'Lobby-ENGINE_ROOM_UNLOCKED': true,
+	'Lobby-ENGINE_ROOM_UNLOCKED': false,
 	'EngineRoom-ELEVATOR_WORKING': false,
 	'EngineRoom-CHARGING_BATTERY': false,
 	'MasterKey-CONFIG': '0203',

@@ -64,7 +64,7 @@ position = Vector2( -10, 11 )
 script = ExtResource( 8 )
 description = "Elevator"
 walk_to_point = Vector2( -1, 33 )
-cursor = 1
+cursor = 9
 script_name = "Elevator"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Elevator" index="0"]
@@ -82,7 +82,7 @@ position = Vector2( -94, 10 )
 script = ExtResource( 7 )
 description = "Door 201"
 walk_to_point = Vector2( -9, 34 )
-cursor = 1
+cursor = 6
 script_name = "Door201"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door201" index="0"]
@@ -107,7 +107,7 @@ position = Vector2( 77, 12 )
 script = ExtResource( 9 )
 description = "Door 202"
 walk_to_point = Vector2( -9, 31 )
-cursor = 1
+cursor = 6
 script_name = "Door202"
 
 [node name="CollisionPolygon2D" parent="Hotspots/Door202" index="0"]

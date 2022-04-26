@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Inventory/InventoryContainer.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Inventory/bg.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Inventory/btn_discard_normal.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Inventory/btn_discard_disabled.png" type="Texture" id=4]
 
 [node name="InventoryContainer" type="NinePatchRect"]
 margin_right = 50.0
@@ -10,9 +12,6 @@ rect_min_size = Vector2( 50, 16 )
 mouse_filter = 0
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -44,6 +43,11 @@ margin_right = 50.0
 margin_bottom = 16.0
 mouse_filter = 2
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="BtnDiscard" type="TextureButton" parent="."]
+margin_left = -12.0
+margin_top = 2.0
+margin_right = -1.0
+margin_bottom = 14.0
+texture_normal = ExtResource( 3 )
+texture_disabled = ExtResource( 4 )

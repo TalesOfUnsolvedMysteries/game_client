@@ -1,7 +1,7 @@
 extends "res://popochiu/Common/Overlay2D.gd"
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func _appeared() -> void:
 	if get_node_or_null('JigsawPuzzle'):
 		$JigsawPuzzle.show()

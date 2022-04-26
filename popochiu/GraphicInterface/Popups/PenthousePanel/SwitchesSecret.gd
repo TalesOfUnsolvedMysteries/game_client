@@ -5,7 +5,6 @@ signal switch_pressed
 
 var pressed = 0
 export var target = 0
-export var NFT_REWARD = ''
 
 var _switch_types = [
 	15,  23,  27,  30,  39,  51,  54,  57,
@@ -24,12 +23,14 @@ func _ready():
 	for _switch in parse_json(_secret):
 		_switches[index] = _switch_types[index]
 		index += 1
+	print(_switches)
 		
 	target = 0
 	var values = range(0, len(_switches))
 	values.shuffle()
-	for i in range(0, 3 + randi()%2):
-		target += _switches[i]
+	for i in range(0, 4 + randi()%2):
+		target ^= _switches[values[i]]
+		print(values[i])
 	if NetworkManager.isServerWithPilot():
 		rset('_switches', _switches)
 
@@ -40,13 +41,13 @@ func solve(_a):
 	var solved = false
 	solved = pressed == target
 
-	if solved:
-		Globals.set_state('ELEVATOR_ENABLED', target)
-		G.emit_signal('nft_won', Globals.NFTs[NFT_REWARD])
+	if solved:# TODO
+		Globals.set_state('Penthouse-COMPARTIMENT_OPENED', true)
+		G.emit_signal('nft_won', Globals.NFTs['DETECTIVE'])
+		pass
 
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)
-	print('pressed: ', pressed)
 	emit_signal('solved', solved)
 	return solved
 

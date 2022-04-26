@@ -12,7 +12,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-description = "Elevator programm card"
+description = "Elevator program card"
 script_name = "ElevatorCard"
 cursor = 10
 

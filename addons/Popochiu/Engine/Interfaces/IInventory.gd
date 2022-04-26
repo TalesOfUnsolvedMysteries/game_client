@@ -48,17 +48,20 @@ func add_item_as_active(item_name: String, is_in_queue := true) -> void:
 	var item: InventoryItem = yield(add_item(item_name, false), 'completed')
 	
 	if is_instance_valid(item):
-		set_active_item(item)
+		set_active_item(item, false)
 
 
-func set_active_item(item: InventoryItem = null) -> void:
-	print('set active item')  # CHECK
+func set_active_item(item: InventoryItem = null, is_in_queue := true) -> void:
+	if is_in_queue: yield()
+	
 	if item:
 		active = item
 		Cursor.set_item_cursor((item.get_node('Icon') as TextureRect).texture)
 	else:
 		active = null
 		Cursor.remove_item_cursor()
+	
+	yield(get_tree(), 'idle_frame')
 
 
 func remove_item(item_name: String, is_in_queue := true) -> void:
@@ -68,7 +71,7 @@ func remove_item(item_name: String, is_in_queue := true) -> void:
 	if is_instance_valid(i):
 		i.in_inventory = false
 		
-		set_active_item(null)
+		set_active_item(null, false)
 		emit_signal('item_removed', i)
 		_items_count -= 1
 		yield(self, 'item_remove_done')

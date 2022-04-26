@@ -20,6 +20,7 @@ func solve(answer):
 	if _validate_state() and _answer == _secret:
 		solved = true
 		_update_state()
+		yield(get_tree(), 'idle_frame')
 		# set current global state for this
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)

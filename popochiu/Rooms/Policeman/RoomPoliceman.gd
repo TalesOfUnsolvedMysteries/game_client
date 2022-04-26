@@ -2,10 +2,6 @@ tool
 extends PopochiuRoom
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
-
-
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
 	A.play({cue_name = 'sfx_door_close',is_in_queue = false})

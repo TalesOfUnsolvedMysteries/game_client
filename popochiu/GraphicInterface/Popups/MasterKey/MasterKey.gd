@@ -26,7 +26,8 @@ func appear() -> void:
 
 	show()
 	yield(get_tree().create_timer(0.1), 'timeout')
-	G.show_info(_key_config)
+	if OS.has_feature('editor'):
+		G.show_info(_key_config)
 
 
 func disappear() -> void:
@@ -48,7 +49,8 @@ func _check_close(e: InputEvent) -> void:
 
 func _close_key():
 	Cursor.set_cursor()
-	G.show_info()
+	if OS.has_feature('editor'):
+		G.show_info()
 	hide()
 
 
@@ -59,5 +61,5 @@ func _set_key_config(value: String) -> void:
 		if bitting is Button:
 			bitting.value = int(_key_config[bitting.idx])
 	
-	if visible:
+	if OS.has_feature('editor') and visible:
 		G.show_info(_key_config)
