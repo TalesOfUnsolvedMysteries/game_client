@@ -25,9 +25,7 @@ func _ready():
 func _load_switch_table():
 	var i = 0
 	for switch in secret._switches:
-		var floor_list = floor_links.get_child(i).find_node('FloorsList')
-		for j in range(0, 9):
-			floor_list.get_child(8 - j).visible = (int(switch) & int(pow(2, j))) > 0
+		$Buttons.get_child(i).set_lights(switch)
 		i += 1
 	
 	for j in range(0, 9):
@@ -65,6 +63,7 @@ func toggle_light(value, index):
 	light.color = color
 	
 	#(light.texture as AtlasTexture).region.position.x = 32 if value else 0
+	secret.solve(null)
 
 	
 func _check(solved):
@@ -78,8 +77,5 @@ func _check(solved):
 #				is_in_queue = true
 #			})
 #		])
-	else:
-		OS.show_popup('e', 'wrong configuration!', self)
-		$Save.disabled = false
-		_reset()
+
 	
