@@ -174,9 +174,10 @@ func _set_walk_to_point(value: Vector2) -> void:
 	if Engine.editor_hint and get_node_or_null('WalkToHelper'):
 		get_node('WalkToHelper').position = value
 	
-	if NetworkManager.has_method('isPilot') and NetworkManager.isPilot()\
-	and is_inside_tree():
-		Utils.invoke(self, '_set_walk_to_point', [value], true)
+	if not Engine.editor_hint:
+		if NetworkManager.has_method('isPilot') and NetworkManager.isPilot()\
+		and is_inside_tree():
+			Utils.invoke(self, '_set_walk_to_point', [value], true)
 
 
 func _toggle_input() -> void:

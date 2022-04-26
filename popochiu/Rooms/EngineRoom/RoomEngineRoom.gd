@@ -4,6 +4,9 @@ extends PopochiuRoom
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	if Engine.editor_hint:
+		return
+	
 	if not Globals.state.get('Lobby-ENGINE_ROOM_UNLOCKED'):
 		Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', true)
 	

@@ -6,6 +6,9 @@ onready var notes: Panel = $CanvasLayer/JanitorNotes
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	if Engine.editor_hint:
+		return
+	
 	$Overlay2D.hide()
 	
 	if not Globals.state.get('Janitor-JIGSAW_SOLVED'):

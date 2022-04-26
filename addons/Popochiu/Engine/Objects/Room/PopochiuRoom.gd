@@ -48,7 +48,6 @@ func _ready():
 	for p in $Props.get_children():
 		_baselines_order.append([p, p.baseline + p.position.y])
 	_baselines_order.sort_custom(self, '_sort_by_baseline')
-	prints(_baselines_order)
 	
 	if not Engine.editor_hint:
 		if limit_left != 0.0:
@@ -82,7 +81,7 @@ func _unhandled_input(event):
 	if not event.is_action_pressed('popochiu-interact'):
 		if event.is_action_released('popochiu-look'):
 			if I.active:
-				Utils.invoke(I, 'set_active_item')
+				Utils.invoke(I, 'set_active_item', [null, false])
 		return
 
 	Utils.invoke(C.player, 'walk', [get_local_mouse_position(), false])

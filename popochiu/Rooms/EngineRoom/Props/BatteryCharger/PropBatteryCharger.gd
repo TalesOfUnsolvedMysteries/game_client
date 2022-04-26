@@ -4,8 +4,10 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	$ChargingProgress.value = Globals.battery_power
+	if Engine.editor_hint:
+		return
 	
+	$ChargingProgress.value = Globals.battery_power
 	
 	if !Globals.state.get('EngineRoom-CHARGE_SOCKET_WITH_BATTERY'):
 		$Sprite.frame = 0

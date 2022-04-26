@@ -6,6 +6,9 @@ var _final_description := 'Master Key'
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
+	if Engine.editor_hint:
+		return
+	
 	if Globals.state.get('Janitor-KEY_102_LOOKED'):
 		description = _final_description
 	if !Globals.state.get('Janitor-MASTER_KEY-in'):

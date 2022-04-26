@@ -57,7 +57,6 @@ func _on_action_pressed(event: InputEvent) -> void:
 	
 	if mouse_event:
 		if mouse_event.is_action_pressed('popochiu-interact'):
-			print('popochiu inv item interact')  # CHECK
 			if I.active:
 				Utils.invoke(self, 'on_item_used', [I.active])
 			else:

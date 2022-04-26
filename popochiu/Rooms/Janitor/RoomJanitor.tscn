@@ -96,7 +96,7 @@ texture = ExtResource( 9 )
 position = Vector2( -39, 7 )
 description = "Chair"
 clickable = false
-baseline = 17
+baseline = 16
 cursor = 10
 script_name = "Chair"
 texture = ExtResource( 10 )
@@ -127,10 +127,14 @@ polygon = PoolVector2Array( -16, -10, 7, -16, 16, -12, 17, -2, -6, 15, -17, 15 )
 position = Vector2( -32, -39 )
 script = ExtResource( 13 )
 description = "Painting"
+baseline = -90
 walk_to_point = Vector2( -2, 50 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 14 )
+
+[node name="BaselineHelper" parent="Props/Painting" index="0"]
+position = Vector2( 0, -90 )
 
 [node name="WalkToHelper" parent="Props/Painting" index="1"]
 position = Vector2( -2, 50 )
@@ -147,7 +151,7 @@ script = ExtResource( 5 )
 description = "Exit"
 baseline = 36
 walk_to_point = Vector2( 5, 10 )
-cursor = 1
+cursor = 4
 script_name = "Exit"
 always_on_top = true
 texture = ExtResource( 7 )
@@ -167,13 +171,11 @@ polygon = PoolVector2Array( 20, 24, -11, 37, -15, 18 )
 [node name="KeyEngineRoom" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 4, -39 )
 script = ExtResource( 16 )
+baseline = -90
 cursor = 1
 
 [node name="BaselineHelper" parent="Props/KeyEngineRoom" index="0"]
-visible = true
-
-[node name="WalkToHelper" parent="Props/KeyEngineRoom" index="1"]
-visible = true
+position = Vector2( 0, -90 )
 
 [node name="Sprite" parent="Props/KeyEngineRoom" index="2"]
 texture = ExtResource( 17 )
@@ -187,9 +189,13 @@ polygon = PoolVector2Array( -3, -7, 3, -7, 2, 6, -1, 6 )
 position = Vector2( 15, -48 )
 script = ExtResource( 2 )
 description = "Master Key"
+baseline = -90
 cursor = 1
 script_name = "MasterKey"
 texture = ExtResource( 17 )
+
+[node name="BaselineHelper" parent="Props/MasterKey" index="0"]
+position = Vector2( 0, -90 )
 
 [node name="Sprite" parent="Props/MasterKey" index="2"]
 texture = ExtResource( 17 )
@@ -203,14 +209,14 @@ polygon = PoolVector2Array( -3, -7, 3, -7, 2, 7, -1, 7 )
 position = Vector2( -71, 4 )
 script = ExtResource( 18 )
 description = "Jigsaw"
-baseline = 18
+baseline = 21
 walk_to_point = Vector2( 18, 31 )
 cursor = 1
 script_name = "Jigsaw"
 texture = ExtResource( 19 )
 
 [node name="BaselineHelper" parent="Props/Jigsaw" index="0"]
-position = Vector2( 0, 18 )
+position = Vector2( 0, 21 )
 
 [node name="WalkToHelper" parent="Props/Jigsaw" index="1"]
 position = Vector2( 18, 31 )
