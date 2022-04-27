@@ -35,6 +35,7 @@ margin_bottom = 15.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/hseparation = 3
 columns = 3
 
 [node name="InventoryForeground" type="TextureRect" parent="."]

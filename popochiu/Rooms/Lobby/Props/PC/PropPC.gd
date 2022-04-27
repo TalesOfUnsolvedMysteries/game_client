@@ -23,12 +23,15 @@ func on_item_used(item: InventoryItem) -> void:
 	if item.script_name == 'ElevatorCard':
 		var version = Globals.state.get('PC_ELEVATOR_APP_VERSION')
 		var elevator_state = Globals.state.get('ELEVATOR_ENABLED')
-		if (version == 1 and elevator_state > 0) or (version == 2 and elevator_state == 31):
+		if (version == 1 and elevator_state > 0)\
+		or (version == 2 and elevator_state == 31):
 			yield(E.run([
+				C.walk_to_clicked(),
 				"Player: The elevator card is already updated.",
 			]), 'completed')
 			return
 		yield(E.run([
+			C.walk_to_clicked(),
 			"Player: Maybe I can change the behavior of the elevator using this computer.",
 			I.remove_item('ElevatorCard')
 		]), 'completed')
@@ -37,10 +40,10 @@ func on_item_used(item: InventoryItem) -> void:
 			is_in_queue = false
 		})
 		Globals.set_state('Lobby-ELEVATOR_CARD_IN_PC', true)
-	
-	if item.script_name == 'Usb':
+	elif item.script_name == 'Usb':
 		yield(E.run([
-			"Player: The usb is inserted in the pc.",
+			C.walk_to_clicked(),
+			"Player: USB connected to the PC.",
 			I.remove_item('Usb'),
 			Globals.set_state('Lobby-USB_IN_PC', true)
 		]), 'completed')

@@ -6,14 +6,13 @@
 [node name="InventoryUsb" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 2
+rect_min_size = Vector2( 14, 14 )
+size_flags_horizontal = 0
 size_flags_vertical = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 description = "Elevator program update"
 script_name = "Usb"
+cursor = 10
 
 [node name="Icon" type="TextureRect" parent="."]
 margin_right = 10.0

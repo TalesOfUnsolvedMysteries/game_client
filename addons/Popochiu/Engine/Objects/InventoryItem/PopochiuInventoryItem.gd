@@ -6,7 +6,7 @@ class_name InventoryItem, 'res://addons/Popochiu/icons/inventory_item.png'
 signal description_toggled(description)
 signal selected(item)
 
-export var description := ''
+export var description := '' setget , _get_description
 export var stack := false
 export var script_name := ''
 export(Cursor.Type) var cursor
@@ -48,7 +48,7 @@ func on_discard () -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _toggle_description(display: bool) -> void:
 	Cursor.set_cursor(cursor if display else null)
-	G.show_info(description if display else '')
+	G.show_info(self.description if display else '')
 	emit_signal('description_toggled', description if display else '')
 
 

@@ -22,4 +22,7 @@ func on_item_used(_item: InventoryItem) -> void:
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-# TODO: Poner aquí los métodos privados
+func _get_description() -> String:
+	if I.active == self:
+		return description
+	return 'Master key\n(right click to modify)'

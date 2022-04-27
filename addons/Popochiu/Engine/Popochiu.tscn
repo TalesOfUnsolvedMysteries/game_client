@@ -61,7 +61,7 @@ text_speed_idx = 2
 inventory_always_visible = true
 inventory_limit = 3
 toolbar_always_visible = true
-items_on_start = [ "MasterKey" ]
+items_on_start = [ "MasterKey", "Usb" ]
 
 [node name="Tween" type="Tween" parent="."]
 

@@ -67,13 +67,30 @@ func _goto_floor(go_to: String) -> void:
 	if go_to != E.current_room.script_name:
 		# TODO: Emitir una señal para que se abran las puertas del ascensor.
 		yield(E.run([
-		A.play({
-			cue_name = 'sfx_elevator_moving',
-			in_queue = true,
-			wait_audio_complete = true
-		}),
-		E.wait(0.1)
-	]), 'completed')
-		E.goto_room(go_to)
+			A.play({
+				cue_name = 'sfx_elevator_moving',
+				in_queue = true,
+				wait_audio_complete = true
+			}),
+			E.wait(0.1)
+		]), 'completed')
+		
+		if go_to == 'Basement':
+			E.run([
+				E.runnable(E, 'play_fade', ['in'], 'completed'),
+				'...',
+				A.play({
+					cue_name = 'sfx_elevator_moving',
+					in_queue = true,
+					wait_audio_complete = true
+				}),
+				E.wait(0.1),
+				E.runnable(E, 'play_fade', ['out'], 'completed'),
+				'Player: What?',
+				'Player: Something is blocking the elevator in that floor?'
+			])
+			return
+		else:
+			E.goto_room(go_to)
 	else:
 		E.run(["Player: I'm already in this floor..."])

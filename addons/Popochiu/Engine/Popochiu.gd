@@ -339,6 +339,19 @@ func runnable(
 		yield(get_tree(), 'idle_frame')
 
 
+func room_exists(script_name: String) -> bool:
+	for r in rooms:
+		var room = r as PopochiuRoomData
+		if room.script_name.to_lower() == script_name.to_lower():
+			return true
+	return false
+
+
+func play_fade(type: String) -> void:
+	$TransitionLayer.play_transition('fade_' + type)
+	yield($TransitionLayer, 'transition_finished')
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _eval_string(text: String) -> void:
 	match text:

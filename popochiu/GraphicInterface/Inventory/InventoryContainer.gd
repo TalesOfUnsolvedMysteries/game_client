@@ -127,7 +127,7 @@ func _remove_item(item: InventoryItem) -> void:
 	
 	I.emit_signal('item_remove_done', item)
 	
-	if I.get_child_count() == 0:
+	if _grid.get_child_count() == 0:
 		$BtnDiscard.disabled = true
 
 
