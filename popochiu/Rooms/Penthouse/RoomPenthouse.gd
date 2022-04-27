@@ -101,9 +101,3 @@ func _on_second_panel_solved() -> void:
 		yield(E.run([E.wait(0.4)]), 'completed')
 		secret_compartiment._show_interior()
 
-# execute this function on 
-func reset_two_puzzle():
-	first_panel_solved = false
-	$MoveBlockOverlay.reset_puzzle()
-	second_panel.reset_puzzle()
-

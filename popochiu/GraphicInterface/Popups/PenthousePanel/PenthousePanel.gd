@@ -30,7 +30,3 @@ func disappear():
 	tween.start()
 	yield(tween, 'tween_completed')
 	hide()
-
-func reset_puzzle():
-	# TODO - restore the state of the puzzle to initial position
-	pass

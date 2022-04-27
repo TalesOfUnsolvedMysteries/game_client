@@ -432,7 +432,9 @@ position = Vector2( -0.5, 1 )
 texture = ExtResource( 32 )
 
 [node name="SecretCompartiment" parent="Props" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -159, 18 )
+input_pickable = false
 script = ExtResource( 30 )
 description = "Carcass and trophy"
 baseline = -90
@@ -536,7 +538,6 @@ margin_right = 321.0
 margin_bottom = 178.0
 
 [node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
-visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 z_index = 10
 offset = Vector2( 27, 0 )

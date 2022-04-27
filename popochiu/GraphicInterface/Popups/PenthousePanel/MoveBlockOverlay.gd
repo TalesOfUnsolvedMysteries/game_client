@@ -44,7 +44,4 @@ func on_solved():
 	tween.interpolate_property($Puzzle, 'modulate:a', 1, 0, 0.5, Tween.TRANS_LINEAR)
 	tween.start()
 	yield(tween, 'tween_completed')
-	
-func reset_puzzle():
-	# TODO - restore the state of the puzzle to initial position
-	pass
+
