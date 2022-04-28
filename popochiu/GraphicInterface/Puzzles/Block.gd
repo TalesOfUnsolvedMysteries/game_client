@@ -119,3 +119,7 @@ func set_target_tile(_target):
 
 func set_texture(txt: Texture) -> void:
 	$Sprite.texture = txt
+
+func reset():
+	_matched = false
+	locked = false

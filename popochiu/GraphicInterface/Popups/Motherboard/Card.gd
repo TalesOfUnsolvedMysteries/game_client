@@ -11,14 +11,19 @@ func on_interact() -> void:
 	yield(E.run([
 		"Player: I'll take the elevator program card.",
 		I.add_item('ElevatorCard'),
-		A.play({
-			cue_name = 'sfx_elevator_card_pick',
-			is_in_queue = true
-		})
 	]), 'completed')
 	
-	hide()
-	emit_signal('removed')
+	if I.is_item_in_inventory('ElevatorCard'):
+		A.play({
+			cue_name = 'sfx_elevator_card_pick',
+			is_in_queue = false
+		})
+		hide()
+		emit_signal('removed')
+	else:
+		E.run([
+			'Player: I don\'t have space on my inventory!',
+		])
 
 
 func on_look() -> void:

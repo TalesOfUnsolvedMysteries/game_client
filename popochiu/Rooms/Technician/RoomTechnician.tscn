@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Technician/RoomTechnician.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/technician_notes.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://popochiu/Rooms/Technician/Props/Gadgets/gadgets.png" type="Texture" id=22]
 [ext_resource path="res://popochiu/Rooms/Technician/Props/PC/pc.png" type="Texture" id=23]
 [ext_resource path="res://popochiu/Rooms/Technician/Props/Window/window.png" type="Texture" id=24]
+[ext_resource path="res://secrets/Secret.gd" type="Script" id=25]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 63, 16, 88, 35, 25, 77, -2, 51, 8, 45, 50, 21, 26, -1, 27, -10, 42, 3, 31, 6, 1, 35, -89, 73, -88, 65, -73, 64, -35, 38, -66, 16, -38, 4, -19, 28 )
@@ -206,6 +207,11 @@ texture = ExtResource( 11 )
 
 [node name="CollisionPolygon2D" parent="Props/Notes" index="3"]
 polygon = PoolVector2Array( -8, -2, 0, -6, 9, -1, 9, 1, 0, 5, -8, 0 )
+
+[node name="Secret" type="Node" parent="Props/Notes"]
+script = ExtResource( 25 )
+_secret_key = "MOTHERBOARD_CODES"
+_secret = "{\"a\":12}"
 
 [node name="Whisky" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -11, 19 )

@@ -64,7 +64,7 @@ const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_gogo.png'),
 ]
-const BATTERY_CHARGING_TIME := 30 * 60
+const BATTERY_CHARGING_TIME := 0.1 * 60
 const NFTs := {
 	ENGINE_ROOM = {
 		label = 'Engine keeper',
@@ -126,6 +126,16 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0012'
 	},
+	LOCKSMITH = {
+		label = 'Unlocks the Engine Room fuse-box',
+		img = 'nft_new_floors',
+		id = '0013'
+	},
+	ELEVATOR_FIXED = {
+		label = 'Fixes the elevator engine',
+		img = 'nft_new_floors',
+		id = '0014'
+	},
 }
 
 var main_mx_play = false
@@ -136,9 +146,9 @@ sync var state := {
 	'Lobby-PC_POWERED': true,
 	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
-	'ELEVATOR_ENABLED': 15,
+	'ELEVATOR_ENABLED': 0,
 	'Lobby-ENGINE_ROOM_UNLOCKED': false,
-	'EngineRoom-ELEVATOR_WORKING': true,
+	'EngineRoom-ELEVATOR_WORKING': false,
 	'EngineRoom-CHARGING_BATTERY': false,
 	'MasterKey-CONFIG': '0203',
 	'FirstFloor-102_UNLOCKED': false,

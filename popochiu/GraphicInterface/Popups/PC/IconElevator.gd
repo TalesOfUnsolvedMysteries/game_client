@@ -21,10 +21,12 @@ func open_app() -> void:
 		else:
 			.open_app()
 	else:
-		# TODO: Mostrar un mensaje de error en el SO indicando que se necesita
-		#		la tarjeta del elevador para poder usar la aplicación.
-		error = 0
-		owner.show_popup('w', 'not elevator card found', self)
+		if Globals.state.get('EngineRoom-MOTHERBOARD_WITH_CARD') and elevator_state == 31:
+			error = 2
+			owner.show_popup('w', 'elevator program is already fixed', self)
+		else:
+			error = 0
+			owner.show_popup('w', 'not elevator card found', self)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -41,4 +43,5 @@ func on_popup_closed() -> void:
 				is_in_queue = true
 			})
 		]), 'completed')
-	
+	if error == 2:
+		E.run(['Player: Don\'t need to use that app anymore.'])

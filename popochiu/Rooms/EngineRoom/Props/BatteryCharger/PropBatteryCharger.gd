@@ -43,6 +43,13 @@ func on_interact() -> void:
 		
 		var answer: DialogOption = yield(E.show_inline_dialog(['Yes', 'No']), 'completed')
 		if answer.id == 'Opt1':
+			# check for space in inventory first
+			if I._items_count == 3: # inventory is full
+				yield(E.run([
+					C.walk_to_clicked(),
+					'Player: I can\'t carry anymore items!'
+				]), 'completed')
+				return
 			Globals.set_state('BATTERY_LAST_LOCATION', 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY')
 			E.run([
 				C.walk_to_clicked(),
@@ -54,6 +61,13 @@ func on_interact() -> void:
 			E.run(['Player: Yeah. Let it charge in peace.'])
 	elif Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		Globals.set_state('BATTERY_LAST_LOCATION', 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY')
+		# check for space in inventory first
+		if I._items_count == 3: # inventory is full
+			yield(E.run([
+				C.walk_to_clicked(),
+				'Player: I can\'t carry anymore items!'
+			]), 'completed')
+			return
 		yield(E.run([
 			C.walk_to_clicked(),
 			'Player: Great. Now the battery is fully charged',

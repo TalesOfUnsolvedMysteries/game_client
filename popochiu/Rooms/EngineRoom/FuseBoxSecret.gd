@@ -10,6 +10,7 @@ func _validate_state():
 # updates server global state, also unlocks nfts rewards and scores if needed
 func _update_state():
 	Globals.set_state('EngineRoom-SWITCH_BOX_OPENED', true)
+	G.emit_signal('nft_won', Globals.NFTs['LOCKSMITH'])
 
 # transform current answer into a plain text format compatible with the secret
 func _encode(answer):

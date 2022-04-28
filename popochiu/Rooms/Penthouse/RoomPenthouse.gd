@@ -28,6 +28,7 @@ func _enter_tree() -> void:
 	if OS.has_feature('editor'):
 		Console.add_command('open_hole', self, '_dev_open_hole').register()
 		Console.add_command('open_secret', self, '_on_vase_puzzle_solved').register()
+		Console.add_command('reset_puzzle', self, 'reset_two_puzzle').register()
 #		Console.add_command('open_interior', self, '').register()
 
 
@@ -35,6 +36,7 @@ func _exit_tree() -> void:
 	if OS.has_feature('editor'):
 		Console.remove_command('open_hole')
 		Console.remove_command('open_secret')
+		Console.remove_command('reset_puzzle')
 #		Console.remove_command('open_interior')
 
 
