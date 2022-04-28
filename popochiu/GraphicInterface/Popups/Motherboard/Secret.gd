@@ -5,7 +5,7 @@ signal valid_code_entered
 var codes := {}
 
 var _available_codes := []
-var _current_code := ''
+sync var _current_code := ''
 var _matches := 0
 var _good_codes = 0
 
@@ -20,6 +20,8 @@ func reset_codes():
 	_available_codes = codes.keys()
 	_available_codes.shuffle()
 	_current_code = _available_codes.pop_front()
+	if NetworkManager.isServerWithPilot():
+		rset('_current_code', _current_code)
 
 
 func check_button(value) -> void:
