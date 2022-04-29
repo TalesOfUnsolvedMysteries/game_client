@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Jukebox/Jukebox.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=2]
@@ -40,24 +40,12 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CenterContainer/SongsPanel:rect_position")
-tracks/2/interp = 2
+tracks/2/path = NodePath("CenterContainer/DiscPanel:visible")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 38, 180 ), Vector2( 38, 28 ), Vector2( 38, 28 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("CenterContainer/DiscPanel:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -90,6 +78,46 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "OnlyShowList"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/SongsPanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer/SongsPanel:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 38, 196 ), Vector2( 38, 196 ), Vector2( 38, 28 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/SongsPanel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -177,6 +205,18 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CenterContainer/SongsPanel:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -288,7 +328,15 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 11, 11 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 11, 11 )
+
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 11, 11 )
 
@@ -317,6 +365,7 @@ script = ExtResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/HideDisc = SubResource( 8 )
 anims/HideList = SubResource( 9 )
+anims/OnlyShowList = SubResource( 13 )
 anims/RESET = SubResource( 2 )
 anims/ShowDisc = SubResource( 3 )
 anims/ShowList = SubResource( 7 )
@@ -333,6 +382,7 @@ margin_left = 97.0
 margin_top = 13.0
 margin_right = 223.0
 margin_bottom = 167.0
+mouse_filter = 0
 texture = ExtResource( 10 )
 
 [node name="Morning" type="TextureRect" parent="CenterContainer/Bg"]
@@ -340,21 +390,21 @@ margin_left = 20.0
 margin_top = 36.0
 margin_right = 31.0
 margin_bottom = 47.0
-texture = SubResource( 6 )
+texture = SubResource( 10 )
 
 [node name="Afternoon" type="TextureRect" parent="CenterContainer/Bg"]
 margin_left = 42.0
 margin_top = 12.0
 margin_right = 53.0
 margin_bottom = 23.0
-texture = SubResource( 6 )
+texture = SubResource( 11 )
 
 [node name="Night" type="TextureRect" parent="CenterContainer/Bg"]
 margin_left = 54.0
 margin_top = 47.0
 margin_right = 65.0
 margin_bottom = 58.0
-texture = SubResource( 6 )
+texture = SubResource( 12 )
 
 [node name="SongsPanel" type="PanelContainer" parent="CenterContainer"]
 visible = false
