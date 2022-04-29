@@ -219,7 +219,7 @@ margin_right = 1.0
 margin_bottom = 1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "2"
+text = "3"
 
 [node name="S" type="Label" parent="Props/Clock"]
 margin_top = -3.0
@@ -235,7 +235,7 @@ margin_right = 7.0
 margin_bottom = -1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "1"
+text = "0"
 
 [node name="M2" type="Label" parent="Props/Clock"]
 margin_left = 6.0

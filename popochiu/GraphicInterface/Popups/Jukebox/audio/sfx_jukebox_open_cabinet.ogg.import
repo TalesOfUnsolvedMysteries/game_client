@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_jukebox_open_cabinet.ogg-7d2c6f486ace70a45a21d9ad873d9e21.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Jukebox/audio/sfx_jukebox_open_cabinet.ogg"
+dest_files=[ "res://.import/sfx_jukebox_open_cabinet.ogg-7d2c6f486ace70a45a21d9ad873d9e21.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

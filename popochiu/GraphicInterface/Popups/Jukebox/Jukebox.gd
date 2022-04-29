@@ -20,18 +20,22 @@ func _ready() -> void:
 	secret.connect('solved', self, '_on_solved')
 	secret.connect('progress_calculated', self, '_on_progress_updated')
 	
-	hide()
+	if Globals.state.get('Jukebox-Secret_Box_OPENED') and (I.is_item_in_inventory('Usb') or Globals.state.get('Lobby-USB_IN_PC')):
+		for bulb in $CenterContainer/Bg.get_children():
+			(bulb.texture as AtlasTexture).region.position.x = 11.0
 
+	hide()
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func appear() -> void:
 	show()
-	
+	A.stop('mx_main', 0, false, true, 2.0)
 	$AnimationPlayer.play('ShowList')
 
 
 func disappear() -> void:
 	Utils.invoke(self, '_close')
+	A.play_music('mx_main', false, false)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -71,6 +75,7 @@ func _on_progress_updated(progress):
 		i += 1
 	if progress > 0:
 		A.play({cue_name = 'sfx_jukebox_good_song',is_in_queue = false})
+		A.change_cue_pitch('sfx_jukebox_good_song', progress, false)
 	else:
 		A.play({cue_name = 'sfx_jukebox_bad_song',is_in_queue = false})
 		A.play({cue_name = 'sfx_jukebox_bad_song',is_in_queue = false})
@@ -84,6 +89,7 @@ func _on_progress_updated(progress):
 func _on_solved(solved):
 	if solved:
 		A.play({cue_name = 'sfx_jukebox_good_song',is_in_queue = false})
+		A.change_cue_pitch('sfx_jukebox_good_song', 3, false)
 		for bulb in $CenterContainer/Bg.get_children():
 			(bulb.texture as AtlasTexture).region.position.x = 11.0
 		
@@ -94,14 +100,15 @@ func _on_solved(solved):
 				['HideList'],
 				'animation_finished'
 			),
-			# TODO: play unlock sound
-			'Player: Something was unlocked!'
+			'Player: Something was unlocked!',
+			A.play({cue_name = 'sfx_jukebox_cabinet_unlocked',is_in_queue = true})
 		]), 'completed')
 	else:
 		secret.get_progress(last_played_songs)
 
 
 func _show_disc() -> void:
+
 	yield(E.run([
 		E.runnable($AnimationPlayer, 'play', ['HideList'], 'animation_finished'),
 		E.wait(0.5)	# cool to play an audio

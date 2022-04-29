@@ -15,13 +15,21 @@ func on_interact() -> void:
 		if not I.is_item_in_inventory('Usb') and not Globals.state.get('Lobby-USB_IN_PC'):
 			$Sprite.frame = 1
 			yield(E.run([
+				A.play({cue_name = 'sfx_jukebox_open_cabinet',is_in_queue = true}),
 				'Player: What is this?',
 				I.add_item('Usb'),
 				"Player: Might be the update for the elevator app mentioned in the technician's notes"
 			]), 'completed')
+			A.play({cue_name = 'sfx_usb_pick', is_in_queue = false})
 		else:
 			yield(E.run([
 				"Player: Is empty"
+			]), 'completed')
+	else:
+		yield(E.run([
+				A.play({cue_name = 'sfx_door_latch',is_in_queue = true}),
+				"Player: It's locked, it doesn't have any keyhole...",
+				"Player: How can one unlock this?"
 			]), 'completed')
 
 func on_look() -> void:
