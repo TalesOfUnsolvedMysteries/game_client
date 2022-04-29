@@ -1,5 +1,7 @@
 extends Control
 
+const LIGHT_TEXTURE: AtlasTexture = preload('styles/LightTexture.tres')
+
 var secret: Secret
 onready var floor_links: Control = find_node('FloorLinks')
 
@@ -13,6 +15,9 @@ func _ready():
 		button.connect('toggled', self, 'on_button_toggled', [i])
 		if !button.disabled and button.pressed: on_button_toggled(true, i)
 		i += 1
+	
+	for l in $Lights.get_children():
+		l.texture = LIGHT_TEXTURE.duplicate()
 	
 	secret.connect('switch_pressed', self, '_turn_lights_on')
 
@@ -30,7 +35,8 @@ func _load_switch_table():
 	
 	for j in range(0, 9):
 		var light = $Lights.get_child(j)
-		light.get_node('back').visible = (secret.target & int(pow(2, j))) > 0
+		(light.texture as AtlasTexture).region.position.x =\
+		 20 if (secret.target & int(pow(2, j))) > 0 else 0
 
 func on_button_toggled(value, index):
 	Utils.invoke(secret, 'toggle_switch', [value, index], !Globals.is_single_test())
@@ -51,18 +57,18 @@ func _reset():
 
 func toggle_light(value, index):
 	var light = $Lights.get_child(index)
-	var color := Color('005280') if !value else Color('25e2cd')
-	if value and !light.get_node('back').visible:
-		color = Color('0a98ac')
+	var texture := light.texture as AtlasTexture
+	var offset := 0 if !value else 40
 	
-	light.get_node('Label').set(
-		'custom_colors/font_color',
-		color
-	)
+	if value\
+	 and (texture.region.position.x == 20 or texture.region.position.x == 60):
+#		light.modulate = Color.red
+		texture.region.position.x = 60
+	elif not value and texture.region.position.x == 60:
+		texture.region.position.x = 20
+	elif texture.region.position.x != 20:
+		texture.region.position.x = offset
 	
-	light.color = color
-	
-	#(light.texture as AtlasTexture).region.position.x = 32 if value else 0
 	secret.solve(null)
 
 	

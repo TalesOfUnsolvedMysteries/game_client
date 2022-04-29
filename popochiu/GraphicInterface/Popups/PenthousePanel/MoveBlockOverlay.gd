@@ -34,6 +34,12 @@ func _check_click(_v: Node, e: InputEvent, _i: int) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 	and mouse_event.pressed:
+		# Esto hace que los bloqueadores de clic puedan actuar antes de que el
+		# nodo intente ocultarse -----------------------------------------------
+		yield(get_tree(), 'idle_frame')
+		if get_tree().is_input_handled(): return
+		# ----------------------------------------------------------------------
+		
 		tween.interpolate_property($Puzzle, 'position:y', 0, hide_y, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.interpolate_property($Bg, 'position:y', 0, hide_y, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
 		tween.start()
