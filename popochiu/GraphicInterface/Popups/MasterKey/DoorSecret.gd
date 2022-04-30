@@ -15,7 +15,8 @@ func _validate_state():
 func _update_state():
 	Globals.set_state(DOOR_TO_UNLOCK, true)
 	# unlock DOOR NFT
-	G.emit_signal('nft_won', Globals.NFTs[NFT_TO_CLAIM])
+	self._earn_nft(NFT_TO_CLAIM)
+	#G.emit_signal('nft_won', Globals.NFTs[NFT_TO_CLAIM])
 
 # transform current answer into a plain text format compatible with the secret
 func _encode(answer):

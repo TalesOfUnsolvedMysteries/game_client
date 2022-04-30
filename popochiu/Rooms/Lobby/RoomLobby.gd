@@ -51,13 +51,7 @@ func use_pc() -> void:
 
 func open_engine_room() -> void:
 	Globals.set_state('Lobby-ENGINE_ROOM_UNLOCKED', true)
-	
-	# TODO: Dejo esto aquí por si hace falta meterlo para tener un mejor control
-	#		del flujo de esta parte.
-#	yield(C.walk_to_clicked(false), 'completed')
-#	G.emit_signal('nft_won', Globals.NFTs.ENGINE_ROOM)
-#	yield(G, 'nft_shown')
-	
+		
 	yield(E.run([
 		C.walk_to_clicked(),
 		E.runnable(

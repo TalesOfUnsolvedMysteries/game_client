@@ -30,7 +30,10 @@ func on_room_transition_finished() -> void:
 # TODO: Poner aquí los métodos privados
 
 func _check_near_container():
-	var wc = ServerConnection.wallet_connection
+	var wc = null
+	if ServerConnection.has_node('near_connector'):
+		wc = ServerConnection.near_connector.wallet_connection
+	
 	if wc and wc.account_id:
 		_container_near.hide()
 	else:

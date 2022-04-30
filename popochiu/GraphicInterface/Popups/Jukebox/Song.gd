@@ -16,7 +16,7 @@ var playing = false
 func _ready():
 	connect('mouse_entered', self, '_on_hover')
 	connect('mouse_exited', self, '_on_exit')
-	connect('pressed', self, '_on_interact')
+	connect('pressed', Utils, 'invoke', [self, '_on_interact'])
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

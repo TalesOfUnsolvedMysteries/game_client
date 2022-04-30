@@ -39,7 +39,11 @@ func _ready() -> void:
 	I.connect('item_discarded', self, '_on_item_discarded')
 
 	_secret.connect('valid_code_entered', self, '_on_valid_code_entered')
+	_secret.connect('current_code_changed', self, '_on_current_code_changed')
 	G.connect('nft_shown', self, '_on_secret_solved')
+	
+	for b in _buttons.get_children():
+		(b as TextureButton).connect('pressed', self, '_on_button_pressed', [b])
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func appear() -> void:
@@ -80,16 +84,18 @@ func _close_motherboard():
 func _wait_reset() -> void:
 	_secret.reset_codes()
 	_pick_code()
-	for b in _buttons.get_children():
-		(b as TextureButton).connect('pressed', self, '_check_secuence', [b])
-
 
 func _pick_code() -> void:
 	_display.text = _secret._current_code.to_upper()
 
+func _on_current_code_changed(_current_code) -> void:
+	_display.text = _current_code.to_upper()
 
-func _check_secuence(button: TextureButton) -> void:
-	_secret.check_button(button.get_value())
+func _on_button_pressed(button: TextureButton) -> void:
+	Utils.invoke(self, '_check_secuence', [button.get_value()])
+
+func _check_secuence(value) -> void:
+	_secret.check_button(value)
 
 func _on_secret_solved():
 	if not Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):

@@ -49,7 +49,7 @@ func _load_info():
 		Globals.bug_name = user_obj.bugName
 
 	
-	var wc = ServerConnection.wallet_connection
+	var wc = ServerConnection.near_connector.wallet_connection
 	if wc and wc.account_id:
 		_neard_id.text = wc.account_id
 		_neard_id.show()

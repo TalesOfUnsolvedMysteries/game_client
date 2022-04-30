@@ -1364,4 +1364,3 @@ valign = 1
 script = ExtResource( 3 )
 _secret_key = "PENTHOUSE_SWITCHES"
 _secret = "0,0,0,0,0,0,0"
-target = 123

@@ -44,6 +44,14 @@ remote func was_solved(solved):
 	if NetworkManager.isPilot():
 		emit_signal('solved', solved)
 
+func _earn_nft(nft):
+	G.emit_signal('nft_won', Globals.NFTs[nft])
+	if !Globals.is_single_test():
+		rpc_id(NetworkManager.pilot_peer_id, 'nft_earned', nft)
+
+remote func nft_earned(nft):
+	if NetworkManager.isPilot():
+		G.emit_signal('nft_won', Globals.NFTs[nft])
 
 # to implement it:
 # create an instance of this as a helper resource?

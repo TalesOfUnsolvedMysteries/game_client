@@ -28,7 +28,8 @@ func solve(_a):
 
 	if solved:
 		Globals.set_state('ELEVATOR_ENABLED', target)
-		G.emit_signal('nft_won', Globals.NFTs[NFT_REWARD])
+		self._earn_nft(NFT_REWARD)
+		#G.emit_signal('nft_won', Globals.NFTs[NFT_REWARD])
 
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)

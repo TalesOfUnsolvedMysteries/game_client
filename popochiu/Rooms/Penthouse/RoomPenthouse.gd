@@ -6,7 +6,7 @@ onready var secret = find_node('Secret')
 onready var secret_hole = find_node('VaseHole')
 onready var secret_compartiment = find_node('SecretCompartiment')
 onready var second_panel: Panel = $GraphicInterface/PenthousePanel
-var first_panel_solved = true
+var first_panel_solved = false
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta

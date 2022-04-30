@@ -143,7 +143,7 @@ var bug_name := ''
 var bug_adn := ''
 var turn := 0
 sync var state := {
-	'Lobby-PC_POWERED': true,
+	'Lobby-PC_POWERED': false,
 	'Lobby-USB_IN_PC': false,
 	'PC_ELEVATOR_APP_VERSION': 1,
 	'ELEVATOR_ENABLED': 0,
@@ -172,7 +172,7 @@ sync var state := {
 	# penthouse vases
 	'Penthouse_VASES_ON_Shelfs': ['VaseBlue', 'VaseGreen', 'VaseYellow', 'VaseRed'],
 	'Penthouse_WEIGHTS_ON_Shelfs': [1.6, 0.815, 1.25, 2.38124],
-	'Penthouse-VASE_SOLVED': true,
+	'Penthouse-VASE_SOLVED': false,
 	'Penthouse-COMPARTIMENT_OPENED': false,
 	'Penthouse-FORTUNETELLER_NOTES': false,
 }
@@ -215,11 +215,9 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func set_state(key, value):
-	if test_mode == TestMode.SINGLE:
-		state[key] = value
+	state[key] = value
 
 	if NetworkManager.server:
-		state[key] = value
 		sync_state()
 		save_state()
 

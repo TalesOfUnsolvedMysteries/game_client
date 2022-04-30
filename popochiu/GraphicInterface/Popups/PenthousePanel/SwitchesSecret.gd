@@ -2,9 +2,10 @@ extends Secret
 sync var _switches = [0, 0, 0, 0, 0, 0, 0] setget set_switches
 signal switches_changed
 signal switch_pressed
+signal target_updated
 
 var pressed = 0
-export var target = 0
+export sync var target = 0
 
 var _switch_types = [
 	15,  23,  27,  30,  39,  51,  54,  57,
@@ -33,6 +34,7 @@ func _ready():
 		print(values[i])
 	if NetworkManager.isServerWithPilot():
 		rset('_switches', _switches)
+		rpc_id(NetworkManager.pilot_peer_id, '_on_target_updated', target)
 
 #overwrites solve
 func solve(_a):
@@ -41,10 +43,11 @@ func solve(_a):
 	var solved = false
 	solved = pressed == target
 
-	if solved:# TODO
+	if solved:
 		Globals.set_state('Penthouse-COMPARTIMENT_OPENED', true)
-		G.emit_signal('nft_won', Globals.NFTs['DETECTIVE'])
-		pass
+		self._earn_nft('DETECTIVE')
+		#G.emit_signal('nft_won', Globals.NFTs['DETECTIVE'])
+		
 
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'was_solved', solved)
@@ -64,6 +67,11 @@ func _update_switches():
 	if !Globals.is_single_test():
 		rpc_id(NetworkManager.pilot_peer_id, 'switch_pressed', pressed)
 	emit_signal('switch_pressed', pressed)
+	
+remote func _on_target_updated(_target):
+	if NetworkManager.isPilot():
+		target = _target
+		emit_signal('target_updated', _target)
 
 remote func switch_pressed(pressed):
 	# checks if it is pilot
