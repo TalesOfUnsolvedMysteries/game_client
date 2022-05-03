@@ -47,10 +47,7 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 
 	var correct = yield(self, 'solved')
 	if !correct:
-		E.run([
-		# TODO: Poner sonido de puerta trabada
-			'Player: umm, it\'s the wrong configuration',
-		])
+		self._on_incorrect_combination()
 		return
 
 	yield(G, 'nft_shown')
@@ -62,3 +59,9 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 	
 	# TODO: validates if all the other doors are already opened
 	# if true then discard the master key from the inventory
+
+func _on_incorrect_combination():
+	E.run([
+	# TODO: Poner sonido de puerta trabada
+		'Player: umm, it\'s the wrong configuration',
+	])
