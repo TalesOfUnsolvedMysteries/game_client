@@ -13,6 +13,7 @@ func _ready() -> void:
 		$Sprite.frame = 0
 		$ChargingProgress.value = 0
 	else:
+		$Sprite.frame = 1
 		if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
 			_listen_battery_charging(false)
 		elif Globals.battery_power < 100:
