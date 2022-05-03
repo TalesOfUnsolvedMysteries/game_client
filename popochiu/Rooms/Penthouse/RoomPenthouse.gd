@@ -42,7 +42,7 @@ func _exit_tree() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	pass
+	C.player.face_left(false)
 
 
 func on_room_transition_finished() -> void:
