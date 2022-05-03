@@ -103,6 +103,7 @@ func game_over(_peer_id, death_cause):
 		rset_id(peer_id, 'pilot_peer_id', pilot_peer_id)
 		rpc_id(peer_id, 'remove_control')
 	Globals.bug_adn = ''
+	I.clean_inventory()
 	print('game over')
 	print('gs_gameOver:%d-%s' % [peer_id, death_cause])
 	ServerConnection.notify_game_over(peer_id, death_cause)
@@ -143,6 +144,7 @@ remote func remove_control():
 	if !client: return
 	print('control lost')
 	emit_signal('control_lost')
+	I.clean_inventory()
 	ServerConnection.turn = 0
 	#WebsocketManager.turn = 0
 	is_ready_to_pilot = false

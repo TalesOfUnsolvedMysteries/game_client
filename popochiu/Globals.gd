@@ -228,7 +228,7 @@ func set_state(key, value):
 
 
 func sync_state():
-	if NetworkManager.server:
+	if NetworkManager.server and NetworkManager.pilot_peer_id != -1:
 		rset_id(NetworkManager.pilot_peer_id, 'state', state)
 		rset_id(NetworkManager.pilot_peer_id, 'puzzle_state', puzzle_state)
 
