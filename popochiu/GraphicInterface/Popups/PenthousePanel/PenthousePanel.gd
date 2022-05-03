@@ -10,7 +10,7 @@ func _check_close(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 		and mouse_event.pressed:
-			disappear()
+			Utils.invoke(self, 'disappear')
 
 
 func appear(from_room = true):

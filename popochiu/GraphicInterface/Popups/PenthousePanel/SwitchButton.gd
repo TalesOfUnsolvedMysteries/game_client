@@ -39,3 +39,5 @@ func _toggled(pressed):
 		
 		cell_texture.region_rect.size = Vector2(8.0, 8.0)
 		cell_texture.region_rect.position.x = region_offset
+
+	Utils.invoke(self, '_toggled', [pressed], true)
