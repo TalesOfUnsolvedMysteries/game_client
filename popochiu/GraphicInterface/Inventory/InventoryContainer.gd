@@ -24,6 +24,7 @@ func _ready():
 		connect('mouse_exited', self, '_close')
 	
 	$BtnDiscard.connect('pressed', self, '_discard_item')
+	$BtnDiscard.connect('pressed', Utils, 'invoke', [self, '_discard_item'])
 	$BtnDiscard.connect('mouse_entered', self, '_show_info')
 	$BtnDiscard.connect('mouse_exited', self, '_hide_info')
 	
