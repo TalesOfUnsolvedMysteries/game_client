@@ -30,5 +30,10 @@ func _goto_floor(enabled):
 	]), 'completed')
 	if !enabled:
 		set_pressed_no_signal(false)
+		if go_to == 'Penthouse' and Globals.state.get('ELEVATOR_ENABLED') > 0:
+			yield(E.run([
+				'Player: is not working',
+				'Player: I guess the elevator requires another update'
+			]), 'completed')
 		return
 	emit_signal('floor_selected', go_to)
