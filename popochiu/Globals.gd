@@ -136,6 +136,11 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0014'
 	},
+	PUZZLE_AMATEUR = {
+		label = 'Solves the Janitor\'s room puzzle',
+		img = 'nft_new_floors',
+		id = '0015'
+	},
 }
 
 var main_mx_play = false

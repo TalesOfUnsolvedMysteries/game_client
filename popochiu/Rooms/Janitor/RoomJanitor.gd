@@ -50,9 +50,16 @@ func show_notes() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _on_jigsaw_solved() -> void:
 	Globals.set_state('Janitor-JIGSAW_SOLVED', true)
+	
 	$Overlay2D/JigsawPuzzle.queue_free()
 	$Overlay2D/Solved.show()
 	E.run([
+		E.runnable(
+			G,
+			'emit_signal',
+			['nft_won', Globals.NFTs.PUZZLE_AMATEUR],
+			'nft_shown'
+		),
 		'Player: Wooooooo',
 		'Player: There is no puzzle that can beat me!!!'
 	])
