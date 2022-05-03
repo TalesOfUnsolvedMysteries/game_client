@@ -188,12 +188,24 @@ func _check_display_message() -> void:
 		_display.text = 'replace battery'
 		return
 	
+	var elevator_level = Globals.state.get('ELEVATOR_ENABLED')
+
 	if Globals.state.get('EngineRoom-MOTHERBOARD_WITH_BATTERY'):
 		if Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
 			_display.text = 'insert card'
 			if Globals.state.get('EngineRoom-MOTHERBOARD_WITH_CARD'):
-				if Globals.state.get('ELEVATOR_ENABLED') > 0:
+				if elevator_level > 0:
 					_display.text = 'elevator working'
+					if elevator_level == 15:
+						yield(E.run([
+							'Player: Great! I can use the elevator now!',
+						]), 'completed')
+					if elevator_level == 31:
+						yield(E.run([
+							'Player: wooo!!',
+							'Player: The elevator is fully operational.',
+							'Player: I don\'t need to touch this anymore.',
+						]), 'completed')
 				else:
 					_display.text = 'program outdated'
 					yield(E.run([
