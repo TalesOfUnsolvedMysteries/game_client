@@ -4,6 +4,7 @@ extends Prop
 export var weight_index = 0
 
 export var current_vase = 'VaseYellow'
+export var location_name = 'yellowVasePoint'
 
 var vase_textures = {
 	'VaseYellow': load('res://popochiu/Rooms/Penthouse/Props/VaseYellow/vase_yellow.png'),
@@ -20,7 +21,7 @@ func _ready():
 func on_interact() -> void:
 	if Globals.state.get('Penthouse-VASE_SOLVED'): return
 	yield(E.run([
-		C.walk_to_clicked(),
+		C.player_walk_to(room.get_point(location_name), true),
 		E.wait(0.1),
 		I.add_item(current_vase)
 	]), 'completed')
@@ -49,7 +50,7 @@ func on_item_used(item: InventoryItem) -> void:
 		print('not a valid item')
 		return
 	yield(E.run([
-		C.walk_to_clicked(),
+		C.player_walk_to(room.get_point(location_name), true),
 		E.wait(0.1),
 		I.remove_item(item.script_name, false),
 		A.play({
@@ -63,7 +64,7 @@ func on_item_used(item: InventoryItem) -> void:
 
 func add_discarded_vase(item: InventoryItem) -> void:
 	yield(E.run([
-		C.walk_to_clicked(),
+		C.player_walk_to(room.get_point(location_name), true),
 	]), 'completed')
 	Globals.set_vase_on_shelf(weight_index, item.script_name, item.weight)
 	set_vase(item.script_name)

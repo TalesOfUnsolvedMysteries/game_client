@@ -136,6 +136,11 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0014'
 	},
+	PUZZLE_AMATEUR = {
+		label = 'Solves the Janitor\'s room puzzle',
+		img = 'nft_new_floors',
+		id = '0015'
+	},
 }
 
 var main_mx_play = false
@@ -223,7 +228,7 @@ func set_state(key, value):
 
 
 func sync_state():
-	if NetworkManager.server:
+	if NetworkManager.server and NetworkManager.pilot_peer_id != -1:
 		rset_id(NetworkManager.pilot_peer_id, 'state', state)
 		rset_id(NetworkManager.pilot_peer_id, 'puzzle_state', puzzle_state)
 

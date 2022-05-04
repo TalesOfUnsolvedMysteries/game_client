@@ -91,6 +91,13 @@ func is_item_in_inventory(item_name: String) -> bool:
 	return is_instance_valid(i) and i.in_inventory
 
 
+func clean_inventory() -> void:
+	for ii in _item_instances:
+		ii.on_discard()
+		emit_signal('item_discarded', ii)
+		self.remove_item(ii.script_name, false)
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _get_item_instance(item_name: String) -> InventoryItem:
 	for ii in _item_instances:

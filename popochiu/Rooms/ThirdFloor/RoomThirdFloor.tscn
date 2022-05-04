@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://popochiu/Rooms/ThirdFloor/RoomThirdFloor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/MasterKey/DoorSecret.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://popochiu/Rooms/ThirdFloor/Hotspots/HotspotDoor302.gd" type="Script" id=9]
 [ext_resource path="res://popochiu/Rooms/ThirdFloor/Door302Secret.gd" type="Script" id=10]
 [ext_resource path="res://secrets/Secret.gd" type="Script" id=11]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=12]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -190, 62, -175, 50, -158, 42, -134, 41, 3, 40, 145, 39, 166, 44, 182, 55, 190, 66, 190, 88, -190, 87 )
@@ -145,6 +146,9 @@ _secret = "000000"
 navpoly = SubResource( 1 )
 
 [node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 12 )]
+position = Vector2( -107, 47 )
 
 [editable path="Hotspots/Elevator"]
 [editable path="Hotspots/Door301"]

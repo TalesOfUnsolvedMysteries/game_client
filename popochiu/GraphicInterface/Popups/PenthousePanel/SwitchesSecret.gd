@@ -33,8 +33,8 @@ func _ready():
 		target ^= _switches[values[i]]
 		print(values[i])
 	if NetworkManager.isServerWithPilot():
-		rset('_switches', _switches)
 		rpc_id(NetworkManager.pilot_peer_id, '_on_target_updated', target)
+		rpc_id(NetworkManager.pilot_peer_id, '_on_switches_updated', _switches)
 
 #overwrites solve
 func solve(_a):
@@ -72,6 +72,10 @@ remote func _on_target_updated(_target):
 	if NetworkManager.isPilot():
 		target = _target
 		emit_signal('target_updated', _target)
+
+remote func _on_switches_updated(_sw):
+	if NetworkManager.isPilot():
+		set_switches(_sw)
 
 remote func switch_pressed(pressed):
 	# checks if it is pilot
