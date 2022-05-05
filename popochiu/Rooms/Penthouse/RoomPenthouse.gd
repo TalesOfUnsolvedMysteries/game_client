@@ -1,12 +1,20 @@
 tool
 extends PopochiuRoom
 
-onready var shelfs = [find_node('Shelf1'), find_node('Shelf2'), find_node('Shelf3'), find_node('Shelf4')]
+var first_panel_solved = false
+
+onready var shelfs = [
+	find_node('Shelf1'),
+	find_node('Shelf2'),
+	find_node('Shelf3'),
+	find_node('Shelf4')
+]
 onready var secret = find_node('Secret')
 onready var secret_hole = find_node('VaseHole')
 onready var secret_compartiment = find_node('SecretCompartiment')
 onready var second_panel: Panel = $GraphicInterface/PenthousePanel
-var first_panel_solved = false
+onready var magazine: PanelContainer = $GraphicInterface/MysteriesMagazine
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta
@@ -28,14 +36,15 @@ func _enter_tree() -> void:
 	if OS.has_feature('editor'):
 		Console.add_command('open_hole', self, '_dev_open_hole').register()
 		Console.add_command('open_secret', self, '_on_vase_puzzle_solved').register()
+		Console.add_command('open_interior', self, '_dev_open_interior').register()
 		Console.add_command('reset_puzzle', self, 'reset_two_puzzle').register()
-#		Console.add_command('open_interior', self, '').register()
 
 
 func _exit_tree() -> void:
 	if OS.has_feature('editor'):
 		Console.remove_command('open_hole')
 		Console.remove_command('open_secret')
+		Console.remove_command('open_interior')
 		Console.remove_command('reset_puzzle')
 #		Console.remove_command('open_interior')
 
@@ -55,6 +64,10 @@ func show_panel() -> void:
 		$MoveBlockOverlay.appear()
 	else:
 		second_panel.appear()
+
+
+func show_magazine() -> void:
+	magazine.appear()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -103,3 +116,11 @@ func _on_second_panel_solved() -> void:
 		yield(E.run([E.wait(0.4)]), 'completed')
 		secret_compartiment._show_interior()
 
+
+func _dev_open_interior() -> void:
+	Globals.set_state('Penthouse-VASE_SOLVED', true)
+	Globals.set_state('Penthouse-COMPARTIMENT_OPENED', true)
+	
+	secret_hole.set_solved()
+	secret_compartiment.show()
+	secret_compartiment._show_interior()
