@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_open_elevator_panel.ogg-f39aad9be760918231a9df45f5a4cbbf.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/ElevatorPanel/sfx/sfx_open_elevator_panel.ogg"
+dest_files=[ "res://.import/sfx_open_elevator_panel.ogg-f39aad9be760918231a9df45f5a4cbbf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

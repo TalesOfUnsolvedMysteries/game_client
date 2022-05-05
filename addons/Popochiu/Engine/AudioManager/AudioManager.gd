@@ -43,7 +43,8 @@ func play(props = {
 		fade = false,
 		duration = 1, 
 		from = -80, 
-		to = 0
+		to = 0,
+		pitch = 0
 	}) -> void:
 	if props.get('is_in_queue', true): yield()
 	
@@ -67,7 +68,10 @@ func play(props = {
 			)
 	else:
 		printerr('[Popochiu(A.play)] No se encontró el sonido', props.cue_name)
-	
+
+	if props.get('pitch', 0) != 0:
+		stream_player.set_pitch_scale(semitone_to_pitch(props.pitch))
+
 	if stream_player and props.get('wait_audio_complete', false):
 		yield(stream_player, 'finished')
 	else:
@@ -135,7 +139,7 @@ func change_cue_pitch(
 	) -> void:
 	if is_in_queue: yield()
 	var stream_player: Node = (_active[cue_name].players as Array).front()
-	stream_player.set_pitch_scale(semitone_to_pitch(new_pitch)) 
+	stream_player.set_pitch_scale(semitone_to_pitch(new_pitch))
 	yield(get_tree(), 'idle_frame')
 
 

@@ -10,6 +10,11 @@ func on_interact() -> void:
 	else:
 		E.run([
 			C.walk_to_clicked(),
+			A.play({
+				cue_name = 'sfx_elevator_not_working',
+				is_in_queue = true,
+				wait_audio_complete = true
+			}),
 			'Player: It is not working...'
 		])
 

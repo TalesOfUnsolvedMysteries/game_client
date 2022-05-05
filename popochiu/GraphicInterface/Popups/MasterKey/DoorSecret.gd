@@ -5,6 +5,7 @@ export var NFT_TO_CLAIM = ''
 
 func _ready():
 	._ready()
+	connect('solved', self, '_on_solved')
 
 # should check server global state to validate if this action could be performed
 func _validate_state():
@@ -35,8 +36,16 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 		C.walk_to_clicked()
 	]), 'completed')
 	
+	var correct = false
 	if item.script_name == 'MasterKey':
-#		print('trying this combination: ', Globals.state['MasterKey-CONFIG'])
+		yield(E.run([
+			'Player: Let\'s try this',
+			A.play({
+				cue_name = 'sfx_master_key_use',
+				is_in_queue = true,
+				wait_audio_complete = true
+			})
+		]), 'completed')
 		self.solve(Globals.state['MasterKey-CONFIG'])
 	else:
 		E.run([
@@ -45,14 +54,13 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 		])
 		return
 
-	var correct = yield(self, 'solved')
+func _on_solved(correct):
 	if !correct:
 		self._on_incorrect_combination()
 		return
-
+	A.play({ cue_name = 'sfx_master_key_door_unlocked', is_in_queue = false})
 	yield(G, 'nft_shown')
 	E.run([
-		# TODO: Poner sonido de desbloqueo de puerta
 		'Player: Great! Now the Door is open',
 		I.set_active_item()
 	])
@@ -62,6 +70,11 @@ func on_inventory_item_used(item: InventoryItem) -> void:
 
 func _on_incorrect_combination():
 	E.run([
-	# TODO: Poner sonido de puerta trabada
+		E.wait(0.3),
+		A.play({
+			cue_name = 'sfx_engine_room_locked',
+			pitch = 5,
+			is_in_queue = true
+		}),
 		'Player: umm, it\'s the wrong configuration',
 	])

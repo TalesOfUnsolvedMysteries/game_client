@@ -91,7 +91,7 @@ remote func set_countdown_timer_client(time):
 	countdown_timer = time
 
 func game_over(_peer_id, death_cause):
-	print('remove control')
+	if !server: return
 	if pilot_peer_id != _peer_id:
 		print('player already removed')
 		return
