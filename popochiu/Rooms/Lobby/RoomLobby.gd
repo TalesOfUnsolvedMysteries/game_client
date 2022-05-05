@@ -42,11 +42,14 @@ func use_pc() -> void:
 	if Globals.state.get('Lobby-PC_POWERED'):
 		yield(E.run([
 			'Player: Its working now',
-			A.play({cue_name = 'sfx_pc_startup',is_in_queue = true})
+			A.play({cue_name = 'sfx_pc_startup'})
 		]), 'completed')
 		pc.show()
 	else:
-		E.run(['Player: No power'])
+		E.run([
+			A.play({cue_name = 'sfx_pc_no_power'}),
+			'Player: No power'
+		])
 
 
 func open_engine_room() -> void:
@@ -54,6 +57,7 @@ func open_engine_room() -> void:
 		
 	yield(E.run([
 		C.walk_to_clicked(),
+		A.play({cue_name = 'sfx_engine_room_unlocked', wait_audio_complete = true}),
 		E.runnable(
 			G,
 			'emit_signal',
@@ -62,6 +66,7 @@ func open_engine_room() -> void:
 		),
 		'Player: Woooooooh!',
 		'Player: I can go to the engine room',
+		A.play({cue_name = 'sfx_engine_room_door_opening', wait_audio_complete = true, fade = true}),
 		I.remove_item('KeyEngineRoom'),
 		get_hotspot('EngineRoom').enable(),
 		get_prop('EngineRoomDoor').disable()

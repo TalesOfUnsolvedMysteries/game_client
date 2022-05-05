@@ -44,6 +44,7 @@ func on_item_used(item: InventoryItem) -> void:
 		yield(E.run([
 			C.walk_to_clicked(),
 			"Player: USB connected to the PC.",
+			A.play({cue_name = 'sfx_usb_pc_insert'}),
 			I.remove_item('Usb'),
 			Globals.set_state('Lobby-USB_IN_PC', true)
 		]), 'completed')

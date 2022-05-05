@@ -6,7 +6,7 @@ extends Prop
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		# TODO: Un sonido como de alguien intentando abrir una puerta de metal
+		A.play({cue_name = 'sfx_engine_room_locked'}),
 		'Player: The door to the engine room is closed',
 		'Player: And it looks immovable'
 	]), 'completed')
