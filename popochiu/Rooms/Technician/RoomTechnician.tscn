@@ -107,11 +107,7 @@ He died before the others" ]
 background = ExtResource( 26 )
 
 [node name="BaselineHelper" parent="Props/Cabinet" index="0"]
-visible = true
 position = Vector2( 0, -20 )
-
-[node name="WalkToHelper" parent="Props/Cabinet" index="1"]
-visible = true
 
 [node name="Sprite" parent="Props/Cabinet" index="2"]
 texture = ExtResource( 21 )
