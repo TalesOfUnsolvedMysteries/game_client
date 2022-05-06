@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MysteriesMagazine/sprites/bg.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MysteriesMagazine/MysteriesMagazine.gd" type="Script" id=3]
+
+[node name="MysteriesMagazine" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Bg" type="TextureRect" parent="."]
+margin_left = 51.0
+margin_top = 21.0
+margin_right = 269.0
+margin_bottom = 159.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 2 )

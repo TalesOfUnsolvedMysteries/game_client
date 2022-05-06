@@ -214,7 +214,7 @@ _global_script_class_icons={
 
 config/name="Tales of Unsolved Mysteries"
 config/description="A graphic adventure for the blockchain. "
-run/main_scene="res://popochiu/Rooms/Penthouse/RoomPenthouse.tscn"
+run/main_scene="res://popochiu/Rooms/Technician/RoomTechnician.tscn"
 config/icon="res://icon.png"
 config/windows_native_icon="res://token_icon.ico"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://popochiu/Common/Overlay2D.tscn" type="PackedScene" id=38]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PenthousePanel/MoveBlockOverlay.gd" type="Script" id=39]
 [ext_resource path="res://popochiu/Common/Overlay2DBlocker.tscn" type="PackedScene" id=40]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/MysteriesMagazine/MysteriesMagazine.tscn" type="PackedScene" id=41]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -37, 15, 102, 9, 165, 10, 82, 19, 42, 18, 23, 4, -41, 7, 169, 32, 267, 37, 213, 74, -47, 52, 73, 36, -231, 70, -306, 37, -289, 20, -201, 16, -199, 40, -117, 36, 95, 31, 93, 23, -54, 1, -83, 9, -111, 6, -96, 15, -88, 25, -59, 25, 18, 26, 20, 20, 29, 32 )
@@ -115,12 +116,18 @@ texture = ExtResource( 13 )
 position = Vector2( 65, 5 )
 script = ExtResource( 14 )
 description = "Magazine"
+baseline = 15
 walk_to_point = Vector2( 8, 9 )
-cursor = 10
+cursor = 1
 script_name = "Magazine"
 texture = ExtResource( 15 )
 
+[node name="BaselineHelper" parent="Props/Magazine" index="0"]
+visible = true
+position = Vector2( 0, 15 )
+
 [node name="WalkToHelper" parent="Props/Magazine" index="1"]
+visible = true
 position = Vector2( 8, 9 )
 
 [node name="Sprite" parent="Props/Magazine" index="2"]
@@ -133,10 +140,14 @@ polygon = PoolVector2Array( -10, -3, -2, -7, 10, -1, 10, 2, 1, 7, -10, 1 )
 position = Vector2( 47, 9 )
 script = ExtResource( 16 )
 description = "Coffee"
+baseline = 11
 walk_to_point = Vector2( -9, 28 )
-cursor = 10
+cursor = 1
 script_name = "Coffee"
 texture = ExtResource( 17 )
+
+[node name="BaselineHelper" parent="Props/Coffee" index="0"]
+position = Vector2( 0, 11 )
 
 [node name="WalkToHelper" parent="Props/Coffee" index="1"]
 position = Vector2( -9, 28 )
@@ -445,7 +456,18 @@ baseline = -90
 cursor = 1
 script_name = "SecretCompartiment"
 texture = ExtResource( 31 )
-pages = [ "Escribo esta carta..." ]
+pages = [ "I got locked in...
+maybe if I... or was I locked in?
+
+short of breath...
+
+and this trophy?
+how could she...? never mind
+
+only I can enter my room
+shame... good starting point
+
+and this USB? what will it do?" ]
 background = ExtResource( 34 )
 
 [node name="BaselineHelper" parent="Props/SecretCompartiment" index="0"]
@@ -553,7 +575,11 @@ margin_top = -2.0
 margin_right = 321.0
 margin_bottom = 178.0
 
+[node name="MysteriesMagazine" parent="GraphicInterface" instance=ExtResource( 41 )]
+visible = false
+
 [node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
+visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 z_index = 10
 offset = Vector2( 27, 0 )

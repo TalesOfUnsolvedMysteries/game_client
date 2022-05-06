@@ -36,10 +36,9 @@ func on_interact() -> void:
 			'...',
 			'Player: What a miserable way to die',
 			'...',
-			'Player: Wait, it is holding an USB',
-			'Player: Might be the one mentioned in the notes',
+			'Player: Wait, it is holding the USB mentioned in the note',
 			I.add_item('RegistryUsb'),
-			"Player: Now I'll be able to see the registry of the building!"
+			'Player: I wonder what it will be used for'
 		]), 'completed')
 	else:
 		yield(E.run([
