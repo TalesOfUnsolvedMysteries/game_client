@@ -72,6 +72,7 @@ func _process(delta):
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	yield(E.run([
+		A.play({cue_name = 'sfx_item_default'}),
 		G.display('No hay na\' pa\' hacer con esta mondá')
 	]), 'completed')
 

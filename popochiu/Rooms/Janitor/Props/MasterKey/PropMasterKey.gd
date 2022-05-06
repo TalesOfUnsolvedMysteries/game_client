@@ -22,9 +22,10 @@ func on_interact() -> void:
 	if $Sprite.frame == 1:
 		yield(E.run([
 			C.walk_to_clicked(),
+			A.play({cue_name= 'sfx_masterkey_pickup'}),
+			I.add_item('MasterKey'),
 			'Player: I have the master key',
-			'Player: with this key I can open any locked door',
-			I.add_item('MasterKey')
+			'Player: with this key I can open any locked door'
 		]), 'completed')
 		Globals.set_state('Janitor-KEY_102_LOOKED', true)
 		$Sprite.frame = 0

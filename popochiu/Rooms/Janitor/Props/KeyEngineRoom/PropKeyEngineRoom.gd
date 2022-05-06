@@ -20,8 +20,9 @@ func on_interact() -> void:
 	if $Sprite.frame == 1:
 		yield(E.run([
 			C.walk_to_clicked(),
-			"Player: I have the engine room's key",
-			I.add_item('KeyEngineRoom')
+			A.play({cue_name= 'sfx_key_pickup'}),
+			I.add_item('KeyEngineRoom'),
+			"Player: I have the engine room's key"
 		]), 'completed')
 		$Sprite.frame = 0
 		description = _final_description

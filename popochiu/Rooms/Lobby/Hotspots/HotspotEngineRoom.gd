@@ -12,6 +12,10 @@ func on_interact() -> void:
 		])
 	else:
 		E.goto_room('EngineRoom')
+		E.run([
+			E.wait(0.3),
+			A.play({ cue_name = 'sfx_walk_stairs', is_in_queue = true})
+		])
 
 
 func on_look() -> void:

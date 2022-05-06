@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_pc_no_power.ogg-ddd019d391e21be09445ee59ac426537.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/Lobby/Props/PC/Audio/sfx_pc_no_power.ogg"
+dest_files=[ "res://.import/sfx_pc_no_power.ogg-ddd019d391e21be09445ee59ac426537.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

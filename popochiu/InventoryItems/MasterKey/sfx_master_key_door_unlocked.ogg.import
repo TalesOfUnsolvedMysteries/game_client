@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_master_key_door_unlocked.ogg-43781fdd988d439cd53a623945c63a89.oggstr"
+
+[deps]
+
+source_file="res://popochiu/InventoryItems/MasterKey/sfx_master_key_door_unlocked.ogg"
+dest_files=[ "res://.import/sfx_master_key_door_unlocked.ogg-43781fdd988d439cd53a623945c63a89.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

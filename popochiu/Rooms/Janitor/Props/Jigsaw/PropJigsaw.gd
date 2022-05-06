@@ -5,7 +5,7 @@ extends Prop
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	yield(E.run([
-		C.walk_to_clicked()
+		C.walk_to_clicked(),
 	]), 'completed')
 	E.current_room.show_jigsaw()
 

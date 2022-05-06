@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_puzzle_slide_loop.ogg-8351bc975a30875752c8e3a5b3c2b61c.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Puzzles/sfx_puzzle_slide_loop.ogg"
+dest_files=[ "res://.import/sfx_puzzle_slide_loop.ogg-8351bc975a30875752c8e3a5b3c2b61c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

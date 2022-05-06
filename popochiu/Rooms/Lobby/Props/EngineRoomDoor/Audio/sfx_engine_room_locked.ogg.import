@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_engine_room_locked.ogg-fe8d159781cafecf4459ab311e5580a7.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/Audio/sfx_engine_room_locked.ogg"
+dest_files=[ "res://.import/sfx_engine_room_locked.ogg-fe8d159781cafecf4459ab311e5580a7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

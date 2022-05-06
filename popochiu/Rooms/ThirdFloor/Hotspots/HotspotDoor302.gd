@@ -23,6 +23,11 @@ func on_interact() -> void:
 	else:
 		E.run([
 			C.walk_to_clicked(),
+			A.play({
+				cue_name = 'sfx_door_latch',
+				pitch = 4,
+				is_in_queue = true
+			}),
 			"Player: It's locked"
 		])
 

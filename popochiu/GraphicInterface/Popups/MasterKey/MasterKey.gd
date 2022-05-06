@@ -31,6 +31,7 @@ func appear() -> void:
 
 
 func disappear() -> void:
+	A.play({cue_name = 'sfx_masterkey_pickup', is_in_queue = false, pitch=-1})
 	Utils.invoke(self, '_close_key')
 
 

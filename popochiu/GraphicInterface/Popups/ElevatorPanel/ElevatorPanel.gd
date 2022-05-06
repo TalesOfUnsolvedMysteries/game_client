@@ -42,9 +42,21 @@ func _open() -> void:
 		0.5, Tween.TRANS_BACK, Tween.EASE_OUT
 	)
 	$Tween.start()
+	yield(E.run([
+		E.wait(0.1),
+		A.play({
+			cue_name = 'sfx_open_elevator_panel',
+			pitch = 1
+		})
+	]), 'completed')
 
 
 func _close() -> void:
+	A.play({
+		cue_name = 'sfx_open_elevator_panel',
+		is_in_queue = false,
+		pitch = -2
+	})
 	$Tween.interpolate_property(
 		$Overlay, 'modulate:a',
 		1.0, 0.0,
