@@ -61,9 +61,15 @@ func on_picked():
 	$CollisionShape2D.modulate = Color.blue
 	
 	Utils.invoke(self, 'emit_signal', ['drag_started', self])
+	A.play({
+		cue_name = 'sfx_puzzle_slide_loop',
+		is_in_queue = false
+	})
 
 
 func on_dropped():
+	A.stop('sfx_puzzle_slide_loop', 0, false, true, 0.3)
+	_progressive_volume = -50
 	move_x = false
 	move_y = false
 	dragged = false
@@ -83,13 +89,22 @@ func on_dropped():
 		emit_signal('target_exited')
 
 var _target_position
+var _progressive_volume = -50
 func _process(delta):
 	if !dragged: return
 	_target_position = get_global_mouse_position() + _drag_point
 	if !move_x && !move_y && position !=_target_position:
 		move_x = abs(position.x - _target_position.x) > abs(position.y - _target_position.y)
-		move_y = !move_x;
+		move_y = !move_x
 	
+	var _speed = abs(position.x - clamp(_target_position.x, boundaries_x[0], boundaries_x[1])) + abs(position.y - clamp(_target_position.y, boundaries_y[0], boundaries_y[1]))
+	if _speed > 0:
+		_progressive_volume += _speed*3
+	else:
+		_progressive_volume -= 1
+
+	_progressive_volume = clamp(_progressive_volume, -50, 0)
+	A.change_cue_volume('sfx_puzzle_slide_loop', _progressive_volume)
 	if move_x: position.x = _target_position.x
 	if move_y: position.y = _target_position.y
 	

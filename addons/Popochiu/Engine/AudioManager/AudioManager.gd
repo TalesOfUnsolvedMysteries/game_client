@@ -248,6 +248,10 @@ func _reparent(source: Node, target: Node, child_idx: int) -> Node:
 	
 	return node_to_reparent
 
+func change_cue_volume(cue_name: String, volume = 0) -> void:
+	if not _active.has(cue_name): return
+	var stream_player: Node = (_active[cue_name].players as Array).front()
+	stream_player.volume_db = volume
 
 func _fade_sound(cue_name: String, duration = 1, from = 0, to = 0) -> void:
 	var stream_player: Node = (_active[cue_name].players as Array).front()
