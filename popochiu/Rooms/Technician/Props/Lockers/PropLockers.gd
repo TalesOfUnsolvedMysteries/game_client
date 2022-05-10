@@ -13,11 +13,14 @@ func on_interact() -> void:
 		Globals.set_state('ELEVATOR_CARD_LAST_LOCATION', 'Tecnician-ELEVATOR_CARD_IN_LOCKER')
 		yield(E.run([
 			C.walk_to_clicked(),
+			C.player.face_right(),
 			"Player: Let see what I can find here.",
-			'....', # TODO: Reproducir un sonido como de alguien abriendo cajones de
-			#				metal y esculcando.
+			A.play({cue_name='sfx_locker_open', wait_audio_complete=true}),
+			'Player: some papers...',
+			A.play({cue_name='sfx_locker_search', wait_audio_complete=true}),
 			'Player: Well... the only thing that looks useful here is this card.',
 			I.add_item('ElevatorCard'),
+			A.play({cue_name='sfx_locker_close', wait_audio_complete=true}),
 			'Player: Its label says: Elevator program.'
 		]), 'completed')
 
