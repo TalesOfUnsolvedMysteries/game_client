@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_motherboard_elevator_not_working.ogg-8ce13855250597b377da7aa0607c79ad.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Motherboard/audio/sfx_motherboard_elevator_not_working.ogg"
+dest_files=[ "res://.import/sfx_motherboard_elevator_not_working.ogg-8ce13855250597b377da7aa0607c79ad.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

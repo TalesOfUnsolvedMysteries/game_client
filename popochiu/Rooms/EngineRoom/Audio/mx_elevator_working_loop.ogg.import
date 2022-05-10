@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mx_elevator_working_loop.ogg-a680742b4dc2c75a9e09833a81c9f4c8.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/EngineRoom/Audio/mx_elevator_working_loop.ogg"
+dest_files=[ "res://.import/mx_elevator_working_loop.ogg-a680742b4dc2c75a9e09833a81c9f4c8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

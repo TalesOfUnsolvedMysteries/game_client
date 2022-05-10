@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_open_fusebox.ogg-a58f7fc15c525e2aa8d022d707c3ace3.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/EngineRoom/Props/FuseBox/sfx_open_fusebox.ogg"
+dest_files=[ "res://.import/sfx_open_fusebox.ogg-a58f7fc15c525e2aa8d022d707c3ace3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

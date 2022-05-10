@@ -145,6 +145,7 @@ func _on_valid_code_entered(valid):
 
 
 func _put_battery() -> void:
+	A.play({cue_name='sfx_battery_in_motherboard', is_in_queue=false})
 	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		_battery.texture = battery_full
 		
@@ -179,6 +180,13 @@ func _put_elevator_card() -> void:
 	
 	if Globals.state.get('EngineRoom-MOTHERBOARD_RESET'):
 		Globals.set_state('EngineRoom-ELEVATOR_WORKING', true)
+		if Globals.state.get('ELEVATOR_ENABLED') > 0:
+			yield(E.run([
+				A.play({cue_name='sfx_motherboard_elevator_working', wait_audio_complete=true}),
+				A.play({cue_name='sfx_elevator_working_start'}),
+				E.wait(2.332),
+				A.play_music('mx_elevator_working_loop')
+			]), 'completed')
 	
 	_check_display_message()
 

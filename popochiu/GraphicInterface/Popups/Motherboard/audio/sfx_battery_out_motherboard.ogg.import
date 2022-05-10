@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_battery_out_motherboard.ogg-f28310681f21f9b921b19aec982a14c0.oggstr"
+
+[deps]
+
+source_file="res://popochiu/GraphicInterface/Popups/Motherboard/audio/sfx_battery_out_motherboard.ogg"
+dest_files=[ "res://.import/sfx_battery_out_motherboard.ogg-f28310681f21f9b921b19aec982a14c0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

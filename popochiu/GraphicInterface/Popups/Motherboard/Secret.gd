@@ -35,6 +35,7 @@ remote func on_current_code_changed(__current_code):
 
 func check_button(value) -> void:
 	if !NetworkManager.server and !Globals.is_single_test(): return
+	if _current_code.empty(): return
 	var _match = codes[_current_code].find(value) > -1
 	if _match:
 		_matches += 1

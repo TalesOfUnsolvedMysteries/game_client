@@ -55,6 +55,7 @@ func on_interact() -> void:
 			E.run([
 				C.walk_to_clicked(),
 				_stop_charging(),
+				A.play({cue_name='sfx_battery_out_charger'}),
 				I.add_item('MotherboardBattery'),
 				'Player: Fuck the charging!'
 			])
@@ -72,6 +73,7 @@ func on_interact() -> void:
 		yield(E.run([
 			C.walk_to_clicked(),
 			'Player: Great. Now the battery is fully charged',
+			A.play({cue_name='sfx_battery_out_charger'}),
 			I.add_item('MotherboardBattery')
 		]), 'completed')
 		
@@ -102,6 +104,7 @@ func on_item_used(item) -> void:
 			yield(E.run([
 				C.walk_to_clicked(),
 				I.remove_item(item.script_name),
+				A.play({cue_name='sfx_battery_in_charger'}),
 				_listen_battery_charging(),
 				'Player: This should charge the battery.',
 				'Player: ...and it will take just %d minutes.' %\
