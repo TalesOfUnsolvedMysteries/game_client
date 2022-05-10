@@ -25,6 +25,7 @@ func on_item_used(item: InventoryItem) -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
 		'Player: let\'s put this Yellow thing here',
+		A.play({cue_name='sfx_remove_vase', wait_audio_complete=true}),
 		I.remove_item(item.script_name, false)
 	]), 'completed')
 	$Vase.show()
