@@ -19,15 +19,15 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func on_interact() -> void:
-	pass
+	.on_interact()
 
 
 func on_look() -> void:
-	pass
+	.on_look()
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

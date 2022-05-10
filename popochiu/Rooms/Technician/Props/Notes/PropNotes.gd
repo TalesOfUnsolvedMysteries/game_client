@@ -12,6 +12,7 @@ func _ready():
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
+		C.face_clicked(),
 		'Player: Lets check this notes... because I am a chismoso.'
 	]), 'completed')
 	
@@ -19,11 +20,15 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: A notebook.'
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)
+
 
 func _load_secret_codes():
 	var _json = JSON.parse(_secret._secret)

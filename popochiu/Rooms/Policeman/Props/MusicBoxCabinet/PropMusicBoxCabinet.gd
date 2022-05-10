@@ -32,9 +32,21 @@ func on_interact() -> void:
 				"Player: How can one unlock this?"
 			]), 'completed')
 
+
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: Is a cabinet.',
+		"Player: I wonder what's inside."
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	if item.script_name == 'MasterKey':
+		E.run([
+			C.walk_to_clicked(),
+			C.face_clicked(),
+			"Player: It doesn't have any keyhole."
+		])
+		return
+	.on_item_used(item)

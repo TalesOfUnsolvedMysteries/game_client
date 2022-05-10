@@ -178,7 +178,6 @@ cursor = 1
 position = Vector2( 0, -90 )
 
 [node name="Sprite" parent="Props/KeyEngineRoom" index="2"]
-texture = ExtResource( 17 )
 hframes = 2
 frame = 1
 

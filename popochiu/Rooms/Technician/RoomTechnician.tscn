@@ -55,12 +55,18 @@ position = Vector2( 47, -39 )
 script = ExtResource( 17 )
 description = "Window"
 baseline = -90
+walk_to_point = Vector2( -22, 39 )
 cursor = 1
 script_name = "Window"
 texture = ExtResource( 24 )
 
 [node name="BaselineHelper" parent="Props/Window" index="0"]
+visible = true
 position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Window" index="1"]
+visible = true
+position = Vector2( -22, 39 )
 
 [node name="Sprite" parent="Props/Window" index="2"]
 texture = ExtResource( 24 )

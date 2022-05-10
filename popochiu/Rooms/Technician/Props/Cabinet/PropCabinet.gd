@@ -9,7 +9,8 @@ export var background: Texture = null
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		'Player: Lets see what I can find here.',
+		C.face_clicked(),
+		"'Player: Lets see what I can find here.'",
 		'...',
 		'Player: A book with notes.'
 	]), 'completed')
@@ -18,8 +19,11 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: Looks like a file cabinet.'
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)

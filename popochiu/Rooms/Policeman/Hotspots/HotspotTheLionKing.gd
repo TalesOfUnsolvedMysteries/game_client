@@ -1,23 +1,26 @@
 tool
-extends Prop
+extends Hotspot
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([
-		C.walk_to_clicked(),
-		C.face_clicked(),
-		"Player: I don't want to have it."
-	]), 'completed')
+	E.run([
+		"Player: It's fine where it is"
+	])
 
 
 func on_look() -> void:
-	yield(E.run([
+	E.run([
+		C.walk_to_clicked(),
 		C.face_clicked(),
-		'Player: Looks like a trophy.',
-		'Player: From what I can see...',
-		'Player: It looks like something they would give to a policeman.'
-	]), 'completed')
+		'Player: The greatest adventure of all.',
+		'Player: Is finding our place.',
+		'Player: In the circle of life.',
+		'Player: Walt Disney Pictures presents.',
+		'Player: The Lion King.',
+		'..',
+		'Player: What is a lion?'
+	])
 
 
 func on_item_used(item: InventoryItem) -> void:
