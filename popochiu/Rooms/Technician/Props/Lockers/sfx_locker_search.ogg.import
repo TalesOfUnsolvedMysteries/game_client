@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_locker_search.ogg-6ce8bac39a2082c4dfabf7ba39bc46b4.oggstr"
+
+[deps]
+
+source_file="res://popochiu/Rooms/Technician/Props/Lockers/sfx_locker_search.ogg"
+dest_files=[ "res://.import/sfx_locker_search.ogg-6ce8bac39a2082c4dfabf7ba39bc46b4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
