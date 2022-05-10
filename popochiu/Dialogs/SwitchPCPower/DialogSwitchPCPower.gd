@@ -16,6 +16,9 @@ func start() -> void:
 func option_selected(opt: DialogOption) -> void:
 	if opt.id == 'TurnOn':
 		yield(E.run([
+			A.play({cue_name='sfx_fusebox_switch'}),
+			E.wait(2.174),
+			A.play_music('mx_engine_power_on'),
 			'Player: Great!',
 			'Player: Now I can use the PC'
 		]), 'completed')

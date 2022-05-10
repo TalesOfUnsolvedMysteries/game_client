@@ -124,9 +124,11 @@ script_name = "BatteryCharger"
 texture = ExtResource( 10 )
 
 [node name="BaselineHelper" parent="Props/BatteryCharger" index="0"]
+visible = true
 position = Vector2( 0, -23 )
 
 [node name="WalkToHelper" parent="Props/BatteryCharger" index="1"]
+visible = true
 position = Vector2( 5, 30 )
 
 [node name="Sprite" parent="Props/BatteryCharger" index="2"]

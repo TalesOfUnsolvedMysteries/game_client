@@ -11,6 +11,7 @@ func _ready() -> void:
 		$Sprite.frame = 1
 	if Globals.state.get('Lobby-PC_POWERED'):
 		$Sprite.frame = 2
+	secret.connect('solved', self, '_on_solved')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -41,10 +42,15 @@ func on_item_used(item: InventoryItem) -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func check_combination(comb: String) -> void:
 	secret.solve(comb)
-	var correct = yield(secret, 'solved')
+
+func _on_solved(correct):
 	if correct:
 		$Sprite.frame = 1
-		A.play({cue_name = 'sfx_lock_open', is_in_queue = false})
+		yield(E.run([
+			A.play({cue_name = 'sfx_lock_open', wait_audio_complete = true}),
+			E.wait(0.1),
+			A.play({cue_name = 'sfx_open_fusebox'})
+		]), 'completed')
 		E.current_room.hide_lock()
 
 

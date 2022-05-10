@@ -18,6 +18,7 @@ func on_interact() -> void:
 			cue_name = 'sfx_elevator_card_pick',
 			is_in_queue = false
 		})
+		A.stop('mx_elevator_working_loop', 0, false, true, 0.3)
 		hide()
 		emit_signal('removed')
 	else:

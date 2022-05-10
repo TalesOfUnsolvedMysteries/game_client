@@ -24,7 +24,18 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
-	pass
+	.on_room_entered()
+	if Globals.state.get('Lobby-PC_POWERED'):
+		A.play_music('mx_engine_power_on', false, 0.0, true, 0.3)
+	if Globals.state.get('EngineRoom-ELEVATOR_WORKING') and Globals.state.get('ELEVATOR_ENABLED') > 0:
+		A.play_music('mx_elevator_working_loop', false, 0.0, true, 0.3)
+
+
+func on_room_exited() -> void:
+	print('on room exited')
+	A.stop('mx_engine_power_on', 0, false, true, 0.3)
+	A.stop('mx_elevator_working_loop', 0, false, true, 0.3)
+	.on_room_exited()
 
 
 func on_room_transition_finished() -> void:
