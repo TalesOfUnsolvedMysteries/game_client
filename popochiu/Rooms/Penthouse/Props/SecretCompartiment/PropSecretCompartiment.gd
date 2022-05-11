@@ -59,7 +59,34 @@ func on_look() -> void:
 
 
 func on_item_used(item: InventoryItem) -> void:
-	.on_item_used(item)
+	if Globals.state.get('Penthouse-COMPARTIMENT_OPENED') and item.script_name == 'ADNpicker':
+		yield(E.run([
+			C.player_walk_to(room.get_point('compartimentPoint'), true),
+			C.player.face_right()
+		]), 'completed')
+		
+		var adn_content: String = Globals.state.get('ADN_picker_content')
+		if not adn_content.empty():
+			yield(E.run([
+				'Player: the device already contains a sample.',
+			]), 'completed')
+			return
+
+		yield(E.run([
+			'Player: Ok...',
+			# a sound for swallow ?
+			'Player: Let\'s do this...',
+			# a sound for pinching the corpse
+			'Player: this is so nasty....',
+			# a sound for extracting adn
+			'Player: ugh...',
+			# a sound for extracting complete
+			item.take_sample('PENTHOUSE_CORPSE'),
+			'Player: done!',
+			I.set_active_item()
+		]), 'completed')
+	else:
+		.on_item_used(item)
 
 
 func _on_reveal():

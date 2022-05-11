@@ -178,8 +178,10 @@ sync var state := {
 	'Penthouse_VASES_ON_Shelfs': ['VaseBlue', 'VaseGreen', 'VaseYellow', 'VaseRed'],
 	'Penthouse_WEIGHTS_ON_Shelfs': [1.6, 0.815, 1.25, 2.38124],
 	'Penthouse-VASE_SOLVED': false,
-	'Penthouse-COMPARTIMENT_OPENED': false,
+	'Penthouse-COMPARTIMENT_OPENED': true,
 	'Penthouse-FORTUNETELLER_NOTES': false,
+	# ADN picker
+	'ADN_picker_content': ''
 }
 var server_file = "user://server.save"
 var battery_power := 0.0 setget _set_battery_power

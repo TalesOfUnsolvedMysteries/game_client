@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://popochiu/TransitionLayer/TransitionLayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/GraphicInterface.tscn" type="PackedScene" id=2]
@@ -49,20 +49,22 @@
 [ext_resource path="res://popochiu/InventoryItems/VaseRed/InventoryVaseRed.tres" type="Resource" id=47]
 [ext_resource path="res://popochiu/InventoryItems/RegistryUsb/InventoryRegistryUsb.tres" type="Resource" id=48]
 [ext_resource path="res://popochiu/InventoryItems/MagicGlasses/InventoryMagicGlasses.tres" type="Resource" id=49]
+[ext_resource path="res://popochiu/Dialogs/ADNpickerClean/DialogADNpickerClean.tres" type="Resource" id=50]
+[ext_resource path="res://popochiu/InventoryItems/ADNpicker/InventoryADNpicker.tres" type="Resource" id=51]
 
 [node name="Popochiu" type="Node"]
 script = ExtResource( 7 )
 rooms = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ) ]
 characters = [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 23 ) ]
-inventory_items = [ ExtResource( 24 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ) ]
-dialogs = [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ) ]
+inventory_items = [ ExtResource( 24 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 51 ) ]
+dialogs = [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ), ExtResource( 50 ) ]
 skip_cutscene_time = 0.25
 text_speeds = [ 0.05, 0.01, 0.0 ]
 text_speed_idx = 2
 inventory_always_visible = true
 inventory_limit = 3
 toolbar_always_visible = true
-items_on_start = [ "ElevatorCard" ]
+items_on_start = [ "ADNpicker" ]
 
 [node name="Tween" type="Tween" parent="."]
 

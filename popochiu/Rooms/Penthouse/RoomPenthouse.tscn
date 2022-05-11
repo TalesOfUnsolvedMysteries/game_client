@@ -489,7 +489,6 @@ polygon = PoolVector2Array( -28, -25, 23, -29, 27, 12, -24, 15 )
 [node name="Tween" type="Tween" parent="Props/SecretCompartiment"]
 
 [node name="Compartiment" type="Sprite" parent="Props/SecretCompartiment"]
-visible = false
 position = Vector2( -0.5, -7 )
 texture = ExtResource( 33 )
 

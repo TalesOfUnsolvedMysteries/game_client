@@ -5,6 +5,7 @@ export var _secret_key = 'SECRET'
 export var _secret = '' # setup with default value
 
 signal solved
+signal secret_requested
 
 func _ready():
 	var secret = SecretsKeeper.get(_secret_key)
