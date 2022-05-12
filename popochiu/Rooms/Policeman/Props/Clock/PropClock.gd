@@ -9,15 +9,24 @@ func _process(delta: float) -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.walk_to_clicked(),
+		C.face_clicked(),
+		"Player: I don't want to mess this thing.",
+		'Player: It has no buttons anyway.'
+	]), 'completed')
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: A digital clock.',
+		'Player: Looks like it is on time.'
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

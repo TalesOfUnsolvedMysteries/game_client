@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Policeman/RoomPoliceman.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Exit/exit.png" type="Texture" id=2]
@@ -28,6 +28,11 @@
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Window/PropWindow.gd" type="Script" id=26]
 [ext_resource path="res://popochiu/Rooms/Policeman/Props/Window/window.png" type="Texture" id=27]
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-8.tres" type="DynamicFont" id=28]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=29]
+[ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotTheGodfather.gd" type="Script" id=30]
+[ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotTheLionKing.gd" type="Script" id=31]
+[ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotTheMatrix.gd" type="Script" id=32]
+[ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotScarface.gd" type="Script" id=33]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 5, -5, -1, 5, -3, 7, 7, 33, 21, 103, 13, 104, 19, 76, 77, 20, 51, -64, 74, 1, 54, -22, 44, -94, 43, -15, 12, -48, 12, -23, 21, -73, 5, -58, 5 )
@@ -57,16 +62,29 @@ position = Vector2( -52, -39 )
 script = ExtResource( 26 )
 description = "Window"
 baseline = -90
+walk_to_point = Vector2( 7, 55 )
 cursor = 1
 script_name = "Window"
 texture = ExtResource( 27 )
+
+[node name="BaselineHelper" parent="Props/Window" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Window" index="1"]
+position = Vector2( 7, 55 )
+
+[node name="Sprite" parent="Props/Window" index="2"]
+texture = ExtResource( 27 )
+
+[node name="CollisionPolygon2D" parent="Props/Window" index="3"]
+polygon = PoolVector2Array( -16, -15, 15, -17, 15, 11, -16, 16 )
 
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -14, -41 )
 script = ExtResource( 8 )
 description = "Painting"
 baseline = -90
-walk_to_point = Vector2( 4, 42 )
+walk_to_point = Vector2( 13, 44 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 13 )
@@ -75,7 +93,7 @@ texture = ExtResource( 13 )
 position = Vector2( 0, -90 )
 
 [node name="WalkToHelper" parent="Props/Painting" index="1"]
-position = Vector2( 4, 42 )
+position = Vector2( 13, 44 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 13 )
@@ -88,12 +106,16 @@ position = Vector2( -30, -8 )
 script = ExtResource( 11 )
 description = "Freezer"
 baseline = 12
+walk_to_point = Vector2( 26, 19 )
 cursor = 1
 script_name = "Freezer"
 texture = ExtResource( 12 )
 
 [node name="BaselineHelper" parent="Props/Freezer" index="0"]
 position = Vector2( 0, 12 )
+
+[node name="WalkToHelper" parent="Props/Freezer" index="1"]
+position = Vector2( 26, 19 )
 
 [node name="Sprite" parent="Props/Freezer" index="2"]
 texture = ExtResource( 12 )
@@ -104,7 +126,7 @@ polygon = PoolVector2Array( -27, -13, 10, -18, 20, -10, 19, 14, -18, 18, -28, 8 
 [node name="MusicBoxCabinet" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 82, 4 )
 script = ExtResource( 5 )
-description = "MusicBoxCabinet"
+description = "Cabinet"
 baseline = 15
 walk_to_point = Vector2( -27, 19 )
 cursor = 1
@@ -152,12 +174,16 @@ position = Vector2( -80, 8 )
 script = ExtResource( 19 )
 description = "FilesCabinet"
 baseline = 8
+walk_to_point = Vector2( 27, 10 )
 cursor = 1
 script_name = "FilesCabinet"
 texture = ExtResource( 20 )
 
 [node name="BaselineHelper" parent="Props/FilesCabinet" index="0"]
 position = Vector2( 0, 8 )
+
+[node name="WalkToHelper" parent="Props/FilesCabinet" index="1"]
+position = Vector2( 27, 10 )
 
 [node name="Sprite" parent="Props/FilesCabinet" index="2"]
 texture = ExtResource( 20 )
@@ -190,12 +216,16 @@ position = Vector2( -1, 10 )
 script = ExtResource( 16 )
 description = "Clock"
 baseline = 26
+walk_to_point = Vector2( 33, 3 )
 cursor = 1
 script_name = "Clock"
 texture = ExtResource( 18 )
 
 [node name="BaselineHelper" parent="Props/Clock" index="0"]
 position = Vector2( 0, 26 )
+
+[node name="WalkToHelper" parent="Props/Clock" index="1"]
+position = Vector2( 33, 3 )
 
 [node name="Sprite" parent="Props/Clock" index="2"]
 texture = ExtResource( 18 )
@@ -210,7 +240,7 @@ margin_right = -2.0
 margin_bottom = 2.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "2"
+text = "1"
 
 [node name="H2" type="Label" parent="Props/Clock"]
 margin_left = -3.0
@@ -219,7 +249,7 @@ margin_right = 1.0
 margin_bottom = 1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "3"
+text = "2"
 
 [node name="S" type="Label" parent="Props/Clock"]
 margin_top = -3.0
@@ -235,7 +265,7 @@ margin_right = 7.0
 margin_bottom = -1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "0"
+text = "5"
 
 [node name="M2" type="Label" parent="Props/Clock"]
 margin_left = 6.0
@@ -244,19 +274,23 @@ margin_right = 10.0
 margin_bottom = -2.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "2"
+text = "4"
 
 [node name="Notebook" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 16, 17 )
 script = ExtResource( 21 )
 description = "Notebook"
 baseline = 19
+walk_to_point = Vector2( 23, 19 )
 cursor = 1
 script_name = "Notebook"
 texture = ExtResource( 22 )
 
 [node name="BaselineHelper" parent="Props/Notebook" index="0"]
 position = Vector2( 0, 19 )
+
+[node name="WalkToHelper" parent="Props/Notebook" index="1"]
+position = Vector2( 23, 19 )
 
 [node name="Sprite" parent="Props/Notebook" index="2"]
 texture = ExtResource( 22 )
@@ -268,10 +302,14 @@ polygon = PoolVector2Array( -8, -2, -1, -5, 7, -1, 8, 1, 1, 4, -8, 0 )
 position = Vector2( -86, -21 )
 script = ExtResource( 23 )
 description = "Trophy"
+walk_to_point = Vector2( 36, 38 )
 cursor = 1
 script_name = "Trophy"
 always_on_top = true
 texture = ExtResource( 24 )
+
+[node name="WalkToHelper" parent="Props/Trophy" index="1"]
+position = Vector2( 36, 38 )
 
 [node name="Sprite" parent="Props/Trophy" index="2"]
 texture = ExtResource( 24 )
@@ -304,6 +342,128 @@ polygon = PoolVector2Array( -7, 13, 11, 32, -22, 30 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+[node name="TheGodfather" parent="Hotspots" instance=ExtResource( 29 )]
+position = Vector2( 21, -38 )
+script = ExtResource( 30 )
+description = "The Godfather"
+cursor = 1
+script_name = "TheGodfather"
+
+[node name="CollisionPolygon2D" parent="Hotspots/TheGodfather" index="0"]
+polygon = PoolVector2Array( -11, -15, -10, 12, 11, 14, 10, -12 )
+
+[node name="BaselineHelper" parent="Hotspots/TheGodfather" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/TheGodfather" index="2"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/TheGodfather/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TheLionKing" parent="Hotspots" instance=ExtResource( 29 )]
+position = Vector2( 19, -13 )
+script = ExtResource( 31 )
+description = "The Lion King"
+cursor = 1
+script_name = "TheLionKing"
+
+[node name="CollisionPolygon2D" parent="Hotspots/TheLionKing" index="0"]
+polygon = PoolVector2Array( -10, -10, -11, 6, 10, 8, 10, -8 )
+
+[node name="BaselineHelper" parent="Hotspots/TheLionKing" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/TheLionKing" index="2"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/TheLionKing/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TheMatrix" parent="Hotspots" instance=ExtResource( 29 )]
+position = Vector2( 41, -22 )
+script = ExtResource( 32 )
+description = "The Matrix"
+cursor = 1
+script_name = "TheMatrix"
+
+[node name="CollisionPolygon2D" parent="Hotspots/TheMatrix" index="0"]
+polygon = PoolVector2Array( -6, -13, -7, 11, 7, 13, 8, -11 )
+
+[node name="BaselineHelper" parent="Hotspots/TheMatrix" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/TheMatrix" index="2"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/TheMatrix/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scarface" parent="Hotspots" instance=ExtResource( 29 )]
+position = Vector2( 61, -21 )
+script = ExtResource( 33 )
+description = "Scarface"
+cursor = 1
+script_name = "Scarface"
+
+[node name="CollisionPolygon2D" parent="Hotspots/Scarface" index="0"]
+polygon = PoolVector2Array( -7, -14, -7, 12, 10, 14, 9, -11 )
+
+[node name="BaselineHelper" parent="Hotspots/Scarface" index="1"]
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/Scarface" index="2"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/Scarface/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Regions" type="Node2D" parent="."]
 
 [node name="Points" type="Node2D" parent="."]
@@ -325,6 +485,7 @@ position = Vector2( -73, 52 )
 [node name="Jukebox" parent="GI" instance=ExtResource( 25 )]
 visible = false
 
+[editable path="Props/Window"]
 [editable path="Props/Painting"]
 [editable path="Props/Freezer"]
 [editable path="Props/MusicBoxCabinet"]
@@ -335,3 +496,7 @@ visible = false
 [editable path="Props/Notebook"]
 [editable path="Props/Trophy"]
 [editable path="Props/Exit"]
+[editable path="Hotspots/TheGodfather"]
+[editable path="Hotspots/TheLionKing"]
+[editable path="Hotspots/TheMatrix"]
+[editable path="Hotspots/Scarface"]

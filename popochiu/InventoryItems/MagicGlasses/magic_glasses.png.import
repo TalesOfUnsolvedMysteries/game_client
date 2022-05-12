@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fg.png-eb793895a18401eb5543c7ddadb6a453.stex"
+path="res://.import/magic_glasses.png-0341d25e823d91a8e44cf56b30ae881f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/Rooms/FortuneTeller/Props/Fg/fg.png"
-dest_files=[ "res://.import/fg.png-eb793895a18401eb5543c7ddadb6a453.stex" ]
+source_file="res://popochiu/InventoryItems/MagicGlasses/magic_glasses.png"
+dest_files=[ "res://.import/magic_glasses.png-0341d25e823d91a8e44cf56b30ae881f.stex" ]
 
 [params]
 

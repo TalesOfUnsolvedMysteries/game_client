@@ -5,9 +5,7 @@ extends Hotspot
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
 	E.run([
-		C.face_clicked(),
-		"Player: I better don't touch that.",
-		'Player: Anything here could be haunted.'
+		"Player: It's fine where it is"
 	])
 
 
@@ -15,10 +13,15 @@ func on_look() -> void:
 	E.run([
 		C.walk_to_clicked(),
 		C.face_clicked(),
-		'Player: Looks like the totem of a ladybird.',
-		'Player: I wonder what it means...'
+		'Player: The greatest adventure of all.',
+		'Player: Is finding our place.',
+		'Player: In the circle of life.',
+		'Player: Walt Disney Pictures presents.',
+		'Player: The Lion King.',
+		'..',
+		'Player: What is a lion?'
 	])
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)

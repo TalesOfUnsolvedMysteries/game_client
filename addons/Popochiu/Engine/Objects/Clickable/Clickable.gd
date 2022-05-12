@@ -73,18 +73,22 @@ func _process(delta):
 func on_interact() -> void:
 	yield(E.run([
 		A.play({cue_name = 'sfx_item_default'}),
-		G.display('No hay na\' pa\' hacer con esta mondá')
+		G.display('There is nothing to do with this')
 	]), 'completed')
 
 
 func on_look() -> void:
 	yield(E.run([
-		G.display('No hay nada para ver ahí')
+		G.display('There is nothing to look at here')
 	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	yield(E.run([
+		G.display(
+			"I can't do anything with the %s on this object." % item.description
+		)
+	]), 'completed')
 
 
 # Oculta el nodo y hace que no reciba interacciones

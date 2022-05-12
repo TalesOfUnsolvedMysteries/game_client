@@ -32,4 +32,4 @@ func on_look() -> void:
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)
