@@ -1,23 +1,17 @@
 tool
-extends Hotspot
+extends Prop
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	E.run([
-		C.face_clicked(),
-		"Player: I better don't touch that.",
-		'Player: Anything here could be haunted.'
-	])
+	yield(E.run([
+		C.walk_to_clicked(),
+		C.face_clicked()
+	]), 'completed')
 
 
 func on_look() -> void:
-	E.run([
-		C.walk_to_clicked(),
-		C.face_clicked(),
-		'Player: Looks like the totem of a beetle.',
-		'Player: I wonder what it means...'
-	])
+	yield(E.run([]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
