@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/RoomFortuneTeller.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/VoodooBeads/PropVoodooBeads.gd" type="Script" id=2]
@@ -14,15 +14,12 @@
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Exit/exit.png" type="Texture" id=12]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Candle/PropCandle.gd" type="Script" id=13]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Altar/altar.png" type="Texture" id=14]
-[ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Totem/PropTotem.gd" type="Script" id=15]
+[ext_resource path="res://popochiu/Rooms/FortuneTeller/Secret.gd" type="Script" id=15]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Totem/totem.png" type="Texture" id=16]
-[ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Rooster/PropRooster.gd" type="Script" id=17]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Rooster/rooster.png" type="Texture" id=18]
-[ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Bee/PropBee.gd" type="Script" id=19]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Bee/bee.png" type="Texture" id=20]
-[ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/LadyBird/PropLadyBird.gd" type="Script" id=21]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/LadyBird/lady_bird.png" type="Texture" id=22]
-[ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Beetle/PropBeetle.gd" type="Script" id=23]
+[ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Totem/PropFigurine.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Beetle/beetle.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/CrystalBall/PropCrystalBall.gd" type="Script" id=25]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/CrystalBall/crystal_ball.png" type="Texture" id=26]
@@ -30,6 +27,170 @@
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Shelve/magicglasses_shelve.png" type="Texture" id=28]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Shelve/magicglasses.png" type="Texture" id=29]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Candle/candle.png" type="Texture" id=30]
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "selected"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.0235294, 1, 0.0862745, 0.737255 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "selected"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.278431, 0.333333, 0.815686 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "selected"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.976471, 0.278431, 1, 0.815686 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "selected"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.290196, 1, 0, 0.811765 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "selected"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.278431, 0.333333, 0.815686 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 6, 26 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 30 )
@@ -47,27 +208,23 @@ region = Rect2( 18, 0, 6, 26 )
 atlas = ExtResource( 30 )
 region = Rect2( 24, 0, 6, 26 )
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 30 )
-region = Rect2( 0, 0, 6, 26 )
-
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "on",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 6 ) ],
 "loop": false,
 "name": "off",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "on",
+"speed": 10.0
 } ]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -2, 17, -4, 7, 12, -8, 118, 37, 65, 72, 34, 59, 31, 66, -6, 25, -19, 29, -88, 44, -45, 28, -52, 21, -69, 12, -75, 1, -65, 3, -41, 2 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 4, 6, 5 ), PoolIntArray( 7, 0, 5 ), PoolIntArray( 8, 7, 5 ), PoolIntArray( 8, 5, 9, 10 ), PoolIntArray( 11, 10, 9, 12 ), PoolIntArray( 12, 9, 13, 14 ), PoolIntArray( 14, 13, 2, 15 ), PoolIntArray( 15, 2, 1 ) ]
-outlines = [ PoolVector2Array( 118, 37, 12, -8, -75, 1, -88, 44, 34, 59, 31, 66, 65, 72 ), PoolVector2Array( -69, 12, -52, 21, -45, 28, -19, 29, -6, 25, -2, 17, -4, 7, -41, 2, -65, 3 ) ]
+vertices = PoolVector2Array( -2, 17, 42, 15, 57, 17, 35, 55, -6, 25, 65, 14, 118, 37, 65, 72, 31, 66, 12, -6, 36, 3, -4, 7, -19, 29, -86, 39, -45, 28, -52, 21, -69, 12, -74, 2, -65, 3, -41, 2 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 2, 5, 6, 7, 8, 3 ), PoolIntArray( 9, 10, 1, 0, 11 ), PoolIntArray( 12, 4, 3 ), PoolIntArray( 12, 3, 13, 14 ), PoolIntArray( 15, 14, 13, 16 ), PoolIntArray( 16, 13, 17, 18 ), PoolIntArray( 18, 17, 9, 19 ), PoolIntArray( 19, 9, 11 ) ]
+outlines = [ PoolVector2Array( 118, 37, 65, 14, 57, 17, 42, 15, 36, 3, 12, -6, -74, 2, -86, 39, 35, 55, 31, 66, 65, 72 ), PoolVector2Array( -69, 12, -52, 21, -45, 28, -19, 29, -6, 25, -2, 17, -4, 7, -41, 2, -65, 3 ) ]
 
 [node name="RoomFortuneTeller" type="Node2D"]
 script = ExtResource( 1 )
@@ -174,7 +331,7 @@ texture = ExtResource( 14 )
 
 [node name="Totem" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -54, 12 )
-script = ExtResource( 15 )
+script = ExtResource( 23 )
 description = "Totem"
 baseline = 78
 walk_to_point = Vector2( 30, 24 )
@@ -182,6 +339,7 @@ cursor = 1
 script_name = "Totem"
 always_on_top = true
 texture = ExtResource( 16 )
+totem_symbol = "E"
 
 [node name="BaselineHelper" parent="Props/Totem" index="0"]
 position = Vector2( 0, 78 )
@@ -194,11 +352,15 @@ position = Vector2( 0, -0.5 )
 texture = ExtResource( 16 )
 
 [node name="CollisionPolygon2D" parent="Props/Totem" index="3"]
-polygon = PoolVector2Array( -1, -12, 2, -11, 4, -5, 2, -2, 2, 2, 4, 4, 5, 8, -5, 7, -4, 3, -2, 3, -2, -4, -3, -6 )
+polygon = PoolVector2Array( -5, -12, 4, -12, 5, 8, -5, 7 )
+
+[node name="Anim" type="AnimationPlayer" parent="Props/Totem"]
+anims/RESET = SubResource( 8 )
+anims/selected = SubResource( 9 )
 
 [node name="Rooster" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -40, 19 )
-script = ExtResource( 17 )
+script = ExtResource( 23 )
 description = "Rooster"
 baseline = 78
 walk_to_point = Vector2( 30, 24 )
@@ -206,6 +368,7 @@ cursor = 1
 script_name = "Rooster"
 always_on_top = true
 texture = ExtResource( 18 )
+totem_symbol = "D"
 
 [node name="BaselineHelper" parent="Props/Rooster" index="0"]
 position = Vector2( 0, 78 )
@@ -218,11 +381,15 @@ position = Vector2( 0, -0.5 )
 texture = ExtResource( 18 )
 
 [node name="CollisionPolygon2D" parent="Props/Rooster" index="3"]
-polygon = PoolVector2Array( -5, -6, -2, -4, 2, -7, 6, -7, 7, -2, 3, 1, 3, 5, -4, 4, -7, 0, -7, -4 )
+polygon = PoolVector2Array( -7, -7, 7, -7, 7, -2, 4, 5, -7, 5 )
+
+[node name="Anim" type="AnimationPlayer" parent="Props/Rooster"]
+anims/RESET = SubResource( 10 )
+anims/selected = SubResource( 11 )
 
 [node name="Bee" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -26, 21 )
-script = ExtResource( 19 )
+script = ExtResource( 23 )
 description = "Bee"
 baseline = 78
 walk_to_point = Vector2( 30, 24 )
@@ -230,6 +397,7 @@ cursor = 1
 script_name = "Bee"
 always_on_top = true
 texture = ExtResource( 20 )
+totem_symbol = "C"
 
 [node name="BaselineHelper" parent="Props/Bee" index="0"]
 position = Vector2( 0, 78 )
@@ -242,11 +410,15 @@ position = Vector2( 0.5, -0.5 )
 texture = ExtResource( 20 )
 
 [node name="CollisionPolygon2D" parent="Props/Bee" index="3"]
-polygon = PoolVector2Array( -4, -8, -1, -7, 3, -8, 4, -7, 2, 2, 5, 3, 3, 5, -1, 5, -3, 2 )
+polygon = PoolVector2Array( -4, -8, 5, -8, 5, 5, -4, 5 )
+
+[node name="Anim" type="AnimationPlayer" parent="Props/Bee"]
+anims/RESET = SubResource( 12 )
+anims/selected = SubResource( 13 )
 
 [node name="LadyBird" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -13, 26 )
-script = ExtResource( 21 )
+script = ExtResource( 23 )
 description = "Ladybird"
 baseline = 78
 walk_to_point = Vector2( 30, 24 )
@@ -254,6 +426,7 @@ cursor = 1
 script_name = "LadyBird"
 always_on_top = true
 texture = ExtResource( 22 )
+totem_symbol = "B"
 
 [node name="BaselineHelper" parent="Props/LadyBird" index="0"]
 position = Vector2( 0, 78 )
@@ -266,7 +439,11 @@ position = Vector2( 0, 0.5 )
 texture = ExtResource( 22 )
 
 [node name="CollisionPolygon2D" parent="Props/LadyBird" index="3"]
-polygon = PoolVector2Array( -1, -3, 3, -3, 5, 0, 3, 3, -3, 3, -5, 1 )
+polygon = PoolVector2Array( -5, -7, 5, -7, 5, 3, 5, 3, -5, 3, -5, 3 )
+
+[node name="Anim" type="AnimationPlayer" parent="Props/LadyBird"]
+anims/RESET = SubResource( 14 )
+anims/selected = SubResource( 15 )
 
 [node name="Beetle" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -2, 25 )
@@ -290,7 +467,11 @@ position = Vector2( 0.5, 0.5 )
 texture = ExtResource( 24 )
 
 [node name="CollisionPolygon2D" parent="Props/Beetle" index="3"]
-polygon = PoolVector2Array( -3, -1, 0, -2, 3, -1, 2, -6, 6, -6, 4, 2, 1, 5, -4, 4 )
+polygon = PoolVector2Array( -4, -6, 6, -6, 6, 5, -4, 5 )
+
+[node name="Anim" type="AnimationPlayer" parent="Props/Beetle"]
+anims/RESET = SubResource( 16 )
+anims/selected = SubResource( 17 )
 
 [node name="CrystalBall" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 52, -8 )
@@ -343,36 +524,19 @@ texture = ExtResource( 29 )
 [node name="Candle" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -91, -20 )
 script = ExtResource( 13 )
-__meta__ = {
-"_editor_description_": ""
-}
 description = "Candle"
 baseline = 78
 walk_to_point = Vector2( 34, 56 )
 cursor = 1
 script_name = "Candle"
 always_on_top = true
+candle_index = 10
 
 [node name="BaselineHelper" parent="Props/Candle" index="0"]
 position = Vector2( 0, 78 )
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Props/Candle" index="1"]
 position = Vector2( 34, 56 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Props/Candle/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CollisionPolygon2D" parent="Props/Candle" index="3"]
 polygon = PoolVector2Array( -2, 6, 3, 6, 3, 13, -2, 13 )
@@ -391,6 +555,7 @@ walk_to_point = Vector2( 34, 56 )
 cursor = 1
 script_name = "Candle"
 always_on_top = true
+candle_index = 9
 
 [node name="BaselineHelper" parent="Props/Candle2" index="0"]
 position = Vector2( 0, 78 )
@@ -415,6 +580,7 @@ walk_to_point = Vector2( 34, 56 )
 cursor = 1
 script_name = "Candle"
 always_on_top = true
+candle_index = 8
 
 [node name="BaselineHelper" parent="Props/Candle3" index="0"]
 position = Vector2( 0, 78 )
@@ -439,6 +605,7 @@ walk_to_point = Vector2( 34, 56 )
 cursor = 1
 script_name = "Candle"
 always_on_top = true
+candle_index = 2
 
 [node name="BaselineHelper" parent="Props/Candle4" index="0"]
 position = Vector2( 0, 78 )
@@ -463,6 +630,7 @@ walk_to_point = Vector2( 34, 56 )
 cursor = 1
 script_name = "Candle"
 always_on_top = true
+candle_index = 1
 
 [node name="BaselineHelper" parent="Props/Candle5" index="0"]
 position = Vector2( 0, 78 )
@@ -508,7 +676,11 @@ playing = true
 
 [node name="Points" type="Node2D" parent="."]
 
+[node name="figurine_stand" type="Position2D" parent="Points"]
+position = Vector2( 10, 28 )
+
 [node name="WalkableAreas" type="Node2D" parent="."]
+visible = false
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
 
@@ -519,6 +691,11 @@ navpoly = SubResource( 1 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 6 )]
 position = Vector2( 87, 49 )
+
+[node name="Secret" type="Node" parent="."]
+script = ExtResource( 15 )
+_secret_key = "SUMMON_CONFIGS"
+_secret = "{\"000ABCDE001\":\"101\"}"
 
 [editable path="Props/Workspace"]
 [editable path="Props/Painting"]

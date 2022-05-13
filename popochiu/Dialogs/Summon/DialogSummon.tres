@@ -1,0 +1,73 @@
+[gd_resource type="Resource" load_steps=12 format=2]
+
+[ext_resource path="res://popochiu/Dialogs/Summon/DialogSummon.gd" type="Script" id=1]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Dialog/DialogOption.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+resource_name = "No"
+script = ExtResource( 2 )
+id = "No"
+text = "No"
+visible = true
+
+[sub_resource type="Resource" id=2]
+resource_name = "Yes"
+script = ExtResource( 2 )
+id = "Yes"
+text = "Yes"
+visible = true
+
+[sub_resource type="Resource" id=3]
+resource_name = "101"
+script = ExtResource( 2 )
+id = "101"
+text = "The bug that lived in room 101"
+visible = false
+
+[sub_resource type="Resource" id=4]
+resource_name = "102"
+script = ExtResource( 2 )
+id = "102"
+text = "The bug that lived in room 102"
+visible = false
+
+[sub_resource type="Resource" id=5]
+resource_name = "201"
+script = ExtResource( 2 )
+id = "201"
+text = "The bug that lived in room 201"
+visible = false
+
+[sub_resource type="Resource" id=6]
+resource_name = "202"
+script = ExtResource( 2 )
+id = "202"
+text = "The bug that lived in room 202"
+visible = false
+
+[sub_resource type="Resource" id=7]
+resource_name = "301"
+script = ExtResource( 2 )
+id = "301"
+text = "The bug that lived in room 301"
+visible = false
+
+[sub_resource type="Resource" id=8]
+resource_name = "302"
+script = ExtResource( 2 )
+id = "302"
+text = "The bug that lived in room 302"
+visible = false
+
+[sub_resource type="Resource" id=9]
+resource_name = "Penthouse"
+script = ExtResource( 2 )
+id = "Penthouse"
+text = "The bug that lived in room Penthouse"
+visible = false
+
+[resource]
+resource_name = "Summon"
+script = ExtResource( 1 )
+options = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ]
+script_name = "Summon"

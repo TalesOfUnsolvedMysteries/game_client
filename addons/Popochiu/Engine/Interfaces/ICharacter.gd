@@ -44,6 +44,9 @@ func character_walk_to(
 
 func player_walk_to(position: Vector2, is_in_queue := true) -> void:
 	if is_in_queue: yield()
+	if player.position == position:
+		yield(get_tree().create_timer(0.1), 'timeout')
+		return
 	yield(player.walk(position, false), 'completed')
 
 

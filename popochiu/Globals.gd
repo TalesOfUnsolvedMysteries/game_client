@@ -141,6 +141,41 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0015'
 	},
+	SUMMON_101_SPIRIT = {
+		label = 'Summons the spirit from 101 for the first time ',
+		img = 'nft_new_floors',
+		id = '0016'
+	},
+	SUMMON_102_SPIRIT = {
+		label = 'Summons the spirit from 102 for the first time ',
+		img = 'nft_new_floors',
+		id = '0017'
+	},
+	SUMMON_201_SPIRIT = {
+		label = 'Summons the spirit from 201 for the first time ',
+		img = 'nft_new_floors',
+		id = '0018'
+	},
+	SUMMON_202_SPIRIT = {
+		label = 'Summons the spirit from 202 for the first time ',
+		img = 'nft_new_floors',
+		id = '0019'
+	},
+	SUMMON_301_SPIRIT = {
+		label = 'Summons the spirit from 301 for the first time ',
+		img = 'nft_new_floors',
+		id = '0020'
+	},
+	SUMMON_302_SPIRIT = {
+		label = 'Summons the spirit from 302 for the first time ',
+		img = 'nft_new_floors',
+		id = '0021'
+	},
+	SUMMON_PENTHOUSE_SPIRIT = {
+		label = 'Summons the spirit from Penthouse for the first time ',
+		img = 'nft_new_floors',
+		id = '0022'
+	}
 }
 
 var main_mx_play = false
@@ -180,8 +215,11 @@ sync var state := {
 	'Penthouse-VASE_SOLVED': false,
 	'Penthouse-COMPARTIMENT_OPENED': true,
 	'Penthouse-FORTUNETELLER_NOTES': false,
-	# ADN picker
-	'ADN_picker_content': ''
+	# ADN picker - Doctor items
+	'ADN_picker_content': 'PENTHOUSE_CORPSE',
+	# Fortune Teller
+	'RITUAL_configuration': '000ABCDE000',
+	'RITUAL_summoned': []
 }
 var server_file = "user://server.save"
 var battery_power := 0.0 setget _set_battery_power

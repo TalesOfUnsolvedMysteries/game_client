@@ -6,8 +6,10 @@ extends Prop
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		C.face_clicked()
+		C.face_clicked(),
+		'Player: Should I use the ball to communicate with a dead bug?'
 	]), 'completed')
+	D.show_dialog('Summon')
 
 
 func on_look() -> void:
