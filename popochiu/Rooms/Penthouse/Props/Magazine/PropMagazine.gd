@@ -17,8 +17,11 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: A magazine.'
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)

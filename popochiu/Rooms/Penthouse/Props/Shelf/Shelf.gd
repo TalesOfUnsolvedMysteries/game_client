@@ -16,15 +16,21 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: A shelf.'
+	]), 'completed')
+
 
 func on_item_used(item: InventoryItem) -> void:
 	$Vase.on_item_used(item)
+
 
 func handle_discarded_vase(item: InventoryItem) -> bool:
 	if $Vase.current_vase != '': return false
 	$Vase.add_discarded_vase(item)
 	return true
+
 
 func evaluate():
 	var weights = Globals.state.get('Penthouse_WEIGHTS_ON_Shelfs')
@@ -37,4 +43,3 @@ func evaluate():
 	$Tween.interpolate_property($ShelfBody, "region_rect:size:y", $ShelfBody.region_rect.size.y, 28 - rounded_balance, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property($Vase, "position:y", $Vase.position.y, -26 + rounded_balance, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
-	

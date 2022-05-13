@@ -12,6 +12,7 @@ size_flags_vertical = 2
 script = ExtResource( 1 )
 description = "Blue Vase"
 script_name = "VaseBlue"
+cursor = 10
 
 [node name="Icon" type="TextureRect" parent="."]
 margin_right = 14.0

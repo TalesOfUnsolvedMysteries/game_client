@@ -6,16 +6,18 @@ extends Prop
 func on_interact() -> void:
 	yield(E.run([
 		C.walk_to_clicked(),
-		'Player: Not pickin that up'
+		C.face_clicked(),
+		'Player: Do not understand this art.'
 	]), 'completed')
 
 
 func on_look() -> void:
 	yield(E.run([
-		'Player: It has symbols that I don´t understand',
-		'Player: And a notch to put something'
+		C.face_clicked(),
+		'Player: It has symbols that I don´t understand.',
+		'Player: And a notch to put something.'
 	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)

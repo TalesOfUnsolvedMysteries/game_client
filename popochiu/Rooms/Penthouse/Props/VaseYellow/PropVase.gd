@@ -13,9 +13,11 @@ var vase_textures = {
 	'VaseBlue': load('res://popochiu/Rooms/Penthouse/Props/VaseBlue/vase_blue.png')
 }
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
 	var shelfs = Globals.state.get('Penthouse_VASES_ON_Shelfs')
 	set_vase(shelfs[weight_index])
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -40,8 +42,13 @@ func on_interact() -> void:
 		self.description = 'Shelf'
 		$Sprite.hide()
 
+
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.face_clicked(),
+		'Player: A %s with some kind of symbol.' % [description.to_lower()]
+	]), 'completed')
+
 
 func on_item_used(item: InventoryItem) -> void:
 	if Globals.state.get('Penthouse-VASE_SOLVED'): return
@@ -62,6 +69,7 @@ func on_item_used(item: InventoryItem) -> void:
 	Globals.set_vase_on_shelf(weight_index, item.script_name, item.weight)
 	set_vase(item.script_name)
 
+
 func add_discarded_vase(item: InventoryItem) -> void:
 	yield(E.run([
 		C.player_walk_to(room.get_point(location_name), true),
@@ -69,11 +77,16 @@ func add_discarded_vase(item: InventoryItem) -> void:
 	Globals.set_vase_on_shelf(weight_index, item.script_name, item.weight)
 	set_vase(item.script_name)
 
+
 func set_vase(vase_name):
 	current_vase = vase_name
 	if current_vase == '':
 		$Sprite.hide()
 	else:
 		self.texture = vase_textures[current_vase]
-		self.description = current_vase
+		
+		var capitalized: Array = current_vase.capitalize().split(' ')
+		self.description = '%s %s' % [
+			capitalized[1], capitalized[0].to_lower()
+		]
 		$Sprite.show()

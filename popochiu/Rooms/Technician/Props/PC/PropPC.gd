@@ -14,7 +14,9 @@ func on_interact() -> void:
 func on_look() -> void:
 	yield(E.run([
 		C.face_clicked(),
-		'Player: It looks like some kind of computer.'
+		'Player: It looks like some kind of computer.',
+		C.walk_to_clicked(),
+		'Player: Even though the label on the display says Terminal F12.'
 	]), 'completed')
 
 

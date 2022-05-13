@@ -11,8 +11,13 @@ func on_interact() -> void:
 
 
 func on_look() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.walk_to_clicked(),
+		C.face_clicked(),
+		'Player: A jigsaw.',
+		"Player: On the back, it says Dracula's inverted castle."
+	]), 'completed')
 
 
 func on_item_used(item: InventoryItem) -> void:
-	pass
+	.on_item_used(item)

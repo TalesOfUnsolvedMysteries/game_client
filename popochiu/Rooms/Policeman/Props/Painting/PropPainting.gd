@@ -17,7 +17,8 @@ func on_interact() -> void:
 func on_look() -> void:
 	yield(E.run([
 		C.face_clicked(),
-		"Player: It has symbols I don't understand"
+		"Player: It has symbols I don't understand",
+		'Player: And a notch to put something.'
 	]), 'completed')
 
 

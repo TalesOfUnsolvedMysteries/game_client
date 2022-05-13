@@ -76,9 +76,17 @@ polygon = PoolVector2Array( -13, -20, 14, -14, 13, 19, -14, 8 )
 position = Vector2( -1, -47 )
 script = ExtResource( 15 )
 description = "Painting"
+baseline = -90
+walk_to_point = Vector2( 20, 52 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 16 )
+
+[node name="BaselineHelper" parent="Props/Painting" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Painting" index="1"]
+position = Vector2( 20, 52 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 16 )
@@ -124,12 +132,16 @@ position = Vector2( -34, 18 )
 script = ExtResource( 20 )
 description = "Gadgets"
 baseline = -90
+walk_to_point = Vector2( -20, 37 )
 cursor = 1
 script_name = "Gadgets"
 texture = ExtResource( 22 )
 
 [node name="BaselineHelper" parent="Props/Gadgets" index="0"]
 position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Gadgets" index="1"]
+position = Vector2( -20, 37 )
 
 [node name="Sprite" parent="Props/Gadgets" index="2"]
 texture = ExtResource( 22 )
@@ -151,12 +163,16 @@ position = Vector2( -65, -27 )
 script = ExtResource( 18 )
 description = "PC"
 baseline = -90
+walk_to_point = Vector2( 23, 41 )
 cursor = 1
 script_name = "PC"
 texture = ExtResource( 23 )
 
 [node name="BaselineHelper" parent="Props/PC" index="0"]
 position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/PC" index="1"]
+position = Vector2( 23, 41 )
 
 [node name="Sprite" parent="Props/PC" index="2"]
 texture = ExtResource( 23 )
@@ -168,17 +184,17 @@ polygon = PoolVector2Array( -16, -11, -7, -16, 7, -17, 16, 12, 0, 19, -5, 15, -1
 position = Vector2( 59, 1 )
 script = ExtResource( 4 )
 description = "Lockers"
-baseline = 19
-walk_to_point = Vector2( -12, 23 )
+baseline = 16
+walk_to_point = Vector2( -16, 23 )
 cursor = 1
 script_name = "Lockers"
 texture = ExtResource( 10 )
 
 [node name="BaselineHelper" parent="Props/Lockers" index="0"]
-position = Vector2( 0, 19 )
+position = Vector2( 0, 16 )
 
 [node name="WalkToHelper" parent="Props/Lockers" index="1"]
-position = Vector2( -12, 23 )
+position = Vector2( -16, 23 )
 
 [node name="Sprite" parent="Props/Lockers" index="2"]
 texture = ExtResource( 10 )
@@ -199,10 +215,10 @@ texture = ExtResource( 9 )
 position = Vector2( 3, 14 )
 script = ExtResource( 5 )
 description = "Notes"
-walk_to_point = Vector2( 11, 13 )
+baseline = 26
+walk_to_point = Vector2( 22, 26 )
 cursor = 1
 script_name = "Notes"
-always_on_top = true
 texture = ExtResource( 11 )
 pages = [ "From the previous technician
 
@@ -215,8 +231,11 @@ a: 12
 This must be done each time the battery is plugged in.", "To change the functionality of the elevator use the PC in the lobby." ]
 background = ExtResource( 2 )
 
+[node name="BaselineHelper" parent="Props/Notes" index="0"]
+position = Vector2( 0, 26 )
+
 [node name="WalkToHelper" parent="Props/Notes" index="1"]
-position = Vector2( 11, 13 )
+position = Vector2( 22, 26 )
 
 [node name="Sprite" parent="Props/Notes" index="2"]
 texture = ExtResource( 11 )
@@ -233,14 +252,17 @@ _secret = "{\"a\":12}"
 position = Vector2( -11, 19 )
 script = ExtResource( 6 )
 description = "Whisky"
-walk_to_point = Vector2( -5, 30 )
+baseline = 21
+walk_to_point = Vector2( -20, 30 )
 cursor = 1
 script_name = "Whisky"
-always_on_top = true
 texture = ExtResource( 12 )
 
+[node name="BaselineHelper" parent="Props/Whisky" index="0"]
+position = Vector2( 0, 21 )
+
 [node name="WalkToHelper" parent="Props/Whisky" index="1"]
-position = Vector2( -5, 30 )
+position = Vector2( -20, 30 )
 
 [node name="Sprite" parent="Props/Whisky" index="2"]
 texture = ExtResource( 12 )
