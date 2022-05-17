@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/RoomFortuneTeller.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/VoodooBeads/PropVoodooBeads.gd" type="Script" id=2]
@@ -16,8 +16,11 @@
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Altar/altar.png" type="Texture" id=14]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Secret.gd" type="Script" id=15]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Totem/totem.png" type="Texture" id=16]
+[ext_resource path="res://popochiu/Rooms/FortuneTeller/Assets/summon_159x213.png" type="Texture" id=17]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Rooster/rooster.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Characters/Bug101/CharacterBug101.tscn" type="PackedScene" id=19]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Bee/bee.png" type="Texture" id=20]
+[ext_resource path="res://popochiu/Rooms/FortuneTeller/SecretAdn.gd" type="Script" id=21]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/LadyBird/lady_bird.png" type="Texture" id=22]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Totem/PropFigurine.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Beetle/beetle.png" type="Texture" id=24]
@@ -188,10 +191,6 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.278431, 0.333333, 0.815686 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 30 )
-region = Rect2( 0, 0, 6, 26 )
-
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 30 )
 region = Rect2( 6, 0, 6, 26 )
@@ -208,23 +207,761 @@ region = Rect2( 18, 0, 6, 26 )
 atlas = ExtResource( 30 )
 region = Rect2( 24, 0, 6, 26 )
 
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 6, 26 )
+
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 6 ) ],
-"loop": false,
-"name": "off",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "on",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": false,
+"name": "off",
+"speed": 5.0
 } ]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -2, 17, 42, 15, 57, 17, 35, 55, -6, 25, 65, 14, 118, 37, 65, 72, 31, 66, 12, -6, 36, 3, -4, 7, -19, 29, -86, 39, -45, 28, -52, 21, -69, 12, -74, 2, -65, 3, -41, 2 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 2, 5, 6, 7, 8, 3 ), PoolIntArray( 9, 10, 1, 0, 11 ), PoolIntArray( 12, 4, 3 ), PoolIntArray( 12, 3, 13, 14 ), PoolIntArray( 15, 14, 13, 16 ), PoolIntArray( 16, 13, 17, 18 ), PoolIntArray( 18, 17, 9, 19 ), PoolIntArray( 19, 9, 11 ) ]
 outlines = [ PoolVector2Array( 118, 37, 65, 14, 57, 17, 42, 15, 36, 3, 12, -6, -74, 2, -86, 39, 35, 55, 31, 66, 65, 72 ), PoolVector2Array( -69, 12, -52, 21, -45, 28, -19, 29, -6, 25, -2, 17, -4, 7, -41, 2, -65, 3 ) ]
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 0, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 213, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 426, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=50]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=51]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=52]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=53]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=54]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=55]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=56]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=57]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 639, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=58]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=59]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=60]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=61]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=62]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=63]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=64]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=65]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=66]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=67]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 852, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=68]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 1065, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=79]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=80]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=81]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=82]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=83]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=84]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=85]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=86]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=87]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 1278, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=88]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=89]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=90]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=91]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=92]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=93]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=94]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=95]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=96]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=97]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 1491, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=98]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=99]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=100]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=101]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=102]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=103]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=104]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=105]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=106]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=107]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 1704, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=108]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=109]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 159, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=110]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 318, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=111]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 477, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=112]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 636, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=113]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 795, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=114]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 954, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=115]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1113, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=116]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1272, 1917, 159, 213 )
+
+[sub_resource type="AtlasTexture" id=117]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 1431, 1917, 159, 213 )
+
+[sub_resource type="SpriteFrames" id=118]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ), SubResource( 107 ), SubResource( 108 ), SubResource( 109 ), SubResource( 110 ), SubResource( 111 ), SubResource( 112 ), SubResource( 113 ), SubResource( 114 ), SubResource( 115 ), SubResource( 116 ), SubResource( 117 ) ],
+"loop": false,
+"name": "default",
+"speed": 60.0
+} ]
+
+[sub_resource type="Shader" id=119]
+code = "shader_type canvas_item;
+
+uniform sampler2D offset_image : hint_white;
+uniform float strength = 0.0;
+
+void fragment() {
+	vec4 output = texture(SCREEN_TEXTURE, SCREEN_UV);
+	
+	float shift = strength * sin(TIME*5.0) * texture(offset_image, SCREEN_UV).r / 100.0;
+	output.r = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x + shift, SCREEN_UV.y)).r;
+	output.g = texture(SCREEN_TEXTURE, SCREEN_UV).g;
+	output.b = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x - shift, SCREEN_UV.y)).b;
+	
+	COLOR = output;
+	COLOR.g += strength;
+}"
+
+[sub_resource type="ShaderMaterial" id=120]
+shader = SubResource( 119 )
+shader_param/strength = 0.0
+
+[sub_resource type="Animation" id=121]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Control/ColorRect:material:shader_param/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Characters/CharacterBug101:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.02, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Smoke:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Smoke:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( -0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=124]
+resource_name = "leave"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Control/ColorRect:material:shader_param/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.9, 1.2, 1.5, 2.2, 3 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Smoke:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Smoke")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2, 2.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "stop"
+} ]
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Characters/CharacterBug101:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0.565301, -0.6, 3.08748, 0.25, 0, 0, -0.25, 0, 0.6, -1.19175, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.6, 1.9, 3 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Smoke:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.9, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+
+[sub_resource type="Animation" id=122]
+resource_name = "start_summon"
+length = 3.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Control/ColorRect:material:shader_param/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.3, -0.1, -0.294373, 0.3, -0.24464, 0.271847, -0.3, 0.236966, 0.2, -0.283774, 0.116552, 0, -0.005851, 0.4, 0.151151, 0, -0.4, -0.270589, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 1.4, 1.9, 3 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Characters/CharacterBug101:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6, 1.4, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.0196078 ), Color( 1, 1, 1, 0.196078 ), Color( 1, 1, 1, 0.0196078 ) ]
+}
+
+[sub_resource type="Animation" id=123]
+resource_name = "summon"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Control/ColorRect:material:shader_param/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.7, 1.8, 1.9, 2.2, 3 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Smoke:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Smoke")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.8, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "stop"
+} ]
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Characters/CharacterBug101:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.6, -1.19175, 0.565301, -0.6, 3.08748, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.8, 3 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Smoke:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.7, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
 
 [node name="RoomFortuneTeller" type="Node2D"]
 script = ExtResource( 1 )
@@ -692,10 +1429,44 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 6 )]
 position = Vector2( 87, 49 )
 
+[node name="CharacterBug101" parent="Characters" instance=ExtResource( 19 )]
+modulate = Color( 1, 1, 1, 0.02 )
+position = Vector2( 70, 55 )
+
 [node name="Secret" type="Node" parent="."]
 script = ExtResource( 15 )
 _secret_key = "SUMMON_CONFIGS"
-_secret = "{\"000ABCDE001\":\"101\"}"
+_secret = "{\"100ABCDE000\":\"101\",\"010ABCDE000\":\"102\",\"001ABCDE000\":\"201\",\"000ABCDE100\":\"202\",\"000ABCDE010\":\"301\",\"000ABCDE001\":\"302\",\"000EBCDA000\":\"Penthouse\"}"
+
+[node name="SecretAdn" type="Node" parent="."]
+script = ExtResource( 21 )
+_secret_key = "ADN_CONFIGS"
+_secret = "{\"101\":\"000xxx\",\"102\":\"010xxx\",\"201\":\"010xxx\",\"202\":\"000xxx\",\"301\":\"010xxx\",\"302\":\"010xxx\",\"Penthouse\":\"000xxx\"}"
+
+[node name="Smoke" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 67.875, 33.8137 )
+scale = Vector2( 0.287736, 0.287736 )
+frames = SubResource( 118 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+material = SubResource( 120 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 121 )
+anims/leave = SubResource( 124 )
+anims/start_summon = SubResource( 122 )
+anims/summon = SubResource( 123 )
 
 [editable path="Props/Workspace"]
 [editable path="Props/Painting"]

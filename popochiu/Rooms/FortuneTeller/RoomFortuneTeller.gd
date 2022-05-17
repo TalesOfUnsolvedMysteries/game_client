@@ -4,9 +4,14 @@ extends PopochiuRoom
 const Figurine = preload('res://popochiu/Rooms/FortuneTeller/Props/Totem/PropFigurine.gd')
 var figurine_a: Figurine = null
 onready var secret: Secret = find_node('Secret')
+var room_requested = ''
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
 	secret.connect('solved', self, '_on_solved')
+	C.get_character('Bug101').face_left(false)
+	C.get_character('Bug101').modulate.a = 0.02
+	
+	$SecretAdn.connect('adn_retrieved', self, 'known_summon')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -50,17 +55,29 @@ func start_ritual():
 	var _config: String = Globals.state.get('RITUAL_configuration')
 	print('check current %s to invoke' % _config)
 	# animation to start the summon
+	$AnimationPlayer.play('start_summon')
+	yield(E.run([E.wait(3.1)]), 'completed')
+	G.block()
 	secret.solve('')
 
-func known_summon(room: String):
-	# animation to appears
+func known_summon(adn: String):
+	C.get_character('Bug101').load_appearance(adn)
+	$AnimationPlayer.play('summon', 0.5)
+	yield($AnimationPlayer, 'animation_finished')
 	yield(E.run([
-		'Player: this is the spirit from %s' % room
+		'Player: this is the spirit from %s' % room_requested
 	]), 'completed')
+	G.block()
+	$AnimationPlayer.play('leave', 0.5)
+	yield($AnimationPlayer, 'animation_finished')
+	G.done()
+	
 
 func _on_solved(solved):
 	if solved is bool:
 		# animation to dissapear
+		$AnimationPlayer.play('RESET')
+		G.done()
 		yield(E.run([
 			'Player: Nothing happened...'
 		]), 'completed')
@@ -69,5 +86,7 @@ func _on_solved(solved):
 			solved = solved.replace('A', '')
 		else: # first time solved
 			yield(G, 'nft_shown')
-		self.known_summon(solved)
+		room_requested = solved
+		$SecretAdn.get_adn_for(solved)
+		
 
