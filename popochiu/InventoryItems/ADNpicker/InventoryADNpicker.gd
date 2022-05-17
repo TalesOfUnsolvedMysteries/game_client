@@ -4,10 +4,9 @@ export var empty: Texture = null
 export var full: Texture = null
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
 func _ready() -> void:
-	._ready()
 	var content: String = Globals.state.get('ADN_picker_content')
+	
 	if content.empty():
 		$Icon.texture = self.empty
 	else:
@@ -35,23 +34,30 @@ func _get_description() -> String:
 		return 'a device for extracting ADN (empty)'
 	return 'a device with an ADN sample\n(right click to empty)'
 
+
 # Lo que pasará cuando se use otro InventoryItem del inventario sobre este
 func on_item_used(_item: InventoryItem) -> void:
 	pass
 
+
 func added_to_inventory() -> void:
-	pass
+	var content: String = Globals.state.get('ADN_picker_content')
+	
+	if content.empty():
+		$Icon.texture = self.empty
+	else:
+		$Icon.texture = self.full
+
 
 func on_discard () -> void:
 	pass
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-# TODO: Poner aquí los métodos privados
-
 func take_sample(sample_source):
 	Globals.set_state('ADN_picker_content', sample_source)
 	$Icon.texture = self.full
+
 
 func clean_sample():
 	Globals.set_state('ADN_picker_content', '')

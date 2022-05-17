@@ -1,9 +1,11 @@
 tool
 extends PopochiuRoom
 
+onready var _adn_analyzer: PanelContainer = find_node('ADNAnalyzer')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
-# TODO: Sobrescribir los métodos de Godot que hagan falta
+func _ready() -> void:
+	_adn_analyzer.connect('closed', get_prop('DoctorPC'), 'on_analyzer_closed')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -15,5 +17,6 @@ func on_room_transition_finished() -> void:
 	pass
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-# TODO: Poner aquí los métodos privados
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
+func turn_on_analyzer(adn_sample := '') -> void:
+	_adn_analyzer.appear(adn_sample)

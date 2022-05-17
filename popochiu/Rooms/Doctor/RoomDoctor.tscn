@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Painting/PropPainting.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Bg/bg.png" type="Texture" id=5]
@@ -23,6 +24,7 @@
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=22]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/PropExit.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/exit.png" type="Texture" id=24]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/adn_picker.png" type="Texture" id=25]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
@@ -177,15 +179,29 @@ polygon = PoolVector2Array( -8, 9, -4, 4, 8, 5, 8, 8, 4, 12, -3, 12, -8, 11 )
 position = Vector2( -1, -34 )
 script = ExtResource( 20 )
 description = "PC"
+walk_to_point = Vector2( 21, 54 )
 cursor = 1
 script_name = "DoctorPC"
 texture = ExtResource( 19 )
 
+[node name="BaselineHelper" parent="Props/DoctorPC" index="0"]
+visible = true
+
+[node name="WalkToHelper" parent="Props/DoctorPC" index="1"]
+visible = true
+position = Vector2( 21, 54 )
+
 [node name="Sprite" parent="Props/DoctorPC" index="2"]
 texture = ExtResource( 19 )
+hframes = 2
 
 [node name="CollisionPolygon2D" parent="Props/DoctorPC" index="3"]
 polygon = PoolVector2Array( -22, -14, 26, -14, 28, 4, 19, 15, 5, 14, -27, 14, -16, 5, -24, 4 )
+
+[node name="ADNPicker" type="Sprite" parent="Props/DoctorPC"]
+position = Vector2( 16, -4.5 )
+texture = ExtResource( 25 )
+hframes = 2
 
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 105, 23 )
@@ -240,7 +256,9 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 22 )]
 position = Vector2( 89, 40 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GI" type="CanvasLayer" parent="."]
+
+[node name="ADNAnalyzer" parent="GI" instance=ExtResource( 2 )]
 
 [editable path="Props/Painting"]
 [editable path="Props/KillertronPower"]
