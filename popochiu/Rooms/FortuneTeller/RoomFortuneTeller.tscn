@@ -746,18 +746,19 @@ uniform float strength = 0.0;
 void fragment() {
 	vec4 output = texture(SCREEN_TEXTURE, SCREEN_UV);
 	
-	float shift = strength * sin(TIME*5.0) * texture(offset_image, SCREEN_UV).r / 100.0;
+	float shift = strength * 0.5 * sin(TIME*5.0) * texture(offset_image, SCREEN_UV).r / 100.0;
 	output.r = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x + shift, SCREEN_UV.y)).r;
 	output.g = texture(SCREEN_TEXTURE, SCREEN_UV).g;
 	output.b = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x - shift, SCREEN_UV.y)).b;
 	
 	COLOR = output;
-	COLOR.g += strength;
+	COLOR.g += strength*0.3;
+	COLOR.b += strength*0.3;
 }"
 
 [sub_resource type="ShaderMaterial" id=120]
 shader = SubResource( 119 )
-shader_param/strength = 0.0
+shader_param/strength = 0.06
 
 [sub_resource type="Animation" id=121]
 length = 0.001
@@ -768,7 +769,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0.06, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
 tracks/1/type = "bezier"
@@ -816,7 +817,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0.08, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.9, 1.2, 1.5, 2.2, 3 )
 }
 tracks/1/type = "value"
@@ -908,7 +909,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.35, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.7, 1.8, 1.9, 2.2, 3 )
 }
 tracks/1/type = "value"

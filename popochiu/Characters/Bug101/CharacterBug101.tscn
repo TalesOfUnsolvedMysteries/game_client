@@ -52,17 +52,17 @@ void fragment( )
 	pixel_color.r = rounded;
 	pixel_color.g = rounded;
 	pixel_color.b = rounded;
-	
+	/*
 	pixel_color.r = mix(
 		pixel_color.r
-	,	textureLod( TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r
+	,	textureLod( TEXTURE, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r*0.4
 	,	enable_shift
 	);
 	pixel_color.b = mix(
 		pixel_color.b
-	,	textureLod( TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b
+	,	textureLod( TEXTURE, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b*0.4
 	,	enable_shift
-	);
+	);*/
 	COLOR = pixel_color;
 	//COLOR.r -= 0.2;
 	//COLOR.g -= 0.2;

@@ -21,8 +21,8 @@ func _ready():
 	and not _was_created and E.current_room.script_name != 'BugEditor':
 		if Globals.bug_adn.empty():
 			Globals.set_appearance(
-				str(randi() % Globals.HEADS.size()) +\
-				str(randi() % Globals.BODIES.size()) +\
+				str(randi() % (Globals.HEADS.size() - 1)) +\
+				str(randi() % (Globals.BODIES.size() - 1)) +\
 				str(randi() % Globals.LEGS.size()) +\
 				str(randi() % Globals.EYES.size()) +\
 				str(randi() % Globals.ARMS.size()) +\

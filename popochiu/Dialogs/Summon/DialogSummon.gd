@@ -29,4 +29,4 @@ func option_selected(opt: DialogOption) -> void:
 			'Player: what else can the bug from %s could tell me?' % opt.id,
 		]), 'completed')
 		D.emit_signal('dialog_finished')
-		E.current_room.known_summon(opt.id)
+		E.current_room.get_node('SecretAdn').get_adn_for(opt.id)

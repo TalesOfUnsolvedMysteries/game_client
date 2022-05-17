@@ -54,7 +54,8 @@ func toggle_figurine(figurine_prop: Figurine):
 func start_ritual():
 	var _config: String = Globals.state.get('RITUAL_configuration')
 	print('check current %s to invoke' % _config)
-	# animation to start the summon
+	C.get_character('Bug101').load_appearance('440xxx')
+	A.play({cue_name='sfx_summon_start', is_in_queue=false})
 	$AnimationPlayer.play('start_summon')
 	yield(E.run([E.wait(3.1)]), 'completed')
 	G.block()
@@ -63,13 +64,20 @@ func start_ritual():
 func known_summon(adn: String):
 	C.get_character('Bug101').load_appearance(adn)
 	$AnimationPlayer.play('summon', 0.5)
+	A.play({cue_name='sfx_summon_success', is_in_queue=false})
+	A.play_music('mx_ghost', false, 0)
 	yield($AnimationPlayer, 'animation_finished')
 	yield(E.run([
 		'Player: this is the spirit from %s' % room_requested
 	]), 'completed')
+	yield(D.show_dialog('Ghost101'), 'completed')
 	G.block()
 	$AnimationPlayer.play('leave', 0.5)
+	A.stop('mx_ghost', 0, false, true, 5)
 	yield($AnimationPlayer, 'animation_finished')
+	yield(E.run([
+		'Player: What a paranormal activity'
+	]), 'completed')
 	G.done()
 	
 
