@@ -3,6 +3,8 @@ extends PanelContainer
 signal closed(state)
 
 var _state := '' setget set_state
+var _adn := ''
+var _workin := false
 
 const STATES := {
 	no_picker = 'insert picker',
@@ -16,6 +18,7 @@ onready var os_name: TextureRect = find_node('OSName')
 onready var os_logo: TextureRect = find_node('OSLogo')
 onready var progress: TextureProgress = find_node('AnalysisProgress')
 onready var os_message: Label = find_node('OSMessage')
+onready var results_screen: TextureRect = find_node('ResultsScreen')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -38,6 +41,8 @@ func appear(adn_sample: String) -> void:
 #	A.stop('mx_main', 0, false, true, 2.0)
 #	$AnimationPlayer.play('ShowList')
 	
+	_workin = true
+	
 	yield(get_tree().create_timer(1.0), 'timeout')
 	os_logo.self_modulate.a = 1.0
 	yield(get_tree().create_timer(1.0), 'timeout')
@@ -49,6 +54,7 @@ func appear(adn_sample: String) -> void:
 	
 	# Definir el estado del S.O.
 	if adn_sample:
+		_adn = adn_sample
 		self._state = STATES.analysing
 		progress.self_modulate.a = 1.0
 		
@@ -64,9 +70,13 @@ func appear(adn_sample: String) -> void:
 			self._state = STATES.no_picker
 		else:
 			self._state = STATES.no_sample
+		
+		_workin = false
 
 
 func disappear() -> void:
+	if _workin: return
+	
 	Utils.invoke(self, '_close')
 #	A.play_music('mx_main', false, false)
 
@@ -94,10 +104,19 @@ func _close():
 
 func _show_results() -> void:
 	Globals.set_state('ADN_picker_content', '')
+	
 	progress.self_modulate.a = 0.0
 	os_logo.self_modulate.a = 0.0
 	os_name.self_modulate.a = 0.0
 	self._state = STATES.showing_results
+	
+	results_screen.appear(SecretsKeeper.get(_adn))
+	
+	yield(results_screen, 'parts_shown')
+	
+	os_message.text = 'adn: ' + SecretsKeeper.get(_adn)
+	
+	_workin = false
 
 
 func _set_default() -> void:
@@ -107,3 +126,4 @@ func _set_default() -> void:
 	progress.self_modulate.a = 0.0
 	progress.value = 0.0
 	os_message.text = 'welcome'
+	results_screen.modulate.a = 0.0

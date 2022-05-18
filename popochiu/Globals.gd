@@ -30,14 +30,14 @@ const HEADS := [
 	preload('res://popochiu/Characters/Bug/parts/head_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/head_ladybird.png'),
 	preload('res://popochiu/Characters/Bug/parts/head_ant.png'),
-	preload('res://popochiu/Characters/Bug/parts/head_ghost.png'),
+#	preload('res://popochiu/Characters/Bug/parts/head_ghost.png'),
 ]
 const BODIES := [
 	preload('res://popochiu/Characters/Bug/parts/body_bee.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_ladybird.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_ant.png'),
-	preload('res://popochiu/Characters/Bug/parts/body_ghost.png'),
+#	preload('res://popochiu/Characters/Bug/parts/body_ghost.png'),
 ]
 const LEGS := [
 	preload('res://popochiu/Characters/Bug/parts/legs_bee.png'),
@@ -323,6 +323,30 @@ func stop_battery_charging() -> void:
 	#self.battery_power = 0
 	set_state('EngineRoom-CHARGING_BATTERY', false)
 	pass
+
+
+func get_adn_textures(adn: String) -> Array:
+	var textures := []
+	
+	for idx in adn.length():
+		match idx:
+			0:
+				textures.append(HEADS[int(adn[idx])])
+			1:
+				textures.append(BODIES[int(adn[idx])])
+			2:
+				textures.append(LEGS[int(adn[idx])])
+			3:
+				if adn[idx] != 'x': textures.append(EYES[int(adn[idx])])
+				else: textures.append(null)
+			4:
+				if adn[idx] != 'x': textures.append(ARMS[int(adn[idx])])
+				else: textures.append(null)
+			5:
+				if adn[idx] != 'x': textures.append(SHOES[int(adn[idx])])
+				else: textures.append(null)
+	
+	return textures
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

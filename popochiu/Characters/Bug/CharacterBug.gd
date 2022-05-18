@@ -135,22 +135,6 @@ func ready_to_play() -> void:
 #	_was_created = true
 
 
-# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-func _get_left_position(target: Sprite) -> int:
-	return -(_body.texture.get_width() / 2 - target.texture.get_width() / 2)
-
-
-func _update_head_and_legs_positions() -> void:
-	if _body.texture and _legs.texture:
-		_head.position = Vector2(
-			0.0,
-			(_body.texture.get_height() / 2 * -1) - 1
-		)
-		_legs.position = Vector2(
-			0.0,
-			(_body.texture.get_height() / 2) + 1
-		)
-
 func load_appearance(adn: String):
 	_body.position.y = 0
 	
@@ -175,3 +159,20 @@ func load_appearance(adn: String):
 	ready_to_play()
 	#if E.current_room.script_name == 'BugEditor':
 	#	ready_to_play()
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
+func _get_left_position(target: Sprite) -> int:
+	return -(_body.texture.get_width() / 2 - target.texture.get_width() / 2)
+
+
+func _update_head_and_legs_positions() -> void:
+	if _body.texture and _legs.texture:
+		_head.position = Vector2(
+			0.0,
+			(_body.texture.get_height() / 2 * -1) - 1
+		)
+		_legs.position = Vector2(
+			0.0,
+			(_body.texture.get_height() / 2) + 1
+		)
