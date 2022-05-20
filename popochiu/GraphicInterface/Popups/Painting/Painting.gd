@@ -1,8 +1,19 @@
+tool
 extends PanelContainer
+
+export(Array, Dictionary) var code := [] setget _set_code
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	if Engine.editor_hint: return
+	
+	if code:
+		var code_dic := {}
+		for dic in code:
+			code_dic[dic.pos] = dic.chr
+		$Password.setup(code_dic)
+	
 	connect('gui_input', self, '_check_close')
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
@@ -44,3 +55,16 @@ func _check_close(e: InputEvent) -> void:
 
 func _close():
 	hide()
+
+
+func _set_code(value: Array) -> void:
+	code = value
+	
+	for idx in value.size():
+		if not value[idx]:
+			code[idx] = {
+				pos = '',
+				chr = '',
+			}
+			
+			property_list_changed_notify()

@@ -39,13 +39,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Password" type="GridContainer" parent="."]
-margin_left = 160.0
-margin_top = 90.0
-margin_right = 160.0
-margin_bottom = 90.0
+margin_left = 136.0
+margin_top = 65.0
+margin_right = 184.0
+margin_bottom = 115.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_constants/vseparation = 2
-custom_constants/hseparation = 2
-columns = 7
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 6
 script = ExtResource( 5 )

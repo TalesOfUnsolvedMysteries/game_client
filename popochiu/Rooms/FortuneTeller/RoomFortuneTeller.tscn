@@ -1472,6 +1472,28 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="Painting" parent="CanvasLayer" instance=ExtResource( 31 )]
+code = [ {
+"chr": "L100",
+"pos": "0,0"
+}, {
+"chr": "A",
+"pos": "0,5"
+}, {
+"chr": "B",
+"pos": "4,5"
+}, {
+"chr": "C",
+"pos": "4,1"
+}, {
+"chr": "D",
+"pos": "2,1"
+}, {
+"chr": "E",
+"pos": "2,3"
+}, {
+"chr": "R001",
+"pos": "3,3"
+} ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 121 )

@@ -193,7 +193,6 @@ hidden = ExtResource( 24 )
 position = Vector2( 0, 14 )
 
 [node name="WalkToHelper" parent="Props/Painting" index="1"]
-visible = true
 position = Vector2( 23, 25 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
