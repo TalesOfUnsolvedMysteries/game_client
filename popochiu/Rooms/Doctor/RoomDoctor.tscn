@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.tscn" type="PackedScene" id=2]
@@ -25,6 +25,9 @@
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/PropExit.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/exit.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/adn_picker.png" type="Texture" id=25]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=26]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_normal.png" type="Texture" id=27]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_hidden.png" type="Texture" id=28]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
@@ -54,12 +57,19 @@ position = Vector2( 92, -20 )
 script = ExtResource( 4 )
 description = "Painting"
 baseline = -90
+walk_to_point = Vector2( -24, 43 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 6 )
+normal = ExtResource( 27 )
+hidden = ExtResource( 28 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Painting" index="1"]
+visible = true
+position = Vector2( -24, 43 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 6 )
@@ -255,6 +265,10 @@ position = Vector2( 89, 40 )
 [node name="GI" type="CanvasLayer" parent="."]
 
 [node name="ADNAnalyzer" parent="GI" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Painting" parent="GI" instance=ExtResource( 26 )]
+visible = false
 
 [editable path="Props/Painting"]
 [editable path="Props/KillertronPower"]

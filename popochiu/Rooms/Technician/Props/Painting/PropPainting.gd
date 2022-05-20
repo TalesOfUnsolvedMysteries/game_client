@@ -1,6 +1,9 @@
 tool
 extends Prop
 
+export var normal: Texture
+export var hidden: Texture
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -10,7 +13,7 @@ func on_interact() -> void:
 		"Player: I don't understand this kind of art."
 	]), 'completed')
 	
-	# TODO: Abrir el popup de la pintura
+	room.painting.appear(normal, hidden)
 
 
 func on_look() -> void:
@@ -23,7 +26,7 @@ func on_look() -> void:
 
 func on_item_used(item: InventoryItem) -> void:
 	if item.script_name == 'MagicGlasses':
-		# TODO: Mostrar el popup de la pintura pero con la cosa oculta
-		return
-	
-	.on_item_used(item)
+		yield(C.walk_to_clicked(false), 'completed')
+		room.painting.appear(normal, hidden)
+	else:
+		.on_item_used(item)

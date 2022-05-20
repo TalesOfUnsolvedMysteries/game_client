@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Lobby/RoomLobby.gd" type="Script" id=1]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/PC.tscn" type="PackedScene" id=14]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/PropEngineRoomDoor.gd" type="Script" id=15]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/engine_room_door.png" type="Texture" id=16]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=17]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/lobby_normal.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/lobby_hidden.png" type="Texture" id=19]
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
@@ -74,6 +77,8 @@ baseline = -26
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 8 )
+normal = ExtResource( 18 )
+hidden = ExtResource( 19 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -26 )
@@ -177,6 +182,9 @@ dflt_walk_animation = "Bug"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PC" parent="CanvasLayer" instance=ExtResource( 14 )]
+visible = false
+
+[node name="Painting" parent="CanvasLayer" instance=ExtResource( 17 )]
 visible = false
 
 [editable path="Props/Painting"]

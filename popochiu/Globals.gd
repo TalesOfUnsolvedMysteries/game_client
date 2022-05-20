@@ -30,14 +30,14 @@ const HEADS := [
 	preload('res://popochiu/Characters/Bug/parts/head_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/head_ladybird.png'),
 	preload('res://popochiu/Characters/Bug/parts/head_ant.png'),
-#	preload('res://popochiu/Characters/Bug/parts/head_ghost.png'),
+	preload('res://popochiu/Characters/Bug/parts/head_ghost.png'),
 ]
 const BODIES := [
 	preload('res://popochiu/Characters/Bug/parts/body_bee.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_beetle.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_ladybird.png'),
 	preload('res://popochiu/Characters/Bug/parts/body_ant.png'),
-#	preload('res://popochiu/Characters/Bug/parts/body_ghost.png'),
+	preload('res://popochiu/Characters/Bug/parts/body_ghost.png'),
 ]
 const LEGS := [
 	preload('res://popochiu/Characters/Bug/parts/legs_bee.png'),

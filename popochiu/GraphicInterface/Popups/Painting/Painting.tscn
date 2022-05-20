@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/sprites/overlay.png" type="Texture" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Normal.gd" type="Script" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/writer_normal.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Password.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 320, 180 )
+
+[node name="Painting" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Normal" type="TextureRect" parent="."]
+margin_left = 90.0
+margin_top = 34.0
+margin_right = 230.0
+margin_bottom = 146.0
+mouse_filter = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+description = "Painting"
+
+[node name="Hidden" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.752941 )
+margin_left = 160.0
+margin_top = 90.0
+margin_right = 160.0
+margin_bottom = 90.0
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Password" type="GridContainer" parent="."]
+margin_left = 160.0
+margin_top = 90.0
+margin_right = 160.0
+margin_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 7
+script = ExtResource( 5 )

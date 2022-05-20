@@ -1,0 +1,28 @@
+[gd_scene format=2]
+
+[node name="Fire" type="HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 8.0
+custom_constants/separation = 1
+
+[node name="Left" type="TextureRect" parent="."]
+margin_top = 8.0
+margin_bottom = 8.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Middle" type="TextureRect" parent="."]
+margin_left = 1.0
+margin_top = 8.0
+margin_right = 1.0
+margin_bottom = 8.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Right" type="TextureRect" parent="."]
+margin_left = 2.0
+margin_top = 8.0
+margin_right = 2.0
+margin_bottom = 8.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
