@@ -16,7 +16,8 @@ onready var _btn_right: TextureButton = find_node('BtnRight')
 onready var _dflt_right_x := _btn_right.rect_position.x
 onready var _btn_exit: Button = find_node('BtnExit')
 onready var _pages_counter: Label = find_node('PagesCounter')
-onready var _content: Label = find_node('Content')
+onready var _content: RichTextLabel = find_node('Content')
+#onready var _content: Label = find_node('Content')
 onready var _dflt_content_x := _content.rect_position.x
 
 
@@ -116,6 +117,8 @@ func _set_current_page(value: int) -> void:
 	_current_page = value
 	_pages_counter.text = '%d/%d' % [_current_page + 1, _total_pages + 1]
 	_btn_left.disabled = true
+	_btn_left.hide()
+	_btn_right.hide()
 	_btn_exit.hide()
 	
 	$Tween.interpolate_property(
@@ -126,7 +129,8 @@ func _set_current_page(value: int) -> void:
 	$Tween.start()
 	
 	yield(get_tree(), 'idle_frame')
-	_content.text = _current_document.pages[_current_page]
+	_content.bbcode_text = _current_document.pages[_current_page]
+#	_content.text = _current_document.pages[_current_page]
 	
 	A.play({
 		cue_name = 'sfx_paper',

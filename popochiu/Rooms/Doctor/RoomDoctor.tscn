@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.tscn" type="PackedScene" id=2]
@@ -28,6 +28,13 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=26]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_normal.png" type="Texture" id=27]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_hidden.png" type="Texture" id=28]
+[ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotGreenBook.gd" type="Script" id=29]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=30]
+[ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotBlueBook.gd" type="Script" id=31]
+[ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotSheets.gd" type="Script" id=32]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/blue_book.png" type="Texture" id=33]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/green_book.png" type="Texture" id=34]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/sheets.png" type="Texture" id=35]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
@@ -171,6 +178,7 @@ visible = false
 position = Vector2( 46, -10 )
 script = ExtResource( 17 )
 description = "Documents"
+clickable = false
 cursor = 1
 script_name = "Documents"
 texture = ExtResource( 18 )
@@ -179,10 +187,8 @@ texture = ExtResource( 18 )
 texture = ExtResource( 18 )
 
 [node name="CollisionPolygon2D" parent="Props/Documents" index="3"]
+visible = false
 polygon = PoolVector2Array( -10, -12, 13, -10, 10, -3, -13, -5 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Props/Documents"]
-polygon = PoolVector2Array( -8, 9, -4, 4, 8, 5, 8, 8, 4, 12, -3, 12, -8, 11 )
 
 [node name="DoctorPC" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -1, -34 )
@@ -242,6 +248,109 @@ texture = ExtResource( 21 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+[node name="GreenBook" parent="Hotspots" instance=ExtResource( 30 )]
+position = Vector2( 40, -18 )
+script = ExtResource( 29 )
+description = "Green book"
+cursor = 1
+script_name = "GreenBook"
+pages = [ "[center][color=#ff82ce]ADN Analyzer X60[/color]
+Instructions manual[/center]", "bla bla bla bla bla" ]
+background = ExtResource( 34 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/GreenBook" index="0"]
+polygon = PoolVector2Array( -4, -4, -7, 3, 2, 4, 6, -4 )
+
+[node name="BaselineHelper" parent="Hotspots/GreenBook" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/GreenBook" index="2"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/GreenBook/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlueBook" parent="Hotspots" instance=ExtResource( 30 )]
+position = Vector2( 46, -2 )
+script = ExtResource( 31 )
+description = "Blue book"
+cursor = 1
+script_name = "BlueBook"
+pages = [ "[center]?????
+Guide[/center]", "bla bla bla bla bla" ]
+background = ExtResource( 33 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/BlueBook" index="0"]
+polygon = PoolVector2Array( -4, -4, -8, 0, -8, 3, 4, 4, 8, 0, 8, -3 )
+
+[node name="BaselineHelper" parent="Hotspots/BlueBook" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/BlueBook" index="2"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/BlueBook/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sheets" parent="Hotspots" instance=ExtResource( 30 )]
+position = Vector2( 51, -18 )
+script = ExtResource( 32 )
+description = "Sheets"
+cursor = 1
+script_name = "Sheets"
+pages = [ "How to use the [color=red]update[/color]
+
+bla bla bla bla bla" ]
+background = ExtResource( 35 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/Sheets" index="0"]
+polygon = PoolVector2Array( -4, -3, -9, 1, -8, 4, 4, 5, 8, 1, 8, -2 )
+
+[node name="BaselineHelper" parent="Hotspots/Sheets" index="1"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Hotspots/Sheets" index="2"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Hotspots/Sheets/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Regions" type="Node2D" parent="."]
 
 [node name="Points" type="Node2D" parent="."]
@@ -278,3 +387,6 @@ visible = false
 [editable path="Props/Documents"]
 [editable path="Props/DoctorPC"]
 [editable path="Props/Exit"]
+[editable path="Hotspots/GreenBook"]
+[editable path="Hotspots/BlueBook"]
+[editable path="Hotspots/Sheets"]
