@@ -34,7 +34,13 @@ func show():
 		Globals.set_state('Lobby-USB_IN_PC', false)
 		find_node('Elevator').set_elevator_version(2)
 		show_popup('w', 'elevator program updated succesfuly', self)
-
+	
+	if Globals.state.get('LOBBY-USB2_IN_PC', false):
+		Globals.set_state('PC_REGISTER_APP_INSTALLED', true)
+		show_popup('w', 'register program installed succesfuly', self)
+	
+	find_node('Register').visible = Globals.state.get('PC_REGISTER_APP_INSTALLED', false)
+		
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func show_popup(type: String, message: String, origin: Control) -> void:
@@ -67,14 +73,14 @@ func _notify_popup_close() -> void:
 func _load_app(app: Panel) -> void:
 	_app_container.add_child(app)
 	app.OS = self
-	(app.get_node('BtnClose') as TextureButton).connect(
-		'pressed', Utils, 'invoke', [self, '_close_app']
-	)
+	app.connect('close_requested', Utils, 'invoke', [self, '_close_app'])
 	A.play({cue_name = 'sfx_pc_app_open',is_in_queue = false})
 	_app_screen.show()
 
 
 func _close_app() -> void:
-	_app_container.get_child(0).queue_free()
-	A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
-	_app_screen.hide()
+	var app = _app_container.get_child(_app_container.get_child_count() - 1)
+	yield(app.dispose(), 'completed')
+	app.queue_free()
+	if _app_container.get_child_count() == 1:
+		_app_screen.hide()

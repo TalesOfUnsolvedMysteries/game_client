@@ -356,11 +356,11 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksA/FloorsList"]
 margin_right = 11.0
-margin_bottom = 9.0
+margin_bottom = 8.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "p"
@@ -368,9 +368,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 13.0
+margin_top = 12.0
 margin_right = 11.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "3"
@@ -378,9 +378,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 11.0
-margin_bottom = 35.0
+margin_bottom = 32.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "2"
@@ -388,9 +388,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 39.0
+margin_top = 36.0
 margin_right = 11.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "1"
@@ -398,9 +398,9 @@ align = 1
 valign = 1
 
 [node name="Label5" type="Label" parent="FloorLinks/LinksA/FloorsList"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 11.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "b"
@@ -417,11 +417,11 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksB/FloorsList"]
 margin_right = 11.0
-margin_bottom = 9.0
+margin_bottom = 8.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "p"
@@ -429,9 +429,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 13.0
+margin_top = 12.0
 margin_right = 11.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "3"
@@ -439,9 +439,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 11.0
-margin_bottom = 35.0
+margin_bottom = 32.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "2"
@@ -449,9 +449,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 39.0
+margin_top = 36.0
 margin_right = 11.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "1"
@@ -459,9 +459,9 @@ align = 1
 valign = 1
 
 [node name="Label5" type="Label" parent="FloorLinks/LinksB/FloorsList"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 11.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "b"
@@ -478,11 +478,11 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksC/FloorsList"]
 margin_right = 11.0
-margin_bottom = 9.0
+margin_bottom = 8.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "p"
@@ -490,9 +490,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 13.0
+margin_top = 12.0
 margin_right = 11.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "3"
@@ -500,9 +500,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 11.0
-margin_bottom = 35.0
+margin_bottom = 32.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "2"
@@ -510,9 +510,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 39.0
+margin_top = 36.0
 margin_right = 11.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "1"
@@ -520,9 +520,9 @@ align = 1
 valign = 1
 
 [node name="Label5" type="Label" parent="FloorLinks/LinksC/FloorsList"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 11.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "b"
@@ -542,11 +542,11 @@ __meta__ = {
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksD/FloorsList"]
 margin_right = 11.0
-margin_bottom = 9.0
+margin_bottom = 8.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "p"
@@ -554,9 +554,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 13.0
+margin_top = 12.0
 margin_right = 11.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "3"
@@ -564,9 +564,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 11.0
-margin_bottom = 35.0
+margin_bottom = 32.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "2"
@@ -574,9 +574,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 39.0
+margin_top = 36.0
 margin_right = 11.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "1"
@@ -584,9 +584,9 @@ align = 1
 valign = 1
 
 [node name="Label5" type="Label" parent="FloorLinks/LinksD/FloorsList"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 11.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "b"
@@ -603,11 +603,11 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksE/FloorsList"]
 margin_right = 11.0
-margin_bottom = 9.0
+margin_bottom = 8.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "p"
@@ -615,9 +615,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 13.0
+margin_top = 12.0
 margin_right = 11.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "3"
@@ -625,9 +625,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 11.0
-margin_bottom = 35.0
+margin_bottom = 32.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "2"
@@ -635,9 +635,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 39.0
+margin_top = 36.0
 margin_right = 11.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "1"
@@ -645,9 +645,9 @@ align = 1
 valign = 1
 
 [node name="Label5" type="Label" parent="FloorLinks/LinksE/FloorsList"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 11.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "b"
@@ -664,11 +664,11 @@ custom_styles/panel = SubResource( 10 )
 margin_left = 2.0
 margin_top = 5.0
 margin_right = 13.0
-margin_bottom = 66.0
+margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="FloorLinks/LinksF/FloorsList"]
 margin_right = 11.0
-margin_bottom = 9.0
+margin_bottom = 8.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "p"
@@ -676,9 +676,9 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 13.0
+margin_top = 12.0
 margin_right = 11.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "3"
@@ -686,9 +686,9 @@ align = 1
 valign = 1
 
 [node name="Label3" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 11.0
-margin_bottom = 35.0
+margin_bottom = 32.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "2"
@@ -696,9 +696,9 @@ align = 1
 valign = 1
 
 [node name="Label4" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 39.0
+margin_top = 36.0
 margin_right = 11.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "1"
@@ -706,9 +706,9 @@ align = 1
 valign = 1
 
 [node name="Label5" type="Label" parent="FloorLinks/LinksF/FloorsList"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 11.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
 custom_fonts/font = ExtResource( 15 )
 text = "b"
@@ -731,9 +731,6 @@ custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 4 )
 custom_styles/normal = ExtResource( 3 )
 text = "save"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Success" type="Label" parent="."]
 visible = false

@@ -4,6 +4,7 @@ var secret: Secret
 onready var floor_links: Control = find_node('FloorLinks')
 onready var app_title: Label = find_node('Title')
 var OS
+signal close_requested
 
 func _ready():
 	randomize()
@@ -56,6 +57,7 @@ func _turn_lights_on(pressed):
 
 
 func _reset():
+	emit_signal('close_requested')
 	for button in $Buttons.get_children():
 		button.pressed = false
 	_turn_lights_on(0)
@@ -116,3 +118,9 @@ func _check(solved):
 func on_popup_closed() -> void:
 	if !Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
 		E.run(['Player: I can update the elevator motherboard now.'])
+
+func dispose():
+	yield(get_tree(), 'idle_frame')
+	#$AnimationPlayer.play('open', -1, -1, true)
+	A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
+	#yield($AnimationPlayer, 'animation_finished')
