@@ -1,6 +1,6 @@
 extends Sprite
 
-var _playing = true
+var _playing = false
 var _position = Vector2(0.0, 0.0)
 var _cell = -1
 var tilemap: TileMap = null setget set_tilemap
@@ -45,6 +45,8 @@ func _move_to(_target_pos):
 	var _target_cell = tilemap.get_cellv(_target_pos)
 	
 	match _target_cell:
+		-1: 
+			_update_cell(_target_pos)
 		1:
 			_update_cell(_target_pos)
 		8:
@@ -57,6 +59,7 @@ func _move_to(_target_pos):
 			_playing = false
 		11:
 			_update_cell(_target_pos)
+			_playing = false
 			emit_signal('goal_reached')
 		15:
 			_update_cell(_target_pos)
