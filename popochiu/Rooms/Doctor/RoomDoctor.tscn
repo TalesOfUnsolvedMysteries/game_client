@@ -263,24 +263,9 @@ polygon = PoolVector2Array( -4, -4, -7, 3, 2, 4, 6, -4 )
 
 [node name="BaselineHelper" parent="Hotspots/GreenBook" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/GreenBook" index="2"]
 visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/GreenBook/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BlueBook" parent="Hotspots" instance=ExtResource( 30 )]
 position = Vector2( 46, -2 )
@@ -297,24 +282,9 @@ polygon = PoolVector2Array( -4, -4, -8, 0, -8, 3, 4, 4, 8, 0, 8, -3 )
 
 [node name="BaselineHelper" parent="Hotspots/BlueBook" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/BlueBook" index="2"]
 visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/BlueBook/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sheets" parent="Hotspots" instance=ExtResource( 30 )]
 position = Vector2( 51, -18 )
@@ -332,24 +302,9 @@ polygon = PoolVector2Array( -4, -3, -9, 1, -8, 4, 4, 5, 8, 1, 8, -2 )
 
 [node name="BaselineHelper" parent="Hotspots/Sheets" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/Sheets" index="2"]
 visible = false
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/Sheets/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Regions" type="Node2D" parent="."]
 

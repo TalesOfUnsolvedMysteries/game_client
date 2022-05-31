@@ -8,6 +8,7 @@ var room_requested = ''
 
 onready var secret: Secret = find_node('Secret')
 onready var painting: PanelContainer = $CanvasLayer/Painting
+onready var tarot: PanelContainer = $CanvasLayer/Tarot
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░

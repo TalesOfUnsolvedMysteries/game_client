@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/sprites/overlay.png" type="Texture" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/Tarot.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/table.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/the_emperor.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/TarotCard.gd" type="Script" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/the_fool.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/strength.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/the_devil.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/the_magician.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/the_high_priestess.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/sprites/the_moon.png" type="Texture" id=11]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 320, 180 )
+
+[node name="Tarot" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Table" type="TextureButton" parent="."]
+margin_left = 73.0
+margin_top = 24.0
+margin_right = 247.0
+margin_bottom = 156.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 3 )
+
+[node name="Fool" type="TextureButton" parent="Table"]
+margin_left = 117.0
+margin_top = 12.0
+margin_right = 147.0
+margin_bottom = 63.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 6 )
+script = ExtResource( 5 )
+description = "The fool"
+
+[node name="HighPriestess" type="TextureButton" parent="Table"]
+margin_left = 132.0
+margin_top = 66.0
+margin_right = 162.0
+margin_bottom = 117.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 10 )
+script = ExtResource( 5 )
+description = "The High Priestess"
+
+[node name="Moon" type="TextureButton" parent="Table"]
+margin_left = 16.0
+margin_top = 65.0
+margin_right = 46.0
+margin_bottom = 116.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 11 )
+script = ExtResource( 5 )
+description = "The Moon"
+
+[node name="Magician" type="TextureButton" parent="Table"]
+margin_left = 84.0
+margin_top = 73.0
+margin_right = 114.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 9 )
+script = ExtResource( 5 )
+description = "The Magician"
+
+[node name="Strength" type="TextureButton" parent="Table"]
+margin_left = 50.0
+margin_top = 65.0
+margin_right = 80.0
+margin_bottom = 116.0
+rect_rotation = 180.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 7 )
+script = ExtResource( 5 )
+description = "Strength"
+
+[node name="Emperor" type="TextureButton" parent="Table"]
+margin_left = 33.0
+margin_top = 12.0
+margin_right = 63.0
+margin_bottom = 63.0
+rect_rotation = 180.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 4 )
+script = ExtResource( 5 )
+description = "The emperor"
+
+[node name="Devil" type="TextureButton" parent="Table"]
+margin_left = 63.0
+margin_top = 7.0
+margin_right = 93.0
+margin_bottom = 58.0
+rect_pivot_offset = Vector2( 15, 25 )
+texture_normal = ExtResource( 8 )
+script = ExtResource( 5 )
+description = "The devil"
