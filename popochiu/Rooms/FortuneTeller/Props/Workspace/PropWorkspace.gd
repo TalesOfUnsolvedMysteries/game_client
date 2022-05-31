@@ -10,7 +10,7 @@ func on_interact() -> void:
 		'Player: Looks like a tarot reading.'
 	]), 'completed')
 	
-	# TODO: Abrir el popup con el Tarot
+	room.tarot.appear()
 
 
 func on_look() -> void:

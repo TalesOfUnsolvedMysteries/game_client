@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Technician/RoomTechnician.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/technician_notes.png" type="Texture" id=2]
@@ -26,6 +26,9 @@
 [ext_resource path="res://popochiu/Rooms/Technician/Props/Window/window.png" type="Texture" id=24]
 [ext_resource path="res://secrets/Secret.gd" type="Script" id=25]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/three_deaths_fantasy.png" type="Texture" id=26]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=27]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/technician_normal.png" type="Texture" id=28]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/technician_hidden.png" type="Texture" id=29]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 63, 16, 88, 35, 25, 77, -2, 51, 8, 45, 50, 21, 26, -1, 27, -10, 42, 3, 31, 6, 1, 35, -89, 73, -88, 65, -73, 64, -35, 38, -66, 16, -38, 4, -19, 28 )
@@ -81,6 +84,8 @@ walk_to_point = Vector2( 20, 52 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 16 )
+normal = ExtResource( 28 )
+hidden = ExtResource( 29 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -90 )
@@ -310,6 +315,11 @@ navpoly = SubResource( 1 )
 
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 14 )]
 position = Vector2( 61, 48 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Painting" parent="CanvasLayer" instance=ExtResource( 27 )]
+visible = false
 
 [editable path="Props/Window"]
 [editable path="Props/Painting"]

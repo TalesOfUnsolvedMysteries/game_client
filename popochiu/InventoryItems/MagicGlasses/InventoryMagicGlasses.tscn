@@ -12,6 +12,7 @@ rect_min_size = Vector2( 14, 14 )
 size_flags_horizontal = 0
 size_flags_vertical = 2
 script = ExtResource( 1 )
+description = "Magic glasses"
 script_name = "MagicGlasses"
 cursor = 10
 

@@ -1,6 +1,8 @@
 tool
 extends PopochiuRoom
 
+onready var painting: PanelContainer = $GI/Painting
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:

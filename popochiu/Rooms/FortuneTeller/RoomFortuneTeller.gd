@@ -2,9 +2,15 @@ tool
 extends PopochiuRoom
 
 const Figurine = preload('res://popochiu/Rooms/FortuneTeller/Props/Totem/PropFigurine.gd')
+
 var figurine_a: Figurine = null
-onready var secret: Secret = find_node('Secret')
 var room_requested = ''
+
+onready var secret: Secret = find_node('Secret')
+onready var painting: PanelContainer = $CanvasLayer/Painting
+onready var tarot: PanelContainer = $CanvasLayer/Tarot
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready():
 	secret.connect('solved', self, '_on_solved')

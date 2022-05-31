@@ -2,6 +2,7 @@ tool
 extends PopochiuRoom
 
 onready var notes: Panel = $CanvasLayer/JanitorNotes
+onready var painting: PanelContainer = $CanvasLayer/Painting
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░

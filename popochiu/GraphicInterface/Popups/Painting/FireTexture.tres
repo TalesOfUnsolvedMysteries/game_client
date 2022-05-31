@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=2]
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/symbol_fire.png-d7968cfb93659b1d6751cbca50249a8b.stex"
+
+[resource]
+atlas = SubResource( 2 )
+region = Rect2( 0, 0, 2, 7 )

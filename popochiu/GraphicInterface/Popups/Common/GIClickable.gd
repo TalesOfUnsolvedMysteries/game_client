@@ -26,10 +26,13 @@ func on_item_used(item: InventoryItem) -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _check_click(e: InputEvent) -> void:
 	var mouse_event: = e as InputEventMouseButton
-	
-	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
-	and mouse_event.pressed:
-		Utils.invoke(self, '_interact')
+	if mouse_event and mouse_event.pressed:
+#		E.clicked = self
+		if e.is_action_pressed('popochiu-interact'):
+			Utils.invoke(self, '_interact')
+			get_tree().set_input_as_handled()
+		elif e.is_action_pressed('popochiu-look'):
+			Utils.invoke(self, 'on_look')
 
 
 func _interact() -> void:

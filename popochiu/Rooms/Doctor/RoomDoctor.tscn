@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Painting/PropPainting.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Bg/bg.png" type="Texture" id=5]
@@ -23,6 +24,17 @@
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=22]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/PropExit.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/exit.png" type="Texture" id=24]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/adn_picker.png" type="Texture" id=25]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=26]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_normal.png" type="Texture" id=27]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_hidden.png" type="Texture" id=28]
+[ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotGreenBook.gd" type="Script" id=29]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Hotspot/Hotspot.tscn" type="PackedScene" id=30]
+[ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotBlueBook.gd" type="Script" id=31]
+[ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotSheets.gd" type="Script" id=32]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/blue_book.png" type="Texture" id=33]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/green_book.png" type="Texture" id=34]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/sheets.png" type="Texture" id=35]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
@@ -52,12 +64,18 @@ position = Vector2( 92, -20 )
 script = ExtResource( 4 )
 description = "Painting"
 baseline = -90
+walk_to_point = Vector2( -24, 43 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 6 )
+normal = ExtResource( 27 )
+hidden = ExtResource( 28 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Painting" index="1"]
+position = Vector2( -24, 43 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 6 )
@@ -160,6 +178,7 @@ visible = false
 position = Vector2( 46, -10 )
 script = ExtResource( 17 )
 description = "Documents"
+clickable = false
 cursor = 1
 script_name = "Documents"
 texture = ExtResource( 18 )
@@ -168,24 +187,32 @@ texture = ExtResource( 18 )
 texture = ExtResource( 18 )
 
 [node name="CollisionPolygon2D" parent="Props/Documents" index="3"]
+visible = false
 polygon = PoolVector2Array( -10, -12, 13, -10, 10, -3, -13, -5 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Props/Documents"]
-polygon = PoolVector2Array( -8, 9, -4, 4, 8, 5, 8, 8, 4, 12, -3, 12, -8, 11 )
 
 [node name="DoctorPC" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -1, -34 )
 script = ExtResource( 20 )
 description = "PC"
+walk_to_point = Vector2( 21, 54 )
 cursor = 1
 script_name = "DoctorPC"
 texture = ExtResource( 19 )
 
+[node name="WalkToHelper" parent="Props/DoctorPC" index="1"]
+position = Vector2( 21, 54 )
+
 [node name="Sprite" parent="Props/DoctorPC" index="2"]
 texture = ExtResource( 19 )
+hframes = 2
 
 [node name="CollisionPolygon2D" parent="Props/DoctorPC" index="3"]
 polygon = PoolVector2Array( -22, -14, 26, -14, 28, 4, 19, 15, 5, 14, -27, 14, -16, 5, -24, 4 )
+
+[node name="ADNPicker" type="Sprite" parent="Props/DoctorPC"]
+position = Vector2( 16, -4.5 )
+texture = ExtResource( 25 )
+hframes = 2
 
 [node name="Exit" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 105, 23 )
@@ -221,6 +248,64 @@ texture = ExtResource( 21 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
+[node name="GreenBook" parent="Hotspots" instance=ExtResource( 30 )]
+position = Vector2( 40, -18 )
+script = ExtResource( 29 )
+description = "Green book"
+cursor = 1
+script_name = "GreenBook"
+pages = [ "[center][color=#ff82ce]ADN Analyzer X60[/color]
+Instructions manual[/center]", "bla bla bla bla bla" ]
+background = ExtResource( 34 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/GreenBook" index="0"]
+polygon = PoolVector2Array( -4, -4, -7, 3, 2, 4, 6, -4 )
+
+[node name="BaselineHelper" parent="Hotspots/GreenBook" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/GreenBook" index="2"]
+visible = false
+
+[node name="BlueBook" parent="Hotspots" instance=ExtResource( 30 )]
+position = Vector2( 46, -2 )
+script = ExtResource( 31 )
+description = "Blue book"
+cursor = 1
+script_name = "BlueBook"
+pages = [ "[center]?????
+Guide[/center]", "bla bla bla bla bla" ]
+background = ExtResource( 33 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/BlueBook" index="0"]
+polygon = PoolVector2Array( -4, -4, -8, 0, -8, 3, 4, 4, 8, 0, 8, -3 )
+
+[node name="BaselineHelper" parent="Hotspots/BlueBook" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/BlueBook" index="2"]
+visible = false
+
+[node name="Sheets" parent="Hotspots" instance=ExtResource( 30 )]
+position = Vector2( 51, -18 )
+script = ExtResource( 32 )
+description = "Sheets"
+cursor = 1
+script_name = "Sheets"
+pages = [ "How to use the [color=red]update[/color]
+
+bla bla bla bla bla" ]
+background = ExtResource( 35 )
+
+[node name="CollisionPolygon2D" parent="Hotspots/Sheets" index="0"]
+polygon = PoolVector2Array( -4, -3, -9, 1, -8, 4, 4, 5, 8, 1, 8, -2 )
+
+[node name="BaselineHelper" parent="Hotspots/Sheets" index="1"]
+visible = false
+
+[node name="WalkToHelper" parent="Hotspots/Sheets" index="2"]
+visible = false
+
 [node name="Regions" type="Node2D" parent="."]
 
 [node name="Points" type="Node2D" parent="."]
@@ -240,7 +325,13 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 22 )]
 position = Vector2( 89, 40 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GI" type="CanvasLayer" parent="."]
+
+[node name="ADNAnalyzer" parent="GI" instance=ExtResource( 2 )]
+visible = false
+
+[node name="Painting" parent="GI" instance=ExtResource( 26 )]
+visible = false
 
 [editable path="Props/Painting"]
 [editable path="Props/KillertronPower"]
@@ -251,3 +342,6 @@ position = Vector2( 89, 40 )
 [editable path="Props/Documents"]
 [editable path="Props/DoctorPC"]
 [editable path="Props/Exit"]
+[editable path="Hotspots/GreenBook"]
+[editable path="Hotspots/BlueBook"]
+[editable path="Hotspots/Sheets"]
