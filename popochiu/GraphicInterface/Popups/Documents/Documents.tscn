@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/left_arrow-pressed.png" type="Texture" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/left_arrow-hover.png" type="Texture" id=2]
@@ -17,6 +17,10 @@
 bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+content_margin_left = 2.0
+content_margin_right = 2.0
 
 [node name="Documents" type="PanelContainer"]
 anchor_right = 1.0
@@ -120,30 +124,6 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 24
 custom_constants/margin_bottom = 32
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextsContainer"]
-visible = false
-margin_left = 52.0
-margin_top = 20.0
-margin_right = 268.0
-margin_bottom = 144.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_min_size = Vector2( 216, 124 )
-mouse_filter = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-custom_colors/default_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
-custom_fonts/normal_font = ExtResource( 11 )
-bbcode_enabled = true
-bbcode_text = "From the previous technician
-
-To make the elevator to work, its mainboard needs a battery and a memory card with the program that establishes its behavior (that is the floors it can access) ¿why they do something like this?"
-meta_underlined = false
-text = "From the previous technician
-
-To make the elevator to work, its mainboard needs a battery and a memory card with the program that establishes its behavior (that is the floors it can access) ¿why they do something like this?"
-scroll_active = false
-
 [node name="Panel" type="MarginContainer" parent="TextsContainer"]
 margin_left = 52.0
 margin_top = 20.0
@@ -158,7 +138,8 @@ custom_constants/margin_top = 0
 custom_constants/margin_left = 2
 custom_constants/margin_bottom = 0
 
-[node name="Content" type="Label" parent="TextsContainer/Panel"]
+[node name="_Content" type="Label" parent="TextsContainer/Panel"]
+visible = false
 margin_left = 2.0
 margin_right = 216.0
 margin_bottom = 124.0
@@ -173,3 +154,26 @@ text = "I leave you my notebook of poems since you entrusted me with the program
 However, I don't expect you to learn. The combination is ######"
 valign = 1
 autowrap = true
+
+[node name="Content" type="RichTextLabel" parent="TextsContainer/Panel"]
+margin_left = 2.0
+margin_top = 14.0
+margin_right = 216.0
+margin_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+size_flags_vertical = 4
+custom_colors/default_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/normal_font = ExtResource( 11 )
+custom_styles/normal = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "From the previous technician
+
+To make the elevator to work, its mainboard needs a battery and a memory card with the program that establishes its behavior (that is the floors it can access) ¿why they do something like this?"
+meta_underlined = false
+text = "From the previous technician
+
+To make the elevator to work, its mainboard needs a battery and a memory card with the program that establishes its behavior (that is the floors it can access) ¿why they do something like this?"
+fit_content_height = true
+scroll_active = false

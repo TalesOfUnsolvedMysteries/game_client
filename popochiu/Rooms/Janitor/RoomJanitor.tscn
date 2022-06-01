@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Janitor/RoomJanitor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/MasterKey/PropMasterKey.gd" type="Script" id=2]
@@ -35,6 +35,9 @@
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bubble.png" type="Texture" id=33]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/JanitorNotes.tscn" type="PackedScene" id=34]
 [ext_resource path="res://popochiu/Common/Overlay2DBlocker.tscn" type="PackedScene" id=35]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=36]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/janitor_hidden.png" type="Texture" id=37]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/janitor_normal.png" type="Texture" id=38]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 7, 21, -24, 21, -62, 13, -51, 4, 60, 10, 62, 16, 14, 39, 83, 38, 99, 51, 7, 77, -90, 55, -38, 32, -99, 33, -92, 30, -71, 40, -56, 27 )
@@ -132,6 +135,8 @@ walk_to_point = Vector2( -2, 50 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 14 )
+normal = ExtResource( 38 )
+hidden = ExtResource( 37 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -90 )
@@ -279,6 +284,9 @@ texture = ExtResource( 32 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="JanitorNotes" parent="CanvasLayer" instance=ExtResource( 34 )]
+visible = false
+
+[node name="Painting" parent="CanvasLayer" instance=ExtResource( 36 )]
 visible = false
 
 [editable path="Props/Bed"]

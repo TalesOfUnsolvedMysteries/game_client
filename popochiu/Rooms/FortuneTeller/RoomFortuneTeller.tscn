@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=159 format=2]
 
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/RoomFortuneTeller.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/VoodooBeads/PropVoodooBeads.gd" type="Script" id=2]
@@ -30,6 +30,10 @@
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Shelve/magicglasses_shelve.png" type="Texture" id=28]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Shelve/magicglasses.png" type="Texture" id=29]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Candle/candle.png" type="Texture" id=30]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=31]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/fortune_teller_hidden.png" type="Texture" id=32]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/fortune_teller_normal.png" type="Texture" id=33]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/Tarot.tscn" type="PackedScene" id=34]
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -987,12 +991,16 @@ position = Vector2( -41, -15 )
 script = ExtResource( 7 )
 description = "Workspace"
 baseline = 32
+walk_to_point = Vector2( 45, 20 )
 cursor = 1
 script_name = "Workspace"
 texture = ExtResource( 9 )
 
 [node name="BaselineHelper" parent="Props/Workspace" index="0"]
 position = Vector2( 0, 32 )
+
+[node name="WalkToHelper" parent="Props/Workspace" index="1"]
+position = Vector2( 45, 20 )
 
 [node name="Sprite" parent="Props/Workspace" index="2"]
 texture = ExtResource( 9 )
@@ -1005,12 +1013,18 @@ position = Vector2( 99, 1 )
 script = ExtResource( 8 )
 description = "Painting"
 baseline = -90
+walk_to_point = Vector2( -32, 25 )
 cursor = 1
 script_name = "Painting"
 texture = ExtResource( 10 )
+normal = ExtResource( 33 )
+hidden = ExtResource( 32 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -90 )
+
+[node name="WalkToHelper" parent="Props/Painting" index="1"]
+position = Vector2( -32, 25 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
 texture = ExtResource( 10 )
@@ -1462,6 +1476,32 @@ material = SubResource( 120 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+
+[node name="Painting" parent="CanvasLayer" instance=ExtResource( 31 )]
+code = [ {
+"chr": "L100",
+"pos": "0,0"
+}, {
+"chr": "A",
+"pos": "0,5"
+}, {
+"chr": "B",
+"pos": "4,5"
+}, {
+"chr": "C",
+"pos": "4,1"
+}, {
+"chr": "D",
+"pos": "2,1"
+}, {
+"chr": "E",
+"pos": "2,3"
+}, {
+"chr": "R001",
+"pos": "3,3"
+} ]
+
+[node name="Tarot" parent="CanvasLayer" instance=ExtResource( 34 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 121 )

@@ -1,6 +1,8 @@
 tool
 extends PopochiuRoom
 
+onready var painting: PanelContainer = $CanvasLayer/Painting
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 # TODO: Sobrescribir los métodos de Godot que hagan falta

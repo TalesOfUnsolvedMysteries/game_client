@@ -1,21 +1,25 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://popochiu/InventoryItems/ADNpicker/InventoryADNpicker.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/InventoryItems/door_key.png" type="Texture" id=2]
-[ext_resource path="res://popochiu/InventoryItems/MasterKey/master_key.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/InventoryItems/ADNpicker/adn_picker_empty.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/InventoryItems/ADNpicker/adn_picker_full.png" type="Texture" id=3]
 
 [node name="InventoryADNpicker" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 2
+margin_right = -306.0
+margin_bottom = -166.0
+rect_min_size = Vector2( 14, 14 )
+size_flags_horizontal = 0
 size_flags_vertical = 2
 script = ExtResource( 1 )
 description = "ADN picker"
 script_name = "ADNpicker"
+cursor = 10
 empty = ExtResource( 2 )
 full = ExtResource( 3 )
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 3 )
+margin_right = 14.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )

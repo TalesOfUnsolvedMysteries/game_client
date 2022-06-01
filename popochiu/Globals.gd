@@ -325,6 +325,30 @@ func stop_battery_charging() -> void:
 	pass
 
 
+func get_adn_textures(adn: String) -> Array:
+	var textures := []
+	
+	for idx in adn.length():
+		match idx:
+			0:
+				textures.append(HEADS[int(adn[idx])])
+			1:
+				textures.append(BODIES[int(adn[idx])])
+			2:
+				textures.append(LEGS[int(adn[idx])])
+			3:
+				if adn[idx] != 'x': textures.append(EYES[int(adn[idx])])
+				else: textures.append(null)
+			4:
+				if adn[idx] != 'x': textures.append(ARMS[int(adn[idx])])
+				else: textures.append(null)
+			5:
+				if adn[idx] != 'x': textures.append(SHOES[int(adn[idx])])
+				else: textures.append(null)
+	
+	return textures
+
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _dev_charge_battery() -> void:
 	self.battery_power = 100

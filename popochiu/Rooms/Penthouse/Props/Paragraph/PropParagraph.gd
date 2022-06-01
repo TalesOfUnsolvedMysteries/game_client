@@ -1,6 +1,9 @@
 tool
 extends Prop
 
+export var normal: Texture
+export var hidden: Texture
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -9,6 +12,8 @@ func on_interact() -> void:
 		C.face_clicked(),
 		'Player: This thing has A LOT of symbols compared with the others.'
 	]), 'completed')
+	
+	room.painting.appear(normal, hidden)
 
 
 func on_look() -> void:
@@ -20,4 +25,8 @@ func on_look() -> void:
 
 
 func on_item_used(item: InventoryItem) -> void:
-	.on_item_used(item)
+	if item.script_name == 'MagicGlasses':
+		yield(C.walk_to_clicked(false), 'completed')
+		room.painting.appear(normal, hidden)
+	else:
+		.on_item_used(item)

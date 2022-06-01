@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Penthouse/RoomPenthouse.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Props/Paragraph/paragraph.png" type="Texture" id=2]
@@ -45,6 +45,9 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/Hotspots/HotspotHentailCactus.gd" type="Script" id=43]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Hotspots/HotspotFrogtuftUrtica.gd" type="Script" id=44]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Hotspots/HotspotDogtongueSolanum.gd" type="Script" id=45]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=46]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/inventor_hidden.png" type="Texture" id=47]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/inventor_normal.png" type="Texture" id=48]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -37, 15, 102, 9, 165, 10, 82, 19, 42, 18, 23, 4, -41, 7, 169, 32, 267, 37, 213, 74, -47, 52, 73, 36, -231, 70, -306, 37, -289, 20, -201, 16, -199, 40, -117, 36, 95, 31, 93, 23, -54, 1, -83, 9, -111, 6, -96, 15, -88, 25, -59, 25, 18, 26, 20, 20, 29, 32 )
@@ -73,16 +76,19 @@ position = Vector2( 220, -17 )
 script = ExtResource( 7 )
 description = "Paragraph"
 baseline = -90
-walk_to_point = Vector2( -4, 54 )
+walk_to_point = Vector2( -42, 56 )
 cursor = 1
 script_name = "Paragraph"
 texture = ExtResource( 2 )
+normal = ExtResource( 48 )
+hidden = ExtResource( 47 )
 
 [node name="BaselineHelper" parent="Props/Paragraph" index="0"]
 position = Vector2( 0, -90 )
 
 [node name="WalkToHelper" parent="Props/Paragraph" index="1"]
-position = Vector2( -4, 54 )
+visible = true
+position = Vector2( -42, 56 )
 
 [node name="Sprite" parent="Props/Paragraph" index="2"]
 texture = ExtResource( 2 )
@@ -545,24 +551,11 @@ script_name = "HentailCactus"
 polygon = PoolVector2Array( -12, -14, -13, -3, -8, 15, 12, 13, 14, -3, 11, -13, 1, -31 )
 
 [node name="BaselineHelper" parent="Hotspots/HentailCactus" index="1"]
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
+visible = false
 
 [node name="WalkToHelper" parent="Hotspots/HentailCactus" index="2"]
+visible = false
 position = Vector2( 29, 14 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/HentailCactus/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FrogtuftUrtica" parent="Hotspots" instance=ExtResource( 42 )]
 position = Vector2( 99, 46 )
@@ -577,25 +570,10 @@ polygon = PoolVector2Array( -13, 1, -14, 9, 15, 10, 16, 2, 2, -2, 3, -10, 9, -22
 
 [node name="BaselineHelper" parent="Hotspots/FrogtuftUrtica" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/FrogtuftUrtica" index="2"]
 visible = false
 position = Vector2( -25, 4 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/FrogtuftUrtica/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DogtongueSolanum" parent="Hotspots" instance=ExtResource( 42 )]
 position = Vector2( 139, -21 )
@@ -610,25 +588,10 @@ polygon = PoolVector2Array( -16, -13, -3, -12, -1, 4, -14, 3, -16, 10, -11, 23, 
 
 [node name="BaselineHelper" parent="Hotspots/DogtongueSolanum" index="1"]
 visible = false
-points = PoolVector2Array( -10000, 0, 10000, 0 )
-width = 1.0
 
 [node name="WalkToHelper" parent="Hotspots/DogtongueSolanum" index="2"]
 visible = false
 position = Vector2( -24, 38 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" parent="Hotspots/DogtongueSolanum/WalkToHelper" index="0"]
-margin_left = -2.5
-margin_top = -2.5
-margin_right = 2.5
-margin_bottom = 2.5
-color = Color( 0, 1, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Regions" type="Node2D" parent="."]
 
@@ -677,6 +640,8 @@ margin_bottom = 178.0
 
 [node name="MysteriesMagazine" parent="GraphicInterface" instance=ExtResource( 41 )]
 visible = false
+
+[node name="Painting" parent="GraphicInterface" instance=ExtResource( 46 )]
 
 [node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
 visible = false

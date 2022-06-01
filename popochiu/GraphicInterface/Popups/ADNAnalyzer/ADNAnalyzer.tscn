@@ -1,0 +1,354 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/frame.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/screen.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/os_logo.png" type="Texture" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/progress_bg.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/os_name.png" type="Texture" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/progress.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.gd" type="Script" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/line_legs.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/line_body.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/line_arms.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/line_head.png" type="Texture" id=13]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/line_eyes.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/line_shoes.png" type="Texture" id=15]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/lines_ref.png" type="Texture" id=16]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ResultsScreen.gd" type="Script" id=18]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/adn_analyzer_shader.tres" type="Shader" id=19]
+[ext_resource path="res://popochiu/Characters/Bug/parts/head_beetle.png" type="Texture" id=20]
+[ext_resource path="res://popochiu/Characters/Bug/parts/body_beetle.png" type="Texture" id=21]
+[ext_resource path="res://popochiu/Characters/Bug/parts/legs_ant.png" type="Texture" id=22]
+[ext_resource path="res://popochiu/Characters/Bug/parts/eyes_square.png" type="Texture" id=23]
+[ext_resource path="res://popochiu/Characters/Bug/parts/arms_pointy.png" type="Texture" id=24]
+[ext_resource path="res://popochiu/Characters/Bug/parts/shoes_sandals.png" type="Texture" id=25]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 48, 11 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+use_mipmaps = true
+font_data = ExtResource( 17 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 19 )
+shader_param/tint = Color( 1, 0.509804, 0.807843, 1 )
+shader_param/black = Color( 1, 0.509804, 0.807843, 1 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 28, 23 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 44, 11 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 37, 9 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 27, 26 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 33, 11 )
+
+[node name="ADNAnalyzer" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 9 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+
+[node name="Screen" type="TextureRect" parent="CenterContainer"]
+margin_left = 93.0
+margin_top = 18.0
+margin_right = 227.0
+margin_bottom = 161.0
+texture = ExtResource( 4 )
+
+[node name="Frame" type="TextureRect" parent="CenterContainer"]
+margin_left = 105.0
+margin_top = 36.0
+margin_right = 215.0
+margin_bottom = 143.0
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 108.0
+margin_top = 37.0
+margin_right = 212.0
+margin_bottom = 143.0
+
+[node name="OSName" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 104.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_vertical = 0
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 4
+
+[node name="OSLogo" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 20.0
+margin_right = 104.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 4
+
+[node name="AnalysisProgress" type="TextureProgress" parent="CenterContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 88.0
+margin_right = 104.0
+margin_bottom = 93.0
+value = 50.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 8 )
+texture_progress_offset = Vector2( 1, 1 )
+
+[node name="OSMessage" type="Label" parent="CenterContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 97.0
+margin_right = 104.0
+margin_bottom = 106.0
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "welcome"
+align = 1
+valign = 3
+uppercase = true
+
+[node name="ResultsScreen" type="TextureRect" parent="CenterContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 106.0
+margin_top = 37.0
+margin_right = 214.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 0, 106 )
+texture = ExtResource( 16 )
+stretch_mode = 3
+script = ExtResource( 18 )
+
+[node name="Tween" type="Tween" parent="CenterContainer/ResultsScreen"]
+
+[node name="LineHead" type="TextureRect" parent="CenterContainer/ResultsScreen"]
+margin_left = 6.0
+margin_top = 19.0
+margin_right = 54.0
+margin_bottom = 30.0
+texture = SubResource( 2 )
+
+[node name="Label" type="Label" parent="CenterContainer/ResultsScreen/LineHead"]
+margin_left = 28.0
+margin_top = -7.0
+margin_right = 44.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "head"
+align = 1
+valign = 3
+
+[node name="Part" type="TextureRect" parent="CenterContainer/ResultsScreen/LineHead"]
+material = SubResource( 8 )
+anchor_left = 0.417
+anchor_top = 0.727
+anchor_right = 0.417
+anchor_bottom = 0.727
+margin_left = -20.016
+margin_top = -16.997
+margin_right = -0.0160007
+margin_bottom = 0.00299931
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineBody" type="TextureRect" parent="CenterContainer/ResultsScreen"]
+margin_left = 33.0
+margin_top = 44.0
+margin_right = 61.0
+margin_bottom = 67.0
+texture = SubResource( 3 )
+
+[node name="Label" type="Label" parent="CenterContainer/ResultsScreen/LineBody"]
+margin_left = 8.0
+margin_top = 13.0
+margin_right = 24.0
+margin_bottom = 21.0
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "body"
+align = 1
+valign = 3
+
+[node name="Part" type="TextureRect" parent="CenterContainer/ResultsScreen/LineBody"]
+material = SubResource( 8 )
+anchor_left = -0.071
+anchor_top = 0.826
+anchor_right = -0.071
+anchor_bottom = 0.826
+margin_left = -28.012
+margin_top = -17.998
+margin_right = -0.012
+margin_bottom = 0.0019989
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineLegs" type="TextureRect" parent="CenterContainer/ResultsScreen"]
+margin_left = 7.0
+margin_top = 79.0
+margin_right = 51.0
+margin_bottom = 90.0
+texture = SubResource( 4 )
+
+[node name="Label" type="Label" parent="CenterContainer/ResultsScreen/LineLegs"]
+margin_left = 25.0
+margin_top = 1.0
+margin_right = 41.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "legs"
+align = 1
+valign = 3
+
+[node name="Part" type="TextureRect" parent="CenterContainer/ResultsScreen/LineLegs"]
+material = SubResource( 8 )
+anchor_left = 0.023
+anchor_top = 0.273
+anchor_right = 0.023
+anchor_bottom = 0.273
+margin_left = -0.0120001
+margin_top = -0.00300002
+margin_right = 14.988
+margin_bottom = 7.997
+texture = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineEyes" type="TextureRect" parent="CenterContainer/ResultsScreen"]
+margin_left = 57.0
+margin_top = 11.0
+margin_right = 94.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 88, -3 )
+texture = SubResource( 5 )
+
+[node name="Label" type="Label" parent="CenterContainer/ResultsScreen/LineEyes"]
+margin_left = 3.0
+margin_top = -7.0
+margin_right = 19.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "eyes"
+align = 1
+valign = 3
+
+[node name="Part" type="TextureRect" parent="CenterContainer/ResultsScreen/LineEyes"]
+material = SubResource( 8 )
+anchor_left = 0.703027
+anchor_top = 0.444
+anchor_right = 0.703027
+anchor_bottom = 0.444
+margin_left = -0.0120001
+margin_top = -5.996
+margin_right = 7.988
+margin_bottom = 0.00399971
+grow_vertical = 0
+texture = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineArms" type="TextureRect" parent="CenterContainer/ResultsScreen"]
+margin_left = 50.0
+margin_top = 36.0
+margin_right = 77.0
+margin_bottom = 62.0
+texture = SubResource( 6 )
+
+[node name="Label" type="Label" parent="CenterContainer/ResultsScreen/LineArms"]
+margin_left = 3.0
+margin_top = -6.0
+margin_right = 20.0
+margin_bottom = 2.0
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "arms"
+align = 1
+valign = 3
+
+[node name="Part" type="TextureRect" parent="CenterContainer/ResultsScreen/LineArms"]
+material = SubResource( 8 )
+anchor_left = 1.074
+anchor_top = 0.346
+anchor_right = 1.074
+anchor_bottom = 0.346
+margin_left = 0.00200462
+margin_top = 0.0039959
+margin_right = 20.002
+margin_bottom = 15.004
+texture = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LineShoes" type="TextureRect" parent="CenterContainer/ResultsScreen"]
+margin_left = 71.0
+margin_top = 79.0
+margin_right = 104.0
+margin_bottom = 90.0
+texture = SubResource( 7 )
+
+[node name="Label" type="Label" parent="CenterContainer/ResultsScreen/LineShoes"]
+margin_left = 9.0
+margin_top = -7.0
+margin_right = 29.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "shoes"
+align = 1
+valign = 3
+
+[node name="Part" type="TextureRect" parent="CenterContainer/ResultsScreen/LineShoes"]
+material = SubResource( 8 )
+anchor_left = 0.303
+anchor_top = 1.0
+anchor_right = 0.303
+anchor_bottom = 1.0
+margin_left = 0.000999451
+margin_top = -2.0
+margin_right = 16.001
+grow_vertical = 0
+texture = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
