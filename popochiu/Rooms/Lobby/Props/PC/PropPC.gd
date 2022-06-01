@@ -21,10 +21,10 @@ func on_look() -> void:
 
 func on_item_used(item: InventoryItem) -> void:
 	if item.script_name == 'ElevatorCard':
-		var version = Globals.state.get('PC_ELEVATOR_APP_VERSION')
+		var updated = Globals.state.get('PC_ELEVATOR_APP_UPDATED')
 		var elevator_state = Globals.state.get('ELEVATOR_ENABLED')
-		if (version == 1 and elevator_state > 0)\
-		or (version == 2 and elevator_state == 31):
+		if (not updated and elevator_state > 0)\
+		or (updated and elevator_state == 31):
 			yield(E.run([
 				C.walk_to_clicked(),
 				"Player: The elevator card is already updated.",

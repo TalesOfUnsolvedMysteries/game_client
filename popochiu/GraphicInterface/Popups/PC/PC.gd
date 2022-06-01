@@ -13,6 +13,7 @@ onready var _apps: GridContainer = find_node('Apps')
 onready var _app_screen: MarginContainer = find_node('AppScreen')
 onready var _app_container: PanelContainer = find_node('AppContainer')
 
+var usb_id = 0 # track which usb is requested
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -29,17 +30,26 @@ func _ready() -> void:
 
 func show():
 	.show()
+	var _navigator_app = find_node('Navigator')
+	var _navigator2_app = find_node('Usb2')
+	_navigator_app.hide()
+	_navigator2_app.hide()
 	if Globals.state.get('Lobby-USB_IN_PC', false):
-		Globals.set_state('PC_ELEVATOR_APP_VERSION', 2)
-		Globals.set_state('Lobby-USB_IN_PC', false)
-		find_node('Elevator').set_elevator_version(2)
-		show_popup('w', 'elevator program updated succesfuly', self)
+		_navigator_app.show()
+		#Globals.set_state('PC_ELEVATOR_APP_VERSION', 2)
+		#Globals.set_state('Lobby-USB_IN_PC', false)
+		#find_node('Elevator').set_elevator_version(2)
+		#show_popup('w', 'elevator program updated succesfuly', self)
 	
 	if Globals.state.get('LOBBY-USB2_IN_PC', false):
-		Globals.set_state('PC_REGISTER_APP_INSTALLED', true)
-		show_popup('w', 'register program installed succesfuly', self)
-	
+		_navigator2_app.show()
+		#Globals.set_state('PC_REGISTER_APP_INSTALLED', true)
+		#show_popup('w', 'register program installed succesfuly', self)
+	_check_new_apps()
+
+func _check_new_apps():
 	find_node('Register').visible = Globals.state.get('PC_REGISTER_APP_INSTALLED', false)
+	find_node('Elevator').set_elevator_version(Globals.state.get('PC_ELEVATOR_APP_UPDATED', false))
 		
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -70,8 +80,9 @@ func _notify_popup_close() -> void:
 		_opened_app.on_popup_closed()
 
 
-func _load_app(app: Panel) -> void:
+func _load_app(app: Panel, extra: String) -> void:
 	_app_container.add_child(app)
+	app.extra = extra
 	app.OS = self
 	app.connect('close_requested', Utils, 'invoke', [self, '_close_app'])
 	A.play({cue_name = 'sfx_pc_app_open',is_in_queue = false})
@@ -84,3 +95,4 @@ func _close_app() -> void:
 	app.queue_free()
 	if _app_container.get_child_count() == 1:
 		_app_screen.hide()
+		_check_new_apps()

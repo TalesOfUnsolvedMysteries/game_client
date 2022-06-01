@@ -4,18 +4,21 @@ onready var app_name = find_node('Name')
 var error = 0
 
 func _ready():
-	set_elevator_version(Globals.state.get('PC_ELEVATOR_APP_VERSION'))
+	set_elevator_version(Globals.state.get('PC_ELEVATOR_APP_UPDATED', false))
 
-func set_elevator_version(version):
+func set_elevator_version(updated):
+	var  version = 1
+	if updated:
+		version = 2
 	app_name.text = 'Elevator %d.0' % version
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func open_app() -> void:
-	var version = Globals.state.get('PC_ELEVATOR_APP_VERSION')
+	var elevator_updated = Globals.state.get('PC_ELEVATOR_APP_UPDATED', false)
 	var elevator_state = Globals.state.get('ELEVATOR_ENABLED')
 
 	if Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
-		if (version == 1 and elevator_state > 0) or (version == 2 and elevator_state == 31):
+		if (not elevator_updated and elevator_state > 0) or (elevator_updated and elevator_state == 31):
 			error = 1
 			owner.show_popup('w', 'elevator program is already fixed', self)
 		else:

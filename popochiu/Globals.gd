@@ -188,7 +188,7 @@ sync var state := {
 	'Lobby-PC_POWERED': true,
 	'Lobby-USB_IN_PC': false,
 	'LOBBY-USB2_IN_PC': false,
-	'PC_ELEVATOR_APP_VERSION': 2,
+	'PC_ELEVATOR_APP_UPDATED': false,
 	'ELEVATOR_ENABLED': 31,
 	'PC_REGISTER_APP_INSTALLED': false,
 	'Lobby-ENGINE_ROOM_UNLOCKED': false,

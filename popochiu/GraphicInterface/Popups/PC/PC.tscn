@@ -159,6 +159,7 @@ text = "progress"
 align = 1
 
 [node name="Navigator" type="VBoxContainer" parent="PanelContainer/DesktopContainer/Apps"]
+visible = false
 margin_left = 78.0
 margin_top = 37.0
 margin_right = 132.0
@@ -166,6 +167,7 @@ margin_bottom = 69.0
 mouse_filter = 0
 script = ExtResource( 7 )
 app = ExtResource( 20 )
+extra = "1"
 
 [node name="Icon" type="TextureRect" parent="PanelContainer/DesktopContainer/Apps/Navigator"]
 margin_left = 19.0
@@ -186,6 +188,38 @@ size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "USB"
+align = 1
+
+[node name="Usb2" type="VBoxContainer" parent="PanelContainer/DesktopContainer/Apps"]
+visible = false
+margin_left = 78.0
+margin_top = 37.0
+margin_right = 132.0
+margin_bottom = 69.0
+mouse_filter = 0
+script = ExtResource( 7 )
+app = ExtResource( 20 )
+extra = "2"
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/DesktopContainer/Apps/Usb2"]
+margin_left = 19.0
+margin_right = 35.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="PanelContainer/DesktopContainer/Apps/Usb2"]
+margin_left = 13.0
+margin_top = 20.0
+margin_right = 41.0
+margin_bottom = 32.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "USB2"
 align = 1
 
 [node name="DateContainer" type="MarginContainer" parent="PanelContainer"]

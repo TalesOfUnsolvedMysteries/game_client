@@ -10,6 +10,7 @@ var _current_field := -1
 var _selected_option: CheckBox = null
 var _info := {} # (!) Esto es nomás para hacer pruebas locales
 var OS
+var extra = ''
 signal close_requested
 
 onready var _current_tab: Control = $TabContainer.get_current_tab_control()

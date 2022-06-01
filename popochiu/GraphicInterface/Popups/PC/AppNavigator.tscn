@@ -132,7 +132,7 @@ margin_right = -2.0
 margin_bottom = -3.0
 color = Color( 0.741176, 1, 0.792157, 1 )
 
-[node name="Installer" type="VBoxContainer" parent="."]
+[node name="InstallerElevator" type="VBoxContainer" parent="."]
 margin_left = 8.0
 margin_top = 20.0
 margin_right = 84.0
@@ -143,8 +143,9 @@ __meta__ = {
 "_edit_group_": true
 }
 app = ExtResource( 10 )
+extra = "1"
 
-[node name="Icon" type="TextureRect" parent="Installer"]
+[node name="Icon" type="TextureRect" parent="InstallerElevator"]
 margin_left = 32.0
 margin_right = 44.0
 margin_bottom = 16.0
@@ -154,7 +155,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="Installer"]
+[node name="Name" type="Label" parent="InstallerElevator"]
 margin_left = 11.0
 margin_top = 20.0
 margin_right = 64.0
@@ -163,6 +164,42 @@ size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "ele_2.0.1"
+align = 1
+
+[node name="InstallerRegistry" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 8.0
+margin_top = 20.0
+margin_right = 84.0
+margin_bottom = 67.0
+mouse_filter = 0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+app = ExtResource( 10 )
+extra = "2"
+
+[node name="Icon" type="TextureRect" parent="InstallerRegistry"]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="InstallerRegistry"]
+margin_left = 9.0
+margin_top = 20.0
+margin_right = 66.0
+margin_bottom = 47.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "registry
+installer"
 align = 1
 
 [node name="Readme" type="VBoxContainer" parent="."]
@@ -188,6 +225,40 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="Readme"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 59.0
+margin_bottom = 32.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "readme"
+align = 1
+
+[node name="Readme2" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 99.0
+margin_top = 20.0
+margin_right = 175.0
+margin_bottom = 67.0
+mouse_filter = 0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+app = ExtResource( 8 )
+
+[node name="Icon" type="TextureRect" parent="Readme2"]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 16.0
+size_flags_horizontal = 4
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Readme2"]
 margin_left = 16.0
 margin_top = 20.0
 margin_right = 59.0

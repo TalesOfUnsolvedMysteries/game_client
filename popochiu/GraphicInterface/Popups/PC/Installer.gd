@@ -10,7 +10,13 @@ var _progress = 0
 var _verification_steps = 0
 const TOTAL = 124
 export var installation_speed = 5.0
-export var installation_key = 'something'
+var installation_key = 'something'
+var _program_name = 'Elevator 2.0'
+var extra = ''
+
+onready var _main_title = get_node('Title')
+onready var _confirm_info = find_node('Information')
+onready var _install_info = get_node('Installation/Text')
 
 func _ready():
 	$Loader.visible = true
@@ -31,13 +37,29 @@ func _ready():
 	$Failed.hide()
 	$MazeGame.connect('game_over', self, '_verification_failed')
 	$MazeGame.connect('level_completed', self, '_check_verification_progress')
+
+
+func setOS(_OS):
+	OS = _OS
+	var _usb_1 = Globals.state.get('Lobby-USB_IN_PC', false)
+	var _usb_2 = Globals.state.get('LOBBY-USB2_IN_PC', false)
+	# update for elevator
+	if _usb_1 and extra == '1':
+		_program_name = 'Elevator 2.0'
+		installation_key = 'PC_ELEVATOR_APP_UPDATED'
+	# installer for registry
+	if _usb_2 and extra == '2':
+		_program_name = 'Registry 1.0'
+		installation_key = 'PC_REGISTER_APP_INSTALLED'
 	
+	_main_title.text = '%s installer' % _program_name
+	_confirm_info.bbcode_text = '[center]this program will install %s in this computer\n\nDo you want to continue?[/center]' % _program_name
+	_install_info.bbcode_text = '[center]Installing %s \nPlease wait...[/center]' % _program_name
+
 	if Globals.state.get(installation_key, false):
 		$Confirm/Information.bbcode_text = '[center]This program is already installed[/center]'
 		$Confirm/Continue.hide()
 
-func setOS(_OS):
-	OS = _OS
 
 func dispose():
 	$AnimationPlayer.play('open', -1, -1, true)
@@ -60,7 +82,7 @@ func _show_verification3():
 	$AnimationPlayer.play('open')
 	$Verification2.hide()
 	$Verification3.show()
-	$MazeGame.new_game(3, ['001', '002', '003', '004'])
+	$MazeGame.new_game(3, ['000', '000', '000'])
 
 func _show_install():
 	$Installation/Close.hide()
@@ -77,7 +99,7 @@ func _on_installed():
 	_loader_progress.rect_size.x = TOTAL
 	$Installation/Progress.hide()
 	$AnimationPlayer.play('open', -1, 1.5)
-	$Installation/Text.bbcode_text = '[center]Elevator 2.0 installed successfully![/center]'
+	$Installation/Text.bbcode_text = '[center]%s installed successfully![/center]' % _program_name
 	$Installation/Close.show()
 	#A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
 	yield($AnimationPlayer, 'animation_finished')
