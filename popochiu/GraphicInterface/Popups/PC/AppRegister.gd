@@ -10,6 +10,8 @@ var _current_field := -1
 var _selected_option: CheckBox = null
 var _info := {} # (!) Esto es nomás para hacer pruebas locales
 var OS
+var extra = ''
+signal close_requested
 
 onready var _current_tab: Control = $TabContainer.get_current_tab_control()
 onready var _current_tab_name: String = _current_tab.name setget set_current_tab
@@ -27,6 +29,7 @@ onready var _btn_ok: Button = $PopupContainer.find_node('BtnOk')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	$BtnClose.connect('pressed', self, 'emit_signal', ['close_requested'])
 	$TabContainer.connect('tab_changed', self, '_update_tab_info')
 	_btn_name.connect('pressed', self, '_open_popup', [Fields.NAME])
 	_btn_arcane.connect('pressed', self, '_open_popup', [Fields.ARCANE])
@@ -137,3 +140,9 @@ func set_current_tab(value: String) -> void:
 			_arcane.text = _info[_current_tab_name].arcane
 		if _info[_current_tab_name].has('death'):
 			_death.text = _info[_current_tab_name].death
+
+func dispose():
+	yield(get_tree(), 'idle_frame')
+	#$AnimationPlayer.play('open', -1, -1, true)
+	A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
+	#yield($AnimationPlayer, 'animation_finished')

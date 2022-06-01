@@ -185,19 +185,21 @@ var bug_name := ''
 var bug_adn := ''
 var turn := 0
 sync var state := {
-	'Lobby-PC_POWERED': false,
+	'Lobby-PC_POWERED': true,
 	'Lobby-USB_IN_PC': false,
-	'PC_ELEVATOR_APP_VERSION': 1,
-	'ELEVATOR_ENABLED': 0,
+	'LOBBY-USB2_IN_PC': false,
+	'PC_ELEVATOR_APP_UPDATED': false,
+	'ELEVATOR_ENABLED': 31,
+	'PC_REGISTER_APP_INSTALLED': false,
 	'Lobby-ENGINE_ROOM_UNLOCKED': false,
-	'EngineRoom-ELEVATOR_WORKING': false,
+	'EngineRoom-ELEVATOR_WORKING': true,
 	'EngineRoom-CHARGING_BATTERY': false,
 	'MasterKey-CONFIG': '0203',
-	'FirstFloor-102_UNLOCKED': false,
-	'SecondFloor-201_UNLOCKED': false,
-	'SecondFloor-202_UNLOCKED': false,
-	'ThirdFloor-301_UNLOCKED': false,
-	'ThirdFloor-302_UNLOCKED': false,
+	'FirstFloor-102_UNLOCKED': true,
+	'SecondFloor-201_UNLOCKED': true,
+	'SecondFloor-202_UNLOCKED': true,
+	'ThirdFloor-301_UNLOCKED': true,
+	'ThirdFloor-302_UNLOCKED': true,
 	'Jukebox-Secret_Box_OPENED': false,
 	# inventory object locations
 	'Janitor-MASTER_KEY-in': true,
@@ -214,7 +216,7 @@ sync var state := {
 	# penthouse vases
 	'Penthouse_VASES_ON_Shelfs': ['VaseBlue', 'VaseGreen', 'VaseYellow', 'VaseRed'],
 	'Penthouse_WEIGHTS_ON_Shelfs': [1.6, 0.815, 1.25, 2.38124],
-	'Penthouse-VASE_SOLVED': false,
+	'Penthouse-VASE_SOLVED': true,
 	'Penthouse-COMPARTIMENT_OPENED': true,
 	'Penthouse-FORTUNETELLER_NOTES': false,
 	# ADN picker - Doctor items

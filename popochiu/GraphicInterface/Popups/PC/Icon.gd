@@ -3,6 +3,7 @@ extends VBoxContainer
 signal app_opened(app_panel)
 
 export var app: PackedScene = null
+export var extra = ''
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -15,7 +16,7 @@ func _ready() -> void:
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func open_app() -> void:
 	if not app: return
-	emit_signal('app_opened', app.instance())
+	emit_signal('app_opened', app.instance(), extra)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

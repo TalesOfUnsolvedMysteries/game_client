@@ -1,0 +1,400 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSAppWindow.tres" type="StyleBox" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Installer.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnPressed.tres" type="StyleBox" id=3]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/Resources/OSElevatorBtnDisabled.tres" type="StyleBox" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=6]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/MazeGame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PC/sprites/items.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Loader:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 201, 124 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Loader:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Loader:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.741176, 1, 0.792157, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "open"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Loader:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 201, 124 ), Vector2( 201, 124 ), Vector2( 201, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Loader:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 124 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Loader:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.254902, 0.364706, 0.4, 1 ), Color( 0.254902, 0.364706, 0.4, 1 ), Color( 0.254902, 0.364706, 0.4, 0.858824 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="Installer" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -62.0
+margin_right = -219.0
+margin_bottom = -118.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+installation_speed = 20.0
+
+[node name="Title" type="Label" parent="."]
+margin_top = -2.0
+margin_right = 200.0
+margin_bottom = 10.0
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+text = "Elevator 2.0 installer"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/open = SubResource( 2 )
+
+[node name="Confirm" type="Control" parent="."]
+visible = false
+margin_top = 13.0
+margin_right = 201.0
+margin_bottom = 107.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Continue" type="Button" parent="Confirm"]
+margin_left = 104.0
+margin_top = 62.0
+margin_right = 163.0
+margin_bottom = 79.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "continue"
+
+[node name="Information" type="RichTextLabel" parent="Confirm"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 11.0
+margin_right = -20.0
+margin_bottom = -44.0
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]this program will install elevator 2.0 in this computer
+
+Do you want to continue?[/center]"
+text = "this program will install elevator 2.0 in this computer
+
+Do you want to continue?"
+
+[node name="Verification" type="Control" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 23.0
+margin_right = 195.0
+margin_bottom = 103.0
+
+[node name="Text" type="RichTextLabel" parent="Verification"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 31.0
+margin_top = 25.0
+margin_right = -30.0
+margin_bottom = -31.0
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]This program will verify you are not a robot[/center]"
+text = "This program will verify you are not a robot"
+
+[node name="Continue" type="Button" parent="Verification"]
+margin_left = 64.0
+margin_top = 65.0
+margin_right = 125.0
+margin_bottom = 82.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "I'm a Bug"
+
+[node name="Verification2" type="Control" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 23.0
+margin_right = 195.0
+margin_bottom = 103.0
+
+[node name="Text" type="RichTextLabel" parent="Verification2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -4.0
+margin_right = -13.0
+margin_bottom = -56.0
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]Use the commands to move the Cursor [/center]"
+text = "Use the commands to move the Cursor "
+
+[node name="Text2" type="RichTextLabel" parent="Verification2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 47.0
+margin_top = 19.0
+margin_right = -16.0
+margin_bottom = -12.0
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "You
+collect all of these
+reach this point
+kills you
+kills you
+ "
+text = "You
+collect all of these
+reach this point
+kills you
+kills you
+ "
+scroll_active = false
+
+[node name="Continue" type="Button" parent="Verification2"]
+margin_left = 64.0
+margin_top = 73.0
+margin_right = 125.0
+margin_bottom = 90.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "start"
+
+[node name="TextureRect" type="TextureRect" parent="Verification2"]
+margin_left = 31.0
+margin_top = 19.0
+margin_right = 50.0
+margin_bottom = 69.0
+texture = ExtResource( 8 )
+
+[node name="Failed" type="Control" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 23.0
+margin_right = 195.0
+margin_bottom = 103.0
+
+[node name="Text" type="RichTextLabel" parent="Failed"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 19.0
+margin_right = -14.0
+margin_bottom = -33.0
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]The installation process has failed, come back later[/center]"
+text = "The installation process has failed, come back later"
+
+[node name="Close" type="Button" parent="Failed"]
+margin_left = 64.0
+margin_top = 73.0
+margin_right = 125.0
+margin_bottom = 90.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "close"
+
+[node name="Verification3" type="Control" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 23.0
+margin_right = 195.0
+margin_bottom = 103.0
+
+[node name="Installation" type="Control" parent="."]
+visible = false
+margin_left = 6.0
+margin_top = 23.0
+margin_right = 195.0
+margin_bottom = 103.0
+
+[node name="Text" type="RichTextLabel" parent="Installation"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 27.0
+margin_right = -31.0
+margin_bottom = -22.0
+custom_colors/default_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]Installing Elevator 2.0 
+Please wait...[/center]"
+text = "Installing Elevator 2.0 
+Please wait..."
+
+[node name="Progress" type="ColorRect" parent="Installation"]
+margin_left = 30.0
+margin_top = 75.0
+margin_right = 158.0
+margin_bottom = 90.0
+color = Color( 0.741176, 1, 0.792157, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Back" type="ColorRect" parent="Installation/Progress"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 127.0
+margin_bottom = 14.0
+color = Color( 0.254902, 0.364706, 0.4, 1 )
+
+[node name="Loaded" type="ColorRect" parent="Installation/Progress"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 126.0
+margin_bottom = 13.0
+color = Color( 0.741176, 1, 0.792157, 1 )
+
+[node name="Close" type="Button" parent="Installation"]
+visible = false
+margin_left = 64.0
+margin_top = 70.0
+margin_right = 123.0
+margin_bottom = 87.0
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "finish"
+
+[node name="BtnClose" type="Button" parent="."]
+visible = false
+margin_left = 44.0
+margin_top = 75.0
+margin_right = 88.0
+margin_bottom = 92.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 0.741176, 1, 0.792157, 0.501961 )
+custom_colors/font_color_focus = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_hover = Color( 0.741176, 1, 0.792157, 1 )
+custom_colors/font_color_pressed = Color( 0.254902, 0.364706, 0.4, 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+text = "cancel"
+
+[node name="Loader" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 201.0
+margin_bottom = 124.0
+color = Color( 0.741176, 1, 0.792157, 1 )
+
+[node name="MazeGame" parent="." instance=ExtResource( 7 )]

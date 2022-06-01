@@ -4,20 +4,23 @@ var secret: Secret
 onready var floor_links: Control = find_node('FloorLinks')
 onready var app_title: Label = find_node('Title')
 var OS
+var extra = ''
+signal close_requested
 
 func _ready():
 	randomize()
 	$BtnClose.connect('button_down', self, '_reset')
 	
 	secret = find_node('Secret1')
-	if Globals.state['PC_ELEVATOR_APP_VERSION'] == 2:
+	var version = 1
+	if Globals.state.get('PC_ELEVATOR_APP_UPDATED', false):
 		floor_links.get_node('LinksF').show()
 		self.unlock_buttons()
 		secret = find_node('Secret2')
 		var light1 = find_node('Light1')
 		light1.modulate = Color('ffffff')
-
-	app_title.text = 'elevator panel v%d.0' % Globals.state['PC_ELEVATOR_APP_VERSION']
+		version = 2
+	app_title.text = 'elevator panel v%d.0' % version
 	$Save.connect('button_down', self, '_on_save_pressed')
 	$Save.disabled = false
 	secret.connect('solved', self, '_check')
@@ -56,6 +59,7 @@ func _turn_lights_on(pressed):
 
 
 func _reset():
+	emit_signal('close_requested')
 	for button in $Buttons.get_children():
 		button.pressed = false
 	_turn_lights_on(0)
@@ -116,3 +120,9 @@ func _check(solved):
 func on_popup_closed() -> void:
 	if !Globals.state.get('Lobby-ELEVATOR_CARD_IN_PC'):
 		E.run(['Player: I can update the elevator motherboard now.'])
+
+func dispose():
+	yield(get_tree(), 'idle_frame')
+	#$AnimationPlayer.play('open', -1, -1, true)
+	A.play({cue_name = 'sfx_pc_app_close',is_in_queue = false})
+	#yield($AnimationPlayer, 'animation_finished')

@@ -21,10 +21,10 @@ func on_look() -> void:
 
 func on_item_used(item: InventoryItem) -> void:
 	if item.script_name == 'ElevatorCard':
-		var version = Globals.state.get('PC_ELEVATOR_APP_VERSION')
+		var updated = Globals.state.get('PC_ELEVATOR_APP_UPDATED')
 		var elevator_state = Globals.state.get('ELEVATOR_ENABLED')
-		if (version == 1 and elevator_state > 0)\
-		or (version == 2 and elevator_state == 31):
+		if (not updated and elevator_state > 0)\
+		or (updated and elevator_state == 31):
 			yield(E.run([
 				C.walk_to_clicked(),
 				"Player: The elevator card is already updated.",
@@ -47,6 +47,15 @@ func on_item_used(item: InventoryItem) -> void:
 			A.play({cue_name = 'sfx_usb_pc_insert'}),
 			I.remove_item('Usb'),
 			Globals.set_state('Lobby-USB_IN_PC', true)
+		]), 'completed')
+		room.use_pc()
+	elif item.script_name == 'RegistryUsb':
+		yield(E.run([
+			C.walk_to_clicked(),
+			"Player: USB connected to the PC.",
+			A.play({cue_name = 'sfx_usb_pc_insert'}),
+			I.remove_item('RegistryUsb'),
+			Globals.set_state('LOBBY-USB2_IN_PC', true)
 		]), 'completed')
 		room.use_pc()
 
