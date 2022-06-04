@@ -22,6 +22,8 @@ func _ready() -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
 func setup(config: Dictionary) -> void:
+	print('setup this')
+	print(config)
 	for i in 6:
 		for j in 6:
 			var key := '%d,%d' % [i, j]
@@ -47,7 +49,7 @@ func setup(config: Dictionary) -> void:
 			else:
 				var space := ColorRect.new()
 				space.modulate = Color('a675fe')
-				space.modulate.a = 0.0
+				#space.modulate.a = 0.0
 				space.rect_min_size = Vector2(8, 10)
 				
 				add_child(space)

@@ -7,7 +7,7 @@ export(Array, Dictionary) var code := [] setget _set_code
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	if Engine.editor_hint: return
-	
+	print('im ready')
 	if code:
 		var code_dic := {}
 		for dic in code:
