@@ -1,5 +1,4 @@
 extends Node2D
-var PointGame = preload("res://popochiu/GraphicInterface/Popups/Painting/LinkGame/Point.gd")
 var map = []
 var moves_enabled = 15
 var original_moves = 6
@@ -12,10 +11,28 @@ var _points_path = []
 
 
 func _ready():
+	_initialize()
+
+func _reset():
+	var _points = $Points.get_children()
+	for point in _points:
+		$Points.remove_child(point)
+
+func add_point(point: LinkPoint):
+	$Points.add_child(point)
+
+func _initialize():
 	for point in $Points.get_children():
 		if point.is_start_point:
 			point.connect('clicked', self, '_on_starting_point_clicked')
 		point.connect('mouse_entered', self, '_on_point_hover')
+
+func _get_nodes_for_edge(_position: Vector2):
+	var _points = []
+	for _point in $Points.get_children():
+		if _position.distance_to(_point.position + $Points.position) < 15:
+			_points.push_front(_point)
+	return _points
 
 func _on_starting_point_clicked(_point):
 	if _finished: return
@@ -56,7 +73,7 @@ func _remove_last_point():
 	$Path.points = _points
 	_current_point = _points_path[-1]
 	original_moves = _current_point.original_moves
-	moves_enabled = PointGame.get_oposite(_removed._entry_direction)
+	moves_enabled = LinkPoint.get_oposite(_removed._entry_direction)
 	_removed.set_entry_direction(0)
 
 func _process(delta):
@@ -70,13 +87,13 @@ func _process(delta):
 		# should lock the movement
 		var _angle = previous.angle_to_point(target) + PI
 		if _angle >= PI/4 and _angle < 3*PI/4:
-			moves_enabled = PointGame.DOWN
+			moves_enabled = LinkPoint.DOWN
 		elif _angle >= 3*PI/4 and _angle < 5*PI/4:
-			moves_enabled = PointGame.LEFT
+			moves_enabled = LinkPoint.LEFT
 		elif _angle >= 5*PI/4 and _angle < 7*PI/4:
-			moves_enabled = PointGame.UP
+			moves_enabled = LinkPoint.UP
 		else:
-			moves_enabled = PointGame.RIGHT
+			moves_enabled = LinkPoint.RIGHT
 		
 		moves_enabled = moves_enabled & original_moves
 		_locked = true
@@ -90,13 +107,13 @@ func _process(delta):
 	if distance > 121:
 		target = previous + target.normalized()*11
 		
-	if (moves_enabled & PointGame.UP) == 0 and target.y < previous.y:
+	if (moves_enabled & LinkPoint.UP) == 0 and target.y < previous.y:
 		target.y = previous.y
-	if (moves_enabled & PointGame.RIGHT) == 0 and target.x > previous.x:
+	if (moves_enabled & LinkPoint.RIGHT) == 0 and target.x > previous.x:
 		target.x = previous.x
-	if (moves_enabled & PointGame.DOWN) == 0 and target.y > previous.y:
+	if (moves_enabled & LinkPoint.DOWN) == 0 and target.y > previous.y:
 		target.y = previous.y
-	if (moves_enabled & PointGame.LEFT) == 0 and target.x < previous.x:
+	if (moves_enabled & LinkPoint.LEFT) == 0 and target.x < previous.x:
 		target.x = previous.x
 	
 	$Path.points[$Path.points.size() - 1] = target

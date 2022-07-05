@@ -17,7 +17,6 @@ coords = Vector2( 0, 1 )
 
 [node name="Point2" parent="Points" instance=ExtResource( 2 )]
 position = Vector2( 15, 15 )
-is_start_point = true
 coords = Vector2( 1, 1 )
 
 [node name="Point3" parent="Points" instance=ExtResource( 2 )]
@@ -100,7 +99,6 @@ coords = Vector2( 4, 1 )
 
 [node name="Point16" parent="Points" instance=ExtResource( 2 )]
 position = Vector2( 75, 15 )
-is_start_point = true
 coords = Vector2( 5, 1 )
 
 [node name="Point17" parent="Points" instance=ExtResource( 2 )]

@@ -1,6 +1,8 @@
 tool
 extends Sprite
 
+class_name LinkPoint
+
 const UP    = 0b1000
 const RIGHT = 0b0100
 const DOWN  = 0b0010
@@ -22,7 +24,7 @@ export(String, '', 'BEE', 'BEETLE', 'LADY_BUG', 'ROOSTER', 'TOTEM') var totem = 
 var free_moves = 0b1111
 var _entry_direction = 0 setget set_entry_direction
 
-
+onready var collider = get_node('Area2D')
 
 signal clicked
 signal mouse_entered
@@ -30,10 +32,9 @@ signal mouse_exited
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(free_moves)
-	$Area2D.connect('input_event', self, '_on_input')
-	$Area2D.connect('mouse_entered', self, 'emit_signal', ['mouse_entered', self])
-	$Area2D.connect('mouse_exited', self, 'emit_signal', ['mouse_exited', self])
+	collider.connect('input_event', self, '_on_input')
+	collider.connect('mouse_entered', self, 'emit_signal', ['mouse_entered', self])
+	collider.connect('mouse_exited', self, 'emit_signal', ['mouse_exited', self])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -94,8 +95,29 @@ func set_coords(_coords):
 
 func set_totem(_totem):
 	totem = _totem
+	if '01234567'.find(_totem) != -1:
+		set_start_point(true)
+		return
+	set_start_point(false)
 	if totem.empty():
 		$Decoration.visible = false
 		return
 	$Decoration.visible = true
 	$Decoration.frame = TOTEM_MAP[_totem]
+
+func toggle_edge(_position: Vector2):
+	var _distance = _position.distance_to(global_position)
+	print(_distance)
+	if _distance < 4 or _distance > 10: return
+	var _angle = get_angle_to(_position) + PI
+
+	if _angle >= PI/4 and _angle < 3*PI/4:
+		set_original_moves(original_moves ^ UP)
+	elif _angle >= 3*PI/4 and _angle < 5*PI/4:
+		set_original_moves(original_moves ^ RIGHT)
+	elif _angle >= 5*PI/4 and _angle < 7*PI/4:
+		set_original_moves(original_moves ^ DOWN)
+	else:
+		set_original_moves(original_moves ^ LEFT)
+
+
