@@ -9,7 +9,7 @@ radius = 4.0
 [node name="Point" type="Sprite"]
 texture = ExtResource( 2 )
 hframes = 5
-vframes = 5
+vframes = 7
 frame = 15
 script = ExtResource( 1 )
 
@@ -22,5 +22,5 @@ shape = SubResource( 1 )
 visible = false
 texture = ExtResource( 2 )
 hframes = 5
-vframes = 5
+vframes = 7
 frame = 23

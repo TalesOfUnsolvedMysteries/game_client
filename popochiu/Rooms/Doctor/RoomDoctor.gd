@@ -2,7 +2,7 @@ tool
 extends PopochiuRoom
 
 onready var _adn_analyzer: PanelContainer = find_node('ADNAnalyzer')
-onready var painting: PanelContainer = $GI/Painting
+onready var painting = $PaintingOverlay2D
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░

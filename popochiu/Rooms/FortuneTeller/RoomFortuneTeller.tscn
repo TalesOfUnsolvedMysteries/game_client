@@ -30,7 +30,7 @@
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Shelve/magicglasses_shelve.png" type="Texture" id=28]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Shelve/magicglasses.png" type="Texture" id=29]
 [ext_resource path="res://popochiu/Rooms/FortuneTeller/Props/Candle/candle.png" type="Texture" id=30]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=31]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=31]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/fortune_teller_hidden.png" type="Texture" id=32]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/fortune_teller_normal.png" type="Texture" id=33]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Tarot/Tarot.tscn" type="PackedScene" id=34]
@@ -1477,30 +1477,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Painting" parent="CanvasLayer" instance=ExtResource( 31 )]
-code = [ {
-"chr": "L100",
-"pos": "0,0"
-}, {
-"chr": "A",
-"pos": "0,5"
-}, {
-"chr": "B",
-"pos": "4,5"
-}, {
-"chr": "C",
-"pos": "4,1"
-}, {
-"chr": "D",
-"pos": "2,1"
-}, {
-"chr": "E",
-"pos": "2,3"
-}, {
-"chr": "R001",
-"pos": "3,3"
-} ]
-
 [node name="Tarot" parent="CanvasLayer" instance=ExtResource( 34 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1508,6 +1484,8 @@ anims/RESET = SubResource( 121 )
 anims/leave = SubResource( 124 )
 anims/start_summon = SubResource( 122 )
 anims/summon = SubResource( 123 )
+
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 31 )]
 
 [editable path="Props/Workspace"]
 [editable path="Props/Painting"]

@@ -25,7 +25,7 @@
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/PropExit.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/exit.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/adn_picker.png" type="Texture" id=25]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=26]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=26]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_normal.png" type="Texture" id=27]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_hidden.png" type="Texture" id=28]
 [ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotGreenBook.gd" type="Script" id=29]
@@ -330,7 +330,7 @@ position = Vector2( 89, 40 )
 [node name="ADNAnalyzer" parent="GI" instance=ExtResource( 2 )]
 visible = false
 
-[node name="Painting" parent="GI" instance=ExtResource( 26 )]
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 26 )]
 visible = false
 
 [editable path="Props/Painting"]

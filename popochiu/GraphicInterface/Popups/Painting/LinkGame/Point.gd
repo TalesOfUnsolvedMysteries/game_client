@@ -13,14 +13,22 @@ const TOTEM_MAP = {
 	'BEETLE': 20,
 	'LADY_BUG': 22,
 	'ROOSTER': 21,
-	'TOTEM': 24
+	'TOTEM': 24,
+	'0': 25,
+	'1': 26,
+	'2': 27,
+	'3': 28,
+	'4': 29,
+	'5': 30,
+	'6': 31,
+	'7': 32
 }
 
 # can move to: up=8, right=4, down=2, left=1
 export var is_start_point = false setget set_start_point
 export var original_moves = 0b1111 setget set_original_moves
 export var coords = Vector2(0, 0) setget set_coords
-export(String, '', 'BEE', 'BEETLE', 'LADY_BUG', 'ROOSTER', 'TOTEM') var totem = '' setget set_totem
+export(String, '', '0', '1', '2', '3', '4', '5', '6', '7', 'BEE', 'BEETLE', 'LADY_BUG', 'ROOSTER', 'TOTEM') var totem = '' setget set_totem
 var free_moves = 0b1111
 var _entry_direction = 0 setget set_entry_direction
 
@@ -46,6 +54,7 @@ static func get_oposite(direction):
 		DOWN: return UP
 		LEFT: return RIGHT
 		RIGHT: return LEFT
+	return 0
 
 func _on_input(viewport: Object, event: InputEvent, shape_idx: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
@@ -53,7 +62,7 @@ func _on_input(viewport: Object, event: InputEvent, shape_idx: int):
 
 
 func can_move_to(direction):
-	return free_moves & direction > 0
+	return (free_moves & direction) > 0
 
 func lock_move(direction):
 	free_moves = free_moves ^ direction
@@ -67,23 +76,24 @@ func set_original_moves(_moves):
 	self.frame = original_moves
 
 func neighbour_direction(_point):
+	var _direction = 0
 	if coords.x == _point.coords.x:
 		if coords.y - _point.coords.y == 1:
-			return DOWN
+			_direction = DOWN
 		elif coords.y - _point.coords.y == -1:
-			return UP
+			_direction = UP
 	elif coords.y == _point.coords.y:
 		if coords.x - _point.coords.x == 1:
-			return RIGHT
+			_direction = RIGHT
 		elif coords.x - _point.coords.x == -1:
-			return LEFT
-	return 0
+			_direction = LEFT
+	if not can_move_to(get_oposite(_direction)):
+		_direction = 0
+	return _direction
+
 
 func set_start_point(_is_start):
 	is_start_point = _is_start
-	if _is_start:
-		$Decoration.visible = true
-		$Decoration.frame = 16
 
 func set_entry_direction(_entry):
 	_entry_direction = _entry
@@ -95,13 +105,10 @@ func set_coords(_coords):
 
 func set_totem(_totem):
 	totem = _totem
-	if '01234567'.find(_totem) != -1:
-		set_start_point(true)
-		return
-	set_start_point(false)
-	if totem.empty():
-		$Decoration.visible = false
-		return
+	$Decoration.visible = false
+	if totem.empty(): return
+	
+	is_start_point = '01234567'.find(_totem) != -1
 	$Decoration.visible = true
 	$Decoration.frame = TOTEM_MAP[_totem]
 

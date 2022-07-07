@@ -14,7 +14,7 @@ onready var secret_hole = find_node('VaseHole')
 onready var secret_compartiment = find_node('SecretCompartiment')
 onready var second_panel: Panel = $GraphicInterface/PenthousePanel
 onready var magazine: PanelContainer = $GraphicInterface/MysteriesMagazine
-onready var painting: PanelContainer = $GraphicInterface/Painting
+onready var painting = $PaintingOverlay2D
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░

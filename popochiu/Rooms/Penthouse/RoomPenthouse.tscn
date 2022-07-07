@@ -45,7 +45,7 @@
 [ext_resource path="res://popochiu/Rooms/Penthouse/Hotspots/HotspotHentailCactus.gd" type="Script" id=43]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Hotspots/HotspotFrogtuftUrtica.gd" type="Script" id=44]
 [ext_resource path="res://popochiu/Rooms/Penthouse/Hotspots/HotspotDogtongueSolanum.gd" type="Script" id=45]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=46]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=46]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/inventor_hidden.png" type="Texture" id=47]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/inventor_normal.png" type="Texture" id=48]
 
@@ -87,7 +87,6 @@ hidden = ExtResource( 47 )
 position = Vector2( 0, -90 )
 
 [node name="WalkToHelper" parent="Props/Paragraph" index="1"]
-visible = true
 position = Vector2( -42, 56 )
 
 [node name="Sprite" parent="Props/Paragraph" index="2"]
@@ -550,11 +549,7 @@ script_name = "HentailCactus"
 [node name="CollisionPolygon2D" parent="Hotspots/HentailCactus" index="0"]
 polygon = PoolVector2Array( -12, -14, -13, -3, -8, 15, 12, 13, 14, -3, 11, -13, 1, -31 )
 
-[node name="BaselineHelper" parent="Hotspots/HentailCactus" index="1"]
-visible = false
-
 [node name="WalkToHelper" parent="Hotspots/HentailCactus" index="2"]
-visible = false
 position = Vector2( 29, 14 )
 
 [node name="FrogtuftUrtica" parent="Hotspots" instance=ExtResource( 42 )]
@@ -568,11 +563,7 @@ script_name = "FrogtuftUrtica"
 [node name="CollisionPolygon2D" parent="Hotspots/FrogtuftUrtica" index="0"]
 polygon = PoolVector2Array( -13, 1, -14, 9, 15, 10, 16, 2, 2, -2, 3, -10, 9, -22, 5, -25, -12, -16, -9, -9, -3, -3 )
 
-[node name="BaselineHelper" parent="Hotspots/FrogtuftUrtica" index="1"]
-visible = false
-
 [node name="WalkToHelper" parent="Hotspots/FrogtuftUrtica" index="2"]
-visible = false
 position = Vector2( -25, 4 )
 
 [node name="DogtongueSolanum" parent="Hotspots" instance=ExtResource( 42 )]
@@ -586,11 +577,7 @@ script_name = "DogtongueSolanum"
 [node name="CollisionPolygon2D" parent="Hotspots/DogtongueSolanum" index="0"]
 polygon = PoolVector2Array( -16, -13, -3, -12, -1, 4, -14, 3, -16, 10, -11, 23, -5, 44, 7, 45, 14, 42, 16, 26, 5, 22, 6, 12, 21, 11, 20, 4, 12, 4, 4, 8, 2, 1, 13, -22, 4, -28, -7, -26, -16, -19 )
 
-[node name="BaselineHelper" parent="Hotspots/DogtongueSolanum" index="1"]
-visible = false
-
 [node name="WalkToHelper" parent="Hotspots/DogtongueSolanum" index="2"]
-visible = false
 position = Vector2( -24, 38 )
 
 [node name="Regions" type="Node2D" parent="."]
@@ -641,10 +628,7 @@ margin_bottom = 178.0
 [node name="MysteriesMagazine" parent="GraphicInterface" instance=ExtResource( 41 )]
 visible = false
 
-[node name="Painting" parent="GraphicInterface" instance=ExtResource( 46 )]
-
 [node name="MoveBlockOverlay" parent="." instance=ExtResource( 38 )]
-visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 z_index = 10
 offset = Vector2( 27, 0 )
@@ -667,6 +651,8 @@ polygon = PoolVector2Array( -45, -76, 94, -83, 99, 70, 65, 71, 65, 81, -34, 83, 
 position = Vector2( 27, -4 )
 
 [node name="Tween" type="Tween" parent="MoveBlockOverlay"]
+
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 46 )]
 
 [editable path="Props/Paragraph"]
 [editable path="Props/Magazine"]

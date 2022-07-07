@@ -16,9 +16,9 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PC/PC.tscn" type="PackedScene" id=14]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/PropEngineRoomDoor.gd" type="Script" id=15]
 [ext_resource path="res://popochiu/Rooms/Lobby/Props/EngineRoomDoor/engine_room_door.png" type="Texture" id=16]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=17]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/lobby_normal.png" type="Texture" id=18]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/lobby_hidden.png" type="Texture" id=19]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=20]
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
@@ -79,6 +79,7 @@ script_name = "Painting"
 texture = ExtResource( 8 )
 normal = ExtResource( 18 )
 hidden = ExtResource( 19 )
+painting_key = "LINK_PUZZLE_KEY_DEFAULT"
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
 position = Vector2( 0, -26 )
@@ -134,11 +135,7 @@ script_name = "FirstFloor"
 [node name="CollisionPolygon2D" parent="Hotspots/FirstFloor" index="0"]
 polygon = PoolVector2Array( -24, -32, -21, 25, 21, 25, 22, -23, 7, -36, -11, -36 )
 
-[node name="BaselineHelper" parent="Hotspots/FirstFloor" index="1"]
-visible = false
-
 [node name="WalkToHelper" parent="Hotspots/FirstFloor" index="2"]
-visible = false
 position = Vector2( 0, 32 )
 
 [node name="EngineRoom" parent="Hotspots" instance=ExtResource( 2 )]
@@ -152,11 +149,7 @@ script_name = "EngineRoom"
 [node name="CollisionPolygon2D" parent="Hotspots/EngineRoom" index="0"]
 polygon = PoolVector2Array( -23, -8, -19, 25, 26, 25, 23, -26, -17, -33 )
 
-[node name="BaselineHelper" parent="Hotspots/EngineRoom" index="1"]
-visible = false
-
 [node name="WalkToHelper" parent="Hotspots/EngineRoom" index="2"]
-visible = false
 position = Vector2( 0, 31 )
 
 [node name="Regions" type="Node2D" parent="."]
@@ -184,7 +177,7 @@ dflt_walk_animation = "Bug"
 [node name="PC" parent="CanvasLayer" instance=ExtResource( 14 )]
 visible = false
 
-[node name="Painting" parent="CanvasLayer" instance=ExtResource( 17 )]
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 20 )]
 visible = false
 
 [editable path="Props/Painting"]
