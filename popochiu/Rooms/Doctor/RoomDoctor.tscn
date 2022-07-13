@@ -300,6 +300,9 @@ position = Vector2( 20, 19 )
 [node name="stand_killertron" type="Position2D" parent="Points"]
 position = Vector2( -29, 13 )
 
+[node name="stand_platform" type="Position2D" parent="Points"]
+position = Vector2( -59, 18 )
+
 [node name="WalkableAreas" type="Node2D" parent="."]
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]

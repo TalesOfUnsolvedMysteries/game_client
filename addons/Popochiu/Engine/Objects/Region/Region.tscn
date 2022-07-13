@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Region/Region.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/Doctor/Props/KillertronPlatform/killertron_platform.png" type="Texture" id=2]
 
 [node name="Region" type="Area2D"]
 monitorable = false
 script = ExtResource( 1 )
+tint = Color( 0.301961, 0.929412, 0.901961, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -22, 1, -12, -10, 24, -8, 17, 10 )

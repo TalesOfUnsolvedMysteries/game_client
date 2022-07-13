@@ -8,6 +8,8 @@ onready var _adn_analyzer: PanelContainer = find_node('ADNAnalyzer')
 onready var _killetron_log: PanelContainer = find_node('KillertronLog')
 onready var painting = $PaintingOverlay2D
 
+var countdown_to_scan = -1
+
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	_adn_analyzer.connect('closed', get_prop('DoctorPC'), 'on_analyzer_closed')
@@ -34,6 +36,9 @@ func open_killertron_log():
 	_killetron_log.appear()
 
 func init_killertron_scan():
+	countdown_to_scan = 5
+
+func _check_scan():
 	if Globals.session_state.get('bug_scanned', false):
 		yield(E.run([
 			'Killertron: Killertron detected that you were already scanned!',
@@ -44,7 +49,11 @@ func init_killertron_scan():
 		'Killertron: Killertron initializating scanning!'
 	]), 'completed')
 	yield(_apply_scanning(), 'completed')
-	
+
+func bug_on_platform():
+	if countdown_to_scan > 0:
+		# must lock the character?
+		_check_scan()
 
 func _apply_scanning():
 	yield(get_tree(), 'idle_frame')

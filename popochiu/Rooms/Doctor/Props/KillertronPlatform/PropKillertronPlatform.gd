@@ -4,7 +4,10 @@ extends Prop
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
-	yield(E.run([]), 'completed')
+	yield(E.run([
+		C.player_walk_to(room.get_point('stand_platform'), true)
+	]), 'completed')
+	E.current_room.bug_on_platform()
 
 
 func on_look() -> void:
