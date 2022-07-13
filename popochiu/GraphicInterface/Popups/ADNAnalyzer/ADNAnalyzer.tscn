@@ -91,7 +91,7 @@ texture = ExtResource( 3 )
 margin_left = 108.0
 margin_top = 37.0
 margin_right = 212.0
-margin_bottom = 143.0
+margin_bottom = 142.0
 
 [node name="OSName" type="TextureRect" parent="CenterContainer/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -128,7 +128,7 @@ texture_progress_offset = Vector2( 1, 1 )
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 97.0
 margin_right = 104.0
-margin_bottom = 106.0
+margin_bottom = 105.0
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "welcome"

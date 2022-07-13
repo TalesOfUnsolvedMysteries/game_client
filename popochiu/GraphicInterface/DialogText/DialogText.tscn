@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-outline-16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/DialogText/DialogText.gd" type="Script" id=2]
 [ext_resource path="res://popochiu/GraphicInterface/DialogText/dialog_continue.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/Common/Resources/matrixbbcode.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="RichTextEffect" id=2]
+script = ExtResource( 4 )
 
 [node name="DialogText" type="RichTextLabel"]
 margin_right = 200.0
@@ -23,6 +27,7 @@ meta_underlined = false
 text = "Los diálogos"
 fit_content_height = true
 scroll_active = false
+custom_effects = [ SubResource( 2 ) ]
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]

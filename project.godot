@@ -159,6 +159,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/Popochiu/Engine/Objects/Region/Region.gd"
 }, {
+"base": "RichTextEffect",
+"class": "RichTextMatrix",
+"language": "GDScript",
+"path": "res://popochiu/Common/Resources/matrixbbcode.gd"
+}, {
 "base": "Node",
 "class": "Secret",
 "language": "GDScript",
@@ -215,6 +220,7 @@ _global_script_class_icons={
 "Prop": "res://addons/Popochiu/icons/prop.png",
 "PuzzleBlock": "",
 "Region": "res://addons/Popochiu/icons/region.png",
+"RichTextMatrix": "",
 "Secret": "",
 "Sort": "",
 "Toolbar": "",
