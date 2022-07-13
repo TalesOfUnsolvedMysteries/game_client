@@ -20,18 +20,14 @@ func _ready():
 	if not Engine.editor_hint\
 	and not _was_created and E.current_room.script_name != 'BugEditor':
 		if Globals.bug_adn.empty():
-			Globals.set_appearance(
-				str(randi() % (Globals.HEADS.size() - 1)) +\
-				str(randi() % (Globals.BODIES.size() - 1)) +\
-				str(randi() % Globals.LEGS.size()) +\
-				str(randi() % Globals.EYES.size()) +\
-				str(randi() % Globals.ARMS.size()) +\
-				str(randi() % Globals.SHOES.size())
-			)
+			Globals.set_appearance(_get_random_adn())
 		else:
 			load_appearance(Globals.bug_adn)
 		_was_created = true
 		ready_to_play()
+	
+	Console.add_command('trans', self, '_random_appearance').register()
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -176,3 +172,16 @@ func _update_head_and_legs_positions() -> void:
 			0.0,
 			(_body.texture.get_height() / 2) + 1
 		)
+
+
+func _get_random_adn() -> String:
+	return str(randi() % (Globals.HEADS.size() - 1)) +\
+	str(randi() % (Globals.BODIES.size() - 1)) +\
+	str(randi() % Globals.LEGS.size()) +\
+	str(randi() % Globals.EYES.size()) +\
+	str(randi() % Globals.ARMS.size()) +\
+	str(randi() % Globals.SHOES.size())
+
+
+func _random_appearance() -> void:
+	Globals.set_appearance(_get_random_adn())
