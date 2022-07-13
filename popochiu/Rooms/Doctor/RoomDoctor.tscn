@@ -39,8 +39,8 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Killertron/KillertronLog.tscn" type="PackedScene" id=37]
 [ext_resource path="res://popochiu/Rooms/Doctor/RemoteCall.gd" type="Script" id=38]
 [ext_resource path="res://popochiu/Rooms/Doctor/DecideFate.gd" type="Script" id=39]
-[ext_resource path="res://popochiu/Rooms/Doctor/RecoveryCooldown.gd" type="Script" id=40]
-[ext_resource path="res://popochiu/Rooms/Doctor/ScanTimeout.gd" type="Script" id=41]
+[ext_resource path="res://popochiu/Common/GlobalTimer.gd" type="Script" id=40]
+[ext_resource path="res://popochiu/Common/Resources/DynamicFonts/MonkeyIsland24.tres" type="DynamicFont" id=41]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
@@ -332,6 +332,18 @@ visible = false
 [node name="KillertronLog" parent="GI" instance=ExtResource( 37 )]
 visible = false
 
+[node name="Countdown" type="RichTextLabel" parent="GI"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -27.0
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 41 )
+bbcode_enabled = true
+bbcode_text = "[center]5[/center]"
+text = "5"
+
 [node name="PaintingOverlay2D" parent="." instance=ExtResource( 26 )]
 visible = false
 
@@ -346,11 +358,11 @@ script = ExtResource( 39 )
 [node name="GlobalTimers" type="Node" parent="."]
 
 [node name="ScanTimeout" type="Node" parent="GlobalTimers"]
-script = ExtResource( 41 )
+script = ExtResource( 40 )
 step = 1.0
 time_target = 5
 
-[node name="RecoveryCooldown" type="Node" parent="GlobalTimers/ScanTimeout"]
+[node name="RecoveryCooldown" type="Node" parent="GlobalTimers"]
 script = ExtResource( 40 )
 step = 1.0
 time_target = 10

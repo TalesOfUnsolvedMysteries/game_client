@@ -177,7 +177,22 @@ const NFTs := {
 		label = 'Summons the spirit from Penthouse for the first time ',
 		img = 'nft_new_floors',
 		id = '0022'
-	}
+	},
+	KILLETRON_TARGET_ADN0 = {
+		label = 'Sacrifice yourself in name of the science I',
+		img = 'nft_new_floors',
+		id = '0023'
+	},
+	KILLETRON_TARGET_ADN1 = {
+		label = 'Sacrifice yourself in name of the science II',
+		img = 'nft_new_floors',
+		id = '0024'
+	},
+	KILLETRON_TARGET_ADN2 = {
+		label = 'Sacrifice yourself in name of the science III',
+		img = 'nft_new_floors',
+		id = '0025'
+	},
 }
 
 var main_mx_play = false
@@ -265,6 +280,11 @@ func _ready() -> void:
 		.set_description('Makes the player win a NFT')\
 		.add_argument('key', TYPE_STRING)\
 		.register()
+	
+	Console.add_command('reset_session', self, 'reset_session_state')\
+		.set_description('resets user session state')\
+		.register()
+
 	reset_session_state()
 
 

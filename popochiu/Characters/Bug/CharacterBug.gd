@@ -26,7 +26,9 @@ func _ready():
 		_was_created = true
 		ready_to_play()
 	
-	Console.add_command('trans', self, '_random_appearance').register()
+	Console.add_command('trans', self, '_random_appearance')\
+			.add_argument('adn', TYPE_STRING)\
+			.register()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -183,5 +185,7 @@ func _get_random_adn() -> String:
 	str(randi() % Globals.SHOES.size())
 
 
-func _random_appearance() -> void:
-	Globals.set_appearance(_get_random_adn())
+func _random_appearance(adn='') -> void:
+	if adn.empty():
+		adn = _get_random_adn()
+	Globals.set_appearance(adn)
