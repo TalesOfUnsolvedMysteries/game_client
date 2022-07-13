@@ -1,22 +1,29 @@
 tool
 extends PopochiuRoom
 
-signal adn_matched(matched, nft_key)
 signal fate_decided(die)
 
 onready var _adn_analyzer: PanelContainer = find_node('ADNAnalyzer')
 onready var _killetron_log: PanelContainer = find_node('KillertronLog')
 onready var painting = $PaintingOverlay2D
 
-var countdown_to_scan = -1
+# remote procedures
+onready var remote_scan_adn: RemoteCall = find_node('ScanADN')
+onready var remote_decide_fate: RemoteCall = find_node('DecideFate')
+
+# global timers
+onready var timer_scan_timeout: GlobalTimer = find_node('ScanTimeout')
+
+var _bug_in_place = false
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	_adn_analyzer.connect('closed', get_prop('DoctorPC'), 'on_analyzer_closed')
 	C.get_character('Killertron').visible = false
-	self.connect('adn_matched', self, '_on_adn_matched')
-	self.connect('fate_decided', self, '_on_fate_decided')
-
+	remote_scan_adn.connect('executed', self, '_on_scan_finished')
+	remote_decide_fate.connect('executed', self, '_on_fate_decided')
+	timer_scan_timeout.connect('step_completed', self, '_on_scan_loading_step')
+	timer_scan_timeout.connect('timeout', self, '_on_scan_timeout')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_room_entered() -> void:
@@ -36,7 +43,19 @@ func open_killertron_log():
 	_killetron_log.appear()
 
 func init_killertron_scan():
-	countdown_to_scan = 5
+	timer_scan_timeout.start()
+
+func _on_scan_loading_step():
+	print('the final countdown')
+
+func _on_scan_timeout():
+	if _bug_in_place: _check_scan()
+	else:
+		yield(E.run([
+			'Killertron: No bug to scan!',
+			'Killertron: Killertron can\'t process any ADN',
+			'Killertron: Killertron needs to rest a little',
+		]), 'completed')
 
 func _check_scan():
 	if Globals.session_state.get('bug_scanned', false):
@@ -48,57 +67,14 @@ func _check_scan():
 	yield(E.run([
 		'Killertron: Killertron initializating scanning!'
 	]), 'completed')
-	yield(_apply_scanning(), 'completed')
+	yield(remote_scan_adn.execute(), 'completed')
 
 func bug_on_platform():
-	if countdown_to_scan > 0:
-		# must lock the character?
-		_check_scan()
+	_bug_in_place = true
 
-func _apply_scanning():
-	yield(get_tree(), 'idle_frame')
-	if !NetworkManager.server and !Globals.is_single_test(): return
-	# read players adn
-	# compare it against target adn // server mode async secret
-	var collected_adns: Array = Globals.state.get('Killertron_COLLECTED_ADN', [])
-	var scanned_adns: Array = Globals.state.get('Killertron_SCANNED_ADN', [])
-	var killetron_target_key = 'KILLETRON_TARGET_ADN%d' % [collected_adns.size() - 2]
-	var target_adn: String = SecretsKeeper.get(killetron_target_key)
-	var current_adn: String = Globals.bug_adn
-	var i = 0
-	var matched_genes = ''
-	print('%s -> %s' % [current_adn, target_adn])
-	for gene in current_adn:
-		var matches = 0
-		if target_adn.find(gene) != -1:
-			matches = 1
-			if gene == target_adn[i]:
-				matches = 2
-		matched_genes += '%d' % matches
-		i += 1
-
-	scanned_adns.push_front([current_adn, matched_genes])
-	if scanned_adns.size() > 6:
-		scanned_adns.pop_back()
-	Globals.set_state('Killertron_SCANNED_ADN', scanned_adns)
-	Globals.set_state('Killertron_TOTAL_SCANNED', Globals.state.get('Killertron_TOTAL_SCANNED', 0) + 1)
-
-	var matched = matched_genes == '222222'
-	if matched:
-		collected_adns.push_back(current_adn)
-		Globals.set_state('Killertron_COLLECTED_ADN', collected_adns)
-	
-	emit_signal('adn_matched', matched, killetron_target_key)
-	if !Globals.is_single_test():
-		rpc_id(NetworkManager.pilot_peer_id, 'remote_adn_matched', matched, killetron_target_key)
-
-
-remote func remote_adn_matched(matched, killetron_target_key):
-	if NetworkManager.isPilot():
-		emit_signal('adn_matched', matched, killetron_target_key)
-
-
-func _on_adn_matched(matched, killertron_target_key):
+func _on_scan_finished(response):
+	var matched = response[0]
+	var killertron_target_key = response[1]
 	_killetron_log.load_data()
 	if matched:
 		G.emit_signal('nft_won', killertron_target_key)
@@ -108,22 +84,8 @@ func _on_adn_matched(matched, killertron_target_key):
 		'Killertron: Killertron decides your fate',
 		'Player: ???'
 	]), 'completed')
-	check_kill(matched)
+	remote_decide_fate.execute([matched])
 
-
-func check_kill(matched):
-	yield(get_tree(), 'idle_frame')
-	if !NetworkManager.server and !Globals.is_single_test(): return
-	randomize()
-	var _kill_chance = 100 if matched else 50
-	var _kill = randi()%100 < _kill_chance
-	emit_signal('fate_decided', _kill)
-	if !Globals.is_single_test():
-		rpc_id(NetworkManager.pilot_peer_id, 'remote_fate_decided', _kill)
-
-remote func remote_fate_decided(die):
-	if NetworkManager.isPilot():
-		emit_signal('fate_decided', die)
 
 func _on_fate_decided(die):
 	Globals.set_session_state('bug_scanned', true)
@@ -133,8 +95,10 @@ func _on_fate_decided(die):
 		]), 'completed')
 		if NetworkManager.server or Globals.is_single_test():
 			NetworkManager.game_over(NetworkManager.pilot_peer_id, 'disintegrated')
+		# block screen for player?
+		# TODO animation for kill
 	else:
 		yield(E.run([
 			'Killertron: get out of here!',
 		]), 'completed')
-		
+

@@ -5,7 +5,7 @@ extends PopochiuDialog
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func start() -> void:
 	.start()
-
+	
 
 func option_selected(opt: DialogOption) -> void:
 	print(opt.id)
@@ -13,12 +13,7 @@ func option_selected(opt: DialogOption) -> void:
 		D.emit_signal('dialog_finished')
 		E.current_room.open_killertron_log()
 	elif opt.id == 'Scan':
-		yield(E.run([
-			'Killertron: [matrix clean=60.0 dirty=1.0]Killertron initializing scanning protocol...[/matrix]',
-			'Killertron: [matrix clean=60.0 dirty=1.0]Please place the subject into the scanning platform[/matrix]',
-		]), 'completed')
-		D.emit_signal('dialog_finished')
-		E.current_room.init_killertron_scan()
+		yield(_handle_scan(), 'completed')
 	elif opt.id == 'Hi':
 		yield(E.run([
 			'Player: Hey Killertron!',
@@ -28,3 +23,26 @@ func option_selected(opt: DialogOption) -> void:
 			#'Killertron: [matrix clean=30.0 dirty=0.5]Not too much...[/matrix]\n[matrix clean=30.0 dirty=1.5]I\'m depressed...[/matrix]'
 		]), 'completed')
 		D.emit_signal('dialog_finished')
+
+
+func _handle_scan():
+	var loading = GlobalTimer.is_active('ScanTimeout')
+	var recovering = GlobalTimer.is_active('RecoveryCooldown')
+	if recovering:
+		yield(E.run([
+			'Killertron: [matrix clean=60.0 dirty=1.0]Killertron doesn\'t have energy to scan[/matrix]',
+			'Killertron: [matrix clean=60.0 dirty=1.0]Killetron requires time to recover[/matrix]',
+		]), 'completed')
+		D.emit_signal('dialog_finished')
+	elif loading:
+		yield(E.run([
+			'Killertron: [matrix clean=60.0 dirty=1.0]Please place the subject into the scanning platform[/matrix]',
+		]), 'completed')
+		D.emit_signal('dialog_finished')
+	else:
+		yield(E.run([
+				'Killertron: [matrix clean=60.0 dirty=1.0]Killertron initializing scanning protocol...[/matrix]',
+				'Killertron: [matrix clean=60.0 dirty=1.0]Please place the subject into the scanning platform[/matrix]',
+			]), 'completed')
+		D.emit_signal('dialog_finished')
+		E.current_room.init_killertron_scan()

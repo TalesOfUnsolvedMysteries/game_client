@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/lospec_palette_list/classes/filter.gd"
 }, {
+"base": "Node",
+"class": "GlobalTimer",
+"language": "GDScript",
+"path": "res://popochiu/Common/GlobalTimer.gd"
+}, {
 "base": "Container",
 "class": "HFlowContainer",
 "language": "GDScript",
@@ -204,6 +209,7 @@ _global_script_class_icons={
 "DialogText": "",
 "DisplayBox": "",
 "Filter": "",
+"GlobalTimer": "",
 "HFlowContainer": "",
 "History": "",
 "Hotspot": "res://addons/Popochiu/icons/hotspot.png",
