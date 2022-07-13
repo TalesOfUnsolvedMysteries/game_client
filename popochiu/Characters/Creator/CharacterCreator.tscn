@@ -66,11 +66,13 @@ text_color = Color( 0.8, 0.411765, 0.894118, 1 )
 polygon = PoolVector2Array( -17, -25, -19, -5, -9, 0, -19, 16, -14, 18, -9, 13, -11, 25, -7, 25, -4, 17, 10, 10, 11, 5, 17, 0, 18, -21, 1, -10 )
 
 [node name="BaselineHelper" type="Line2D" parent="."]
+visible = false
 position = Vector2( 0, 50 )
 points = PoolVector2Array( -10000, 0, 10000, 0 )
 width = 1.0
 
 [node name="WalkToHelper" type="Position2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_group_": true
 }
@@ -95,4 +97,5 @@ texture = ExtResource( 2 )
 hframes = 3
 
 [node name="DialogPos" type="Position2D" parent="."]
+visible = false
 position = Vector2( 0, -27 )

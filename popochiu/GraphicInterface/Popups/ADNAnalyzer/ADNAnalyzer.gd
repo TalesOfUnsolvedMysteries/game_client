@@ -109,12 +109,14 @@ func _show_results() -> void:
 	os_logo.self_modulate.a = 0.0
 	os_name.self_modulate.a = 0.0
 	self._state = STATES.showing_results
-	
-	results_screen.appear(SecretsKeeper.get(_adn))
+	SecretsKeeper.async_get(_adn)
+	var adn = yield(SecretsKeeper, 'secret_retrieved')
+	print('adnnn, ', adn)
+	results_screen.appear(adn)
 	
 	yield(results_screen, 'parts_shown')
 	
-	os_message.text = 'adn: ' + SecretsKeeper.get(_adn)
+	os_message.text = 'adn: %s' % adn
 	
 	_workin = false
 

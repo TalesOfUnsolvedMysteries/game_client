@@ -91,7 +91,10 @@ remote func set_countdown_timer_client(time):
 	countdown_timer = time
 
 func game_over(_peer_id, death_cause):
-	if !server: return
+	if !server:
+		if Globals.is_single_test():
+			E.goto_room('GameOver')
+	return
 	if pilot_peer_id != _peer_id:
 		print('player already removed')
 		return

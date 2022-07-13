@@ -1,0 +1,245 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/PopupOverlay.tres" type="StyleBox" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/sprites/screen.png" type="Texture" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-12.tres" type="DynamicFont" id=3]
+[ext_resource path="res://addons/Popochiu/fonts/monkeyisland-1991.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Killertron/KillertronLog.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+use_mipmaps = true
+extra_spacing_bottom = -2
+font_data = ExtResource( 4 )
+
+[node name="KillertronLog" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="CenterContainer"]
+margin_left = 93.0
+margin_top = 18.0
+margin_right = 227.0
+margin_bottom = 161.0
+texture = ExtResource( 2 )
+
+[node name="Title" type="RichTextLabel" parent="CenterContainer/Background"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 126.0
+margin_bottom = 34.0
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]KILLERTRON'S LOG[/center]"
+text = "KILLERTRON'S LOG"
+scroll_active = false
+
+[node name="DataContainer" type="HBoxContainer" parent="CenterContainer/Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 35.0
+margin_right = -2.0
+margin_bottom = -8.0
+rect_min_size = Vector2( 118, 100 )
+
+[node name="Scanned" type="VBoxContainer" parent="CenterContainer/Background/DataContainer"]
+margin_right = 60.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 58, 100 )
+custom_constants/separation = 0
+
+[node name="Title" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+margin_right = 60.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 60, 21 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]SCANNED ADN[/center]
+[center]HISTORY[/center]"
+text = "SCANNED ADN
+HISTORY"
+scroll_active = false
+
+[node name="Registry0" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+visible = false
+margin_top = 21.0
+margin_right = 60.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]022 [color=#0FFF00]0[/color][color=#FFFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]2[/color][color=#FFFF00]3[/color][color=#FF0000]6[/color] X[/center]"
+text = "022 003236 X"
+scroll_active = false
+
+[node name="Registry1" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+visible = false
+margin_top = 31.0
+margin_right = 60.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]021 [color=#FFFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]2[/color][color=#0FFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]6[/color] 0[/center]"
+text = "021 032036 0"
+scroll_active = false
+
+[node name="Registry2" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+visible = false
+margin_top = 41.0
+margin_right = 60.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]020 [color=#0FFF00]0[/color][color=#FFFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]2[/color][color=#FFFF00]3[/color][color=#FF0000]6[/color] X[/center]"
+text = "020 003236 X"
+scroll_active = false
+
+[node name="Registry3" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+visible = false
+margin_top = 51.0
+margin_right = 60.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]019 [color=#0FFF00]0[/color][color=#FFFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]2[/color][color=#FFFF00]3[/color][color=#FF0000]6[/color] X[/center]"
+text = "019 003236 X"
+scroll_active = false
+
+[node name="Registry4" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+visible = false
+margin_top = 61.0
+margin_right = 60.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]018 [color=#0FFF00]0[/color][color=#FFFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]2[/color][color=#FFFF00]3[/color][color=#FF0000]6[/color] X[/center]"
+text = "018 003236 X"
+scroll_active = false
+
+[node name="Registry5" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Scanned"]
+visible = false
+margin_top = 71.0
+margin_right = 60.0
+margin_bottom = 81.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]017 [color=#0FFF00]0[/color][color=#FFFF00]0[/color][color=#FFFF00]3[/color][color=#FF0000]2[/color][color=#FFFF00]3[/color][color=#FF0000]6[/color] 0[/center]"
+text = "017 003236 0"
+scroll_active = false
+
+[node name="Collected" type="VBoxContainer" parent="CenterContainer/Background/DataContainer"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 58, 100 )
+custom_constants/separation = 0
+
+[node name="Title" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Collected"]
+margin_right = 60.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 60, 21 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]COLLECTED[/center]
+[center]ADN[/center]"
+text = "COLLECTED
+ADN"
+scroll_active = false
+
+[node name="ADN0" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Collected"]
+visible = false
+margin_top = 21.0
+margin_right = 60.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]000 003266[/center]"
+text = "000 003266"
+scroll_active = false
+
+[node name="ADN1" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Collected"]
+visible = false
+margin_top = 31.0
+margin_right = 60.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]001 003266[/center]"
+text = "001 003266"
+scroll_active = false
+
+[node name="ADN2" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Collected"]
+visible = false
+margin_top = 41.0
+margin_right = 60.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]002 003266[/center]"
+text = "002 003266"
+scroll_active = false
+
+[node name="ADN3" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Collected"]
+visible = false
+margin_top = 51.0
+margin_right = 60.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]003 003266[/center]"
+text = "003 003266"
+scroll_active = false
+
+[node name="ADN4" type="RichTextLabel" parent="CenterContainer/Background/DataContainer/Collected"]
+visible = false
+margin_top = 61.0
+margin_right = 60.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 60, 10 )
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]004 003266[/center]"
+text = "004 003266"
+scroll_active = false
+
+[node name="PoweredLabel" type="RichTextLabel" parent="CenterContainer/Background"]
+margin_left = 8.0
+margin_top = 124.0
+margin_right = 126.0
+margin_bottom = 135.0
+custom_colors/default_color = Color( 1, 0.509804, 0.807843, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]- buggy software inc -[/center]"
+text = "- buggy software inc -"
+scroll_active = false

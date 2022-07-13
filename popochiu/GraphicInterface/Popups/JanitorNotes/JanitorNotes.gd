@@ -7,7 +7,8 @@ var _drawings := {}
 func _ready() -> void:
 	for d in $KeysDrawings.get_children():
 		var drawing: HBoxContainer = d
-		var config: String = SecretsKeeper.get('DOOR_%s_LOCK' % drawing.name)
+		SecretsKeeper.async_get('DOOR_%s_LOCK' % drawing.name)
+		var config: String = yield(SecretsKeeper, 'secret_retrieved')
 		
 		if not config:
 			config = '0' + drawing.name

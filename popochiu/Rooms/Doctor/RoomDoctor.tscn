@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Doctor/RoomDoctor.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.tscn" type="PackedScene" id=2]
@@ -25,7 +25,7 @@
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/PropExit.gd" type="Script" id=23]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/Exit/exit.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/Rooms/Doctor/Props/DoctorPC/adn_picker.png" type="Texture" id=25]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=26]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=26]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_normal.png" type="Texture" id=27]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/doctor_hidden.png" type="Texture" id=28]
 [ext_resource path="res://popochiu/Rooms/Doctor/Hotspots/HotspotGreenBook.gd" type="Script" id=29]
@@ -35,6 +35,12 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/blue_book.png" type="Texture" id=33]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/green_book.png" type="Texture" id=34]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/sheets.png" type="Texture" id=35]
+[ext_resource path="res://popochiu/Characters/Killertron/CharacterKillertron.tscn" type="PackedScene" id=36]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Killertron/KillertronLog.tscn" type="PackedScene" id=37]
+[ext_resource path="res://popochiu/Rooms/Doctor/RemoteCall.gd" type="Script" id=38]
+[ext_resource path="res://popochiu/Rooms/Doctor/DecideFate.gd" type="Script" id=39]
+[ext_resource path="res://popochiu/Rooms/Doctor/RecoveryCooldown.gd" type="Script" id=40]
+[ext_resource path="res://popochiu/Rooms/Doctor/ScanTimeout.gd" type="Script" id=41]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 67, 18, 107, 22, 81, 64, -38, 75, 19, 15, -103, 32, -94, 22, -72, 7, 23, 7, 66, 8 )
@@ -95,7 +101,7 @@ texture = ExtResource( 9 )
 [node name="KillertronPower" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( -46, -22 )
 script = ExtResource( 13 )
-description = "Another device"
+description = "Killertron"
 baseline = -90
 cursor = 1
 script_name = "KillertronPower"
@@ -261,12 +267,6 @@ background = ExtResource( 34 )
 [node name="CollisionPolygon2D" parent="Hotspots/GreenBook" index="0"]
 polygon = PoolVector2Array( -4, -4, -7, 3, 2, 4, 6, -4 )
 
-[node name="BaselineHelper" parent="Hotspots/GreenBook" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Hotspots/GreenBook" index="2"]
-visible = false
-
 [node name="BlueBook" parent="Hotspots" instance=ExtResource( 30 )]
 position = Vector2( 46, -2 )
 script = ExtResource( 31 )
@@ -279,12 +279,6 @@ background = ExtResource( 33 )
 
 [node name="CollisionPolygon2D" parent="Hotspots/BlueBook" index="0"]
 polygon = PoolVector2Array( -4, -4, -8, 0, -8, 3, 4, 4, 8, 0, 8, -3 )
-
-[node name="BaselineHelper" parent="Hotspots/BlueBook" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Hotspots/BlueBook" index="2"]
-visible = false
 
 [node name="Sheets" parent="Hotspots" instance=ExtResource( 30 )]
 position = Vector2( 51, -18 )
@@ -300,18 +294,18 @@ background = ExtResource( 35 )
 [node name="CollisionPolygon2D" parent="Hotspots/Sheets" index="0"]
 polygon = PoolVector2Array( -4, -3, -9, 1, -8, 4, 4, 5, 8, 1, 8, -2 )
 
-[node name="BaselineHelper" parent="Hotspots/Sheets" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Hotspots/Sheets" index="2"]
-visible = false
-
 [node name="Regions" type="Node2D" parent="."]
 
 [node name="Points" type="Node2D" parent="."]
 
 [node name="stand_pc" type="Position2D" parent="Points"]
 position = Vector2( 20, 19 )
+
+[node name="stand_killertron" type="Position2D" parent="Points"]
+position = Vector2( -29, 13 )
+
+[node name="stand_platform" type="Position2D" parent="Points"]
+position = Vector2( -59, 18 )
 
 [node name="WalkableAreas" type="Node2D" parent="."]
 
@@ -325,13 +319,41 @@ navpoly = SubResource( 1 )
 [node name="CharacterBug" parent="Characters" instance=ExtResource( 22 )]
 position = Vector2( 89, 40 )
 
+[node name="CharacterKillertron" parent="Characters" instance=ExtResource( 36 )]
+visible = false
+position = Vector2( 1, 56 )
+z_index = -2
+
 [node name="GI" type="CanvasLayer" parent="."]
 
 [node name="ADNAnalyzer" parent="GI" instance=ExtResource( 2 )]
 visible = false
 
-[node name="Painting" parent="GI" instance=ExtResource( 26 )]
+[node name="KillertronLog" parent="GI" instance=ExtResource( 37 )]
 visible = false
+
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 26 )]
+visible = false
+
+[node name="RemoteProcedures" type="Node" parent="."]
+
+[node name="ScanADN" type="Node" parent="RemoteProcedures"]
+script = ExtResource( 38 )
+
+[node name="DecideFate" type="Node" parent="RemoteProcedures"]
+script = ExtResource( 39 )
+
+[node name="GlobalTimers" type="Node" parent="."]
+
+[node name="ScanTimeout" type="Node" parent="GlobalTimers"]
+script = ExtResource( 41 )
+step = 1.0
+time_target = 5
+
+[node name="RecoveryCooldown" type="Node" parent="GlobalTimers/ScanTimeout"]
+script = ExtResource( 40 )
+step = 1.0
+time_target = 10
 
 [editable path="Props/Painting"]
 [editable path="Props/KillertronPower"]

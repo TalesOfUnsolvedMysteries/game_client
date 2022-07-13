@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Writer/RoomWriter.gd" type="Script" id=1]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://popochiu/Rooms/Writer/Props/Window/PropWindow.gd" type="Script" id=4]
 [ext_resource path="res://popochiu/Rooms/Writer/Props/Bg/bg.png" type="Texture" id=5]
@@ -256,7 +256,8 @@ position = Vector2( 11, 58 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Painting" parent="CanvasLayer" instance=ExtResource( 2 )]
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [editable path="Props/Window"]
 [editable path="Props/Desk"]

@@ -1,7 +1,7 @@
 tool
 extends PopochiuRoom
 
-onready var painting: PanelContainer = $GI/Painting
+onready var painting = $PaintingOverlay2D
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░

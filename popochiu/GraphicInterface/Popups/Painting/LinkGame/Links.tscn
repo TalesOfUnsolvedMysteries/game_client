@@ -1,0 +1,142 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/LinkGame/Links.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/LinkGame/Point.tscn" type="PackedScene" id=2]
+
+[node name="Links" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Points" type="Node2D" parent="."]
+position = Vector2( 6, 6 )
+
+[node name="Point" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 0, 15 )
+frame = 14
+original_moves = 14
+coords = Vector2( 0, 1 )
+
+[node name="Point2" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 15, 15 )
+is_start_point = true
+coords = Vector2( 1, 1 )
+totem = "2"
+
+[node name="Point3" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 15, 30 )
+frame = 13
+original_moves = 13
+coords = Vector2( 1, 2 )
+
+[node name="Point5" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 15, 0 )
+frame = 7
+original_moves = 7
+coords = Vector2( 1, 0 )
+
+[node name="Point6" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 30, 0 )
+frame = 7
+original_moves = 7
+coords = Vector2( 2, 0 )
+totem = "BEE"
+
+[node name="Point7" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 30, 15 )
+coords = Vector2( 2, 1 )
+
+[node name="Point4" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 0, 30 )
+frame = 12
+original_moves = 12
+coords = Vector2( 0, 2 )
+totem = "BEETLE"
+
+[node name="Point8" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 30, 30 )
+frame = 13
+original_moves = 13
+coords = Vector2( 2, 2 )
+
+[node name="Point9" parent="Points" instance=ExtResource( 2 )]
+frame = 6
+original_moves = 6
+
+[node name="Point10" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 45, 0 )
+frame = 7
+original_moves = 7
+coords = Vector2( 3, 0 )
+
+[node name="Point11" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 60, 0 )
+frame = 7
+original_moves = 7
+coords = Vector2( 4, 0 )
+totem = "ROOSTER"
+
+[node name="Point12" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 75, 0 )
+frame = 7
+original_moves = 7
+coords = Vector2( 5, 0 )
+
+[node name="Point13" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 90, 0 )
+frame = 3
+original_moves = 3
+coords = Vector2( 6, 0 )
+
+[node name="Point14" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 45, 15 )
+frame = 11
+original_moves = 11
+coords = Vector2( 3, 1 )
+totem = "LADY_BUG"
+
+[node name="Point15" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 60, 15 )
+frame = 14
+original_moves = 14
+coords = Vector2( 4, 1 )
+
+[node name="Point16" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 75, 15 )
+is_start_point = true
+coords = Vector2( 5, 1 )
+totem = "1"
+
+[node name="Point17" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 90, 15 )
+frame = 11
+original_moves = 11
+coords = Vector2( 6, 1 )
+
+[node name="Point18" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 45, 30 )
+frame = 13
+original_moves = 13
+coords = Vector2( 3, 2 )
+
+[node name="Point19" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 60, 30 )
+frame = 13
+original_moves = 13
+coords = Vector2( 4, 2 )
+
+[node name="Point20" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 75, 30 )
+frame = 13
+original_moves = 13
+coords = Vector2( 5, 2 )
+
+[node name="Point21" parent="Points" instance=ExtResource( 2 )]
+position = Vector2( 90, 30 )
+frame = 9
+original_moves = 9
+coords = Vector2( 6, 2 )
+totem = "TOTEM"
+
+[node name="Path" type="Line2D" parent="."]
+points = PoolVector2Array( 40, 40, 40, 40 )
+width = 1.0
+default_color = Color( 0.988235, 0.298039, 0.588235, 1 )

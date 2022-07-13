@@ -4,6 +4,8 @@ const _filename = 'res://.secrets'
 
 var env = {}
 
+signal secret_retrieved
+
 func _ready():
 	_load_secrets()
 
@@ -28,3 +30,14 @@ func get(secret_key):
 		return env[secret_key]
 	return ''
 
+func async_get(secret_key):
+	yield(get_tree(), 'idle_frame')
+	if !NetworkManager.server and !Globals.is_single_test(): return
+	var secret = self.get(secret_key)
+	if !Globals.is_single_test():
+		rpc_id(NetworkManager.pilot_peer_id, 'secret_request', secret)
+	emit_signal('secret_retrieved', secret)
+
+remote func secret_request(secret):
+	if NetworkManager.isPilot():
+		emit_signal('secret_retrieved', secret)

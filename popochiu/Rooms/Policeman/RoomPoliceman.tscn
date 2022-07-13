@@ -33,7 +33,7 @@
 [ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotTheLionKing.gd" type="Script" id=31]
 [ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotTheMatrix.gd" type="Script" id=32]
 [ext_resource path="res://popochiu/Rooms/Policeman/Hotspots/HotspotScarface.gd" type="Script" id=33]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=34]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=34]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/policeman_normal.png" type="Texture" id=35]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/policeman_hidden.png" type="Texture" id=36]
 
@@ -245,7 +245,7 @@ margin_right = -2.0
 margin_bottom = 2.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "2"
+text = "1"
 
 [node name="H2" type="Label" parent="Props/Clock"]
 margin_left = -3.0
@@ -254,7 +254,7 @@ margin_right = 1.0
 margin_bottom = 1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "2"
+text = "7"
 
 [node name="S" type="Label" parent="Props/Clock"]
 margin_top = -3.0
@@ -270,7 +270,7 @@ margin_right = 7.0
 margin_bottom = -1.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "5"
+text = "0"
 
 [node name="M2" type="Label" parent="Props/Clock"]
 margin_left = 6.0
@@ -279,7 +279,7 @@ margin_right = 10.0
 margin_bottom = -2.0
 custom_colors/font_color = Color( 0.0745098, 0.615686, 0.0313726, 1 )
 custom_fonts/font = ExtResource( 28 )
-text = "6"
+text = "9"
 
 [node name="Notebook" parent="Props" instance=ExtResource( 3 )]
 position = Vector2( 16, 17 )
@@ -432,8 +432,7 @@ position = Vector2( -73, 52 )
 [node name="Jukebox" parent="GI" instance=ExtResource( 25 )]
 visible = false
 
-[node name="Painting" parent="GI" instance=ExtResource( 34 )]
-visible = false
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 34 )]
 
 [editable path="Props/Window"]
 [editable path="Props/Painting"]

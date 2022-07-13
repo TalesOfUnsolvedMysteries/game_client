@@ -35,7 +35,7 @@
 [ext_resource path="res://popochiu/Rooms/Janitor/Props/Jigsaw/jigsaw_bubble.png" type="Texture" id=33]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/JanitorNotes/JanitorNotes.tscn" type="PackedScene" id=34]
 [ext_resource path="res://popochiu/Common/Overlay2DBlocker.tscn" type="PackedScene" id=35]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/Painting.tscn" type="PackedScene" id=36]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=36]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/janitor_hidden.png" type="Texture" id=37]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/janitor_normal.png" type="Texture" id=38]
 
@@ -286,7 +286,7 @@ texture = ExtResource( 32 )
 [node name="JanitorNotes" parent="CanvasLayer" instance=ExtResource( 34 )]
 visible = false
 
-[node name="Painting" parent="CanvasLayer" instance=ExtResource( 36 )]
+[node name="PaintingOverlay2D" parent="." instance=ExtResource( 36 )]
 visible = false
 
 [editable path="Props/Bed"]

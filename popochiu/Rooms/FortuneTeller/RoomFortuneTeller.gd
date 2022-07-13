@@ -7,7 +7,7 @@ var figurine_a: Figurine = null
 var room_requested = ''
 
 onready var secret: Secret = find_node('Secret')
-onready var painting: PanelContainer = $CanvasLayer/Painting
+onready var painting = $PaintingOverlay2D
 onready var tarot: PanelContainer = $CanvasLayer/Tarot
 
 

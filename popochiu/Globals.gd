@@ -181,7 +181,7 @@ const NFTs := {
 }
 
 var main_mx_play = false
-var bug_name := ''
+var bug_name := 'pancracio'
 var bug_adn := ''
 var turn := 0
 sync var state := {
@@ -219,12 +219,17 @@ sync var state := {
 	'Penthouse-VASE_SOLVED': true,
 	'Penthouse-COMPARTIMENT_OPENED': true,
 	'Penthouse-FORTUNETELLER_NOTES': false,
-	# ADN picker - Doctor items
+	# Doctor set
+	# ADN picker
 	'ADN_picker_content': 'PENTHOUSE_CORPSE',
+	'Killertron_COLLECTED_ADN': ['13a263', '440291'],
+	'Killertron_SCANNED_ADN': [['611210', '011111'], ['013112', '112112'], ['440291', '222222'], ['13a263', '222222']],
+	'Killertron_TOTAL_SCANNED': 4,
 	# Fortune Teller
 	'RITUAL_configuration': '000ABCDE000',
 	'RITUAL_summoned': []
 }
+sync var session_state:= {}
 var server_file = "user://server.save"
 var battery_power := 0.0 setget _set_battery_power
 var elevator_used := false
@@ -260,6 +265,7 @@ func _ready() -> void:
 		.set_description('Makes the player win a NFT')\
 		.add_argument('key', TYPE_STRING)\
 		.register()
+	reset_session_state()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -295,6 +301,18 @@ func load_state ():
 		puzzle_state = file.get_var(true)
 		file.close()
 
+# session state
+func sync_session_state():
+	if NetworkManager.server and NetworkManager.pilot_peer_id != -1:
+		rset_id(NetworkManager.pilot_peer_id, 'session_state', session_state)
+
+func reset_session_state():
+	session_state = {}
+	sync_session_state()
+
+func set_session_state(key, value):
+	session_state[key] = value
+	sync_session_state()
 
 # Establece la apariencia del PC en base a una cadena de códigos:
 # HEAD BODY LEGS EYES ARMS SHOES
