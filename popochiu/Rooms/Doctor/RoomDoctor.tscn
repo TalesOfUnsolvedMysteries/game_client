@@ -205,7 +205,11 @@ cursor = 1
 script_name = "DoctorPC"
 texture = ExtResource( 19 )
 
+[node name="BaselineHelper" parent="Props/DoctorPC" index="0"]
+visible = true
+
 [node name="WalkToHelper" parent="Props/DoctorPC" index="1"]
+visible = true
 position = Vector2( 21, 54 )
 
 [node name="Sprite" parent="Props/DoctorPC" index="2"]
