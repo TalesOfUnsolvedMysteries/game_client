@@ -7,8 +7,10 @@ preload('res://popochiu/GraphicInterface/Popups/ADNAnalyzer/ADNAnalyzer.gd')
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
+	$ADNPicker.frame = 0 if Globals.state.get('ADN_picker_content', '').empty() else 1
 	if I.is_item_in_inventory('ADNpicker'):
 		$ADNPicker.hide()
+	I.connect('item_discarded', self, '_on_item_discarded')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
@@ -84,3 +86,8 @@ func on_analyzer_closed(state: String) -> void:
 			E.run([
 				'Player: Looks like I have to put the picker in the thing.'
 			])
+
+
+func _on_item_discarded(item: InventoryItem):
+	if item.script_name.match('ADNpicker'):
+		$ADNPicker.show()
