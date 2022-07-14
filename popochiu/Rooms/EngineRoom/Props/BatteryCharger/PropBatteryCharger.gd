@@ -1,35 +1,26 @@
 tool
 extends Prop
 
-
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
 	if Engine.editor_hint:
 		return
 	
-	$ChargingProgress.value = Globals.battery_power
+	_load_battery_power(GlobalTimer.get_time('ChargeTimer'))
+	$ChargeTimer.connect('step_completed', self, '_update_charging_status')
+	$ChargeTimer.connect('timeout', self, '_battery_charged')
 	
 	if !Globals.state.get('EngineRoom-CHARGE_SOCKET_WITH_BATTERY'):
 		$Sprite.frame = 0
 		$ChargingProgress.value = 0
 	else:
 		$Sprite.frame = 1
-		if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
-			_listen_battery_charging(false)
-		elif Globals.battery_power < 100:
-			Globals.set_state('EngineRoom-CHARGING_BATTERY', true)
-			_listen_battery_charging(false)
-			Globals.add_battery_power()
 
 	I.connect('item_discarded', self, '_on_item_discarded')
 
 
 func _exit_tree() -> void:
-	if Globals.is_connected(
-		'battery_charge_updated', self, '_update_charging_status'
-	):
-		Globals.disconnect('battery_charge_updated', self, '_update_charging_status')
-
+	pass
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func on_interact() -> void:
@@ -39,22 +30,23 @@ func on_interact() -> void:
 		
 		return
 	
-	if Globals.state.get('EngineRoom-CHARGING_BATTERY'):
-		yield(E.run(['Player: Should I extract the battery?']), 'completed')
+	if $ChargeTimer._global_ref and $ChargeTimer._global_ref._playing:
+		yield(E.run([
+			C.walk_to_clicked(),
+			'Player: Should I extract the battery?'
+		]), 'completed')
 		
 		var answer: DialogOption = yield(E.show_inline_dialog(['Yes', 'No']), 'completed')
 		if answer.id == 'Opt1':
 			# check for space in inventory first
 			if I._items_count == 3: # inventory is full
 				yield(E.run([
-					C.walk_to_clicked(),
 					'Player: I can\'t carry anymore items!'
 				]), 'completed')
 				return
 			Globals.set_state('BATTERY_LAST_LOCATION', 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY')
 			E.run([
-				C.walk_to_clicked(),
-				_stop_charging(),
+				_pause_charging(),
 				A.play({cue_name='sfx_battery_out_charger'}),
 				I.add_item('MotherboardBattery'),
 				'Player: Fuck the charging!'
@@ -105,46 +97,39 @@ func on_item_used(item) -> void:
 				C.walk_to_clicked(),
 				I.remove_item(item.script_name),
 				A.play({cue_name='sfx_battery_in_charger'}),
-				_listen_battery_charging(),
 				'Player: This should charge the battery.',
 				'Player: ...and it will take just %d minutes.' %\
-				(Globals.BATTERY_CHARGING_TIME / 60)
+				($ChargeTimer.time_target / 60)
 			]), 'completed')
 			
-			Globals.start_battery_charging()
+			start_charging()
 
+func start_charging():
+	$ChargeTimer.start()
+	$Sprite.frame = 1
+	_load_battery_power(GlobalTimer.get_time('ChargeTimer'))
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
-func _listen_battery_charging(is_in_queue := true) -> void:
-	if is_in_queue: yield()
-	
-	$Sprite.frame = 1
-	Globals.connect('battery_charge_updated', self, '_update_charging_status')
-	
-	if is_in_queue: yield(get_tree(), 'idle_frame')
+
+func _update_charging_status(_elapsed_time) -> void:
+	_load_battery_power(_elapsed_time)
+	A.play({cue_name = 'sfx_battery_charging_progress', is_in_queue = false})
 
 
-func _update_charging_status() -> void:
-	$ChargingProgress.value = Globals.battery_power
-	
-	if $ChargingProgress.value == 100:
-		E.run([
-			A.play({cue_name = 'sfx_battery_charging_done', is_in_queue = true}),
-			'Player: Looks like the battery is charged'
-		])
-	else:
-		A.play({cue_name = 'sfx_battery_charging_progress', is_in_queue = false})
+func _battery_charged() -> void:
+	E.run([
+		A.play({cue_name = 'sfx_battery_charging_done', is_in_queue = true}),
+		'Player: Looks like the battery is charged'
+	])
 
+func _load_battery_power(_elapsed_time):
+	$ChargingProgress.value = round(100.0 * _elapsed_time / $ChargeTimer.time_target)
 
-func _stop_charging() -> void:
-	yield()
-	
+func _pause_charging() -> void:
 	if Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		return yield(get_tree(), 'idle_frame')
 	
-	Globals.stop_battery_charging()
-	Globals.disconnect('battery_charge_updated', self, '_update_charging_status')
-	
+	$ChargeTimer.pause()
 	$Sprite.frame = 0
 	$ChargingProgress.value = 0
 	A.play({cue_name = 'sfx_battery_charging_stop', is_in_queue = false})
@@ -154,5 +139,4 @@ func _stop_charging() -> void:
 func _on_item_discarded(item: InventoryItem):
 	if item.script_name == 'MotherboardBattery':
 		if Globals.state.get('BATTERY_LAST_LOCATION') == 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY':
-			$Sprite.frame = 1
-			Globals.start_battery_charging()
+			start_charging()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://popochiu/Rooms/EngineRoom/RoomEngineRoom.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Lock/Lock.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://popochiu/Rooms/EngineRoom/Hotspots/HotspotEngineInstructions.gd" type="Script" id=18]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Documents/sprites/types/engine_instructions.png" type="Texture" id=19]
 [ext_resource path="res://popochiu/Rooms/EngineRoom/FuseBoxSecret.gd" type="Script" id=20]
+[ext_resource path="res://popochiu/Rooms/EngineRoom/Props/BatteryCharger/ChargeTimer.gd" type="Script" id=21]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 89, 16, 130, 51, 25, 73, 45, 27, -107, 54, -91, 9, -34, 29, 43, 17, -44, 8 )
@@ -124,11 +125,9 @@ script_name = "BatteryCharger"
 texture = ExtResource( 10 )
 
 [node name="BaselineHelper" parent="Props/BatteryCharger" index="0"]
-visible = true
 position = Vector2( 0, -23 )
 
 [node name="WalkToHelper" parent="Props/BatteryCharger" index="1"]
-visible = true
 position = Vector2( 5, 30 )
 
 [node name="Sprite" parent="Props/BatteryCharger" index="2"]
@@ -147,6 +146,13 @@ texture_over = ExtResource( 15 )
 texture_progress = ExtResource( 16 )
 texture_progress_offset = Vector2( 1, 1 )
 
+[node name="ChargeTimer" type="Node" parent="Props/BatteryCharger"]
+script = ExtResource( 21 )
+step = 1.0
+time_target = 30
+global_state = true
+reset_on_stop = false
+
 [node name="Hotspots" type="Node2D" parent="."]
 
 [node name="EngineInstructions" parent="Hotspots" instance=ExtResource( 17 )]
@@ -164,12 +170,6 @@ background = ExtResource( 19 )
 
 [node name="CollisionPolygon2D" parent="Hotspots/EngineInstructions" index="0"]
 polygon = PoolVector2Array( -6, -6, -6, 7, 6, 6, 6, -7 )
-
-[node name="BaselineHelper" parent="Hotspots/EngineInstructions" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Hotspots/EngineInstructions" index="2"]
-visible = false
 
 [node name="Regions" type="Node2D" parent="."]
 
