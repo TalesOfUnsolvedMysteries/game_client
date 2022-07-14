@@ -16,7 +16,6 @@ enum TestMode {
 
 export var test_mode = TestMode.SINGLE
 
-signal battery_charge_updated
 signal shelf_weights_updated
 
 enum Bodies {
@@ -66,7 +65,7 @@ const SHOES := [
 	preload('res://popochiu/Characters/Bug/parts/shoes_sandals.png'),
 	preload('res://popochiu/Characters/Bug/parts/shoes_gogo.png'),
 ]
-const BATTERY_CHARGING_TIME := 0.1 * 60
+
 const NFTs := {
 	ENGINE_ROOM = {
 		label = 'Engine keeper',
@@ -208,7 +207,6 @@ sync var state := {
 	'PC_REGISTER_APP_INSTALLED': false,
 	'Lobby-ENGINE_ROOM_UNLOCKED': false,
 	'EngineRoom-ELEVATOR_WORKING': true,
-	'EngineRoom-CHARGING_BATTERY': false,
 	'MasterKey-CONFIG': '0203',
 	'FirstFloor-102_UNLOCKED': true,
 	'SecondFloor-201_UNLOCKED': true,
@@ -246,12 +244,10 @@ sync var state := {
 }
 sync var session_state:= {}
 var server_file = "user://server.save"
-var battery_power := 0.0 setget _set_battery_power
 var elevator_used := false
 # Mapeados por ID
 sync var puzzle_state := {} setget _set_puzzle_state
 
-var _battery_charging_elapsed := 0
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
@@ -343,28 +339,6 @@ func set_appearance(adn: String) -> void:
 		C.player.load_appearance(adn)
 
 
-func start_battery_charging() -> void:
-	set_state('EngineRoom-CHARGING_BATTERY', true)
-	add_battery_power()
-
-
-# Aumenta en X la carga de la batería en la sala de motores (RoomEngineRoom)
-func add_battery_power() -> void:
-	yield(get_tree().create_timer(1.0), 'timeout')
-
-	if not state.get('EngineRoom-CHARGING_BATTERY'): return
-	
-	_battery_charging_elapsed += 1
-	self.battery_power = _battery_charging_elapsed * 100.0 / BATTERY_CHARGING_TIME
-
-
-func stop_battery_charging() -> void:
-	#_battery_charging_elapsed = 0
-	#self.battery_power = 0
-	set_state('EngineRoom-CHARGING_BATTERY', false)
-	pass
-
-
 func get_adn_textures(adn: String) -> Array:
 	var textures := []
 	
@@ -405,23 +379,6 @@ func _dev_win_nft(id := '') -> void:
 		G.emit_signal('nft_won', NFTs[id])
 	else:
 		G.emit_signal('nft_won', Utils.get_random_array_element(NFTs.values()))
-
-
-func _set_battery_power(value: float) -> void:
-	battery_power = value
-	
-	if battery_power == 0:
-		set_state('EngineRoom-CHARGING_BATTERY', false)
-		set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', false)
-	else:
-		emit_signal('battery_charge_updated')
-	
-		if battery_power < 100:
-			add_battery_power()
-		else:
-			# Se cargó la batería
-			set_state('EngineRoom-CHARGING_BATTERY', false)
-			set_state('EngineRoom-MOTHERBOARD_BATTERY_FULL', true)
 
 
 func _set_puzzle_state(value: Dictionary) -> void:
