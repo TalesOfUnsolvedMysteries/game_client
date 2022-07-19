@@ -1,16 +1,359 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Basement/RoomBasement.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Chair/PropChair.gd" type="Script" id=2]
+[ext_resource path="res://addons/Popochiu/Engine/Objects/Prop/Prop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Bg/bg.png" type="Texture" id=4]
+[ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=5]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/BackYardDoor/back_yard_door.png" type="Texture" id=6]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/HeavyDoor/PropHeavyDoor.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/HeavyDoor/heavy_door.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/SlotMachine/PropSlotMachine.gd" type="Script" id=9]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/SlotMachine/slot_machine.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/RubbleBottom/rubble_bottom.png" type="Texture" id=11]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/RubbleTop/rubble_top.png" type="Texture" id=12]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/FlowerPotBack/PropFlowerPotBack.gd" type="Script" id=13]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/FlowerPotBack/flowerpot_back.png" type="Texture" id=14]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/FlowerPotFront/PropFlowerPotFront.gd" type="Script" id=15]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/FlowerPotFront/flowerpot_front.png" type="Texture" id=16]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Plant/PropPlant.gd" type="Script" id=17]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Plant/plant.png" type="Texture" id=18]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Chair/chair.png" type="Texture" id=19]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/UnbrellaBase/PropUnbrellaBase.gd" type="Script" id=20]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/UnbrellaBase/unbrella_base.png" type="Texture" id=21]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/UmbrellaSplinter/PropUmbrellaSplinter.gd" type="Script" id=22]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/UmbrellaSplinter/unbrella_splinter.png" type="Texture" id=23]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Umbrella/PropUmbrella.gd" type="Script" id=24]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Umbrella/unbrella.png" type="Texture" id=25]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Corpses/PropCorpses.gd" type="Script" id=26]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/Corpses/corpses.png" type="Texture" id=27]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/CorpsesHelmet/PropCorpsesHelmet.gd" type="Script" id=28]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/CorpsesHelmet/corpses_helmet.png" type="Texture" id=29]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/CorpsesHead/PropCorpsesHead.gd" type="Script" id=30]
+[ext_resource path="res://popochiu/Rooms/Basement/Props/CorpsesHead/corpses_technician_head.png" type="Texture" id=31]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 176, 11, 202, -13, 242, 6, 134, 72, 176, 3, 213, -26, 216.981, -24.1381, 192, -17, 117, -6, 119, -10, 159, -1, 138, 1, 118, -15, 156, -37, 116, -12, 9, -36, 158, -46, 164, -43, 115, -18, 91, -21, 260, -4, 275, 3, 299, 42, 157, 25, 135, 31, 6, 58, -109, 68, -260, 69, -292, 45, -269, 20, -250, 14, -56, 11, 14, 21, 110, 32, 98, 27, 80, 8, 100, 19, 72, 8, 114, 9, 111, -3, 91, 0, 64, 4, 62, -1, 50, -10, 50, -18, 57, -21, 108, -17, 75, -22 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 1, 0, 4 ), PoolIntArray( 5, 6, 1, 7 ), PoolIntArray( 8, 9, 7, 1, 10, 11 ), PoolIntArray( 12, 13, 7, 9, 14 ), PoolIntArray( 15, 16, 17, 13, 18, 19 ), PoolIntArray( 20, 21, 22, 3, 2 ), PoolIntArray( 23, 0, 3 ), PoolIntArray( 24, 23, 3 ), PoolIntArray( 25, 26, 27, 28, 29, 30, 31, 32 ), PoolIntArray( 24, 3, 25, 33 ), PoolIntArray( 34, 33, 25, 32 ), PoolIntArray( 35, 36, 34, 32, 37 ), PoolIntArray( 13, 12, 18 ), PoolIntArray( 1, 4, 10 ), PoolIntArray( 8, 11, 38, 39 ), PoolIntArray( 40, 39, 38, 36, 35 ), PoolIntArray( 41, 37, 32 ), PoolIntArray( 42, 41, 32, 15, 43 ), PoolIntArray( 44, 43, 15 ), PoolIntArray( 45, 44, 15 ), PoolIntArray( 18, 46, 19 ), PoolIntArray( 15, 19, 47 ), PoolIntArray( 45, 15, 47 ) ]
+outlines = [ PoolVector2Array( -292, 45, -269, 20, -250, 14, -56, 11, 14, 21, 9, -36, 158, -46, 164, -43, 156, -37, 192, -17, 213, -26, 216.981, -24.1381, 202, -13, 242, 6, 260, -4, 275, 3, 299, 42, 134, 72, 6, 58, -109, 68, -260, 69 ), PoolVector2Array( 114, 9, 100, 19, 98, 27, 110, 32, 135, 31, 157, 25, 176, 11, 176, 3, 159, -1, 138, 1 ), PoolVector2Array( 50, -10, 62, -1, 64, 4, 72, 8, 80, 8, 91, 0, 111, -3, 117, -6, 119, -10, 116, -12, 118, -15, 115, -18, 108, -17, 91, -21, 75, -22, 57, -21, 50, -18 ) ]
 
 [node name="RoomBasement" type="Node2D"]
 script = ExtResource( 1 )
 script_name = "Basement"
-limit_left = 0.0
-limit_right = 0.0
-limit_top = 0.0
-limit_bottom = 0.0
+limit_left = -320.0
+limit_right = 320.0
+limit_top = -90.0
+limit_bottom = 90.0
 
 [node name="Props" type="Node2D" parent="."]
+
+[node name="Bg" parent="Props" instance=ExtResource( 3 )]
+description = "Bg"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "Bg"
+texture = ExtResource( 4 )
+
+[node name="RubbleBottom" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -163, -12 )
+description = "RubbleBottom"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "RubbleBottom"
+texture = ExtResource( 11 )
+
+[node name="BaselineHelper" parent="Props/RubbleBottom" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/RubbleBottom" index="2"]
+position = Vector2( 0, 3 )
+texture = ExtResource( 11 )
+hframes = 2
+
+[node name="CollisionPolygon2D" parent="Props/RubbleBottom" index="3"]
+visible = false
+
+[node name="RubbleTop" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -163, -40 )
+description = "RubbleTop"
+clickable = false
+baseline = -90
+cursor = 10
+script_name = "RubbleTop"
+texture = ExtResource( 12 )
+
+[node name="BaselineHelper" parent="Props/RubbleTop" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/RubbleTop" index="2"]
+position = Vector2( -0.5, 2 )
+texture = ExtResource( 12 )
+hframes = 2
+
+[node name="CollisionPolygon2D" parent="Props/RubbleTop" index="3"]
+visible = false
+
+[node name="HeavyDoor" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -95, -22 )
+script = ExtResource( 7 )
+description = "Heavy door"
+baseline = -90
+cursor = 10
+script_name = "HeavyDoor"
+texture = ExtResource( 8 )
+
+[node name="BaselineHelper" parent="Props/HeavyDoor" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/HeavyDoor" index="2"]
+texture = ExtResource( 8 )
+hframes = 2
+
+[node name="CollisionPolygon2D" parent="Props/HeavyDoor" index="3"]
+polygon = PoolVector2Array( -14, -32, 21, -34, 22, 25, -14, 26 )
+
+[node name="SlotMachine" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( -223, -23 )
+script = ExtResource( 9 )
+description = "Slot machine"
+baseline = -90
+cursor = 10
+script_name = "SlotMachine"
+texture = ExtResource( 10 )
+
+[node name="BaselineHelper" parent="Props/SlotMachine" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/SlotMachine" index="2"]
+texture = ExtResource( 10 )
+
+[node name="CollisionPolygon2D" parent="Props/SlotMachine" index="3"]
+polygon = PoolVector2Array( -16, -21, 15, -23, 17, 33, -17, 32 )
+
+[node name="FlowerPotBack" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 84, -63.5 )
+script = ExtResource( 13 )
+description = "Bushes"
+baseline = -90
+cursor = 10
+script_name = "FlowerPotBack"
+texture = ExtResource( 14 )
+
+[node name="BaselineHelper" parent="Props/FlowerPotBack" index="0"]
+position = Vector2( 0, -90 )
+
+[node name="Sprite" parent="Props/FlowerPotBack" index="2"]
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" parent="Props/FlowerPotBack" index="3"]
+polygon = PoolVector2Array( -55, -16.5, -44, -16.5, -37, -24.5, -32, -24.5, -28, -20.5, -18, -23.5, -2, -23.5, 10, -23.5, 15, -25.5, 22, -25.5, 26, -22.5, 34.4445, -22.2889, 37, -25.5, 42, -25.5, 45, -22.5, 57, -23.5, 66, -21.5, 72, -13.5, 71, -4.5, -55, 4.5, -64, -1.5 )
+
+[node name="Chair" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 190, -48 )
+script = ExtResource( 2 )
+description = "Chair"
+baseline = 3
+cursor = 10
+script_name = "Chair"
+texture = ExtResource( 19 )
+
+[node name="BaselineHelper" parent="Props/Chair" index="0"]
+position = Vector2( 0, 3 )
+
+[node name="Sprite" parent="Props/Chair" index="2"]
+texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/Chair" index="3"]
+polygon = PoolVector2Array( -8, -26, 28, -7, 27, -1, 24, 12, 20, 13, 19, 17, 15, 22, 12, 22, 5, 19, 3, 26, 1, 26, 3, 18, -19, 7, -21, 14, -23, 14, -21, 6, -28, 1, -27, -3, -15, -10, -15, -21, -12, -26 )
+
+[node name="Chair2" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 238, -24 )
+script = ExtResource( 2 )
+description = "Chair"
+baseline = 3
+cursor = 10
+script_name = "Chair"
+texture = ExtResource( 19 )
+
+[node name="BaselineHelper" parent="Props/Chair2" index="0"]
+position = Vector2( 0, 3 )
+
+[node name="Sprite" parent="Props/Chair2" index="2"]
+texture = ExtResource( 19 )
+
+[node name="CollisionPolygon2D" parent="Props/Chair2" index="3"]
+polygon = PoolVector2Array( -8, -26, 28, -7, 27, -1, 24, 12, 20, 13, 19, 17, 15, 22, 12, 22, 5, 19, 3, 26, 1, 26, 3, 18, -19, 7, -21, 14, -23, 14, -21, 6, -28, 1, -27, -3, -15, -10, -15, -21, -12, -26 )
+
+[node name="UnbrellaBase" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 184, -8 )
+script = ExtResource( 20 )
+description = "Unbrella base"
+baseline = 2
+cursor = 10
+script_name = "UnbrellaBase"
+texture = ExtResource( 21 )
+
+[node name="BaselineHelper" parent="Props/UnbrellaBase" index="0"]
+position = Vector2( 0, 2 )
+
+[node name="Sprite" parent="Props/UnbrellaBase" index="2"]
+texture = ExtResource( 21 )
+
+[node name="CollisionPolygon2D" parent="Props/UnbrellaBase" index="3"]
+polygon = PoolVector2Array( -2, -5, 0, -4, 2, 2, -1, 4, -4, 2 )
+
+[node name="UmbrellaSplinter" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 189, 12 )
+script = ExtResource( 22 )
+description = "Umbrella splinters"
+baseline = -9
+cursor = 10
+script_name = "UmbrellaSplinter"
+texture = ExtResource( 23 )
+
+[node name="BaselineHelper" parent="Props/UmbrellaSplinter" index="0"]
+position = Vector2( 0, -9 )
+
+[node name="Sprite" parent="Props/UmbrellaSplinter" index="2"]
+texture = ExtResource( 23 )
+
+[node name="CollisionPolygon2D" parent="Props/UmbrellaSplinter" index="3"]
+polygon = PoolVector2Array( -12, -8, 10, -12, 15, -12, 4, -1, 5, 11, 2, 12, -15, 7, 2, -3, -12.4754, -5.6228 )
+
+[node name="Umbrella" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 139, 8 )
+script = ExtResource( 24 )
+description = "Umbrella"
+baseline = 13
+cursor = 10
+script_name = "Umbrella"
+texture = ExtResource( 25 )
+
+[node name="BaselineHelper" parent="Props/Umbrella" index="0"]
+position = Vector2( 0, 13 )
+
+[node name="Sprite" parent="Props/Umbrella" index="2"]
+texture = ExtResource( 25 )
+
+[node name="CollisionPolygon2D" parent="Props/Umbrella" index="3"]
+polygon = PoolVector2Array( -12, -16, 0, -19, 19, -17, 31, -10, 34, -1, 16, 16, -27, 18, -34, 14, -31, 2, -24, -8 )
+
+[node name="FlowerPotFront" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 240, 40 )
+script = ExtResource( 15 )
+description = "Bushes"
+baseline = 23
+cursor = 10
+script_name = "FlowerPotFront"
+always_on_top = true
+texture = ExtResource( 16 )
+
+[node name="BaselineHelper" parent="Props/FlowerPotFront" index="0"]
+position = Vector2( 0, 23 )
+
+[node name="Sprite" parent="Props/FlowerPotFront" index="2"]
+texture = ExtResource( 16 )
+
+[node name="CollisionPolygon2D" parent="Props/FlowerPotFront" index="3"]
+polygon = PoolVector2Array( -57, -8, -50, -8, -45, -14, -29, -14, -25, -11, -21, -18, -15, -24, -8, -23, -8, -30, -2, -34, 6, -33, 9, -30, 11, -33, 17, -34, 32, -30, 36, -34, 41, -35, 45, -32, 60, -29, 63, -24, 64, -13, 58, -9, -52, 12, -60, 9, -63, 3 )
+
+[node name="Plant" parent="Props" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 115.5, 44 )
+input_pickable = false
+script = ExtResource( 17 )
+description = "Plant"
+baseline = 28
+cursor = 10
+script_name = "Plant"
+always_on_top = true
+texture = ExtResource( 18 )
+
+[node name="BaselineHelper" parent="Props/Plant" index="0"]
+position = Vector2( 0, 28 )
+
+[node name="Sprite" parent="Props/Plant" index="2"]
+texture = ExtResource( 18 )
+
+[node name="CollisionPolygon2D" parent="Props/Plant" index="3"]
+polygon = PoolVector2Array( -17.5, -35, -9.5, -36, 2.5, -42, 9.5, -42, 5.5, -37, 12.5, -37, 16.5, -35, 15.5, -32, 2.5, -29, -2.5, -26, 1.5, -26, 3.5, -24, 4.5, -21, 8.5, -24, 11.5, -24, 13.5, -20, 13.5, -13, 17.5, -10, 20.5, -15, 22.5, -16, 23.5, -12, 20.5, -10, 20.5, -2, 19.5, 3, 22.5, 5, 22.5, 8, 20.5, 8, 18.5, 6, 16.5, 4, 11.5, 3, 6.5, 6, 6.5, 9, 14.5, 9, 19.5, 11, 23.5, 16, 25.5, 20, 25.5, 28, 22.5, 32, 15.5, 35, 3.5, 35, -5.5, 32, -9.5, 27, -9.5, 20, -7.5, 16, -6.5, 13, -3.5, 11, 1.5, 10, 1.5, 7, -1.5, 6, -4.5, 3, -1.5, 2, 2.5, 5, 5.5, 1, 10.5, 0, 15.5, -1, 16.5, -6, 13.5, -7, 8.5, -10, 4.5, -6, 2.5, -6, 3.5, -11, 8.5, -12, 8.5, -18, 5.5, -17, 0.5, -18, -6.5, -15, -9.5, -15, -10.5, -20, -8.5, -23, -12.5, -21, -18.5, -14, -25.5, -4, -27.5, -9, -27.5, -13, -18.5, -23, -12.5, -25, -12.5, -26, -30.5, -19, -30.5, -23, -20.5, -33 )
+
+[node name="Corpses" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 84.5, -11 )
+script = ExtResource( 26 )
+description = "Corpses"
+cursor = 10
+script_name = "Corpses"
+texture = ExtResource( 27 )
+
+[node name="Sprite" parent="Props/Corpses" index="2"]
+texture = ExtResource( 27 )
+
+[node name="CollisionPolygon2D" parent="Props/Corpses" index="3"]
+polygon = PoolVector2Array( -9.5, -16, 7.5, -15, 32.5, 1, 27.5, 5, 6.5, 8, -6.5, 16, -11.5, 16, -17.5, 14, -22.5, 7, -32.5, -2, -28.5, -9 )
+
+[node name="CorpsesHelmet" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 54, -25 )
+script = ExtResource( 28 )
+description = "Helmet"
+cursor = 10
+script_name = "Helmet"
+texture = ExtResource( 29 )
+
+[node name="Sprite" parent="Props/CorpsesHelmet" index="2"]
+texture = ExtResource( 29 )
+
+[node name="CollisionPolygon2D" parent="Props/CorpsesHelmet" index="3"]
+polygon = PoolVector2Array( -4, -5, 1, -5, 6, -1, 7, 2, 6, 4, -8, 4, -9, 2, -7, -3 )
+
+[node name="CorpsesHead" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 14.5, -22.5 )
+script = ExtResource( 30 )
+__meta__ = {
+"_editor_description_": ""
+}
+description = "Head"
+cursor = 10
+script_name = "CorpsesHead"
+texture = ExtResource( 31 )
+
+[node name="BaselineHelper" parent="Props/CorpsesHead" index="0"]
+visible = false
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 1.0
+
+[node name="WalkToHelper" parent="Props/CorpsesHead" index="1"]
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" parent="Props/CorpsesHead/WalkToHelper" index="0"]
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="Props/CorpsesHead" index="2"]
+texture = ExtResource( 31 )
+
+[node name="CollisionPolygon2D" parent="Props/CorpsesHead" index="3"]
+polygon = PoolVector2Array( -12.5, -11.5, -4.5, -9.5, 4.5, -3.5, 6.5, -4.5, 12.5, -4.5, 16.5, 1.5, 14.5, 6.5, 9.5, 11.5, 2.5, 9.5, 0.5, 4.5, 0.5, 1.5, -7.5, -2.5, -16.5, -3.5, -16.5, -4.5, -6.5, -3.5, 0.5, 0.5, 2.5, -1.5, 2.5, -3.5, -5.5, -8.5, -12.5, -10.5 )
+
+[node name="BackYardDoor" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 0.5, 9 )
+description = "BackYardDoor"
+clickable = false
+cursor = 10
+script_name = "BackYardDoor"
+always_on_top = true
+texture = ExtResource( 6 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -19,7 +362,33 @@ limit_bottom = 0.0
 [node name="Points" type="Node2D" parent="."]
 
 [node name="WalkableAreas" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Navigation2D" type="Navigation2D" parent="WalkableAreas"]
 
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="WalkableAreas/Navigation2D"]
+navpoly = SubResource( 1 )
+
 [node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBug" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 114, -22 )
+
+[editable path="Props/RubbleBottom"]
+[editable path="Props/RubbleTop"]
+[editable path="Props/HeavyDoor"]
+[editable path="Props/SlotMachine"]
+[editable path="Props/FlowerPotBack"]
+[editable path="Props/Chair"]
+[editable path="Props/Chair2"]
+[editable path="Props/UnbrellaBase"]
+[editable path="Props/UmbrellaSplinter"]
+[editable path="Props/Umbrella"]
+[editable path="Props/FlowerPotFront"]
+[editable path="Props/Plant"]
+[editable path="Props/Corpses"]
+[editable path="Props/CorpsesHelmet"]
+[editable path="Props/CorpsesHead"]

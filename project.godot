@@ -242,7 +242,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Tales of Unsolved Mysteries"
+config/name="Buggy Adventure"
 config/description="A graphic adventure for the blockchain. "
 run/main_scene="res://popochiu/Rooms/Lobby/RoomLobby.tscn"
 config/icon="res://icon.png"
@@ -274,6 +274,7 @@ gdscript/warnings/enable=false
 
 window/size/width=320
 window/size/height=180
+window/size/borderless=true
 window/size/always_on_top=true
 window/size/test_width=640
 window/size/test_height=360
