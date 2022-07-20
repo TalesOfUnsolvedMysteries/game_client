@@ -35,7 +35,9 @@ func on_discard () -> void:
 	var last_location = Globals.state['BATTERY_LAST_LOCATION']
 	Globals.set_state(last_location, true)
 	# check and restore global timer remotely
-	if last_location == 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY' and E.current_room.script_name != 'EngineRoom' and not Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
+	if last_location == 'EngineRoom-CHARGE_SOCKET_WITH_BATTERY' \
+		and E.current_room.script_name != 'EngineRoom' \
+		and not Globals.state.get('EngineRoom-MOTHERBOARD_BATTERY_FULL'):
 		var _timer:GlobalTimer = GlobalTimer.get_global_timer('ChargeTimer')
 		if _timer: _timer._playing = true
 	
