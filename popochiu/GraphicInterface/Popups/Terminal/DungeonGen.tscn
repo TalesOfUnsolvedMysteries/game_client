@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Terminal/Doom_1.666_shareware_ENDOOM.png" type="Texture" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Terminal/DungeonGen.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/Common/fonts/awe_mono.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Doom_1.666_shareware_ENDOOM.png 0"
@@ -19,10 +20,23 @@
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+_width = 20
+_height = 10
+_seed = 4
+_max_initial_room_width = 6
+_max_initial_room_height = 5
+_merge_grid_chance = 0.8
+_select_room_chance = 0.8
+_merge_room_chance = 0.6
+_merge_child_rooms = false
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 modulate = Color( 0.207843, 0.278431, 0.168627, 1 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 5, 5 )
@@ -37,23 +51,31 @@ margin_top = -90.0
 margin_right = -160.0
 margin_bottom = -90.0
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Generate" type="Button" parent="Control"]
 margin_left = 239.0
 margin_top = 9.0
 margin_right = 307.0
 margin_bottom = 27.0
-text = "generate"
+text = "step1"
+
+[node name="Generate2" type="Button" parent="Control"]
+margin_left = 239.0
+margin_top = 32.0
+margin_right = 307.0
+margin_bottom = 50.0
+text = "step2"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-margin_left = 206.0
-margin_top = 40.0
-margin_right = 313.0
-margin_bottom = 168.0
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 232.0
+margin_bottom = 167.0
+custom_fonts/mono_font = SubResource( 2 )
 bbcode_enabled = true
 
 [node name="buttons" type="GridContainer" parent="Control"]
-margin_left = 24.0
-margin_top = 16.0
-margin_right = 228.0
-margin_bottom = 126.0
+margin_left = 193.0
+margin_top = 56.0
+margin_right = 316.0
+margin_bottom = 153.0
 columns = 5

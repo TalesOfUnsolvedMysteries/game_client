@@ -1,20 +1,30 @@
 extends Node2D
 
+export(int) var _width = 16 # to_export
+export(int) var _height = 8 # to_export
+export(int) var _seed = 1 setget set_seed
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export(int) var _max_initial_room_width = 5 # to_export
+export(int) var _max_initial_room_height = 4 # to_export
+export(float) var _merge_grid_chance = 1.0 # to_export
+
+export(float) var _select_room_chance = 0.6 # export
+export(float) var _merge_room_chance = 0.4 # export
+export(bool) var _merge_parent_rooms = true # export
+export(bool) var _merge_child_rooms = true # export
 
 onready var buttons = find_node('buttons')
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate()
+	$Control/Generate.connect('button_down', self, 'generate')
+	$Control/Generate2.connect('button_down', self, 'generate2')
 
 
 func generate():
-	var _width = 12 # to_export
-	var _height = 8 # to_export
+	seed(_seed)
+
 	# build basic grid
 	var basic_grid = []
 	var index = 0
@@ -29,32 +39,29 @@ func generate():
 			basic_grid.push_back(room_node)
 			index += 1
 
-	randomize()
 	# generate squares
-	var orientation = randf() > 0.5
-	var _max_width = 6 # to_export
-	var _max_height = 5 # to_export
-	var _merge_grid_chance = 0.9 # to_export
 	var room_graph = {}
 	for cell in basic_grid:
 		if cell[3][0] == -1: continue	# already merged
 		if randf() > _merge_grid_chance: continue
+		var orientation = randf() > 0.5
 		var _min_width = 1 if orientation else 2
 		var _min_height = 1 if not orientation else 2
 		# merge
 		index = cell[0]
 		var i = cell[1]
 		var j = cell[2]
-		var w = clamp(i + _min_width + randi()%(_max_width), i + _min_width, _width)
-		var h = clamp(j + _min_height + randi()%(_max_height), j + _min_height, _height)
-		# check if width is ok
+		var w = clamp(i + _min_width + (randi() % (_max_initial_room_width-_min_width)), i + _min_width, _width)
+		var h = clamp(j + _min_height + (randi() % (_max_initial_room_height-_min_height)), j + _min_height, _height)
+
 		for _j in range(j, h):
 			for _i in range(i, w):
 				var _merge_index = (_j * _width) + _i
 				var _to_merge = basic_grid[_merge_index]
 				if _to_merge[3][0] == -1:
-					w = _i
-					continue
+					if _i <= w:
+						w = _i
+					break
 				
 		cell[4] = w - i
 		cell[5] = h - j
@@ -71,16 +78,6 @@ func generate():
 				cell[3].append_array(_to_merge[3])
 				_to_merge[3] = [-1, index]
 
-	print('\n\ndungeon step 2')
-	var _dungeon_str = ''
-	for j in range(0, _height):
-		for i in range(0, _width):
-			index = j * _width + i
-			var cell = basic_grid[index]
-			index = cell[3][1] if cell[3][0] == -1 else cell[0]
-			_dungeon_str += '%s' % char(48+index)
-		_dungeon_str += '\n'
-	#print(_dungeon_str)
 	
 	# refine map, transform into graph
 	for cell in basic_grid:
@@ -95,66 +92,54 @@ func generate():
 				filtered_edges.push_back(_edge_index)
 		cell[3] = filtered_edges
 		room_graph[cell[0]] = cell
-	
-	print('\n\ndungeon step 2 - graph')
-	#print(room_graph.keys())
-	_dungeon_str = ''
-	basic_grid = []
-	for j in range(0, _height):
-		basic_grid.push_back([])
-		for i in range(0, _width):
-			basic_grid[j].push_back(' ')
+	print_dungeon(room_graph)
+	return room_graph
 
-	for key in room_graph.keys():
-		var cell = room_graph[key]
-		for i in range(cell[1], cell[1] + cell[4]):
-			for j in range(cell[2], cell[2] + cell[5]):
-				basic_grid[j][i] = '%s' % char(48 + cell[0])
-	
-	for j in range(0, _height):
-		for i in range(0, _width):
-			_dungeon_str += '%s' % basic_grid[j][i]
-		_dungeon_str += '\n'
-	print(_dungeon_str)
+func generate2():
+	var room_graph = generate()
 	# step 3 merge nodes
-	var _select_room_chance = 0.4
-	var _merge_room_chance = 0.2
-
 	for key in room_graph.keys():
 		var cell: Array = room_graph[key]
 		if int(key) != cell[0]: continue
 		if randf() > _select_room_chance: continue
 		for _edge_index in cell[3]:
+			if (not _merge_parent_rooms) and room_graph[_edge_index][6].size() > 0: continue
+			if (not _merge_child_rooms) and room_graph[_edge_index][0] != _edge_index: continue
 			if randf() > _merge_room_chance: continue
-			#print('embed cell[%d] into cell[%d]' % [_edge_index, cell[0]])
 			embed_nodes(room_graph, cell[0], _edge_index)
+	print_dungeon(room_graph)
 
 
-	print('\n\ndungeon step 3')
-	_dungeon_str = ''
-	basic_grid = []
+func print_dungeon(room_graph):
+	var _dungeon_str = ''
+	var basic_grid = []
+	var node_keys:Array = room_graph.keys()
+	node_keys.shuffle()
+	var codes:String = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	var code_keys = {}
 	for j in range(0, _height):
 		basic_grid.push_back([])
 		for i in range(0, _width):
 			basic_grid[j].push_back(' ')
-
-	for key in room_graph.keys():
+	
+	var index = 0
+	for key in node_keys:
+		code_keys[key] = codes[index%(codes.length())]
 		var cell = room_graph[key]
 		for i in range(cell[1], cell[1] + cell[4]):
 			for j in range(cell[2], cell[2] + cell[5]):
-				basic_grid[j][i] = '%s' % char(48 + cell[0])
+				basic_grid[j][i] = cell[0]
+		index += 1
 	
-	for j in range(0, _height):
-		for i in range(0, _width):
-			_dungeon_str += '%s' % basic_grid[j][i]
-		_dungeon_str += '\n'
-	print(_dungeon_str)
 	
-	for key in room_graph.keys():
+	for child_button in buttons.get_children():
+		buttons.remove_child(child_button)
+	
+	for key in node_keys:
 		var cell = room_graph[key]
 		if cell[0] != int(key): continue
 		var _btn = Button.new()
-		_btn.text = '%s' % char(48 + cell[0])
+		_btn.text = code_keys[key]
 		_btn.connect("button_down", self, '_load_node', [room_graph, key])
 		buttons.add_child(_btn)
 	
@@ -162,19 +147,19 @@ func generate():
 	var total = buttons.get_child_count()
 	index = 0
 	var colors = {}
-	for key in room_graph.keys():
+	for key in node_keys:
 		var cell = room_graph[key]
 		if cell[0] != int(key): continue
 		var color = Color.from_hsv(index/total, 0.67, 0.9)
 		index += 1.0
-		colors['%s' % char(48 + key)] = color
+		colors[key] = color
 	_dungeon_str = ''
 	for j in range(0, _height):
 		for i in range(0, _width):
 			var key = basic_grid[j][i]
-			_dungeon_str += '[color=#%s]O[/color]' % [colors[key].to_html(false)]
+			_dungeon_str += '[color=#%s]%s[/color]' % [colors[key].to_html(false), code_keys[key]]
 		_dungeon_str += '\n'
-	$Control/RichTextLabel.bbcode_text = _dungeon_str
+	$Control/RichTextLabel.bbcode_text = '[code]%s[/code]' % _dungeon_str
 
 
 
@@ -195,3 +180,11 @@ func embed_nodes(room_graph, parent_index, child_index, check_parent=true):
 
 func _load_node(room_graph, key):
 	$Control/RichTextLabel.text = str(room_graph[key])
+
+func set_seed(__seed):
+	_seed = __seed
+	if buttons: generate()
+
+
+
+
