@@ -25,13 +25,16 @@ font_data = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
-_width = 4
-_height = 4
+_width = 20
+_height = 11
 _seed = 30
-_max_initial_room_height = 9
+_max_initial_room_width = 6
+_max_initial_room_height = 6
 _merge_grid_chance = 0.8
+_random_merge = false
+_random_merge_iterations = 20
 _select_room_chance = 0.5
-_merge_room_chance = 0.6
+_merge_room_chance = 0.2
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -50,37 +53,52 @@ margin_right = -160.0
 margin_bottom = -90.0
 
 [node name="Generate" type="Button" parent="Control"]
-margin_left = 239.0
-margin_top = 9.0
-margin_right = 286.0
-margin_bottom = 27.0
-text = "step1"
+margin_left = 174.0
+margin_top = 10.0
+margin_right = 219.0
+margin_bottom = 28.0
+text = "gen 1"
 
 [node name="Generate2" type="Button" parent="Control"]
-margin_left = 239.0
+margin_left = 224.0
+margin_top = 10.0
+margin_right = 269.0
+margin_bottom = 28.0
+text = "gen 2"
+
+[node name="Generate3" type="Button" parent="Control"]
+margin_left = 273.0
+margin_top = 10.0
+margin_right = 318.0
+margin_bottom = 28.0
+text = "gen 3"
+
+[node name="Generate4" type="Button" parent="Control"]
+margin_left = 174.0
 margin_top = 32.0
-margin_right = 286.0
+margin_right = 219.0
 margin_bottom = 50.0
-text = "step2"
+text = "test"
 
 [node name="Merge" type="Button" parent="Control"]
-margin_left = 289.0
-margin_top = 9.0
-margin_right = 337.0
-margin_bottom = 27.0
-text = "merge"
+margin_left = 227.0
+margin_top = 32.0
+margin_right = 267.0
+margin_bottom = 50.0
+text = "step"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 margin_left = 9.0
 margin_top = 10.0
-margin_right = 232.0
+margin_right = 187.0
 margin_bottom = 167.0
 custom_fonts/mono_font = SubResource( 2 )
 bbcode_enabled = true
+scroll_active = false
 
 [node name="buttons" type="GridContainer" parent="Control"]
 margin_left = 193.0
-margin_top = 56.0
+margin_top = 81.0
 margin_right = 316.0
 margin_bottom = 153.0
 columns = 5
