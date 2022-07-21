@@ -25,15 +25,13 @@ font_data = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
-_width = 20
-_height = 10
-_seed = 4
-_max_initial_room_width = 6
-_max_initial_room_height = 5
+_width = 4
+_height = 4
+_seed = 30
+_max_initial_room_height = 9
 _merge_grid_chance = 0.8
-_select_room_chance = 0.8
+_select_room_chance = 0.5
 _merge_room_chance = 0.6
-_merge_child_rooms = false
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -54,16 +52,23 @@ margin_bottom = -90.0
 [node name="Generate" type="Button" parent="Control"]
 margin_left = 239.0
 margin_top = 9.0
-margin_right = 307.0
+margin_right = 286.0
 margin_bottom = 27.0
 text = "step1"
 
 [node name="Generate2" type="Button" parent="Control"]
 margin_left = 239.0
 margin_top = 32.0
-margin_right = 307.0
+margin_right = 286.0
 margin_bottom = 50.0
 text = "step2"
+
+[node name="Merge" type="Button" parent="Control"]
+margin_left = 289.0
+margin_top = 9.0
+margin_right = 337.0
+margin_bottom = 27.0
+text = "merge"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 margin_left = 9.0
