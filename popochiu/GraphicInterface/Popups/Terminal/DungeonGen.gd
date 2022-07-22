@@ -16,6 +16,7 @@ export(int) var _max_number_rooms = 16
 
 export(float) var _select_room_chance = 0.6 # export
 export(float) var _merge_room_chance = 0.4 # export
+export(int) var _max_deep = 10
 
 onready var buttons = find_node('buttons')
 
@@ -29,6 +30,7 @@ func _ready():
 	$Control/Generate3.connect('button_down', self, '_on_generate3_pressed')
 	$Control/Generate4.connect('button_down', self, '_on_generate4_pressed')
 	$Control/Merge.connect('button_down', self, '_on_merge_pressed')
+	$Control/Tree.connect('button_down', self, '_on_tree_pressed')
 
 
 func generate():
@@ -200,7 +202,7 @@ func random_merge_step():
 
 
 func print_full_data_dungeon():
-	print_dungeon(dungeon['room_graph'])
+	print_dungeon()
 	var str_matrix = ''
 	for j in dungeon['adjacency_matrix'].size():
 		for i in dungeon['adjacency_matrix'][j].size():
@@ -297,10 +299,12 @@ func decorate_dungeon_graph(room_graph):
 		var code_key = codes[(int(index))%(codes.length())]
 		var color_key = Color.from_hsv(index/node_keys.size(), 0.67, 0.9)
 		room['label'] = '[color=#%s]%s[/color]' % [color_key.to_html(false), code_key]
+		room['color'] = color_key
 		room['code_key'] = code_key
 		index += 1.0
 
-func print_dungeon(room_graph):
+func print_dungeon():
+	var room_graph = dungeon.room_graph
 	var basic_grid = []
 	var node_keys:Array = room_graph.keys()
 
@@ -335,7 +339,167 @@ func print_dungeon(room_graph):
 			_dungeon_str += room.label
 		_dungeon_str += '\n'
 	$Control/RichTextLabel.bbcode_text = '[code]%s[/code]' % _dungeon_str
+	draw_dungeon()
 
+func draw_dungeon():
+	for child in $Canvas.get_children():
+		$Canvas.remove_child(child)
+		child.queue_free()
+	var cell_size = 7.0
+	var room_graph = dungeon.room_graph
+	var basic_grid = []
+	var node_keys:Array = room_graph.keys()
+	# draw rooms
+	for key in node_keys:
+		var room = room_graph[key]
+		for square in room.squares:
+			var poly := Polygon2D.new()
+			poly.polygon = PoolVector2Array([
+				Vector2(square[0], square[1])*cell_size,
+				Vector2(square[0], square[1] + square[3])*cell_size,
+				Vector2(square[0] + square[2], square[1] + square[3])*cell_size,
+				Vector2(square[0] + square[2], square[1])*cell_size
+			])
+			poly.color = room.color
+			$Canvas.add_child(poly)
+	# draw doors
+	for door_key in dungeon.doors.keys():
+		var door: Vector3 = dungeon.doors[door_key]
+		var poly := Polygon2D.new()
+		var w = 0.2 if door[2] else 0.6
+		var h = 0.6 if door[2] else 0.2
+		var draw_door = door + (Vector3(0.4,0.15,0.0) if door[2] else Vector3(0.15,0.4,0.0))
+		poly.polygon = PoolVector2Array([
+			Vector2(draw_door[0], draw_door[1])*cell_size,
+			Vector2(draw_door[0], draw_door[1] + h)*cell_size,
+			Vector2(draw_door[0] + w, draw_door[1] + h)*cell_size,
+			Vector2(draw_door[0] + w, draw_door[1])*cell_size
+		])
+		poly.color = Color.white
+		$Canvas.add_child(poly)
+
+func _get_total_edges(adjacency_matrix:Array, index):
+	var total = 0
+	for i in range(0, adjacency_matrix.size()):
+		total += adjacency_matrix[index][i]
+	return total
+
+func _get_random_edge(adjacency_matrix:Array, index, excluded: Array):
+	var selected_array = []
+	for i in range(0, adjacency_matrix.size()):
+		if adjacency_matrix[index][i] == 1 and (not excluded.has(i)):
+			selected_array.push_back(i)
+	if selected_array.size() == 0: return -1
+	return selected_array[randi()%selected_array.size()]
+
+
+func reveal_tree():
+	var temp_matrix:Array = dungeon.adjacency_matrix.duplicate(true)
+	var result_matrix:Array = []
+	var keys = dungeon.room_graph.keys()
+	for i in keys.size():
+		result_matrix.push_back([])
+		for j in keys.size():
+			result_matrix[i].push_back(0)
+
+	var _visited_nodes:Array = [randi()%keys.size()]
+	var _deep_map: Array = [0]
+	var _tree_node_index = 0
+	var _exploration_index = 0
+	var deep = 0
+	while _tree_node_index < _visited_nodes.size():
+		print('> %d ' % _exploration_index)
+		if _exploration_index >= _visited_nodes.size():
+			print('exploit!!!')
+			break
+		var _index_node = _visited_nodes[_exploration_index]
+		var _node = keys[_index_node]
+		#_visited_nodes.push_back(_node)
+		var edge_index = _get_random_edge(temp_matrix, _index_node, _visited_nodes)
+		if deep == 0:
+			print(temp_matrix[_index_node])
+			print(edge_index)
+		if edge_index == -1 or deep >= _max_deep:
+			deep = _deep_map[_tree_node_index]
+			if edge_index == -1:
+				_tree_node_index += 1
+			if deep >= _max_deep:
+				_exploration_index += 1
+				if _exploration_index >= _visited_nodes.size():
+					_exploration_index = 0
+				deep = _deep_map[_exploration_index]
+			else:
+				_exploration_index = _tree_node_index
+			if _tree_node_index >= _visited_nodes.size() and _visited_nodes.size() < keys.size():
+				_tree_node_index = 0
+				_exploration_index = 0
+				deep = _deep_map[_exploration_index]
+			continue
+		# choose one edge at random
+		_visited_nodes.push_back(edge_index)
+		deep += 1
+		_deep_map.push_back(deep)
+		temp_matrix[edge_index][_index_node] = 0
+		temp_matrix[_index_node][edge_index] = 0
+		result_matrix[edge_index][_index_node] = 1
+		result_matrix[_index_node][edge_index] = 1
+		_exploration_index += 1
+	
+	var color_map := Color.from_hsv(0.6, 0.67, 0.9)
+	for j in range(0, keys.size()):
+		var a_key = keys[j]
+		for i in range(0, keys.size()):
+			var b_key = keys[i]
+			var key = get_door_key(a_key, b_key)
+			if result_matrix[j][i] == 0:
+				dungeon.doors.erase(key)
+		
+		var _index_on_visited = _visited_nodes.find(j)
+		deep = _deep_map[_index_on_visited] + 0.0
+		dungeon.room_graph[a_key].color = dungeon.room_graph[a_key].color.darkened(deep*0.01)
+		if deep == 0:
+			dungeon.room_graph[a_key].color = Color.whitesmoke.darkened(0.1)
+	
+	# must validate if there is a path between any two pair of nodes
+	is_full_connected(result_matrix)
+	print(_deep_map)
+	print(' %d vs %d ' % [_visited_nodes.size(), keys.size()])
+	print(_visited_nodes)
+
+func multiply_matrix(matrix_a, matrix_b):
+	var matrixc = matrix_a.duplicate(true)
+	for j in range(0, matrix_a.size()):
+		for i in range(0, matrix_a[j].size()):
+			matrixc[j][i] = 0
+			for h in range(0, matrix_a.size()):
+				matrixc[j][i] += matrix_a[h][i]*matrix_b[j][h]
+	return matrixc
+
+func check_total(ones):
+	var total = 0
+	for j in range(0, ones.size()):
+		for i in range(0, ones[j].size()):
+			total += ones[j][i]
+	return total == ones.size()*ones[0].size()
+
+
+func is_full_connected(matrix):
+	var base = matrix.duplicate(true)
+	var deep = matrix.duplicate(true)
+	var ones = matrix.duplicate(true)
+	
+	for x in range(1, base.size()):
+		deep = multiply_matrix(base, deep)
+		for j in range(0, ones.size()):
+			for i in range(0, ones[j].size()):
+				ones[j][i] = (1 if (ones[j][i] + deep[j][i])>0 else 0)
+		if check_total(ones):
+			print('max distance %d' % x)
+			break
+	print('is full connected: ', check_total(ones))
+	#print(base)
+	print(ones)
+	
 
 func _load_node(room_graph, key):
 	$Control/RichTextLabel.text = str(room_graph[key])
@@ -372,5 +536,9 @@ func _on_generate4_pressed():
 	
 func _on_merge_pressed():
 	random_merge_step()
+	print_full_data_dungeon()
+
+func _on_tree_pressed():
+	reveal_tree()
 	print_full_data_dungeon()
 
