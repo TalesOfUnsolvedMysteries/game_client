@@ -21,18 +21,23 @@
 0/z_index = 0
 
 [sub_resource type="DynamicFont" id=2]
+size = 14
 font_data = ExtResource( 3 )
 
 [node name="DungeonGen" type="Node2D"]
 script = ExtResource( 2 )
-_width = 18
-_height = 12
-_seed = 32
-_max_initial_room_height = 6
+_width = 8
+_seed = 45
+_max_initial_room_width = 3
+_max_initial_room_height = 3
 _merge_grid_chance = 0.8
-_random_merge_iterations = 20
+_random_merge = false
+_random_merge_iterations = 10
+_max_number_rooms = 12
 _select_room_chance = 0.5
 _merge_room_chance = 0.2
+_max_deep = 50
+_survival_door_chance = 0.0
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -93,21 +98,13 @@ margin_bottom = 50.0
 text = "tree"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-margin_left = 9.0
+margin_left = 14.0
 margin_top = 10.0
-margin_right = 187.0
+margin_right = 192.0
 margin_bottom = 167.0
 custom_fonts/mono_font = SubResource( 2 )
 bbcode_enabled = true
 scroll_active = false
-
-[node name="buttons" type="GridContainer" parent="Control"]
-visible = false
-margin_left = 193.0
-margin_top = 81.0
-margin_right = 316.0
-margin_bottom = 153.0
-columns = 5
 
 [node name="Canvas" type="Node2D" parent="."]
 position = Vector2( 14, -35 )
@@ -115,3 +112,5 @@ position = Vector2( 14, -35 )
 [node name="Polygon2D" type="Polygon2D" parent="Canvas"]
 color = Color( 0.329412, 0.0980392, 0.0980392, 1 )
 invert_border = 1.0
+
+[node name="DungeonGenerator" type="Node" parent="."]

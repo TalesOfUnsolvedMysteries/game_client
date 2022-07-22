@@ -17,8 +17,8 @@ export(int) var _max_number_rooms = 16
 export(float) var _select_room_chance = 0.6 # export
 export(float) var _merge_room_chance = 0.4 # export
 export(int) var _max_deep = 10
+export(float) var _survival_door_chance = 0.1
 
-onready var buttons = find_node('buttons')
 
 var dungeon = {}
 
@@ -145,7 +145,7 @@ func merge_rooms(key_a, key_b):
 			var door_b_edge_key = get_door_key(key_b, edge_key)
 			if adjacency_matrix[j][a_index] == 1:
 				merge_doors(doors, door_a_edge_key, door_b_edge_key)
-			else:
+			elif doors.has(door_b_edge_key):
 				doors[door_a_edge_key] = doors[door_b_edge_key]
 				doors.erase(door_b_edge_key)
 		
@@ -260,7 +260,6 @@ func get_index_for_room(basic_grid, index):
 	return room[3][1] if room[3][0] == -1 else index
 
 func merge_room_doors(doors: Dictionary, basic_grid:Array, a, b, a_edges: Array, b_edges: Array):
-
 	# door a-b must dissapear
 	var merged_door_key = get_door_key(a, b)
 	doors.has(merged_door_key) and doors.erase(merged_door_key)
@@ -320,16 +319,6 @@ func print_dungeon():
 			for i in range(square[0], square[0] + square[2]):
 				for j in range(square[1], square[1] + square[3]):
 					basic_grid[j][i] = key
-	
-	for child_button in buttons.get_children():
-		buttons.remove_child(child_button)
-	
-	for key in node_keys:
-		var room = room_graph[key]
-		var _btn = Button.new()
-		_btn.text = str(room.code_key)
-		_btn.connect("button_down", self, '_load_node', [room_graph, key])
-		buttons.add_child(_btn)
 	
 	var _dungeon_str = ''
 	for j in range(0, _height):
@@ -448,11 +437,15 @@ func reveal_tree():
 	var color_map := Color.from_hsv(0.6, 0.67, 0.9)
 	for j in range(0, keys.size()):
 		var a_key = keys[j]
-		for i in range(0, keys.size()):
+		for i in range(j, keys.size()):
 			var b_key = keys[i]
 			var key = get_door_key(a_key, b_key)
 			if result_matrix[j][i] == 0:
-				dungeon.doors.erase(key)
+				if dungeon.doors.has(key) and _survival_door_chance > randf():
+					result_matrix[j][i] = 1
+					result_matrix[i][j] = 1
+				else:
+					dungeon.doors.erase(key)
 		
 		var _index_on_visited = _visited_nodes.find(j)
 		deep = _deep_map[_index_on_visited] + 0.0
@@ -462,9 +455,9 @@ func reveal_tree():
 	
 	# must validate if there is a path between any two pair of nodes
 	is_full_connected(result_matrix)
-	print(_deep_map)
-	print(' %d vs %d ' % [_visited_nodes.size(), keys.size()])
-	print(_visited_nodes)
+	var leaves = get_leaves(result_matrix)
+	print(leaves)
+
 
 func multiply_matrix(matrix_a, matrix_b):
 	var matrixc = matrix_a.duplicate(true)
@@ -487,26 +480,42 @@ func is_full_connected(matrix):
 	var base = matrix.duplicate(true)
 	var deep = matrix.duplicate(true)
 	var ones = matrix.duplicate(true)
+	var deep_matrix = matrix.duplicate(true) # load 
 	
 	for x in range(1, base.size()):
 		deep = multiply_matrix(base, deep)
 		for j in range(0, ones.size()):
 			for i in range(0, ones[j].size()):
 				ones[j][i] = (1 if (ones[j][i] + deep[j][i])>0 else 0)
+				if deep[j][i] > 0 and deep_matrix[j][i] == 0:
+					deep_matrix[j][i] = x + 1
 		if check_total(ones):
-			print('max distance %d' % x)
+			print('max distance %d' % (x+1))
 			break
 	print('is full connected: ', check_total(ones))
 	#print(base)
-	print(ones)
-	
+	var keys = []
+	for key in dungeon.room_graph.keys():
+		keys.push_back(dungeon.room_graph[key].label[15])
+	print('  ', keys)
+	for j in range(0, ones.size()):
+		print(keys[j], ' ', deep_matrix[j])
 
-func _load_node(room_graph, key):
-	$Control/RichTextLabel.text = str(room_graph[key])
+func get_leaves(matrix:Array):
+	var leaves = []
+	var i = 0
+	for node in matrix:
+		var total_edges = 0
+		for edge in node: total_edges += edge
+		if total_edges == 1: leaves.push_back(i)
+		i += 1
+	return leaves
 
 func set_seed(__seed):
 	_seed = __seed
-	if buttons: generate()
+	if dungeon.has('doors'):
+		generate_dungeon()
+		print_full_data_dungeon()
 
 func _on_generate_pressed():
 	generate()
@@ -529,6 +538,7 @@ func generate_dungeon():
 	if room_overflow > 0:
 		for i in range(0, room_overflow):
 			random_merge_step()
+	reveal_tree()
 	
 func _on_generate4_pressed():
 	generate_dungeon()
