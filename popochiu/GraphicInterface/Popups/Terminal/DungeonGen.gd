@@ -43,7 +43,7 @@ func _on_merge_pressed():
 
 func _on_tree_pressed():
 	if not _dungeon: return
-	$DungeonGenerator.reveal_tree(_dungeon)
+	$DungeonGenerator/GraphGenerator.build_tree(_dungeon)
 	$DungeonDecoratorBasic.print_full_data_dungeon(_dungeon, _decorated_rooms)
 
 

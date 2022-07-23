@@ -80,16 +80,16 @@ func draw_dungeon(dungeon, decoration_data):
 			$Canvas.add_child(poly)
 	# draw doors
 	for door_key in dungeon.doors.keys():
-		var door: Vector3 = dungeon.doors[door_key]
+		var door: DungeonDoor = dungeon.doors.get(door_key)
 		var poly := Polygon2D.new()
-		var w = 0.2 if door[2] else 0.6
-		var h = 0.6 if door[2] else 0.2
-		var draw_door = door + (Vector3(0.4,0.15,0.0) if door[2] else Vector3(0.15,0.4,0.0))
+		var w = 0.2 if door.vertical else 0.6
+		var h = 0.6 if door.vertical else 0.2
+		var draw_door = door.position + (Vector2(0.4,0.15) if door.vertical else Vector2(0.15,0.4))
 		poly.polygon = PoolVector2Array([
-			Vector2(draw_door[0], draw_door[1])*cell_size,
-			Vector2(draw_door[0], draw_door[1] + h)*cell_size,
-			Vector2(draw_door[0] + w, draw_door[1] + h)*cell_size,
-			Vector2(draw_door[0] + w, draw_door[1])*cell_size
+			Vector2(draw_door.x, draw_door.y)*cell_size,
+			Vector2(draw_door.x, draw_door.y + h)*cell_size,
+			Vector2(draw_door.x + w, draw_door.y + h)*cell_size,
+			Vector2(draw_door.x + w, draw_door.y)*cell_size
 		])
 		poly.color = Color.white
 		$Canvas.add_child(poly)

@@ -54,7 +54,7 @@ func build_tree(dungeon: Dungeon):
 		var a_key = keys[j]
 		for i in range(j, keys.size()):
 			var b_key = keys[i]
-			var key = DungeonDoor.get_door_key(a_key, b_key)
+			var key = DungeonDoor.get_key_for(a_key, b_key)
 			if result_matrix[j][i] == 0:
 				if dungeon.doors.has(key) and _survival_door_chance > randf():
 					result_matrix[j][i] = 1

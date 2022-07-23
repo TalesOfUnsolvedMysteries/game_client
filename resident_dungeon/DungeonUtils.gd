@@ -3,17 +3,23 @@ extends Node
 class_name DungeonUtils
 
 static func merge_doors(doors: Dictionary, key_a, key_b):
-	var a_door = doors.get(key_a)
-	var b_door = doors.get(key_b)
+	var a_door: DungeonDoor = doors.get(key_a)
+	var b_door: DungeonDoor = doors.get(key_b)
 	if (not a_door) or (not b_door): return
+	var a_door_position = a_door.position
+	var b_door_position = b_door.position
 	# check if doors are in the same axis
-	var merge_positions = (a_door.x == b_door.x or a_door.y == b_door.y)
+	var merge_positions = a_door.vertical == b_door.vertical and \
+		(a_door.vertical and a_door_position.x == b_door_position.x) or \
+		((not a_door.vertical) and a_door_position.y == b_door_position.y)
 	# random choice
-	var pos = randf()
-	var new_door = (a_door*pos + b_door*(1.0-pos))
-	if not merge_positions:
-		new_door = a_door if pos > 0.5 else b_door
-	doors[key_a] = new_door
+
+	var move_ratio = randf()
+	if merge_positions:
+		a_door.position = (a_door_position*move_ratio + b_door_position*(1.0 - move_ratio))
+	elif move_ratio > 0.5:
+		a_door.position = b_door.position
+		a_door.vertical = b_door.vertical
 	doors.erase(key_b)
 
 

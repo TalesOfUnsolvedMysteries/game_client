@@ -16,17 +16,13 @@ func generate(dungeon_config: DungeonResource) -> Dungeon:
 			# index, i, j, edge_indexes, width, height, child_rooms
 			var room_node = [index, i, j, [], 1, 1,[]]
 			if j != 0:
-				room_node[3].push_back(index - _width)
-				add_door(doors, index, index - _width, 0, _width)
+				add_door_to_room(doors, room_node, index, index - _width, 0, _width)
 			if i != 0:
-				room_node[3].push_back(index - 1)
-				add_door(doors, index, index - 1, 1, _width)
+				add_door_to_room(doors, room_node, index, index - 1, 1, _width)
 			if i != _width - 1:
-				room_node[3].push_back(index + 1)
-				add_door(doors, index, index + 1, 1, _width)
+				add_door_to_room(doors, room_node, index, index + 1, 1, _width)
 			if j != _height - 1:
-				room_node[3].push_back(index + _width)
-				add_door(doors, index, index + _width, 0, _width)
+				add_door_to_room(doors, room_node, index, index + _width, 0, _width)
 			basic_grid.push_back(room_node)
 			index += 1
 
@@ -108,17 +104,19 @@ func get_adjacency_matrix_from(rooms: Dictionary):
 	return matrix
 
 
-func add_door(doors, a, b, vertical, _width):
+func add_door_to_room(doors, room, a, b, vertical, _width):
+	room[3].push_back(b)
 	var key = DungeonDoor.get_key_for(a, b)
 	if doors.has(key): return
-	var coords_a = Vector3(a%_width, floor(a/_width), vertical)
-	var coords_b = Vector3(b%_width, floor(b/_width), vertical)
-	doors[key] = coords_b*0.5 + coords_a*0.5
+	var coords_a = Vector2(a%_width, floor(a/_width))
+	var coords_b = Vector2(b%_width, floor(b/_width))
+	var door := DungeonDoor.new(key, coords_b*0.5 + coords_a*0.5, vertical)
+	doors[key] = door
 
 
 func merge_room_doors(doors: Dictionary, basic_grid:Array, a, b, a_edges: Array, b_edges: Array):
 	# door a-b must dissapear
-	var merged_door_key = Dungeon.get_key_for(a, b)
+	var merged_door_key = DungeonDoor.get_key_for(a, b)
 	doors.has(merged_door_key) and doors.erase(merged_door_key)
 
 	var index = 0
@@ -132,9 +130,8 @@ func merge_room_doors(doors: Dictionary, basic_grid:Array, a, b, a_edges: Array,
 	
 	for b_edge in b_edges:
 		# check real edge
-		#b_edge = get_index_for_room(basic_grid, b_edge)
-		var a_bedge_key = Dungeon.get_key_for(a, b_edge)
-		var b_bedge_key = Dungeon.get_key_for(b, b_edge)
+		var a_bedge_key = DungeonDoor.get_key_for(a, b_edge)
+		var b_bedge_key = DungeonDoor.get_key_for(b, b_edge)
 		# for each door c in common for a and b:
 		if a == b_edge: continue
 		if a_edges.has(b_edge):
