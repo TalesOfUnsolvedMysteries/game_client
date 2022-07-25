@@ -80,7 +80,8 @@ func generate(dungeon_config: DungeonResource) -> Dungeon:
 			if not filtered_edges.has(_edge_index) and _edge_index != cell[0]:
 				filtered_edges.push_back(_edge_index)
 		var key = cell[0]
-		var base_square = [cell[1], cell[2], cell[4], cell[5]]
+		
+		var base_square := Rect2(cell[1], cell[2], cell[4], cell[5])
 		rooms[key] = DungeonRoom.new(key, [base_square], filtered_edges)
 	
 	var dungeon = Dungeon.new()

@@ -24,7 +24,35 @@ func _on_generate_pressed():
 
 func _on_generate2_pressed():
 	print('do nothing')
-	pass
+	var room = DungeonRoom.new(1, [Rect2(1,1,3,3), Rect2(4,2,1,1), Rect2(1,4,2, 2)], [])
+	
+	var poly1 = PoolVector2Array([
+		Vector2(room.squares[0].position.x, room.squares[0].position.y),
+		Vector2(room.squares[0].position.x, room.squares[0].end.y),
+		Vector2(room.squares[0].end.x, room.squares[0].end.y),
+		Vector2(room.squares[0].end.x, room.squares[0].position.y)
+	])
+	var poly2 = PoolVector2Array([
+		Vector2(room.squares[1].position.x, room.squares[1].position.y),
+		Vector2(room.squares[1].position.x, room.squares[1].end.y),
+		Vector2(room.squares[1].end.x, room.squares[1].end.y),
+		Vector2(room.squares[1].end.x, room.squares[1].position.y)
+	])
+	var poly3 = PoolVector2Array([
+		Vector2(room.squares[2].position.x, room.squares[2].position.y),
+		Vector2(room.squares[2].position.x, room.squares[2].end.y),
+		Vector2(room.squares[2].end.x, room.squares[2].end.y),
+		Vector2(room.squares[2].end.x, room.squares[2].position.y)
+	])
+	var polymerged = Geometry.merge_polygons_2d(poly1, poly2)
+	print(polymerged)
+	print(PoolVector2Array(polymerged[0]))
+	var polymerged2 = Geometry.merge_polygons_2d(poly3, PoolVector2Array(polymerged[0]))
+	print('poly3')
+	print(poly3)
+	print(polymerged2)
+	#var polygon = $DungeonDecoratorBasic.polygon_transform(room)
+	#print(polygon)
 
 func _on_generate3_pressed():
 	var dungeon = $DungeonGenerator.generate_base_dungeon()

@@ -21,6 +21,8 @@ export(float, 0.0, 1.0, 0.01) var _merge_room_chance = 0.4 setget set_merge_room
 export(int, 1000) var _max_deep = 10 setget set_max_deep
 export(float, 0.0, 1.0, 0.01) var _survival_door_chance = 0.1 setget set_survival_door_chance
 
+export(Vector2) var _start_position = Vector2(-1, -1) setget set_start_position
+
 
 func set_seed(val):
 	_seed = val
@@ -74,3 +76,7 @@ func set_survival_door_chance(val):
 	_survival_door_chance = val
 	emit_signal('changed')
 	
+func set_start_position(val):
+	_start_position = val
+	emit_signal('changed')
+

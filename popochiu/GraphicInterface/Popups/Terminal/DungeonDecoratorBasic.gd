@@ -1,5 +1,12 @@
 extends Node2D
 
+export(Color) var color_room = Color('001f66')
+export(Color) var color_current_room = Color.red
+export(Color) var color_hidden_room = Color('292222')
+export(Color) var color_border_room = Color('e9e9e9')
+export(Color) var color_door = Color('f2e204')
+export(Color) var color_locked_door = Color.red
+
 func print_full_data_dungeon(dungeon, decoration_data):
 	print_dungeon(dungeon, decoration_data)
 	var str_matrix = ''
@@ -16,7 +23,7 @@ func decorate_dungeon_graph(dungeon: Dungeon) -> Dictionary:
 	var index = 1.0
 	var decorated_rooms = {}
 	for key in node_keys:
-		var room: DungeonRoom = dungeon.get_room(key)
+		var room = dungeon.get_room(key)
 		var code_key = codes[(int(index))%(codes.length())]
 		var color_key = Color.from_hsv(index/node_keys.size(), 0.67, 0.9)
 		decorated_rooms[key] = {
@@ -42,9 +49,9 @@ func print_dungeon(dungeon: Dungeon, decoration_data):
 	# {'key': key, 'squares': [base_square], 'edges': filtered_edges}
 	for key in node_keys:
 		var room = rooms[key]
-		for square in room['squares']:
-			for i in range(square[0], square[0] + square[2]):
-				for j in range(square[1], square[1] + square[3]):
+		for square in room.squares:
+			for i in range(square.position.x, square.end.x):
+				for j in range(square.position.y, square.end.y):
 					basic_grid[j][i] = key
 	
 	var _dungeon_str = ''
@@ -68,28 +75,155 @@ func draw_dungeon(dungeon, decoration_data):
 	for key in node_keys:
 		var room: DungeonRoom = dungeon.get_room(key)
 		var style = decoration_data[key]
-		for square in room.squares:
-			var poly := Polygon2D.new()
-			poly.polygon = PoolVector2Array([
-				Vector2(square[0], square[1])*cell_size,
-				Vector2(square[0], square[1] + square[3])*cell_size,
-				Vector2(square[0] + square[2], square[1] + square[3])*cell_size,
-				Vector2(square[0] + square[2], square[1])*cell_size
-			])
-			poly.color = style.color
-			$Canvas.add_child(poly)
+		var border := Line2D.new()
+		var shape := Polygon2D.new()
+		#poly.invert_enable = true
+		#poly.polygon = room.polygon
+		var polygon = PoolVector2Array()
+		polygon = room.polygon
+		polygon.push_back(room.polygon[0])
+		border.points = polygon
+		border.z_index += 1
+		border.joint_mode =Line2D.LINE_JOINT_ROUND
+		border.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		border.end_cap_mode = Line2D.LINE_CAP_ROUND
+		border.width = 0.8/cell_size
+		border.scale = Vector2(cell_size, cell_size)
+		shape.polygon = room.polygon
+		shape.color = color_room
+		shape.scale = Vector2(cell_size, cell_size)
+		if room.type == DungeonRoom.Types.ROOT:
+			shape.color = color_current_room
+		elif randf() > 0.6:
+			
+			#border.visible = true
+			#shape.color = color_hidden_room
+			#shape.z_index += 1
+			pass
+		#shape.color.a = 0.9
+		border.default_color = color_border_room
+		$Canvas.add_child(shape)
+		$Canvas.add_child(border)
 	# draw doors
 	for door_key in dungeon.doors.keys():
 		var door: DungeonDoor = dungeon.doors.get(door_key)
-		var poly := Polygon2D.new()
-		var w = 0.2 if door.vertical else 0.6
-		var h = 0.6 if door.vertical else 0.2
-		var draw_door = door.position + (Vector2(0.4,0.15) if door.vertical else Vector2(0.15,0.4))
-		poly.polygon = PoolVector2Array([
-			Vector2(draw_door.x, draw_door.y)*cell_size,
-			Vector2(draw_door.x, draw_door.y + h)*cell_size,
-			Vector2(draw_door.x + w, draw_door.y + h)*cell_size,
-			Vector2(draw_door.x + w, draw_door.y)*cell_size
+		var line := Line2D.new()
+		var w = 0 if door.vertical else 0.5
+		var h = 0.5 if door.vertical else 0
+		line.points = PoolVector2Array([
+			Vector2(door.position.x + 0.5 + (w*-0.5), door.position.y + 0.5 + (h*-0.5)),
+			Vector2(door.position.x + 0.5 + (w*0.5), door.position.y + 0.5 + (h*0.5))
 		])
-		poly.color = Color.white
-		$Canvas.add_child(poly)
+		line.scale = Vector2(cell_size, cell_size)
+		line.default_color = color_door
+		if randf() > 0.6:
+			#line.default_color = color_locked_door
+			pass
+		line.width = 2.0/cell_size
+		line.z_index += 1
+		$Canvas.add_child(line)
+
+
+func polygon_transform (room: DungeonRoom) -> PoolVector2Array:
+	var polygon = PoolVector2Array()
+	var position := Vector2(INF, INF)
+	var size := Vector2(0, 0)
+	var grid = []
+	# calculate grid rect
+	for square in room.squares:
+		if square.position.x < position.x: position.x = square.position.x
+		if square.position.y < position.y: position.y = square.position.y
+		if square.end.x > size.x: size.x = square.end.x
+		if square.end.y > size.y: size.y = square.end.y
+	
+	# fill polygon shape in grid rect
+	for j in range(position.y, size.y):
+		var row = []
+		for i in range(position.x, size.x):
+			if room.contains_point(Vector2(i, j)):
+				row.push_back(1)
+			else:
+				row.push_back(0)
+		grid.push_back(row)
+	
+	# choose starting point
+	var j = 0
+	var i = grid[j].find(1)
+	var _index = i
+	var visited = [_index]
+	var scan_vector = Vector2(1, 0)
+	polygon.push_back(Vector2(-0.5 + i, 0.5))
+	polygon.push_back(Vector2(-0.5 + i, -0.5))
+	var grid_container = Rect2(Vector2(0, 0), size - position)
+	print(grid)
+	
+	while polygon[0] != polygon[-1]:
+		yield(get_tree(), "idle_frame")
+		print('i: ', polygon)
+		var last_point = polygon[-1]
+		scan_vector = scan_vector.rotated(-PI / 2)
+		var next_cell = Vector2(i+scan_vector.x, j+scan_vector.y)
+		var coord = transform_cell(next_cell, scan_vector)
+		_index = round(next_cell.y*grid_container.end.x + next_cell.x)
+		print('\ni1: ', coord)
+		print('- ', _index)
+		print('- ', next_cell)
+		if grid_container.has_point(next_cell) and grid[next_cell.y][next_cell.x] == 1 and visited.find(_index) == -1:
+			if coord == polygon[0]: break
+			polygon.push_back(coord)
+			visited.push_front(_index)
+			i = next_cell.x
+			j = next_cell.y
+			continue
+		
+		# second rotation
+		scan_vector = scan_vector.rotated(PI / 2)
+		next_cell = Vector2(i+scan_vector.x, j+scan_vector.y)
+		coord = transform_cell(next_cell, scan_vector)
+		print('i2: ', coord)
+		_index = round(next_cell.y*grid_container.end.x + next_cell.x)
+		if coord == polygon[0]: break
+		polygon.push_back(coord)
+		if grid_container.has_point(next_cell) and grid[next_cell.y][next_cell.x] == 1 and visited.find(_index) == -1:
+			visited.push_front(_index)
+			i = next_cell.x
+			j = next_cell.y
+			continue
+		
+		# third rotation
+		scan_vector = scan_vector.rotated(PI / 2)
+		next_cell = Vector2(i+scan_vector.x, j+scan_vector.y)
+		coord = transform_cell(next_cell, scan_vector)
+		print('i3: ', coord)
+		_index = round(next_cell.y*grid_container.end.x + next_cell.x)
+		if coord == polygon[0]: break
+		polygon.push_back(coord)
+		if grid_container.has_point(next_cell) and grid[next_cell.y][next_cell.x] == 1 and visited.find(_index) == -1:
+			visited.push_front(_index)
+			i = next_cell.x
+			j = next_cell.y
+			continue
+		
+		# fourth rotation - returned to the last index
+		scan_vector = scan_vector.rotated(PI / 2)
+		next_cell = Vector2(i+scan_vector.x, j+scan_vector.y)
+		coord = transform_cell(next_cell, scan_vector)
+		print('i4: ', coord)
+		_index = round(next_cell.y*grid_container.end.x + next_cell.x)
+		if coord == polygon[0]: break
+		polygon.push_back(coord)
+		visited.push_front(_index)
+		i = next_cell.x
+		j = next_cell.y
+
+
+	return polygon
+
+
+func transform_cell(cell: Vector2, direction: Vector2):
+	return Vector2(cell.x + direction.x*-0.5 + direction.y*0.5, cell.y + direction.x*-0.5 + direction.y*-0.5)
+
+func from_coord_to_cell(position: Vector2, direction: Vector2):
+	var rel_pos = Vector2(position.x-int(position.x), position.y-int(position.y))
+	return position + Vector2(rel_pos.x*direction.x - rel_pos.y*direction.y, rel_pos.x*direction.x + rel_pos.y*direction.y)
+	

@@ -60,5 +60,14 @@ static func merge_rooms(dungeon: Dungeon, key_a, key_b):
 		adjacency_matrix[j].remove(b_index)
 	adjacency_matrix.remove(b_index)
 	doors.erase(DungeonDoor.get_key_for(key_a, key_b))
-	rooms[key_a].squares.append_array(rooms[key_b].squares)
+	rooms[key_a].merge_with_room(rooms[key_b])
+	#rooms[key_a].squares.append_array(rooms[key_b].squares)
 	rooms.erase(key_b)
+
+
+static func get_room_for_point(dungeon: Dungeon, point: Vector2) -> int:
+	for key in dungeon.rooms:
+		var room: DungeonRoom = dungeon.rooms[key]
+		if room.contains_point(point):
+			return key
+	return -1

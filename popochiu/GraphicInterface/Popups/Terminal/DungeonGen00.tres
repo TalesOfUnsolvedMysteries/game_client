@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-_seed = 36
+_seed = 48
 _width = 10
 _height = 10
 _max_initial_room_width = 4
@@ -15,5 +15,5 @@ _max_number_rooms = 20
 _random_merge = false
 _select_room_chance = 0.34
 _merge_room_chance = 0.5
-_max_deep = 22
+_max_deep = 5
 _survival_door_chance = 0.0

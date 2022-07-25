@@ -6,17 +6,23 @@ func build_tree(dungeon: Dungeon):
 	var keys = dungeon.rooms.keys()
 	var _max_deep = dungeon.configuration._max_deep
 	var _survival_door_chance = dungeon.configuration._survival_door_chance
+	var starting_room_key = DungeonUtils.get_room_for_point(dungeon, dungeon.configuration._start_position)
+	if starting_room_key == -1: starting_room_key = keys[randi()%keys.size()]
+	var starting_room_index = keys.find(starting_room_key)
+	var _visited_nodes:Array = [starting_room_index]
+	var _deep_map: Array = [0]
+	var _tree_node_index = 0
+	var _exploration_index = 0
+	var deep = 0
+	
+	dungeon.set_root_node(starting_room_key)
+	print(starting_room_key)
 	
 	for i in keys.size():
 		result_matrix.push_back([])
 		for j in keys.size():
 			result_matrix[i].push_back(0)
 
-	var _visited_nodes:Array = [randi()%keys.size()]
-	var _deep_map: Array = [0]
-	var _tree_node_index = 0
-	var _exploration_index = 0
-	var deep = 0
 	while _tree_node_index < _visited_nodes.size():
 		if _exploration_index >= _visited_nodes.size(): break
 		var _index_node = _visited_nodes[_exploration_index]
