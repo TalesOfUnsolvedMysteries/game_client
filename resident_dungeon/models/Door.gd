@@ -6,7 +6,7 @@ class_name DungeonDoor
 var key: String
 var position := Vector2(0.0, 0.0)
 var vertical := false
-
+var enabled = false
 
 func _init(_key: String, _position: Vector2, _vertical: bool):
 	key = _key

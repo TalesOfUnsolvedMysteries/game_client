@@ -54,6 +54,9 @@ func build_tree(dungeon: Dungeon):
 		temp_matrix[_index_node][edge_index] = 0
 		result_matrix[edge_index][_index_node] = 1
 		result_matrix[_index_node][edge_index] = 1
+		var key = DungeonDoor.get_key_for(keys[edge_index], keys[_index_node])
+		var door = dungeon.doors[key]
+		door.enabled = true
 		_exploration_index += 1
 	
 	for j in range(0, keys.size()):
@@ -65,41 +68,11 @@ func build_tree(dungeon: Dungeon):
 				if dungeon.doors.has(key) and _survival_door_chance > randf():
 					result_matrix[j][i] = 1
 					result_matrix[i][j] = 1
-				else:
-					dungeon.doors.erase(key)
+					var door = dungeon.doors[key]
+					door.enabled = true
 	
-	# must validate if there is a path between any two pair of nodes
-	is_full_connected(dungeon, result_matrix)
-	var leaves = get_leaves(result_matrix)
-	#print(leaves)
-
-
-func is_full_connected(dungeon: Dungeon, matrix):
-	var base = matrix.duplicate(true)
-	var deep = matrix.duplicate(true)
-	var ones = matrix.duplicate(true)
-	var deep_matrix = matrix.duplicate(true) # load 
-	
-	for x in range(1, base.size()):
-		deep = multiply_matrix(base, deep)
-		for j in range(0, ones.size()):
-			for i in range(0, ones[j].size()):
-				ones[j][i] = (1 if (ones[j][i] + deep[j][i])>0 else 0)
-				if deep[j][i] > 0 and deep_matrix[j][i] == 0:
-					deep_matrix[j][i] = x + 1
-		if check_total(ones): break
-	return deep_matrix
-
-
-func get_leaves(matrix: Array):
-	var leaves = []
-	var i = 0
-	for node in matrix:
-		var total_edges = 0
-		for edge in node: total_edges += edge
-		if total_edges == 1: leaves.push_back(i)
-		i += 1
-	return leaves
+		
+	return result_matrix
 
 
 func _get_random_edge(adjacency_matrix:Array, index, excluded: Array):
@@ -109,22 +82,4 @@ func _get_random_edge(adjacency_matrix:Array, index, excluded: Array):
 			selected_array.push_back(i)
 	if selected_array.size() == 0: return -1
 	return selected_array[randi()%selected_array.size()]
-
-
-func multiply_matrix(matrix_a, matrix_b):
-	var matrixc = matrix_a.duplicate(true)
-	for j in range(0, matrix_a.size()):
-		for i in range(0, matrix_a[j].size()):
-			matrixc[j][i] = 0
-			for h in range(0, matrix_a.size()):
-				matrixc[j][i] += matrix_a[h][i]*matrix_b[j][h]
-	return matrixc
-
-
-func check_total(ones):
-	var total = 0
-	for j in range(0, ones.size()):
-		for i in range(0, ones[j].size()):
-			total += ones[j][i]
-	return total == ones.size()*ones[0].size()
 

@@ -71,3 +71,48 @@ static func get_room_for_point(dungeon: Dungeon, point: Vector2) -> int:
 		if room.contains_point(point):
 			return key
 	return -1
+
+
+static func get_leaves(matrix):
+	var leaves = []
+	var i = 0
+	for node in matrix:
+		var total_edges = 0
+		for edge in node: total_edges += edge
+		if total_edges == 1: leaves.push_back(i)
+		i += 1
+	return leaves
+
+
+static func get_deep_matrix(matrix):
+	var base = matrix.duplicate(true)
+	var deep = matrix.duplicate(true)
+	var ones = matrix.duplicate(true)
+	var deep_matrix = matrix.duplicate(true) # load 
+	
+	for x in range(1, base.size()):
+		deep = multiply_matrix(base, deep)
+		for j in range(0, ones.size()):
+			for i in range(0, ones[j].size()):
+				ones[j][i] = (1 if (ones[j][i] + deep[j][i])>0 else 0)
+				if deep[j][i] > 0 and deep_matrix[j][i] == 0:
+					deep_matrix[j][i] = x + 1
+		if check_total(ones): break
+	return deep_matrix
+
+static func multiply_matrix(matrix_a, matrix_b):
+	var matrixc = matrix_a.duplicate(true)
+	for j in range(0, matrix_a.size()):
+		for i in range(0, matrix_a[j].size()):
+			matrixc[j][i] = 0
+			for h in range(0, matrix_a.size()):
+				matrixc[j][i] += matrix_a[h][i]*matrix_b[j][h]
+	return matrixc
+
+
+static func check_total(ones):
+	var total = 0
+	for j in range(0, ones.size()):
+		for i in range(0, ones[j].size()):
+			total += ones[j][i]
+	return total == ones.size()*ones[0].size()

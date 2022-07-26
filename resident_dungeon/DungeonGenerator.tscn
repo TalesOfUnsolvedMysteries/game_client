@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resident_dungeon/DungeonGenerator.gd" type="Script" id=1]
 [ext_resource path="res://resident_dungeon/GridGenerator.gd" type="Script" id=2]
 [ext_resource path="res://resident_dungeon/GraphGenerator.gd" type="Script" id=3]
+[ext_resource path="res://resident_dungeon/LevelDesigner.gd" type="Script" id=4]
 
 [node name="DungeonGenerator" type="Node"]
 script = ExtResource( 1 )
@@ -12,3 +13,6 @@ script = ExtResource( 2 )
 
 [node name="GraphGenerator" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="LevelDesigner" type="Node" parent="."]
+script = ExtResource( 4 )

@@ -94,6 +94,9 @@ func draw_dungeon(dungeon, decoration_data):
 		shape.scale = Vector2(cell_size, cell_size)
 		if room.type == DungeonRoom.Types.ROOT:
 			shape.color = color_current_room
+		elif room.type == DungeonRoom.Types.LEAF:
+			shape.z_index +=1
+			shape.color = Color.green.darkened(0.5)
 		elif randf() > 0.6:
 			
 			#border.visible = true
@@ -119,6 +122,8 @@ func draw_dungeon(dungeon, decoration_data):
 		if randf() > 0.6:
 			#line.default_color = color_locked_door
 			pass
+		if not door.enabled:
+			line.default_color.a = 0.3
 		line.width = 2.0/cell_size
 		line.z_index += 1
 		$Canvas.add_child(line)

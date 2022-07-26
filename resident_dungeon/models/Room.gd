@@ -3,13 +3,16 @@ extends Resource
 
 class_name DungeonRoom
 
-enum Types { BASIC, ROOT }
+enum Types { BASIC, ROOT, LEAF, EXIT, TEST }
 
 var key: int
 var squares: Array # array of Rect2
 var polygon: PoolVector2Array
 var edges: Array
 var type = Types.BASIC
+
+# game specific
+var distance_to_root = -1
 
 func _init(_key, _squares, _edges):
 	key = _key
@@ -31,7 +34,13 @@ func contains_point(point: Vector2):
 
 func merge_with_room(room: DungeonRoom):
 	squares.append_array(room.squares)
+	var prev = polygon
 	var merge = Geometry.merge_polygons_2d(polygon, room.polygon)
-	if merge.size() > 0:
-		print(merge)
+	if merge.size() > 1:
+		print(room.polygon)
+		var exclude_area = Geometry.exclude_polygons_2d(PoolVector2Array(merge[0]), PoolVector2Array(merge[1]))
+		#print(exclude_area)
+		polygon = PoolVector2Array(exclude_area[0])
+		type = Types.TEST
+		return
 	polygon = PoolVector2Array(merge[0])

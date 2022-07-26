@@ -26,18 +26,18 @@
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-_seed = 47
-_width = 15
+_seed = 43
+_width = 20
 _height = 12
-_max_initial_room_width = 4
+_max_initial_room_width = 6
 _max_initial_room_height = 4
 _merge_grid_chance = 1.0
 _min_number_rooms = 4
-_max_number_rooms = 28
+_max_number_rooms = 24
 _random_merge = true
-_select_room_chance = 0.5
-_merge_room_chance = 0.63
-_max_deep = 14
+_select_room_chance = 0.25
+_merge_room_chance = 0.2
+_max_deep = 8
 _survival_door_chance = 0.0
 _start_position = Vector2( 7, 11 )
 
@@ -122,13 +122,6 @@ color_hidden_room = Color( 0.160784, 0.133333, 0.133333, 0.737255 )
 
 [node name="Canvas" type="Node2D" parent="DungeonDecoratorBasic"]
 position = Vector2( -120, -75 )
-
-[node name="Polygon2D" type="Line2D" parent="DungeonDecoratorBasic/Canvas"]
-scale = Vector2( 7, 7 )
-points = PoolVector2Array( 10, 5, 10, 10, 5, 10, 5, 5, 10, 5 )
-width = 0.1
-default_color = Color( 0.160784, 0.133333, 0.133333, 1 )
-joint_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DungeonDecoratorBasic"]
 visible = false

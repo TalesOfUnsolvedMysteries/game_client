@@ -6,7 +6,7 @@ var rooms: Dictionary
 var doors: Dictionary
 var adjacency_matrix: Array
 var configuration: DungeonResource
-var root_node := -1 setget set_root_node
+var root_node := -1 setget set_root_node # room id
 
 func get_room(key) -> DungeonRoom:
 	var room: DungeonRoom = rooms.get(key)

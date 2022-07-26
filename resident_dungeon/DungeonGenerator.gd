@@ -41,7 +41,10 @@ func generate_dungeon():
 	if room_overflow > 0:
 		for i in range(0, room_overflow):
 			random_merge_step(dungeon)
-	$GraphGenerator.build_tree(dungeon)
+	var original_adjacency_matrix = dungeon.adjacency_matrix.duplicate(true)
+	var result_adjacency_matrix = $GraphGenerator.build_tree(dungeon)
+	dungeon.adjacency_matrix = result_adjacency_matrix
+	$LevelDesigner.setup_level(dungeon, original_adjacency_matrix)
 	emit_signal('dungeon_changed', dungeon)
 	return dungeon
 
