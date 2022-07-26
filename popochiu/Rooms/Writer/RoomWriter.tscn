@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Writer/RoomWriter.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://popochiu/Characters/Bug/CharacterBug.tscn" type="PackedScene" id=23]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/writer_hidden.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/writer_normal.png" type="Texture" id=25]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/Hidden.tscn" type="PackedScene" id=26]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -60, 43, -110, 2, -73, -9, -56, -3, -29, 46, 46, -7, -20, -21, -34, -28, -30, -32, 55, -30, 63, -25, 110, -9, 125, -3, 112, 27, 95, 5, 49, 44, -19, 69, 45, 66 )
@@ -232,12 +233,6 @@ script_name = "BulletHoles"
 [node name="CollisionPolygon2D" parent="Hotspots/BulletHoles" index="0"]
 polygon = PoolVector2Array( -8, -11, -8, -7, -4, 10, 1, 10, 8, 4, 10, -11 )
 
-[node name="BaselineHelper" parent="Hotspots/BulletHoles" index="1"]
-visible = false
-
-[node name="WalkToHelper" parent="Hotspots/BulletHoles" index="2"]
-visible = false
-
 [node name="Regions" type="Node2D" parent="."]
 
 [node name="Points" type="Node2D" parent="."]
@@ -258,6 +253,8 @@ position = Vector2( 11, 58 )
 
 [node name="PaintingOverlay2D" parent="." instance=ExtResource( 2 )]
 visible = false
+
+[node name="Hidden" parent="." instance=ExtResource( 26 )]
 
 [editable path="Props/Window"]
 [editable path="Props/Desk"]

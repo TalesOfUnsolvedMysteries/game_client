@@ -15,10 +15,11 @@ onready var _dflts := {}
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
 func _ready():
+	if Engine.editor_hint: return
+	
 	# Cargar por defecto partes aleatorias para facilitar las pruebas de las
 	# habitaciones.
-	if not Engine.editor_hint\
-	and not _was_created and E.current_room.script_name != 'BugEditor':
+	if not _was_created and E.current_room.script_name != 'BugEditor':
 		if Globals.bug_adn.empty():
 			Globals.set_appearance(_get_random_adn())
 		else:

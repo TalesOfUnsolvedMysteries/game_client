@@ -77,3 +77,7 @@ func block() -> void:
 
 func unlock() -> void:
 	is_blocked = false
+
+
+func get_position() -> Vector2:
+	return $Sprite.position
