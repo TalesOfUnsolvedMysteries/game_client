@@ -92,11 +92,35 @@ func draw_dungeon(dungeon, decoration_data):
 		shape.polygon = room.polygon
 		shape.color = color_room
 		shape.scale = Vector2(cell_size, cell_size)
-		if room.type == DungeonRoom.Types.ROOT:
+		if room.type == DungeonRoom.Types.START:
 			shape.color = color_current_room
 		elif room.type == DungeonRoom.Types.LEAF:
 			shape.z_index +=1
 			shape.color = Color.green.darkened(0.5)
+		elif room.type == DungeonRoom.Types.EXIT:
+			shape.z_index +=1
+			shape.color = Color.blue
+		elif room.type == DungeonRoom.Types.END:
+			shape.z_index +=1
+			shape.color = Color.blue.lightened(0.5)
+		elif room.type == DungeonRoom.Types.BOSS:
+			shape.z_index +=1
+			shape.color = Color.crimson
+		elif room.type == DungeonRoom.Types.LOOT:
+			shape.z_index +=1
+			shape.color = Color.gold
+		elif room.type == DungeonRoom.Types.SPECIAL_ITEM:
+			shape.color = Color.deeppink
+		elif room.type == DungeonRoom.Types.TERMINAL:
+			shape.color = Color.darkcyan
+		elif room.type == DungeonRoom.Types.SAFE:
+			shape.color = Color.darkseagreen
+		elif room.type == DungeonRoom.Types.SURVIVOR:
+			shape.color = Color.aquamarine
+		elif room.type == DungeonRoom.Types.KEY:
+			shape.color = Color.wheat
+		elif room.type == DungeonRoom.Types.DARK:
+			shape.color = Color.black
 		elif randf() > 0.6:
 			
 			#border.visible = true
@@ -105,6 +129,7 @@ func draw_dungeon(dungeon, decoration_data):
 			pass
 		#shape.color.a = 0.9
 		border.default_color = color_border_room
+		shape.name = 'ROOM-%d (%d)' % [node_keys.find(key), key]
 		$Canvas.add_child(shape)
 		$Canvas.add_child(border)
 	# draw doors
@@ -119,6 +144,8 @@ func draw_dungeon(dungeon, decoration_data):
 		])
 		line.scale = Vector2(cell_size, cell_size)
 		line.default_color = color_door
+		if door.lock_type == DungeonDoor.LOCK_TYPE.KEY:
+			line.default_color = Color.rebeccapurple
 		if randf() > 0.6:
 			#line.default_color = color_locked_door
 			pass

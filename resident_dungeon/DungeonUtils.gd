@@ -64,6 +64,14 @@ static func merge_rooms(dungeon: Dungeon, key_a, key_b):
 	#rooms[key_a].squares.append_array(rooms[key_b].squares)
 	rooms.erase(key_b)
 
+static func enable_door(dungeon, matrix, i, j):
+	var keys = dungeon.rooms.keys()
+	matrix[j][i] = 1
+	matrix[i][j] = 1
+	var door_key = DungeonDoor.get_key_for(keys[j], keys[i])
+	var door = dungeon.doors[door_key]
+	door.enabled = true
+
 
 static func get_room_for_point(dungeon: Dungeon, point: Vector2) -> int:
 	for key in dungeon.rooms:

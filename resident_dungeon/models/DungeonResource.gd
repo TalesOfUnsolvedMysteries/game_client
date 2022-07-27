@@ -23,6 +23,16 @@ export(float, 0.0, 1.0, 0.01) var _survival_door_chance = 0.1 setget set_surviva
 
 export(Vector2) var _start_position = Vector2(-1, -1) setget set_start_position
 
+# level special characteristics
+export(int, 'NONE', 'NORMAL', 'END') var _exit = 1 setget set_exit
+export(String) var _boss_code = '' setget set_boss_code
+export(Array, Dictionary) var _loot_contents = [] setget set_loot_contents
+export(Array, String) var _special_items = [] setget set_special_items
+export(String) var _terminal_code = '' setget set_terminal_code
+export(int) var _safe_rooms = 0 setget set_safe_rooms
+export(String) var _survivor_code = '' setget set_survivor_code
+export(int) var _locked_rooms = 0 setget set_locked_rooms
+export(Array, DungeonRoom.Types) var _dark_rooms = [] setget set_dark_rooms
 
 func set_seed(val):
 	_seed = val
@@ -79,4 +89,42 @@ func set_survival_door_chance(val):
 func set_start_position(val):
 	_start_position = val
 	emit_signal('changed')
+
+func set_exit(val):
+	_exit = val
+	emit_signal('changed')
+
+func set_boss_code(val):
+	_boss_code = val
+	emit_signal('changed')
+
+func set_loot_contents(val):
+	_loot_contents = val
+	emit_signal('changed')
+
+func set_special_items(val):
+	_special_items = val
+	emit_signal('changed')
+
+func set_terminal_code(val):
+	_terminal_code = val
+	emit_signal('changed')
+
+func set_safe_rooms(val):
+	_safe_rooms = val
+	emit_signal('changed')
+
+func set_survivor_code(val):
+	_survivor_code = val
+	emit_signal('changed')
+
+func set_locked_rooms(val):
+	_locked_rooms = val
+	emit_signal('changed')
+
+func set_dark_rooms(val):
+	_dark_rooms = val
+	emit_signal('changed')
+	
+
 

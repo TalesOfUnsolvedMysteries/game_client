@@ -25,7 +25,7 @@ func chance_merge(dungeon: Dungeon):
 func random_merge_step(dungeon: Dungeon):
 	var keys = dungeon.rooms.keys()
 	var key = keys[randi()%keys.size()]
-	var room: DungeonRoom = dungeon.get_room(key)
+	var room = dungeon.get_room(key)
 	var edges = room.edges
 	if edges.size() == 0: return
 	var edge = edges[randi()%edges.size()]

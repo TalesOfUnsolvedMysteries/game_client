@@ -23,7 +23,7 @@ func _load_secrets ():
 		var o = line.split('=')
 		if(o.size() == 2):
 			env[o[0]] = o[1].lstrip("\"").rstrip("\"")
-	print(env)
+	
 
 func get(secret_key):
 	if env.has(secret_key):

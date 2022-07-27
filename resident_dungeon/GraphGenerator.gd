@@ -1,5 +1,60 @@
 extends Node
 
+func build_tree_b(dungeon: Dungeon):
+	var temp_matrix:Array = dungeon.adjacency_matrix.duplicate(true)
+	var result_matrix:Array = dungeon.adjacency_matrix.duplicate(true)
+	var keys = dungeon.rooms.keys()
+	var _max_deep = dungeon.configuration._max_deep
+	var starting_room_key = DungeonUtils.get_room_for_point(dungeon, dungeon.configuration._start_position)
+	if starting_room_key == -1: starting_room_key = keys[randi()%keys.size()]
+	var starting_room_index = keys.find(starting_room_key)
+	dungeon.set_root_node(starting_room_key)
+	var visited = [starting_room_key]
+	var index = 0
+	for i in keys.size():
+		for j in keys.size():
+			result_matrix[j][i]=0
+
+	while index < visited.size():
+		var key = visited[index]
+		var room_index = keys.find(key)
+		var path = get_path_for(dungeon, key, visited)
+		visited.append_array(path)
+		for edge_key in path:
+			var edge_index = keys.find(edge_key)
+			DungeonUtils.enable_door(dungeon, result_matrix, room_index, edge_index)
+		index += 1
+	
+	while visited.size() < keys.size():
+		var excluded = []
+		var excluded_indexes = []
+		for key in keys:
+			if not visited.has(key):
+				excluded.push_back(key)
+				excluded_indexes.push_back(keys.find(key))
+		visited.shuffle()
+		for key in visited:
+			var visited_index = keys.find(key)
+			var connections = dungeon.adjacency_matrix[visited_index]
+			for i in keys.size():
+				if connections[i] == 1 and excluded_indexes.find(i) != -1 and randf() < 0.1 and visited.find(keys[i]) == -1:
+					DungeonUtils.enable_door(dungeon, result_matrix, visited_index, i)
+					visited.push_back(keys[i])
+
+	return result_matrix
+
+func get_path_for(dungeon: Dungeon, room_id: int, excluded: Array):
+	var room: DungeonRoom = dungeon.get_room(room_id)
+	var edges = room.edges.duplicate(true)
+	for parent_key in excluded:
+		edges.erase(parent_key)
+	edges.shuffle()
+	for edge in edges:
+		if randf() < 0.7:
+			edges.erase(edge)
+	return edges
+	
+
 func build_tree(dungeon: Dungeon):
 	var temp_matrix:Array = dungeon.adjacency_matrix.duplicate(true)
 	var result_matrix:Array = []
@@ -16,7 +71,6 @@ func build_tree(dungeon: Dungeon):
 	var deep = 0
 	
 	dungeon.set_root_node(starting_room_key)
-	print(starting_room_key)
 	
 	for i in keys.size():
 		result_matrix.push_back([])

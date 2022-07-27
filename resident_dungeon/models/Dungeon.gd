@@ -18,5 +18,5 @@ func set_root_node(room_index: int):
 		var current_root := get_room(room_index)
 		current_root.type = DungeonRoom.Types.BASIC
 	if room:
-		room.type = DungeonRoom.Types.ROOT
+		room.type = DungeonRoom.Types.START
 	root_node = room_index

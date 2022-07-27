@@ -3,7 +3,7 @@ extends Resource
 
 class_name DungeonRoom
 
-enum Types { BASIC, ROOT, LEAF, EXIT, TEST }
+enum Types { BASIC, START, LEAF, EXIT, END, BOSS, LOOT, TEST, SPECIAL_ITEM, TERMINAL, SAFE, SURVIVOR, KEY, DARK }
 
 var key: int
 var squares: Array # array of Rect2
@@ -13,6 +13,7 @@ var type = Types.BASIC
 
 # game specific
 var distance_to_root = -1
+var contents = []
 
 func _init(_key, _squares, _edges):
 	key = _key
@@ -44,3 +45,10 @@ func merge_with_room(room: DungeonRoom):
 		type = Types.TEST
 		return
 	polygon = PoolVector2Array(merge[0])
+
+func set_contents(things):
+	contents = things.duplicate(true)
+
+func add_enemy(type):
+	print('add enemy of type ', type)
+	

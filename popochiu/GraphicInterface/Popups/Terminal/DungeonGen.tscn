@@ -26,20 +26,29 @@
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-_seed = 43
-_width = 20
+_seed = 57
+_width = 17
 _height = 12
-_max_initial_room_width = 6
+_max_initial_room_width = 4
 _max_initial_room_height = 4
 _merge_grid_chance = 1.0
 _min_number_rooms = 4
-_max_number_rooms = 24
-_random_merge = true
+_max_number_rooms = 28
+_random_merge = false
 _select_room_chance = 0.25
 _merge_room_chance = 0.2
-_max_deep = 8
+_max_deep = 6
 _survival_door_chance = 0.0
 _start_position = Vector2( 7, 11 )
+_exit = 1
+_boss_code = "AD"
+_loot_contents = [  ]
+_special_items = [ "", "" ]
+_terminal_code = "A"
+_safe_rooms = 2
+_survivor_code = "leon"
+_locked_rooms = 1
+_dark_rooms = [ 9 ]
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
