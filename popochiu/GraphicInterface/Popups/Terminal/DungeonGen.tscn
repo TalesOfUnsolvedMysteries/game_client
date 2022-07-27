@@ -26,14 +26,14 @@
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-_seed = 46
-_width = 17
-_height = 12
-_max_initial_room_width = 4
-_max_initial_room_height = 4
+_seed = 42
+_width = 15
+_height = 10
+_max_initial_room_width = 3
+_max_initial_room_height = 3
 _merge_grid_chance = 1.0
 _min_number_rooms = 4
-_max_number_rooms = 28
+_max_number_rooms = 20
 _random_merge = false
 _select_room_chance = 0.25
 _merge_room_chance = 0.2
@@ -41,8 +41,11 @@ _max_deep = 6
 _survival_door_chance = 0.0
 _start_position = Vector2( 7, 11 )
 _exit = 1
-_boss_code = "AD"
-_loot_contents = [  ]
+_boss_code = "00"
+_loot_contents = [ {
+"code": "level1",
+"type": "elevator_card"
+} ]
 _special_items = [ "", "" ]
 _terminal_code = "A"
 _safe_rooms = 1
@@ -50,6 +53,11 @@ _survivor_code = "leon"
 _locked_rooms = 1
 _dark_rooms = [ 8 ]
 _lock_dark_paths = true
+_side_paths = 4
+_dark_enemy_spawn_probability = [ 0, 30, 15, 8, 4 ]
+_enemy_spawn_probability = [ 15, 30, 15, 8, 4 ]
+_ammo_spawn_probability = [ 45, 15, 8, 4, 1 ]
+_health_spawn_probability = [ 90, 15, 8, 4, 1 ]
 
 [sub_resource type="DynamicFont" id=2]
 size = 14

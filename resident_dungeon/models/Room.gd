@@ -48,7 +48,4 @@ func merge_with_room(room: DungeonRoom):
 
 func set_contents(things):
 	contents = things.duplicate(true)
-
-func add_enemy(type):
-	print('add enemy of type ', type)
 	

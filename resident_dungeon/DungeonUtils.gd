@@ -71,6 +71,7 @@ static func enable_door(dungeon, matrix, i, j):
 	var door_key = DungeonDoor.get_key_for(keys[j], keys[i])
 	var door = dungeon.doors[door_key]
 	door.enabled = true
+	return door
 
 
 static func get_room_for_point(dungeon: Dungeon, point: Vector2) -> int:

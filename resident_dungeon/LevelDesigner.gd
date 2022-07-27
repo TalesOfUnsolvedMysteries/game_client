@@ -1,6 +1,6 @@
 extends Node
 
-func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
+func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array, time):
 	# locate leaves
 	var room_keys = dungeon.rooms.keys()
 	var root_key = dungeon.root_node
@@ -41,12 +41,10 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 				farthest_nodes[0] = room_keys[j]
 				farthest_nodes[1] = room_keys[i]
 				farthest_nodes[2] = distance
-	print('farthest distance between %d and %d is %d' % farthest_nodes)
+	
 	# get a path for all the possible nodes
 	var paths = get_all_paths_for(root_index, dungeon.adjacency_matrix, deep_matrix)
-	print('leaves size: %d' % leaves.size())
-	print('paths size: %d' % paths.size())
-	print('farthest distance %d' % farthest_distance)
+	var original_leaves = leaves.duplicate()
 	
 	# setup start
 	mark_cell_as_used(available_rooms, leaves, room_keys, root_key)
@@ -60,7 +58,6 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		leaves.erase(farthest_node)
 		mark_cell_as_used(available_rooms, leaves, room_keys,  exit.key)
 		special_rooms.push_back(exit.key)
-	
 	# BOSS
 	# an obstacle to the exit, only on a path room (exactly 2 doors) second door is locked and boss has the key
 	# next room to this is a loot room
@@ -77,7 +74,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		var boss_code = dungeon.configuration._boss_code
 		var boss_room := dungeon.get_room(boss_room_key)
 		boss_room.type = DungeonRoom.Types.BOSS
-		boss_room.set_contents([{'type': 'boss', 'loot': ['boss_key_%s' % boss_code], 'code': boss_code}])
+		boss_room.set_contents([{'type': 'boss', 'loot': [{'type': 'key', 'code': 'boss_key_%s' % boss_code}], 'code': boss_code}])
 		mark_cell_as_used(available_rooms, leaves, room_keys, boss_room_key)
 		# lock door
 		var door = dungeon.doors[DungeonDoor.get_key_for(boss_room_key, loot_room_key)]
@@ -89,13 +86,10 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		loot_room.set_contents(dungeon.configuration._loot_contents)
 		mark_cell_as_used(available_rooms, leaves, room_keys, loot_room_key)
 		# remove exit as it has a blocker with the boss
-		print(special_rooms)
-		print('special_rooms remove ', room_keys[farthest_node])
 		special_rooms.erase(room_keys[farthest_node])
 		# but place boss room
 		special_rooms.push_back(boss_room_key)
-		print(special_rooms)
-	
+
 	# SPECIAL ITEM ROOM 
 	for special_item in dungeon.configuration._special_items:
 		# choose a random available leave
@@ -105,6 +99,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		special_item_room.set_contents([{'type': 'special_item', 'code': special_item}])
 		mark_cell_as_used(available_rooms, leaves, room_keys, room_key)
 		special_rooms.push_back(room_key)
+	
 	
 	# TERMINAL
 	# should be in a leaf room behind a dark room, a lock or a great number of enemies
@@ -116,6 +111,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		mark_cell_as_used(available_rooms, leaves, room_keys, room_key)
 		special_rooms.push_back(room_key)
 	
+	
 	# SAFE ROOM
 	for i in dungeon.configuration._safe_rooms:
 		var room_key = get_random_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
@@ -123,6 +119,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		safe_room.type = DungeonRoom.Types.SAFE
 		mark_cell_as_used(available_rooms, leaves, room_keys, room_key)
 		special_rooms.push_back(room_key)
+	
 	
 	# SURVIVOR ROOM
 	if dungeon.configuration._survivor_code.length() > 0:
@@ -132,7 +129,8 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		survivor_room.set_contents([{'type': 'survivor', 'code': dungeon.configuration._survivor_code}])
 		mark_cell_as_used(available_rooms, leaves, room_keys, room_key)
 		special_rooms.push_back(room_key)
-
+	
+	
 	# DARK ROOM
 	# given a leave go backwards and check what is the most closest bifurcation room (a room with more than 2 doors enabled)
 	# locate the dark room there, leaves affected by that path can't contain an exit or a key to an exit (unless it is explicitly set on dungeon config)
@@ -155,8 +153,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		if room.type != DungeonRoom.Types.BASIC:
 			continue
 		room.type = DungeonRoom.Types.DARK
-		for i in randi()%4:
-			room.add_enemy('basic')
+		room.contents.push_back({'type': 'enemies', 'level': get_weighted_random(dungeon.configuration._dark_enemy_spawn_probability)})
 		
 		if dungeon.configuration._lock_dark_paths:
 			var dark_index = room_keys.find(dark_room_key)
@@ -172,7 +169,9 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 			special_rooms.erase(target_room_key)
 		else:
 			special_rooms.push_back(dark_room_key)
-	
+		mark_cell_as_used(available_rooms, leaves, room_keys, dark_room_key)
+
+
 	# open alternatives for affected dark rooms
 	for hidden_room_index in affected_dark_room_indexes:
 		var edges = original_adjacency_matrix[hidden_room_index]
@@ -206,9 +205,9 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		for dark_index in restore_dark_rooms:
 			dungeon.adjacency_matrix[dark_index][hidden_room_index] = 0
 			dungeon.adjacency_matrix[hidden_room_index][dark_index] = 0
-	
+
+
 	# Locked rooms or locked paths...
-	
 	deep_matrix = DungeonUtils.get_deep_matrix(dungeon.adjacency_matrix)
 	paths = get_all_paths_for(root_index, dungeon.adjacency_matrix, deep_matrix)
 	# check only one for now...
@@ -252,29 +251,86 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		# lock door
 		var door = dungeon.doors[door_to_lock]
 		door.lock_with_key('key-%s' % door_to_lock)
-		#print(paths)
 
-	#print(deep_matrix)
 
-		
 	# SIDE LOCKS
 	# check for a room with a high distance, if there is any adjacent room (with no door) with a shorter distance
 	# at least -2 distance to root, a side lock could be placed from greater distance room to shorter
-	# 
-	# given a leave check all disabled doors
-	# which one connects to a shorter path than current value?
-	# create a side lock door in that path
-	# that leaf is a good candidate for a safe room or terminal room
+	var locked_doors = 0
+	var tries = 0
+	var possible_locks = deep_matrix[root_index].duplicate()
+	for leaf in original_leaves:
+		possible_locks[leaf] = 0
+	while locked_doors < dungeon.configuration._side_paths:
+	#for side_lock in dungeon.configuration._side_paths:
+		var room_candidate_index = get_weighted_random(possible_locks)
+		var min_distance = deep_matrix[root_index][room_candidate_index]
+		var edge_candidate = -1
+		for i in room_keys.size():
+			var distance = (original_adjacency_matrix[room_candidate_index][i] ^ dungeon.adjacency_matrix[room_candidate_index][i]) * (deep_matrix[root_index][i] + 2)
+			if distance > 0 and distance < min_distance:
+				min_distance = distance
+				edge_candidate = i
+		if edge_candidate != -1:
+			var door = DungeonUtils.enable_door(dungeon, dungeon.adjacency_matrix, room_candidate_index, edge_candidate)
+			door.lock_from_side(room_keys[room_candidate_index])
+			locked_doors += 1
+		else:
+			tries += 1
+			if tries == 3:
+				locked_doors += 1
+				tries = 0
+	
+	# place valuable items in remaining leaves
+	var _alone_leaves = leaves.duplicate()
+	for leaf in _alone_leaves:
+		# place loot based on distance
+		var room = dungeon.get_room(room_keys[leaf])
+		if room.type == DungeonRoom.Types.BASIC:
+			room.type = DungeonRoom.Types.LOOT
+		var loot = [
+			{'type': 'ammo', 'level': room.distance_to_root},
+			{'type': 'health', 'level': room.distance_to_root}
+		]
+		room.contents.append_array(loot)
+		mark_cell_as_used(available_rooms, leaves, room_keys, room_keys[leaf])
+	
+	# ENEMIES and SUPPLIES
+	available_rooms.shuffle()
+	for room_key in available_rooms:
+		var room := dungeon.get_room(room_key)
+		var contents = [
+			{'type': 'enemies', 'level': get_weighted_random(dungeon.configuration._enemy_spawn_probability)},
+			{'type': 'ammo', 'level': get_weighted_random(dungeon.configuration._ammo_spawn_probability)},
+			{'type': 'health', 'level': get_weighted_random(dungeon.configuration._health_spawn_probability)}
+		]
+		room.set_contents(contents)
 
+	# finally
+	# remove unused dungeon doors
+	var all_doors = dungeon.doors.keys()
+	print(all_doors)
+	for d in all_doors:
+		var door = dungeon.doors[d]
+		if d == '11-40':
+			print(door)
+		if door.enabled: continue
+		var _room_keys = d.split('-')
+		print(_room_keys)
+		var i = room_keys.find(int(_room_keys[0]))
+		var j = room_keys.find(int(_room_keys[1]))
+		original_adjacency_matrix[i][j] = 0
+		original_adjacency_matrix[j][i] = 0
+		dungeon.doors.erase(d)
+	
+	for j in room_keys.size():
+		var edges = []
+		for i in room_keys.size():
+			if original_adjacency_matrix[j][i] == 1: edges.push_back(room_keys[i])
+		var room = dungeon.get_room(room_keys[j])
+		room.edges = edges
+	dungeon.adjacency_matrix = original_adjacency_matrix
 
-	# REGULAR ITEMs
-	
-	
-	# ENEMIES
-
-	
-	
-	pass
 
 func get_room_by_type(dungeon, dark_room_type, candidates):
 	for candidate in candidates:
@@ -319,7 +375,6 @@ func get_weighted_random(weight_array):
 	for w in weight_array:
 		total += w
 	var val = (randi()%total)
-	print('weighted_total: %d   random %d ' % [total, val])
 	var acc = 0
 	var index = 0
 	for w in weight_array:

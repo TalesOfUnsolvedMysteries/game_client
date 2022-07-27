@@ -146,6 +146,8 @@ func draw_dungeon(dungeon, decoration_data):
 		line.default_color = color_door
 		if door.lock_type == DungeonDoor.LOCK_TYPE.KEY:
 			line.default_color = Color.rebeccapurple
+		if door.lock_type == DungeonDoor.LOCK_TYPE.SIDE:
+			line.default_color = Color.darkgray
 		if randf() > 0.6:
 			#line.default_color = color_locked_door
 			pass
@@ -153,6 +155,7 @@ func draw_dungeon(dungeon, decoration_data):
 			line.default_color.a = 0.3
 		line.width = 2.0/cell_size
 		line.z_index += 1
+		line.name = 'DOOR-%s' % door_key
 		$Canvas.add_child(line)
 
 

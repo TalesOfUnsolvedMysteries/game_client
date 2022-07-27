@@ -21,6 +21,10 @@ func lock_with_key(key_name):
 	lock_type = LOCK_TYPE.KEY
 	lock_code = key_name
 
+func lock_from_side(locked_side):
+	lock_type = LOCK_TYPE.SIDE
+	lock_code = locked_side
+
 static func get_key_for(a, b):
 	if b < a:
 		var t = a

@@ -33,6 +33,8 @@ func random_merge_step(dungeon: Dungeon):
 
 
 func generate_dungeon():
+	var time = OS.get_system_time_msecs()
+	
 	# build basic grid based dungeon 
 	var dungeon = $GridGenerator.generate(dungeon_config)
 	if not dungeon_config._random_merge:
@@ -44,7 +46,7 @@ func generate_dungeon():
 	var original_adjacency_matrix = dungeon.adjacency_matrix.duplicate(true)
 	var result_adjacency_matrix = $GraphGenerator.build_tree(dungeon)
 	dungeon.adjacency_matrix = result_adjacency_matrix
-	$LevelDesigner.setup_level(dungeon, original_adjacency_matrix)
+	$LevelDesigner.setup_level(dungeon, original_adjacency_matrix, time)
 	emit_signal('dungeon_changed', dungeon)
 	return dungeon
 
@@ -58,5 +60,5 @@ func _set_dungeon_config(_new_config):
 		dungeon_config.disconnect('changed', self, 'generate_dungeon')
 	dungeon_config = _new_config
 	dungeon_config.connect('changed', self, 'generate_dungeon')
-	print('signal connected?')
+
 

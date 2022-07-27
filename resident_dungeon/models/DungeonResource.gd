@@ -26,7 +26,7 @@ export(Vector2) var _start_position = Vector2(-1, -1) setget set_start_position
 # level special characteristics
 export(int, 'NONE', 'NORMAL', 'END') var _exit = 1 setget set_exit
 export(String) var _boss_code = '' setget set_boss_code
-export(Array, Dictionary) var _loot_contents = [] setget set_loot_contents
+export(Array, Dictionary) var _loot_contents = [{'type': 'elevator_card', 'code': 'level1'}] setget set_loot_contents
 export(Array, String) var _special_items = [] setget set_special_items
 export(String) var _terminal_code = '' setget set_terminal_code
 export(int) var _safe_rooms = 0 setget set_safe_rooms
@@ -34,6 +34,13 @@ export(String) var _survivor_code = '' setget set_survivor_code
 export(int) var _locked_rooms = 0 setget set_locked_rooms
 export(Array, DungeonRoom.Types) var _dark_rooms = [] setget set_dark_rooms
 export(bool) var _lock_dark_paths = true setget set_lock_dark_paths # lock paths if there is a dark room inside
+export(int) var _side_paths = 0 setget set_side_paths
+
+# each number represents a weight to spawn a index enemy, 0 will be none
+export(Array, int) var _dark_enemy_spawn_probability = [0, 30, 15, 8, 4] setget set_dark_enemy_spawn_probability
+export(Array, int) var _enemy_spawn_probability = [15, 30, 15, 8, 4] setget set_enemy_spawn_probability
+export(Array, int) var _ammo_spawn_probability = [45, 15, 8, 4, 1] setget set_ammo_spawn_probability
+export(Array, int) var _health_spawn_probability = [90, 15, 8, 4, 1] setget set_health_spawn_probability
 
 func set_seed(val):
 	_seed = val
@@ -129,6 +136,26 @@ func set_dark_rooms(val):
 	
 func set_lock_dark_paths(val):
 	_lock_dark_paths = val
+	emit_signal('changed')
+
+func set_side_paths(val):
+	_side_paths = val
+	emit_signal('changed')
+
+func set_dark_enemy_spawn_probability(val):
+	_dark_enemy_spawn_probability = val
+	emit_signal('changed')
+
+func set_enemy_spawn_probability(val):
+	_enemy_spawn_probability = val
+	emit_signal('changed')
+
+func set_ammo_spawn_probability(val):
+	_ammo_spawn_probability = val
+	emit_signal('changed')
+
+func set_health_spawn_probability(val):
+	_health_spawn_probability = val
 	emit_signal('changed')
 
 
