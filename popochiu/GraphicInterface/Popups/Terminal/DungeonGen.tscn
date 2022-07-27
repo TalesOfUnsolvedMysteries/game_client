@@ -26,7 +26,7 @@
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-_seed = 57
+_seed = 46
 _width = 17
 _height = 12
 _max_initial_room_width = 4
@@ -48,7 +48,7 @@ _terminal_code = "A"
 _safe_rooms = 1
 _survivor_code = "leon"
 _locked_rooms = 1
-_dark_rooms = [ 10 ]
+_dark_rooms = [ 8 ]
 _lock_dark_paths = true
 
 [sub_resource type="DynamicFont" id=2]

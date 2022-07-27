@@ -99,7 +99,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 	# SPECIAL ITEM ROOM 
 	for special_item in dungeon.configuration._special_items:
 		# choose a random available leave
-		var room_key = get_next_available_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
+		var room_key = get_random_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
 		var special_item_room := dungeon.get_room(room_key)
 		special_item_room.type = DungeonRoom.Types.SPECIAL_ITEM
 		special_item_room.set_contents([{'type': 'special_item', 'code': special_item}])
@@ -118,7 +118,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 	
 	# SAFE ROOM
 	for i in dungeon.configuration._safe_rooms:
-		var room_key = get_next_available_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
+		var room_key = get_random_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
 		var safe_room := dungeon.get_room(room_key)
 		safe_room.type = DungeonRoom.Types.SAFE
 		mark_cell_as_used(available_rooms, leaves, room_keys, room_key)
@@ -126,7 +126,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 	
 	# SURVIVOR ROOM
 	if dungeon.configuration._survivor_code.length() > 0:
-		var room_key = get_next_available_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
+		var room_key = get_random_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index)
 		var survivor_room := dungeon.get_room(room_key)
 		survivor_room.type = DungeonRoom.Types.SURVIVOR
 		survivor_room.set_contents([{'type': 'survivor', 'code': dungeon.configuration._survivor_code}])
@@ -217,10 +217,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 	for i in dungeon.configuration._locked_rooms:
 		# choose a random room
 		var room_key = lock_candidates[randi()%lock_candidates.size()]
-		print(lock_candidates)
-		print('room_key try to lock')
 		var room_index = room_keys.find(room_key)
-		print(room_key, ' - ', room_index)
 		lock_candidates.erase(room_key)
 		var path_to_room = []
 		paths.shuffle()
@@ -317,8 +314,33 @@ func mark_cell_as_used(available_rooms, leaves, room_keys, room_key):
 	available_rooms.erase(room_key)
 	leaves.erase(cell_index)
 
-func get_weighted_random(values, weights):
-	pass
+func get_weighted_random(weight_array):
+	var total = 0
+	for w in weight_array:
+		total += w
+	var val = (randi()%total)
+	print('weighted_total: %d   random %d ' % [total, val])
+	var acc = 0
+	var index = 0
+	for w in weight_array:
+		acc += w
+		if acc > val:
+			return index
+		index += 1
+	return index
+
+func get_random_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index):
+	if leaves.size() == 0:
+		return available_rooms[randi() % available_rooms.size()]
+	
+	var distance_to_root = deep_matrix[root_index].duplicate()
+	var index = 0
+	for i in distance_to_root:
+		if not leaves.has(index):
+			distance_to_root[index] = 0
+		index += 1
+	var leaf = get_weighted_random(distance_to_root)
+	return room_keys[leaf]
 
 func get_next_available_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index):
 	var cell_key = -1
