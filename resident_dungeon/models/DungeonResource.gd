@@ -33,6 +33,7 @@ export(int) var _safe_rooms = 0 setget set_safe_rooms
 export(String) var _survivor_code = '' setget set_survivor_code
 export(int) var _locked_rooms = 0 setget set_locked_rooms
 export(Array, DungeonRoom.Types) var _dark_rooms = [] setget set_dark_rooms
+export(bool) var _lock_dark_paths = true setget set_lock_dark_paths
 
 func set_seed(val):
 	_seed = val
@@ -126,5 +127,10 @@ func set_dark_rooms(val):
 	_dark_rooms = val
 	emit_signal('changed')
 	
+func set_lock_dark_paths(val):
+	_lock_dark_paths = val
+	emit_signal('changed')
+
+
 
 

@@ -132,14 +132,95 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		survivor_room.set_contents([{'type': 'survivor', 'code': dungeon.configuration._survivor_code}])
 		mark_cell_as_used(available_rooms, leaves, room_keys, room_key)
 		special_rooms.push_back(room_key)
+
+	# DARK ROOM
+	# given a leave go backwards and check what is the most closest bifurcation room (a room with more than 2 doors enabled)
+	# locate the dark room there, leaves affected by that path can't contain an exit or a key to an exit (unless it is explicitly set on dungeon config)
+	# dark room hide leaves according to the type...
+	var dark_room_candidates = special_rooms.duplicate()
+	var affected_dark_room_indexes = []
+	for dark_room in dungeon.configuration._dark_rooms:
+		var target_room_key = get_room_by_type(dungeon, dark_room, dark_room_candidates)
+		if target_room_key == -1: break
+		var target_room_index = room_keys.find(target_room_key)
+		dark_room_candidates.erase(target_room_key)
+		var path_to_room = []
+		for path in paths:
+			if path[-1] == target_room_index:
+				path_to_room = path
+				break
+		var dark_room_key = room_keys[path_to_room[-2]]
+		var room = dungeon.get_room(dark_room_key)
+		dark_room_candidates.push_back(dark_room_key)
+		if room.type != DungeonRoom.Types.BASIC:
+			continue
+		room.type = DungeonRoom.Types.DARK
+		for i in randi()%4:
+			room.add_enemy('basic')
+		
+		if dungeon.configuration._lock_dark_paths:
+			var dark_index = room_keys.find(dark_room_key)
+			for path in paths:
+				var i = path.find(dark_index)
+				if i != -1 and path[i] != path[-1]:
+					dungeon.adjacency_matrix[dark_index][path[i+1]] = -1
+					dungeon.adjacency_matrix[path[i+1]][dark_index] = -1
+					if i + 1 < path.size() and path[i+1] != target_room_index: # this one is intended
+						var affected = path[i+1]
+						if affected_dark_room_indexes.has(affected): continue
+						affected_dark_room_indexes.push_back(affected)
+			special_rooms.erase(target_room_key)
+		else:
+			special_rooms.push_back(dark_room_key)
+	
+	# open alternatives for affected dark rooms
+	for hidden_room_index in affected_dark_room_indexes:
+		var edges = original_adjacency_matrix[hidden_room_index]
+		var current_edges = dungeon.adjacency_matrix[hidden_room_index]
+		var candidates = []
+		var restore_dark_rooms = []
+		for i in edges.size():
+			var comp = edges[i]+current_edges[i]
+			if comp == 1:
+				candidates.push_back(i)
+			if current_edges[i] == -1 and not restore_dark_rooms.has(i):
+				restore_dark_rooms.push_back(i)
+		# restore
+		var found = false
+		for candidate in candidates:
+			for path in paths:
+				var can_index = path.find(candidate)
+				found = true
+				if can_index == -1:
+					found = false
+					continue
+				for rest in restore_dark_rooms:
+					var rest_index = path.find(rest)
+					if rest_index != -1 and rest_index < can_index:
+						found = false
+						break
+				if found: break
+			if found:
+				DungeonUtils.enable_door(dungeon, dungeon.adjacency_matrix, hidden_room_index, candidate)
+				break
+		for dark_index in restore_dark_rooms:
+			dungeon.adjacency_matrix[dark_index][hidden_room_index] = 0
+			dungeon.adjacency_matrix[hidden_room_index][dark_index] = 0
 	
 	# Locked rooms or locked paths...
+	
+	deep_matrix = DungeonUtils.get_deep_matrix(dungeon.adjacency_matrix)
+	paths = get_all_paths_for(root_index, dungeon.adjacency_matrix, deep_matrix)
 	# check only one for now...
 	var lock_candidates = special_rooms.duplicate()
+	#var i = 0
 	for i in dungeon.configuration._locked_rooms:
 		# choose a random room
 		var room_key = lock_candidates[randi()%lock_candidates.size()]
+		print(lock_candidates)
+		print('room_key try to lock')
 		var room_index = room_keys.find(room_key)
+		print(room_key, ' - ', room_index)
 		lock_candidates.erase(room_key)
 		var path_to_room = []
 		paths.shuffle()
@@ -147,9 +228,13 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 			if path.find(room_index) != -1:
 				path_to_room = path.duplicate()
 				break
+		if path_to_room.size() == 0:
+			i -= 1
+			continue
 		
 		var room_for_key = -1
 		var door_to_lock = ''
+		var room_index_doors = [-1, -1]
 		while room_for_key == -1:
 			var index_in_path = clamp(randi()%(path_to_room.size()-1), path_to_room.size() - 5, path_to_room.size() - 2)
 			var door_lock = path_to_room[index_in_path]
@@ -161,6 +246,7 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 			# place a key there
 			room_for_key = room_keys[largest[-1]]
 			door_to_lock = DungeonDoor.get_key_for(room_keys[path_to_room[index_in_path + 1]], room_keys[door_lock])
+			room_index_doors =[path_to_room[index_in_path + 1], door_lock]
 		
 		var room_with_key = dungeon.get_room(room_for_key)
 		room_with_key.type = DungeonRoom.Types.KEY
@@ -169,31 +255,10 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array):
 		# lock door
 		var door = dungeon.doors[door_to_lock]
 		door.lock_with_key('key-%s' % door_to_lock)
+		#print(paths)
 
-	# DARK ROOM
-	# given a leave go backwards and check what is the most closest bifurcation room (a room with more than 2 doors enabled)
-	# locate the dark room there, leaves affected by that path can't contain an exit or a key to an exit (unless it is explicitly set on dungeon config)
-	# dark room hide leaves according to the type...
-	var dark_room_candidates = special_rooms.duplicate()
-	for dark_room in dungeon.configuration._dark_rooms:
-		var room_key = get_room_by_type(dungeon, dark_room, dark_room_candidates)
-		if room_key == -1: break
-		var room_index = room_keys.find(room_key)
-		dark_room_candidates.erase(room_key)
-		var path_to_room = []
-		for path in paths:
-			if path[-1] == room_index:
-				path_to_room = path
-				break
-		var dark_room_key = room_keys[path_to_room[-2]]
-		var room = dungeon.get_room(dark_room_key)
-		dark_room_candidates.push_back(dark_room_key)
-		if room.type != DungeonRoom.Types.BASIC:
-			continue
-		room.type = DungeonRoom.Types.DARK
-		for i in randi()%4:
-			room.add_enemy('basic')
-		special_rooms.push_back(dark_room_key)
+	#print(deep_matrix)
+
 		
 	# SIDE LOCKS
 	# check for a room with a high distance, if there is any adjacent room (with no door) with a shorter distance
@@ -251,6 +316,9 @@ func mark_cell_as_used(available_rooms, leaves, room_keys, room_key):
 	var cell_index = room_keys.find(room_key)
 	available_rooms.erase(room_key)
 	leaves.erase(cell_index)
+
+func get_weighted_random(values, weights):
+	pass
 
 func get_next_available_leaf(leaves, deep_matrix, available_rooms, room_keys, root_index):
 	var cell_key = -1

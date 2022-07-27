@@ -45,10 +45,11 @@ _boss_code = "AD"
 _loot_contents = [  ]
 _special_items = [ "", "" ]
 _terminal_code = "A"
-_safe_rooms = 2
+_safe_rooms = 1
 _survivor_code = "leon"
 _locked_rooms = 1
-_dark_rooms = [ 9 ]
+_dark_rooms = [ 10 ]
+_lock_dark_paths = true
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
