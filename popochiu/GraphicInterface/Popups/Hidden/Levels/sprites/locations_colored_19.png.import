@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/box.png-c66042a29ce362ae85b55f9ff0ad43d1.stex"
+path="res://.import/locations_colored_19.png-9b1b33eff40297bcbc3bf35cbe11ef5c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://popochiu/GraphicInterface/Popups/Hidden/HiddenObject/sprites/box.png"
-dest_files=[ "res://.import/box.png-c66042a29ce362ae85b55f9ff0ad43d1.stex" ]
+source_file="res://popochiu/GraphicInterface/Popups/Hidden/Levels/sprites/locations_colored_19.png"
+dest_files=[ "res://.import/locations_colored_19.png-9b1b33eff40297bcbc3bf35cbe11ef5c.stex" ]
 
 [params]
 

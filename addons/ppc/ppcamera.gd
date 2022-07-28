@@ -39,6 +39,12 @@ export var max_zoom_factor: float = 2
 export var drag_deadzone : Vector2 = Vector2(0.1, 0.1)
 
 export var show_debug_icon : bool = false
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
+export var limit_left := 0.0
+export var limit_top := 0.0
+export var limit_right := 0.0
+export var limit_bottom := 0.0
+# ░░░░ BUGGY ADVENTURE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 var shop
 var start_position 
@@ -76,6 +82,17 @@ func _enter_tree():
 	camera.current = current
 	camera.smoothing_enabled = smoothing
 	camera.smoothing_speed = smoothing_speed
+	
+	# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
+	if limit_left != 0.0:
+		camera.limit_left = limit_left
+	if limit_top != 0.0:
+		camera.limit_top = limit_top
+	if limit_right != 0.0:
+		camera.limit_right = limit_right
+	if limit_bottom != 0.0:
+		camera.limit_bottom = limit_bottom
+	# ░░░░ BUGGY ADVENTURE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 	
 	if show_debug_icon:
 		var di = load("res://addons/ppc/testicon.tscn")

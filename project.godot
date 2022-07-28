@@ -250,7 +250,7 @@ _global_script_class_icons={
 
 config/name="Buggy Adventure"
 config/description="A graphic adventure for the blockchain. "
-run/main_scene="res://popochiu/Rooms/Lobby/RoomLobby.tscn"
+run/main_scene="res://popochiu/Rooms/Writer/RoomWriter.tscn"
 config/icon="res://icon.png"
 config/windows_native_icon="res://token_icon.ico"
 

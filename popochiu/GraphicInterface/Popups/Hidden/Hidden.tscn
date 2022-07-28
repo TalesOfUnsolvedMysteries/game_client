@@ -1,12 +1,43 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://popochiu/Common/Overlay2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/Levels/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/Hidden.gd" type="Script" id=3]
-[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/HiddenObject/HiddenObject.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/ppc/ppcamera.gd" type="Script" id=5]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/HiddenGI.gd" type="Script" id=7]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/GI/sprites/click_meter_under.png" type="Texture" id=8]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/GI/sprites/click_meter_progress.png" type="Texture" id=9]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/GI/sprites/tooltip.png" type="Texture" id=10]
+[ext_resource path="res://popochiu/GraphicInterface/Resources/DynamicFonts/MonkeyIsland-8.tres" type="DynamicFont" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+corner_detail = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id=3]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 1.0
+content_margin_bottom = 5.0
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 69, 24 )
+margin_left = 1.0
+margin_right = 1.0
+margin_top = 1.0
+margin_bottom = 4.0
 
 [node name="Hidden" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -24,14 +55,85 @@ usage = 0
 render_target_update_mode = 3
 physics_object_picking = true
 
-[node name="PinchPanCamera" type="Position2D" parent="ViewportContainer/Viewport" index="0"]
-script = ExtResource( 5 )
-
-[node name="HiddenObject" parent="ViewportContainer/Viewport" index="1" instance=ExtResource( 4 )]
-collision_layer = 1
-collision_mask = 1
-
-[node name="FakePointer" type="Area2D" parent="ViewportContainer/Viewport" index="2"]
+[node name="FakePointer" type="Area2D" parent="ViewportContainer/Viewport" index="0"]
+position = Vector2( 64, 64 )
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportContainer/Viewport/FakePointer" index="0"]
 shape = SubResource( 1 )
+
+[node name="Level" parent="ViewportContainer/Viewport" index="1" instance=ExtResource( 2 )]
+
+[node name="PinchPanCamera" type="Position2D" parent="ViewportContainer/Viewport" index="2"]
+script = ExtResource( 5 )
+
+[node name="GI" type="Control" parent="." index="2"]
+margin_left = -131.0
+margin_top = -60.0
+margin_right = 131.0
+margin_bottom = 60.0
+mouse_filter = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Tween" type="Tween" parent="GI" index="0"]
+
+[node name="PanelContainer" type="PanelContainer" parent="GI" index="1"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = -26.0
+margin_right = -2.0
+margin_bottom = -2.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GI/PanelContainer" index="0"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 254.0
+margin_bottom = 22.0
+size_flags_horizontal = 5
+custom_constants/separation = 2
+alignment = 1
+
+[node name="ClickMeter" type="TextureProgress" parent="GI/PanelContainer/HBoxContainer" index="0"]
+margin_right = 4.0
+margin_bottom = 20.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 9 )
+texture_progress_offset = Vector2( 1, 1 )
+fill_mode = 3
+
+[node name="Container" type="MarginContainer" parent="GI/PanelContainer/HBoxContainer" index="1"]
+margin_left = 6.0
+margin_right = 250.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 0
+
+[node name="GoalsContainer" type="HBoxContainer" parent="GI/PanelContainer/HBoxContainer/Container" index="0"]
+margin_left = 122.0
+margin_right = 122.0
+margin_bottom = 20.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Tooltip" type="Label" parent="GI" index="2"]
+visible = false
+margin_left = 97.0
+margin_top = 74.0
+margin_right = 166.0
+margin_bottom = 98.0
+grow_vertical = 0
+rect_min_size = Vector2( 69, 24 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 11 )
+custom_styles/normal = SubResource( 3 )
+autowrap = true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/GI/GoalButton.gd" type="Script" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/GI/sprites/found.png" type="Texture" id=2]
+
+[node name="Farmer" type="TextureButton"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+expand = true
+stretch_mode = 5
+script = ExtResource( 1 )
+
+[node name="Found" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5

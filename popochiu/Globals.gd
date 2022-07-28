@@ -192,6 +192,16 @@ const NFTs := {
 		img = 'nft_new_floors',
 		id = '0025'
 	},
+	STONE_ICE = {
+		label = 'The hidden ice stone',
+		img = 'nft_new_floors',
+		id = '0026'
+	},
+	HIDDEN_DOGGY = {
+		label = 'Doggy doggy!',
+		img = 'nft_new_floors',
+		id = '0026'
+	}
 }
 
 var main_mx_play = false
