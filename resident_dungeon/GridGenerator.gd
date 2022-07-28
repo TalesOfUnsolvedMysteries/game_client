@@ -141,6 +141,7 @@ func merge_room_doors(doors: Dictionary, basic_grid:Array, a, b, a_edges: Array,
 		elif doors.has(b_bedge_key):
 			# doors b-d and d not in a must be remaped as a-d
 			doors[a_bedge_key] = doors[b_bedge_key]
+			doors[a_bedge_key].key = a_bedge_key
 			doors.erase(b_bedge_key)
 
 

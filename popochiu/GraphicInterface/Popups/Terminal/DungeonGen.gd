@@ -9,9 +9,10 @@ func _ready():
 	$Control/Generate.connect('button_down', self, '_on_generate_pressed')
 	$Control/Generate2.connect('button_down', self, '_on_generate2_pressed')
 	$Control/Generate3.connect('button_down', self, '_on_generate3_pressed')
-	$Control/Generate4.connect('button_down', self, '_on_generate4_pressed')
+	$Control/Submit.connect('button_down', self, '_on_generate4_pressed')
 	$Control/Merge.connect('button_down', self, '_on_merge_pressed')
 	$Control/Tree.connect('button_down', self, '_on_tree_pressed')
+	$DungeonGame.connect('room_entered', self, '_on_room_entered')
 
 func _on_dungeon_updated(dungeon):
 	_dungeon = dungeon
@@ -23,36 +24,8 @@ func _on_generate_pressed():
 	_on_dungeon_updated(dungeon)
 
 func _on_generate2_pressed():
-	print('do nothing')
-	var room = DungeonRoom.new(1, [Rect2(1,1,3,3), Rect2(4,2,1,1), Rect2(1,4,2, 2)], [])
-	
-	var poly1 = PoolVector2Array([
-		Vector2(room.squares[0].position.x, room.squares[0].position.y),
-		Vector2(room.squares[0].position.x, room.squares[0].end.y),
-		Vector2(room.squares[0].end.x, room.squares[0].end.y),
-		Vector2(room.squares[0].end.x, room.squares[0].position.y)
-	])
-	var poly2 = PoolVector2Array([
-		Vector2(room.squares[1].position.x, room.squares[1].position.y),
-		Vector2(room.squares[1].position.x, room.squares[1].end.y),
-		Vector2(room.squares[1].end.x, room.squares[1].end.y),
-		Vector2(room.squares[1].end.x, room.squares[1].position.y)
-	])
-	var poly3 = PoolVector2Array([
-		Vector2(room.squares[2].position.x, room.squares[2].position.y),
-		Vector2(room.squares[2].position.x, room.squares[2].end.y),
-		Vector2(room.squares[2].end.x, room.squares[2].end.y),
-		Vector2(room.squares[2].end.x, room.squares[2].position.y)
-	])
-	var polymerged = Geometry.merge_polygons_2d(poly1, poly2)
-	print(polymerged)
-	print(PoolVector2Array(polymerged[0]))
-	var polymerged2 = Geometry.merge_polygons_2d(poly3, PoolVector2Array(polymerged[0]))
-	print('poly3')
-	print(poly3)
-	print(polymerged2)
-	#var polygon = $DungeonDecoratorBasic.polygon_transform(room)
-	#print(polygon)
+	$DungeonGame.load_dungeon(_dungeon)
+	$DungeonGame.start()
 
 func _on_generate3_pressed():
 	var dungeon = $DungeonGenerator.generate_base_dungeon()
@@ -61,7 +34,20 @@ func _on_generate3_pressed():
 
 
 func _on_generate4_pressed():
-	$DungeonGenerator.generate_dungeon()
+	var text = $Control/Input.text
+	if text.begins_with('open '):
+		var door_to_open = text.trim_prefix('open ')
+		$DungeonGame.open_door(door_to_open)
+	print('input')
+
+func _on_room_entered(room: DungeonRoom):
+	var interactions = room.get_interactions()
+	var txt = 'Entered room %d\n' % room.key
+	txt += 'there are %d doors\n' % interactions.size()
+	for interaction in interactions:
+		txt += ' - write "[color=#ff6688]open %s[/color]"\n' % interaction
+	$Control/GameOutput.bbcode_text = txt
+	$DungeonDecoratorBasic.on_room_entered(room.key)
 	
 func _on_merge_pressed():
 	if not _dungeon: return

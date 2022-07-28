@@ -20,3 +20,7 @@ func set_root_node(room_index: int):
 	if room:
 		room.type = DungeonRoom.Types.START
 	root_node = room_index
+
+func get_start_room() -> DungeonRoom:
+	return get_room(root_node)
+

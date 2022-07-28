@@ -42,6 +42,7 @@ static func merge_rooms(dungeon: Dungeon, key_a, key_b):
 				merge_doors(doors, door_a_edge_key, door_b_edge_key)
 			elif doors.has(door_b_edge_key):
 				doors[door_a_edge_key] = doors[door_b_edge_key]
+				doors[door_a_edge_key].key = door_a_edge_key
 				doors.erase(door_b_edge_key)
 		
 		adjacency_matrix[j][a_index] |= adjacency_matrix[j][b_index]
@@ -125,3 +126,14 @@ static func check_total(ones):
 		for i in range(0, ones[j].size()):
 			total += ones[j][i]
 	return total == ones.size()*ones[0].size()
+
+
+static func get_random_position_in_room(room: DungeonRoom):
+	var random_square: Rect2 = room.squares[randi()%room.squares.size()]
+	var i = random_square.position.x + randi()%int(random_square.size.x)
+	var j = random_square.position.y + randi()%int(random_square.size.y)
+	return Vector2(i + 0.5, j + 0.5)
+
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Terminal/Doom_1.666_shareware_ENDOOM.png" type="Texture" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Terminal/DungeonGen.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://resident_dungeon/models/DungeonResource.gd" type="Script" id=5]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Terminal/DungeonDecoratorBasic.gd" type="Script" id=6]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Terminal/backgroun.png" type="Texture" id=7]
+[ext_resource path="res://resident_dungeon/DungeonGame.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resident_dungeon/models/Player.gd" type="Script" id=9]
+[ext_resource path="res://addons/quentincaffeino/console/assets/themes/Console.tres" type="Theme" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Doom_1.666_shareware_ENDOOM.png 0"
@@ -26,8 +29,8 @@
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 5 )
-_seed = 42
-_width = 15
+_seed = 45
+_width = 16
 _height = 10
 _max_initial_room_width = 3
 _max_initial_room_height = 3
@@ -62,6 +65,9 @@ _health_spawn_probability = [ 90, 15, 8, 4, 1 ]
 [sub_resource type="DynamicFont" id=2]
 size = 14
 font_data = ExtResource( 3 )
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 9 )
 
 [node name="DungeonGen" type="Node2D"]
 script = ExtResource( 2 )
@@ -101,7 +107,7 @@ margin_left = 224.0
 margin_top = 10.0
 margin_right = 269.0
 margin_bottom = 28.0
-text = "gen 2"
+text = "start"
 
 [node name="Generate3" type="Button" parent="Control"]
 margin_left = 273.0
@@ -110,7 +116,7 @@ margin_right = 318.0
 margin_bottom = 28.0
 text = "gen 3"
 
-[node name="Generate4" type="Button" parent="Control"]
+[node name="Generate5" type="Button" parent="Control"]
 margin_left = 174.0
 margin_top = 32.0
 margin_right = 219.0
@@ -130,6 +136,30 @@ margin_top = 32.0
 margin_right = 316.0
 margin_bottom = 50.0
 text = "tree"
+
+[node name="Input" type="LineEdit" parent="Control"]
+margin_left = 176.0
+margin_top = -51.0
+margin_right = 304.0
+margin_bottom = -29.0
+
+[node name="Submit" type="Button" parent="Control"]
+margin_left = 177.0
+margin_top = -26.0
+margin_right = 230.0
+margin_bottom = -8.0
+text = "submit"
+
+[node name="GameOutput" type="RichTextLabel" parent="Control"]
+margin_left = 170.0
+margin_top = -101.0
+margin_right = 307.0
+margin_bottom = -55.0
+theme = ExtResource( 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "hola"
+text = "hola"
 
 [node name="DungeonGenerator" parent="." instance=ExtResource( 4 )]
 dungeon_config = SubResource( 3 )
@@ -151,3 +181,6 @@ mouse_filter = 2
 custom_fonts/mono_font = SubResource( 2 )
 bbcode_enabled = true
 scroll_active = false
+
+[node name="DungeonGame" parent="." instance=ExtResource( 8 )]
+player = SubResource( 4 )

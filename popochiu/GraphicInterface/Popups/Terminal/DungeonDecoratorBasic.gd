@@ -7,6 +7,8 @@ export(Color) var color_border_room = Color('e9e9e9')
 export(Color) var color_door = Color('f2e204')
 export(Color) var color_locked_door = Color.red
 
+var current_room = ''
+
 func print_full_data_dungeon(dungeon, decoration_data):
 	print_dungeon(dungeon, decoration_data)
 	var str_matrix = ''
@@ -129,7 +131,7 @@ func draw_dungeon(dungeon, decoration_data):
 			pass
 		#shape.color.a = 0.9
 		border.default_color = color_border_room
-		shape.name = 'ROOM-%d (%d)' % [node_keys.find(key), key]
+		shape.name = 'ROOM-%d' % [key]
 		$Canvas.add_child(shape)
 		$Canvas.add_child(border)
 	# draw doors
@@ -262,3 +264,14 @@ func from_coord_to_cell(position: Vector2, direction: Vector2):
 	var rel_pos = Vector2(position.x-int(position.x), position.y-int(position.y))
 	return position + Vector2(rel_pos.x*direction.x - rel_pos.y*direction.y, rel_pos.x*direction.x + rel_pos.y*direction.y)
 	
+
+func on_room_entered(room):
+	print('on room entered dungeon decorator')
+	print(room)
+	if not current_room.empty():
+		$Canvas.get_node(current_room).color = Color.blue
+	current_room = 'ROOM-%d' % [room]
+	print('current room ', current_room)
+	var node = $Canvas.get_node(current_room)
+	node.color = Color.red
+

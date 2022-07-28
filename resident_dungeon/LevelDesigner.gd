@@ -312,11 +312,8 @@ func setup_level(dungeon: Dungeon, original_adjacency_matrix: Array, time):
 	print(all_doors)
 	for d in all_doors:
 		var door = dungeon.doors[d]
-		if d == '11-40':
-			print(door)
 		if door.enabled: continue
 		var _room_keys = d.split('-')
-		print(_room_keys)
 		var i = room_keys.find(int(_room_keys[0]))
 		var j = room_keys.find(int(_room_keys[1]))
 		original_adjacency_matrix[i][j] = 0

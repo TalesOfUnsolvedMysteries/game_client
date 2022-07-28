@@ -49,3 +49,12 @@ func merge_with_room(room: DungeonRoom):
 func set_contents(things):
 	contents = things.duplicate(true)
 	
+
+func get_interactions():
+	var doors = []
+	for edge_key in edges:
+		doors.push_back(DungeonDoor.get_key_for(key, edge_key))
+	return doors
+
+
+
