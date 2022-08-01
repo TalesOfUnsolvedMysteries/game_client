@@ -3,12 +3,16 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/HiddenObject/HiddenObject.gd" type="Script" id=1]
 
 [node name="HiddenObject" type="Area2D"]
-modulate = Color( 1, 1, 1, 0.5 )
 collision_layer = 8
 input_pickable = false
-monitoring = false
 script = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
+offset = Vector2( 0.269762, 0.0100821 )
+
+[node name="BaselineHelper" type="Line2D" parent="."]
+points = PoolVector2Array( -1000, 0, 1000, 0 )
+width = 1.0
+default_color = Color( 1, 0.4, 0.764706, 1 )

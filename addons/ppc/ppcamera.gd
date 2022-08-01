@@ -55,12 +55,21 @@ var naturalizer = 1
 
 var camera : Camera2D
 
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
+var moving_to := Vector2.INF setget set_moving_to
+# ░░░░ BUGGY ADVENTURE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
 signal zoom_in()
 signal zoom_out()
 signal just_pressed()
 signal dragging()
 
 signal input_number(num)
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
+signal movement_done
+# ░░░░ BUGGY ADVENTURE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
 
 func _enter_tree():
 	"""
@@ -130,6 +139,13 @@ func _process(_delta):
 		naturalizer = 1
 	elif !natural_slide and naturalizer != -1:
 		naturalizer = -1
+	
+	# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
+	if moving_to != Vector2.INF\
+	and round(camera.get_camera_screen_center().distance_to(moving_to)) == 0.0:
+		self.moving_to = Vector2.INF
+		emit_signal('movement_done')
+	# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
 
 
 func _input(event):
@@ -168,9 +184,8 @@ func _input(event):
 				position += coord
 	# Handles releasing
 	if  camera.input_count == 0:
-		
 		position = camera.get_camera_center() 
-		
+
 
 func get_movement_vector_from(vec : Vector2) -> Vector2:
 	"""
@@ -202,3 +217,12 @@ func invert_vector(vec : Vector2):
 	inverts a vector
 	"""
 	return Vector2(-vec.x, -vec.y)
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ BUGGY ADVENTURE ░░░░
+func set_moving_to(value: Vector2) -> void:
+	moving_to = value
+	
+	enable_pinch_pan = value == Vector2.INF
+	if value != Vector2.INF: position = value
+# ░░░░ BUGGY ADVENTURE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

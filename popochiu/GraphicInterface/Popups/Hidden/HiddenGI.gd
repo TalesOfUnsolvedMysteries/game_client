@@ -1,6 +1,7 @@
 extends Control
 
 signal click_limit_reached
+signal details_closed
 
 const GOAL_BUTTON := preload('GI/GoalButton.tscn')
 
@@ -9,11 +10,18 @@ var _base_time := 1.0
 onready var _goals_container: HBoxContainer = find_node('GoalsContainer')
 onready var _click_meter: TextureProgress = find_node('ClickMeter')
 onready var _tooltip: Label = find_node('Tooltip')
+onready var _icon: TextureRect = $Details.find_node('Icon')
+onready var _name: Label = $Details.find_node('Name')
+onready var _clue: Label = $Details.find_node('Clue')
+onready var _secret: Label = $Details.find_node('Secret')
+onready var _btn_close: Button = $Details.find_node('BtnClose')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	pass
+	_btn_close.connect('pressed', self, 'hide_details')
+	
+	$Details.hide()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -65,6 +73,25 @@ func check_clicked(obj_name: String) -> bool:
 	
 	count_try_click(true)
 	return false
+
+
+func show_details(data: Dictionary) -> void:
+	_secret.hide()
+	
+	_icon.texture = data.ico
+	_name.text = data.obj
+	_clue.text = data.clu
+	
+	if data.has('sec'):
+		_secret.text = data.sec
+		_secret.show()
+	
+	$Details.show()
+
+
+func hide_details() -> void:
+	$Details.hide()
+	emit_signal('details_closed')
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░

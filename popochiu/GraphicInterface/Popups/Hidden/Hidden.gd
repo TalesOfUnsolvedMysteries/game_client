@@ -9,6 +9,7 @@ var _is_dragging := false
 var _current_obj: Area2D = null
 var _found_goals := 0
 var _obj_behind: Area2D = null
+var _level_goals := 0
 
 onready var vc: ViewportContainer = find_node('ViewportContainer')
 onready var v: Viewport = find_node('Viewport')
@@ -59,16 +60,13 @@ func _input(event: InputEvent) -> void:
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
 func _start() -> void:
-	for c in CLUES_FILE.CLUES:
-		$GI.add_goal(c)
-	
 	for o in level.get_node('Objects').get_children():
+		if CLUES_FILE.CLUES.has(o.name):
+			_level_goals += 1
+			$GI.add_goal(_get_goal_data(o.name))
+		
 		o.connect('current_changed', self, '_assign_current')
 		o.connect('clicked', self, '_check_clicked')
-#
-#		for c in CLUES_FILE.CLUES:
-#			if o.name.find(c.obj) > -1:
-#				pass
 
 
 func _toggle_pinch(enable: bool) -> void:
@@ -86,6 +84,7 @@ func _assign_current(obj: Area2D) -> void:
 		return
 	
 	_current_obj = obj if obj.current else null
+	_obj_behind = null
 
 
 func _check_clicked(obj: Area2D) -> void:
@@ -103,19 +102,32 @@ func _check_clicked(obj: Area2D) -> void:
 			if $GI.check_clicked(obj.name):
 				obj.disable()
 				
+				# Que la cámara se centre en el coso recién encontrado
+				ppc.moving_to = obj.position + Vector2.DOWN * 4.0
+				
+				yield(ppc, 'movement_done')
+				
 				if obj.nft:
 					yield(_give_nft(obj.nft), 'completed')
 				
+				# Mostrar la interfaz
+				$GI.show_details(_get_goal_data(obj.name))
+				
+				yield($GI, 'details_closed')
+				
+				if obj.is_movable():
+					obj.continue()
+				
+				if _obj_behind:
+					_current_obj = _obj_behind
+					_obj_behind = null
+				else:
+					_current_obj = null
+				
 				_found_goals += 1
-				if _found_goals == CLUES_FILE.CLUES.size():
+				if _found_goals == _level_goals:
 					_win()
 					return
-	
-	if _obj_behind:
-		_current_obj = _obj_behind
-		_obj_behind = null
-	else:
-		_current_obj = null
 
 
 func _win() -> void:
@@ -137,3 +149,10 @@ func _give_nft(nft_name: String) -> void:
 			'nft_shown'
 		),
 	]), 'completed')
+
+
+func _get_goal_data(obj_name: String) -> Dictionary:
+	var data := (CLUES_FILE.CLUES[obj_name] as Dictionary).duplicate()
+	data.obj = obj_name
+	
+	return data
