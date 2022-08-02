@@ -11,5 +11,9 @@ const CLUES := {
 	'Sheep': {
 		clu = 'This sheep is running all over the place.',
 		ico = preload('res://popochiu/GraphicInterface/Popups/Hidden/HiddenObject/sprites/sheep.png')
+	},
+	'Rat': {
+		clu = 'This rat is hiding behind a rock.',
+		ico = preload('res://popochiu/GraphicInterface/Popups/Hidden/HiddenObject/sprites/rat.png')
 	}
 }

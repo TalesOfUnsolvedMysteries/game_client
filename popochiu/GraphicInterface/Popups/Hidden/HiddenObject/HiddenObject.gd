@@ -8,16 +8,29 @@ signal shake_done
 export var texture: Texture = null setget set_texture
 export var nft := ''
 export var baseline := 0 setget set_baseline
-# ---- Esta propiedad podría ser única de los Breakable ------------------------
+# ---- Breakable ---------------------------------------------------------------
 export var clicks_to_break := 0
-# ---- Esta propiedad podría ser única de los Movable --------------------------
+# ---- Draggable ---------------------------------------------------------------
+export var is_draggable := false
+#export (int, "Normal", "Horizontal", "Vertical") var slide_mode = 0
+export(int, 'Horizontal', 'Vertical') var slide_mode := 0
+export var max_distance := INF
 
 
 var current := false setget set_current
 var path2d: Path2D = null
 
+# ---- Breakable ---------------------------------------------------------------
 var _shake_time := 0.0 setget set_shake_time
+# ---- Movable -----------------------------------------------------------------
 var _following: Node = null
+# ---- Draggable ---------------------------------------------------------------
+var _is_dragging := false
+var _start_position := Vector2.ZERO
+
+# ---- Draggable ---------------------------------------------------------------
+var mouse_position := Vector2.INF
+
 
 onready var _sprite_offset: Vector2 = $Sprite.offset
 
@@ -31,6 +44,8 @@ func _ready() -> void:
 	else:
 		remove_child($BaselineHelper)
 		
+		# Recalcular posiciones para que la configuración hecha para el baseline
+		# se aplique a las coordenadas reales del objeto
 		for c in get_children():
 			if c.get_class() in [
 				'Sprite', 'CollisionPolygon2D', 'CollisionShape2D', 'AnimatedSprite'
@@ -38,21 +53,28 @@ func _ready() -> void:
 				c.position.y -= baseline * c.scale.y
 		position.y += baseline * scale.y
 	
-	set_process(false)
-	
 	connect('area_entered', self, '_area_entered')
 	connect('area_exited', self, '_area_exited')
 	
-	call_deferred('_start')
+	if has_node('Path2D'):
+		call_deferred('_start')
+	
+	if is_draggable:
+		_start_position = position
+	
 	enable()
+	set_process(false)
+	
+	set_process_input(false)
 
 
 func _process(delta: float) -> void:
+	# ---- Movable -------------------------------------------------------------
 	if _following:
 		position = _following.global_position
 		return
 	
-	
+	# ---- Breakable -----------------------------------------------------------
 	self._shake_time -= delta
 	$Sprite.offset = _sprite_offset + Vector2(
 		rand_range(-1.0, 1.0) * 1.0,
@@ -62,6 +84,24 @@ func _process(delta: float) -> void:
 	if _shake_time <= 0.0:
 		emit_signal('shake_done')
 		set_process(false)
+
+
+func _input(event: InputEvent):
+	if event is InputEventScreenDrag:
+		var coord = _get_movement_vector_from(-to_local(mouse_position))
+		position += coord
+		
+		if _start_position.distance_to(position) > max_distance:
+			if slide_mode == 0:
+				if position.x - _start_position.x < 0:
+					position.x = _start_position.x - max_distance
+				else:
+					position.x = _start_position.x + max_distance
+			else:
+				if position.y - _start_position.y < 0:
+					position.y = _start_position.y - max_distance
+				else:
+					position.y = _start_position.y + max_distance
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░
@@ -74,9 +114,10 @@ func enable() -> void:
 
 
 func clicked() -> void:
+	# ---- Breakable -----------------------------------------------------------
 	clicks_to_break -= 1
 	if clicks_to_break >= 0:
-		# TODO: Dar retroalimentación del clic que intenta romper la cosa
+		# TODO: Dar retroalimentación del clic que intenta "romper" la cosa
 		self._shake_time = 0.2
 		
 		set_process(true)
@@ -84,16 +125,29 @@ func clicked() -> void:
 		
 		if clicks_to_break > 0: return
 	
+	# ---- Movable -------------------------------------------------------------
 	if _following:
 		$Tween.stop(path2d.get_child(0), 'unit_offset')
 		
+		yield(get_tree().create_timer(0.2), 'timeout')
 	
+	# ---- Todos ---------------------------------------------------------------
 	# TODO: Poner retroalimentación del objeto siendo "descubierto".
 	emit_signal('clicked', self)
 
 
+# ---- Movable -----------------------------------------------------------------
 func continue() -> void:
+	yield(get_tree().create_timer(0.2), 'timeout')
+	
 	$Tween.resume(path2d.get_child(0), 'unit_offset')
+
+
+# ---- Draggable -----------------------------------------------------------
+func pressed() -> void:
+	_is_dragging = true
+	
+	set_process_input(true)
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ set y get ░░░░
@@ -161,3 +215,14 @@ func _start() -> void:
 		
 		_following = path_follower
 		set_process(true)
+
+
+func _get_movement_vector_from(vec : Vector2) -> Vector2:
+	var move_vec = Vector2.ZERO - vec 
+	
+	if slide_mode == 0:
+		return Vector2(move_vec.x, 0)
+	if slide_mode == 1:
+		return Vector2(0, move_vec.y)
+	else:
+		return move_vec

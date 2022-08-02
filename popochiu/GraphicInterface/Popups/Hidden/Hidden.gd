@@ -41,6 +41,9 @@ func _input(event: InputEvent) -> void:
 		fp.position *= ppc.camera.zoom
 		fp.position += ppc.position
 		
+		if _current_obj and _current_obj.is_draggable:
+			_current_obj.mouse_position = fp.position
+		
 		var mouse_event: = event as InputEventMouseButton
 		if mouse_event and mouse_event.button_index == BUTTON_LEFT:
 			get_tree().set_input_as_handled()
@@ -48,9 +51,19 @@ func _input(event: InputEvent) -> void:
 			
 			if mouse_event.pressed:
 				_is_dragging = false
+				
+				if _current_obj and _current_obj.is_draggable:
+					ppc.enable_pinch_pan = false
+					
+					_current_obj.pressed()
 			else:
 				# Aquí es donde pasan las cosas importantes
-				if not _is_dragging and _current_obj:
+				if _current_obj and _current_obj.is_draggable:
+					_current_obj.set_process_input(false)
+					
+					ppc.already_pressed = false
+					ppc.enable_pinch_pan = true
+				elif not _is_dragging and _current_obj:
 					_current_obj.clicked()
 				elif not _is_dragging and not _current_obj:
 					$GI.count_try_click()
@@ -81,6 +94,8 @@ func _camera_dragging() -> void:
 func _assign_current(obj: Area2D) -> void:
 	if _current_obj and _current_obj != obj:
 		_obj_behind = obj
+		return
+	elif _current_obj and _current_obj.is_processing_input():
 		return
 	
 	_current_obj = obj if obj.current else null

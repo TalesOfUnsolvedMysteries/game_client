@@ -6,11 +6,12 @@
 collision_layer = 8
 input_pickable = false
 script = ExtResource( 1 )
+max_distance = 0.0
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-offset = Vector2( 0.269762, 0.0100821 )
+offset = Vector2( 0.75466, 1.03412 )
 
 [node name="BaselineHelper" type="Line2D" parent="."]
 points = PoolVector2Array( -1000, 0, 1000, 0 )
