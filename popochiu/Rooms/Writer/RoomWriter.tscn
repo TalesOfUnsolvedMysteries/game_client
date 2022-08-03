@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://popochiu/Rooms/Writer/RoomWriter.gd" type="Script" id=1]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/PaintingOverlay2D.tscn" type="PackedScene" id=2]
@@ -26,11 +26,14 @@
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/writer_hidden.png" type="Texture" id=24]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Painting/sprites/writer_normal.png" type="Texture" id=25]
 [ext_resource path="res://popochiu/GraphicInterface/Popups/Hidden/Hidden.tscn" type="PackedScene" id=26]
+[ext_resource path="res://popochiu/Rooms/Writer/Props/HiddenComputer/PropHiddenComputer.gd" type="Script" id=27]
+[ext_resource path="res://popochiu/Rooms/Writer/Props/HiddenComputer/hidden_computer.png" type="Texture" id=28]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Window/Window.tscn" type="PackedScene" id=29]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -60, 43, -110, 2, -73, -9, -56, -3, -29, 46, 46, -7, -20, -21, -34, -28, -30, -32, 55, -30, 63, -25, 110, -9, 125, -3, 112, 27, 95, 5, 49, 44, -19, 69, 45, 66 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8, 9, 10 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 6, 5, 14, 13, 15, 4, 3 ), PoolIntArray( 16, 4, 15, 17 ) ]
-outlines = [ PoolVector2Array( -19, 69, 45, 66, 49, 44, 112, 27, 125, -3, 110, -9, 95, 5, 46, -7, 63, -25, 55, -30, -30, -32, -34, -28, -20, -21, -56, -3, -73, -9, -110, 2, -60, 43, -29, 46 ) ]
+vertices = PoolVector2Array( -30, -32, 51, -30, 27, -12, -12, -22, -34, -28, -58, 41, -103, 3, -70, -8, -53, 0, -29, 42, 87, -1, 117, 7, 108, 24, 47, 41, 84, 2, -17, 66, 44, 64 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8, 9 ), PoolIntArray( 10, 11, 12, 13, 14 ), PoolIntArray( 9, 2, 14, 13, 15 ), PoolIntArray( 9, 8, 3, 2 ), PoolIntArray( 15, 13, 16 ) ]
+outlines = [ PoolVector2Array( -17, 66, 44, 64, 47, 41, 108, 24, 117, 7, 87, -1, 84, 2, 27, -12, 51, -30, -30, -32, -34, -28, -12, -22, -53, 0, -70, -8, -103, 3, -58, 41, -29, 42 ) ]
 
 [node name="RoomWriter" type="Node2D"]
 script = ExtResource( 1 )
@@ -61,9 +64,11 @@ script_name = "Window"
 texture = ExtResource( 6 )
 
 [node name="BaselineHelper" parent="Props/Window" index="0"]
+visible = false
 position = Vector2( 0, -18 )
 
 [node name="WalkToHelper" parent="Props/Window" index="1"]
+visible = false
 position = Vector2( -5, 31 )
 
 [node name="Sprite" parent="Props/Window" index="2"]
@@ -73,7 +78,7 @@ texture = ExtResource( 6 )
 polygon = PoolVector2Array( -19, -18, 18, -14, 20, 16, -21, 13 )
 
 [node name="Desk" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 79, -18 )
+position = Vector2( 68, -23 )
 script = ExtResource( 9 )
 description = "Desk"
 walk_to_point = Vector2( -11, 20 )
@@ -81,7 +86,11 @@ cursor = 10
 script_name = "Desk"
 texture = ExtResource( 10 )
 
+[node name="BaselineHelper" parent="Props/Desk" index="0"]
+visible = false
+
 [node name="WalkToHelper" parent="Props/Desk" index="1"]
+visible = false
 position = Vector2( -11, 20 )
 
 [node name="Sprite" parent="Props/Desk" index="2"]
@@ -101,9 +110,11 @@ script_name = "Library"
 texture = ExtResource( 12 )
 
 [node name="BaselineHelper" parent="Props/Library" index="0"]
+visible = false
 position = Vector2( 0, 18 )
 
 [node name="WalkToHelper" parent="Props/Library" index="1"]
+visible = false
 position = Vector2( 14, 28 )
 
 [node name="Sprite" parent="Props/Library" index="2"]
@@ -113,7 +124,7 @@ texture = ExtResource( 12 )
 polygon = PoolVector2Array( -25, -22, 7, -34, 21, -30, 24, 17, -8, 33, -21, 28 )
 
 [node name="BookDraft" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 93, -26 )
+position = Vector2( 82, -31 )
 script = ExtResource( 13 )
 description = "Book draft"
 baseline = 7
@@ -123,9 +134,11 @@ script_name = "BookDraft"
 texture = ExtResource( 14 )
 
 [node name="BaselineHelper" parent="Props/BookDraft" index="0"]
+visible = false
 position = Vector2( 0, 7 )
 
 [node name="WalkToHelper" parent="Props/BookDraft" index="1"]
+visible = false
 position = Vector2( -11, 32 )
 
 [node name="Sprite" parent="Props/BookDraft" index="2"]
@@ -135,7 +148,7 @@ texture = ExtResource( 14 )
 polygon = PoolVector2Array( -2, -6, 8, -4, 8, -1, 1, 5, -9, 3, -9, 0 )
 
 [node name="Typewriter" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( 73, -36 )
+position = Vector2( 62, -41 )
 script = ExtResource( 15 )
 description = "Typewriter"
 baseline = 13
@@ -145,9 +158,11 @@ script_name = "Typewriter"
 texture = ExtResource( 16 )
 
 [node name="BaselineHelper" parent="Props/Typewriter" index="0"]
+visible = false
 position = Vector2( 0, 13 )
 
 [node name="WalkToHelper" parent="Props/Typewriter" index="1"]
+visible = false
 position = Vector2( -24, 33 )
 
 [node name="Sprite" parent="Props/Typewriter" index="2"]
@@ -167,9 +182,11 @@ script_name = "Knife"
 texture = ExtResource( 18 )
 
 [node name="BaselineHelper" parent="Props/Knife" index="0"]
+visible = false
 position = Vector2( 0, -4 )
 
 [node name="WalkToHelper" parent="Props/Knife" index="1"]
+visible = false
 position = Vector2( -12, 4 )
 
 [node name="Sprite" parent="Props/Knife" index="2"]
@@ -179,7 +196,7 @@ texture = ExtResource( 18 )
 polygon = PoolVector2Array( 2, -4, 8, -3, 7, 0, 2, 2, -3, 2, -5, 4, -8, 3, -8, -1 )
 
 [node name="Painting" parent="Props" instance=ExtResource( 3 )]
-position = Vector2( -91, -28 )
+position = Vector2( -102, -33 )
 script = ExtResource( 19 )
 description = "Painting"
 baseline = 14
@@ -191,9 +208,11 @@ normal = ExtResource( 25 )
 hidden = ExtResource( 24 )
 
 [node name="BaselineHelper" parent="Props/Painting" index="0"]
+visible = false
 position = Vector2( 0, 14 )
 
 [node name="WalkToHelper" parent="Props/Painting" index="1"]
+visible = false
 position = Vector2( 23, 25 )
 
 [node name="Sprite" parent="Props/Painting" index="2"]
@@ -212,7 +231,11 @@ script_name = "Exit"
 always_on_top = true
 texture = ExtResource( 22 )
 
+[node name="BaselineHelper" parent="Props/Exit" index="0"]
+visible = false
+
 [node name="WalkToHelper" parent="Props/Exit" index="1"]
+visible = false
 position = Vector2( 1, 20 )
 
 [node name="Sprite" parent="Props/Exit" index="2"]
@@ -220,6 +243,30 @@ texture = ExtResource( 22 )
 
 [node name="CollisionPolygon2D" parent="Props/Exit" index="3"]
 polygon = PoolVector2Array( 33, 26, 3, 42, -29, 27 )
+
+[node name="HiddenComputer" parent="Props" instance=ExtResource( 3 )]
+position = Vector2( 105, -19 )
+script = ExtResource( 27 )
+description = "HiddenComputer"
+baseline = 14
+walk_to_point = Vector2( -14, 28 )
+cursor = 10
+script_name = "HiddenComputer"
+texture = ExtResource( 28 )
+
+[node name="BaselineHelper" parent="Props/HiddenComputer" index="0"]
+visible = false
+position = Vector2( 0, 14 )
+
+[node name="WalkToHelper" parent="Props/HiddenComputer" index="1"]
+visible = false
+position = Vector2( -14, 28 )
+
+[node name="Sprite" parent="Props/HiddenComputer" index="2"]
+texture = ExtResource( 28 )
+
+[node name="CollisionPolygon2D" parent="Props/HiddenComputer" index="3"]
+polygon = PoolVector2Array( -5, -13, 15, -12, 7, 7, 7, 15, 0, 20, -10, 18, -10, 7, -15, 5, -13, -7 )
 
 [node name="Hotspots" type="Node2D" parent="."]
 
@@ -255,6 +302,11 @@ position = Vector2( 11, 58 )
 visible = false
 
 [node name="Hidden" parent="." instance=ExtResource( 26 )]
+visible = false
+z_index = 10
+
+[node name="Window" parent="." instance=ExtResource( 29 )]
+z_index = 10
 
 [editable path="Props/Window"]
 [editable path="Props/Desk"]
@@ -264,4 +316,5 @@ visible = false
 [editable path="Props/Knife"]
 [editable path="Props/Painting"]
 [editable path="Props/Exit"]
+[editable path="Props/HiddenComputer"]
 [editable path="Hotspots/BulletHoles"]

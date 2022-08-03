@@ -29,7 +29,6 @@ func _ready() -> void:
 	$GI.connect('click_limit_reached', self, '_lose')
 	
 	_start()
-	appear()
 
 
 func _input(event: InputEvent) -> void:
@@ -69,6 +68,13 @@ func _input(event: InputEvent) -> void:
 					$GI.count_try_click()
 				
 				_is_dragging = false
+
+
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos virtuales ░░░░
+func _appeared() -> void:
+	for o in level.get_node('Objects').get_children():
+		if o.is_movable():
+			o.move()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos privados ░░░░
@@ -131,7 +137,7 @@ func _check_clicked(obj: Area2D) -> void:
 				yield($GI, 'details_closed')
 				
 				if obj.is_movable():
-					obj.continue()
+					obj.move()
 				
 				if _obj_behind:
 					_current_obj = _obj_behind

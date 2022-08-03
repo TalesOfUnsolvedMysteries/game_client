@@ -11,7 +11,7 @@ max_distance = 0.0
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-offset = Vector2( 0.75466, 1.03412 )
+offset = Vector2( 0.997109, 1.54614 )
 
 [node name="BaselineHelper" type="Line2D" parent="."]
 points = PoolVector2Array( -1000, 0, 1000, 0 )

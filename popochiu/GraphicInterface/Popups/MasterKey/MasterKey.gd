@@ -5,7 +5,8 @@ var _key_config := '' setget _set_key_config
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
-	hide()
+	if Engine.editor_hint: return
+	
 	connect('gui_input', self, '_check_close')
 	connect('mouse_entered', Cursor, 'set_cursor', [Cursor.Type.USE])
 	connect('mouse_exited', Cursor, 'set_cursor')
@@ -18,6 +19,8 @@ func _ready() -> void:
 			idx += 1
 	
 	G.connect('master_key_opened', self, 'appear')
+	
+	hide()
 
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos públicos ░░░░

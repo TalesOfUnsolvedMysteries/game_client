@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://popochiu/Common/Overlay2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Window/Window.gd" type="Script" id=2]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Window/sprites/bg.png" type="Texture" id=3]
+[ext_resource path="res://popochiu/Common/Overlay2DBlocker.gd" type="Script" id=4]
+[ext_resource path="res://popochiu/GraphicInterface/Popups/Common/sprites/overlay_filled.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0998
+
+[sub_resource type="StyleBoxFlat" id=4]
+draw_center = false
+border_width_left = 8
+border_width_right = 8
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="Window" instance=ExtResource( 1 )]
+self_modulate = Color( 0, 0, 0, 1 )
+texture = ExtResource( 5 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="." index="1"]
+
+[node name="Bg" type="Sprite" parent="." index="2"]
+texture = ExtResource( 3 )
+
+[node name="Floor" type="Area2D" parent="." index="3"]
+script = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor" index="0"]
+polygon = PoolVector2Array( -3, -70, -66, -50, -69, 40, -47, 65, 53, 64, 69, 33, 67, -51 )
+
+[node name="Umbrella" type="Area2D" parent="." index="4"]
+position = Vector2( 13, -11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Umbrella" index="0"]
+shape = SubResource( 1 )
+
+[node name="HeightSlider" type="VSlider" parent="." index="5"]
+margin_left = 79.0
+margin_top = -38.0
+margin_right = 95.0
+margin_bottom = 32.0
+custom_styles/slider = SubResource( 4 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+editable = false
+scrollable = false
+tick_count = 10
+ticks_on_borders = true

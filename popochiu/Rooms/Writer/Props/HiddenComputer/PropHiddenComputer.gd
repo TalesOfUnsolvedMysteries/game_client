@@ -7,9 +7,10 @@ func on_interact() -> void:
 	yield(E.run([
 		C.face_clicked(),
 		C.walk_to_clicked(),
+		'Player: Let use this'
 	]), 'completed')
 	
-	room.window.appear()
+	room.show_hidden()
 
 
 func on_look() -> void:

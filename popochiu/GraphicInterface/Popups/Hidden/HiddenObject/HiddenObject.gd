@@ -127,6 +127,7 @@ func clicked() -> void:
 	
 	# ---- Movable -------------------------------------------------------------
 	if _following:
+		set_process(false)
 		$Tween.stop(path2d.get_child(0), 'unit_offset')
 		
 		yield(get_tree().create_timer(0.2), 'timeout')
@@ -137,10 +138,20 @@ func clicked() -> void:
 
 
 # ---- Movable -----------------------------------------------------------------
-func continue() -> void:
-	yield(get_tree().create_timer(0.2), 'timeout')
+func move() -> void:
+	if $Tween.is_active():
+		yield(get_tree().create_timer(0.2), 'timeout')
+		
+		$Tween.resume(path2d.get_child(0), 'unit_offset')
+	else:
+		$Tween.interpolate_property(
+			path2d.get_child(0), 'unit_offset',
+			null, 1.0,
+			60.0, Tween.TRANS_LINEAR
+		)
+		$Tween.start()
 	
-	$Tween.resume(path2d.get_child(0), 'unit_offset')
+	set_process(true)
 
 
 # ---- Draggable -----------------------------------------------------------
@@ -199,22 +210,14 @@ func _start() -> void:
 		
 		remove_child(path2d)
 		
-		get_parent().add_child(path2d)
+		get_node('../../').add_child(path2d)
 		
 		yield(get_tree(), 'idle_frame')
 		
 		path2d.scale = scale
 		path2d.position = position
 		
-		$Tween.interpolate_property(
-			path2d.get_child(0), 'unit_offset',
-			null, 1.0,
-			60.0, Tween.TRANS_LINEAR
-		)
-		$Tween.start()
-		
 		_following = path_follower
-		set_process(true)
 
 
 func _get_movement_vector_from(vec : Vector2) -> Vector2:

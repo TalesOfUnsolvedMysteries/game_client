@@ -1,5 +1,7 @@
 extends Area2D
 
+signal clicked
+
 
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ métodos de Godot ░░░░
 func _ready() -> void:
@@ -12,3 +14,4 @@ func _check_click(_v: Node, e: InputEvent, _i: int):
 	if mouse_event and mouse_event.button_index == BUTTON_LEFT \
 	and mouse_event.pressed:
 		get_tree().set_input_as_handled()
+		emit_signal('clicked')
